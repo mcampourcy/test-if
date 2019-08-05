@@ -1,0 +1,21 @@
+{
+  "name": "test-if",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "esm": "^3.2.25",
+    "figlet": "^1.2.3",
+    "inquirer": "^6.5.0",
+    "shelljs": "^0.8.3"
+  },
+  "bin": {
+    "creator": "./bin/create.js"
+  }
+}
