@@ -1,40 +1,22 @@
 #!/usr/bin/env node
-const chalk = require("chalk")
-const figlet = require("figlet")
-const shell = require("shelljs")
-
-
+import chalk from 'chalk'
+import figlet from 'figlet'
+import { messages, settings } from './variables'
 
 const init = () => {
-    const questions = [
-        {
-            name: "FILENAME",
-            type: "input",
-            message: "What is the name of the file without extension?"
-        },
-        {
-            type: "list",
-            name: "EXTENSION",
-            message: "What is the file extension?",
-            choices: [".rb", ".js", ".php", ".css"],
-            filter: function(val) {
-                return val.split(".")[1];
-            }
-        }
-    ];
-    return inquirer.prompt(questions);
-};
-
-export const run = () => {
+    if (settings.oldstyle) console.log("Initialising...\n")
     console.log(
       chalk.green(
-        figlet.textSync("Node f*cking JS", {
-            font: "Ghost",
+        figlet.textSync("Colossal Cave \n Adventure", {
+            font: "Doom",
             horizontalLayout: "default",
             verticalLayout: "default"
         })
       )
     )
-    // show script introduction
-    init();
-};
+    console.log(messages.WELCOME_YOU)
+}
+
+export const run = () => {
+    init()
+}
