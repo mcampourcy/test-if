@@ -1,3 +1,4 @@
 export const settings = {
-    oldstyle: false,
+    novice: true,
+    repeat: false,
 }
