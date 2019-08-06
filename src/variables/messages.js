@@ -57,7 +57,7 @@ export const messages = {
     NEARBY: 'I can only tell you what you see as you move about and manipulate things. I cannot tell you where remote things are.',
     OGRE_SNARL: 'The ogre snarls and shoves you back.',
     HUH_MAN: 'Huh?',
-    WELCOME_YOU: 'Welcome to Adventure!! Would you like instructions?',
+    WELCOME_YOU: 'Welcome to Adventure!! \nWould you like instructions?',
     REQUIRES_DYNAMITE: 'Blasting requires dynamite.',
     FEET_WET: 'Your feet are now wet.',
     LOST_APPETITE: 'I think I just lost my appetite.',
