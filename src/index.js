@@ -32,17 +32,17 @@ const readAndAnswer = (question, callback) => {
 }
 
 const init = () => {
-  const { CAVE_NEARBY, PLEASE_ANSWER, WELCOME_YOU } = messages
-  const question = settings.repeat ? '' : WELCOME_YOU
+  const { caveNearby, pleaseAnswer, welcomeYou } = messages
+  const question = settings.repeat ? '' : welcomeYou
   readAndAnswer(question, (answer) => {
     if (yes_answer.includes(answer)) {
-      console.log(`\n${CAVE_NEARBY}`)
+      console.log(`\n${caveNearby}`)
       settings.repeat = true
     } else if (no_answer.includes(answer)) {
       settings.repeat = true
       settings.novice = false
     } else {
-      console.log(`\n${PLEASE_ANSWER}`)
+      console.log(`\n${pleaseAnswer}`)
       settings.repeat = true
       init()
     }
