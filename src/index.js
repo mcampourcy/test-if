@@ -31,12 +31,17 @@ const readAndAnswer = (question, callback) => {
   })
 }
 
-const getLocationDescription = (name) => {
-  const description = locations[name].description
-  return (description.short && settings.repeat) ? description.short : description.long
+const getLocationDescription = () => {
+  const { currentLocation: { description: { long, short }, conditions }, repeat } = settings
+
+  if (conditions.lit) {
+    return (short && repeat) ? short : long
+  } else {
+    return messages.pitchDark
+  }
 }
 
-const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription('locStart')}`, () => console.log('start !'))
+const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription()}`, () => console.log('start !'))
 
 const init = () => {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
@@ -44,9 +49,11 @@ const init = () => {
   readAndAnswer(question, (answer) => {
     if (yes_answer.includes(answer)) {
       console.log(`\n${caveNearby}`)
+      settings.currentLocation = 'locStart'
       gettingStarted()
     } else if (no_answer.includes(answer)) {
       settings.novice = false
+      settings.currentLocation = 'locStart'
       gettingStarted()
     } else {
       console.log(`\n${pleaseAnswer}`)
