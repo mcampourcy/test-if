@@ -32,7 +32,8 @@ const readAndAnswer = (question, callback) => {
 }
 
 const getLocationDescription = () => {
-  const { currentLocation: { description: { long, short }, conditions }, repeat } = settings
+  const { currentLocation, repeat } = settings
+  const { description: { long, short }, conditions } = locations[currentLocation]
 
   if (conditions.lit) {
     return (short && repeat) ? short : long
