@@ -1,22 +1,3 @@
-// // Return the first motion number that has 'word' as one of its words.
-// function get_motion_vocab_id(word) {
-//     for (let i = 0; i < motions; ++i) {
-//         for (let j = 0; j < motions[i].words.n; ++j) {
-//             // si le mot 1 a la même taille que le mot 2
-//             if (strncasecmp(word, motions[i].words.strs[j], TOKLEN) == 0
-//                 // et que sa taille est supérieure à 1
-//                 && (strlen(word) > 1
-//                     // ou si aucune lettre du mot n'est ignorée
-//                     || strchr(ignore, word[0]) == NULL
-//                     // ou si c'est pas un oldstyle
-//                     || !settings.oldstyle))
-//             return (i);
-//         }
-//     }
-//     // If execution reaches here, we didn't find the word.
-//     return (WORD_NOT_FOUND);
-// }
-
 // motions: Motion words, grouped into synonyms.  The 'oldstyle' attribute, if false, means that single-letter synonyms should be accepted in oldstyle mode; it defaults to true.
 
 export const motions = {
