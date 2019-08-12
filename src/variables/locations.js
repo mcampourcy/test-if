@@ -2034,8 +2034,15 @@ export const locations = {
         conditions: { fluid: true, deep: true },
         sound: 'watersCrashing',
         travel: [
-            { verbs: ['south', 'acros', 'cross'], cond: [not, reser, watersParted], action: { name: 'speak', description: 'badDirection' } },
-            { verbs: ['south'], action: { name: 'goTo', description: 'locResbottom' } },
+            {
+                verbs: ['south', 'acros', 'cross'],
+                action: {
+                    name: 'speak',
+                    description: 'badDirection',
+                    // condition: [not, reser, watersParted],
+                    conditionFailed: { name: 'speak', description: 'locResbottom' },
+                },
+            },
             { verbs: ['nw', 'upwar', 'out'], action: { name: 'goTo', description: 'locTreacherous' } },
         ],
     },
