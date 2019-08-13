@@ -38,7 +38,6 @@ export const motions = {
     inside: ['inwar', 'insid', 'in'],
     jump: ['jump'],
     left: ['left'],
-    look: ['l', 'x', 'look', 'exami', 'touch', 'descr'],
     low: ['low'],
     ne: ['ne'],
     north: ['north', 'n'],

@@ -69,7 +69,9 @@ const checkAnswer = (answer) => {
     const motion = answerMotionId(answer)
     if (!motion) {
         if (actions.listen.includes(answer)) return listen()
-        if (actions.look.includes(answer)) return messages.noMoreDetail
+        if (actions.look.includes(answer)) {
+          return `\n\n${messages.noMoreDetail}\n\n${getLocationDescription()}`
+        }
     }
     switch (motion) {
       case 'east':
@@ -104,8 +106,8 @@ const checkAnswer = (answer) => {
 }
 
 const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription()}`, answer => {
-  const errorMessage = checkAnswer(answer)
-  if (errorMessage !== null) console.log(errorMessage)
+  const message = checkAnswer(answer)
+  if (message !== null) console.log(message)
 })
 
 const init = () => {

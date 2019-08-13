@@ -169,8 +169,6 @@ export const messages = {
     splatterMessage: 'There is a loud explosion, and you are suddenly splashed across the walls of the room.',
     startOver: 'What\'s the matter, can\t you read? Now you\d best start over.',
     stillLocked: 'The chain is still locked.',
-    streamGurgles: 'The stream is gurgling placidly.',
-    streamSplashes: 'The stream splashes loudly into the pool.',
     suspendWarning: 'I can suspend your Adventure for you so that you can resume later, but it will cost you 5 points.',
     tameBear: 'You are being followed by a very large, tame bear.',
     thanksDelicious: 'Thank you, it was delicious!',
