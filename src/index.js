@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
 import figlet from 'figlet'
-import { locations, messages, settings } from './variables'
+import { locations, messages, motions, settings } from './variables'
 import readline from 'readline'
 
 const yes_answer = ['y', 'yes']
@@ -42,7 +42,67 @@ const getLocationDescription = () => {
   }
 }
 
-const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription()}`, () => console.log('start !'))
+const getLocationPossibleDirections = () => {
+  const { currentLocation } = settings
+  const { travel } = locations[currentLocation]
+
+  // récupère tous les voyages possibles à partir d'un endroit
+  const locationTravels = travel.map(({ verbs }) => verbs).flat()
+  // récupère le dictionnaire de mots à partir de l'id des voyages
+  return  locationTravels.map(name => motions[name]).flat()
+}
+
+const answerMotionId = (answer) => {
+  let motion
+  for (let [key, value] of Object.entries(motions)) {
+    if (value && value.includes(answer)) motion = key
+  }
+  return motion
+}
+
+const checkAnswer = (answer) => {
+  const { badDirection, cantApply, noInoutHere, nothingHappens, unsureFacing, whichWay } = messages
+  const locationDirections = getLocationPossibleDirections()
+
+  if (!locationDirections.includes(answer)) {
+    const motion = answerMotionId(answer)
+
+    switch (motion) {
+      case 'east':
+      case 'west':
+      case 'south':
+      case 'north':
+      case 'ne':
+      case 'nw':
+      case 'sw':
+      case 'se':
+      case 'up':
+      case 'down':
+        return badDirection
+      case 'forward':
+      case 'left':
+      case 'right':
+        return unsureFacing
+      case 'outside':
+      case 'inside':
+        return noInoutHere
+      case 'xyzzy':
+      case 'plugh':
+        return nothingHappens
+      case 'crawl':
+        return whichWay
+      default:
+        return cantApply
+    }
+  }
+
+  return null
+}
+
+const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription()}`, answer => {
+  const errorMessage = checkAnswer(answer)
+  if (errorMessage !== null) console.log(errorMessage)
+})
 
 const init = () => {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
@@ -65,6 +125,6 @@ const init = () => {
 }
 
 export const run = () => {
-    introduction()
+    // introduction()
     init()
 }
