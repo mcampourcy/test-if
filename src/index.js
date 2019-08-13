@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import figlet from 'figlet'
 import { locations, messages, motions, settings } from './variables'
 import readline from 'readline'
+import { actions, listen } from './variables/actions'
 
 const yes_answer = ['y', 'yes']
 const no_answer = ['n', 'no']
@@ -66,7 +67,10 @@ const checkAnswer = (answer) => {
 
   if (!locationDirections.includes(answer)) {
     const motion = answerMotionId(answer)
-
+    if (!motion) {
+        if (actions.listen.includes(answer)) return listen()
+        if (actions.look.includes(answer)) return messages.noMoreDetail
+    }
     switch (motion) {
       case 'east':
       case 'west':
@@ -125,6 +129,6 @@ const init = () => {
 }
 
 export const run = () => {
-    // introduction()
+    introduction()
     init()
 }
