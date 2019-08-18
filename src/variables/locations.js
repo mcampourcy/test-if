@@ -798,7 +798,7 @@ export const locations = {
     locDeadend13: {
         description: {
             long: 'Dead end',
-              short: !!null,
+              short: null,
         },
         conditions: { deep: true },
         travel: [
