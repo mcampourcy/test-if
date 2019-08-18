@@ -17,13 +17,15 @@ export const objects = {
         words: ['axe'],
         inventory: 'Dwarf\'s axe',
         locations: ['locNowhere'],
-        axeHere: {
-            description: 'There is a little axe here.',
-            change: null,
-        },
-        axeLost: {
-            description: 'There is a little axe lying beside the bear.',
-            change: 'The axe misses and lands near the bear where you can\'t get at it.',
+        states: {
+            axeHere: {
+                description: 'There is a little axe here.',
+                change: null,
+            },
+            axeLost: {
+                description: 'There is a little axe lying beside the bear.',
+                change: 'The axe misses and lands near the bear where you can\'t get at it.',
+            },
         },
     },
     battery: {
@@ -358,10 +360,6 @@ export const objects = {
                 change: 'You strike the mirror a resounding blow, whereupon it shatters into a myriad tiny fragments.',
             },
         },
-    },
-    noObject: {
-        inventory: null,
-        descriptions: null,
     },
     nugget: {
         words: ['gold', 'nugge'],
