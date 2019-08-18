@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk'
 import figlet from 'figlet'
-import { locations, messages, motions, settings } from './variables'
+import { locations, messages, motions, objects, settings } from './variables'
 import readline from 'readline'
 import { actions, listen } from './variables/actions'
 
@@ -32,6 +32,26 @@ const readAndAnswer = (question, callback) => {
   })
 }
 
+const getObjectsDescription = () => {
+  const { currentLocation } = settings
+  const { conditions } = locations[currentLocation]
+  if (conditions.lit) {
+    // TODO : don't display objects that are already in inventory
+    const objectsDescription = []
+    for (let [key, params] of Object.entries(objects)) {
+      const { locations } = params
+      if (locations.includes(currentLocation)) {
+        if (params.states) {
+          objectsDescription.push(Object.values(params.states)[0].description)
+        } else {
+          objectsDescription.push(params.descriptions[locations.indexOf(currentLocation)])
+        }
+      }
+    }
+    return objectsDescription.join('\n\n')
+  }
+}
+
 const getLocationDescription = () => {
   const { currentLocation, previousLocationBis, repeat } = settings
   const { description: { long, short }, conditions } = locations[currentLocation]
@@ -40,7 +60,12 @@ const getLocationDescription = () => {
   const turnAround = currentLocation === previousLocationBis
 
   if (conditions.lit) {
-    return (short && (repeat || turnAround)) ? short : long
+    const objectsDescription = getObjectsDescription()
+    if (short && (repeat || turnAround)) {
+      return short
+    } else {
+      return objectsDescription ? `${long}\n\n${objectsDescription}` : long
+    }
   } else {
     return messages.pitchDark
   }
