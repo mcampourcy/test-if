@@ -50,10 +50,20 @@ const getLocationPossibleDirections = () => {
   // récupère tous les voyages possibles à partir d'un endroit
   const locationTravels = travel.map(({ verbs }) => verbs).flat()
   // récupère le dictionnaire de mots à partir de l'id des voyages
-  return  locationTravels.map(name => motions[name]).flat()
+  return locationTravels.map(name => motions[name]).flat()
 }
 
-const answerMotionId = (answer) => {
+const getLocationAction = direction => {
+  const { currentLocation } = settings
+  const { travel } = locations[currentLocation]
+  for (let [key, value] of Object.entries(motions)) {
+    if (value && value.includes(direction)) {
+      return travel.find(({ verbs }) => verbs.includes(key)).action
+    }
+  }
+}
+
+const answerMotionId = answer => {
   let motion
   for (let [key, value] of Object.entries(motions)) {
     if (value && value.includes(answer)) motion = key
@@ -61,54 +71,62 @@ const answerMotionId = (answer) => {
   return motion
 }
 
-const checkAnswer = (answer) => {
+const checkAnswer = answer => {
   const { badDirection, cantApply, noInoutHere, nothingHappens, unsureFacing, whichWay } = messages
-  const locationDirections = getLocationPossibleDirections()
-
-  if (!locationDirections.includes(answer)) {
-    const motion = answerMotionId(answer)
-    if (!motion) {
-        if (actions.listen.includes(answer)) return listen()
-        if (actions.look.includes(answer)) {
-          return `\n\n${messages.noMoreDetail}\n\n${getLocationDescription()}`
-        }
-    }
-    switch (motion) {
-      case 'east':
-      case 'west':
-      case 'south':
-      case 'north':
-      case 'ne':
-      case 'nw':
-      case 'sw':
-      case 'se':
-      case 'up':
-      case 'down':
-        return badDirection
-      case 'forward':
-      case 'left':
-      case 'right':
-        return unsureFacing
-      case 'outside':
-      case 'inside':
-        return noInoutHere
-      case 'xyzzy':
-      case 'plugh':
-        return nothingHappens
-      case 'crawl':
-        return whichWay
-      default:
-        return cantApply
-    }
+  const motion = answerMotionId(answer)
+  if (!motion) {
+      if (actions.listen.includes(answer)) return listen()
+      if (actions.look.includes(answer)) {
+        return `\n\n${messages.noMoreDetail}\n\n${getLocationDescription()}`
+      }
   }
-
-  return null
+  switch (motion) {
+    case 'east':
+    case 'west':
+    case 'south':
+    case 'north':
+    case 'ne':
+    case 'nw':
+    case 'sw':
+    case 'se':
+    case 'up':
+    case 'down':
+      return badDirection
+    case 'forward':
+    case 'left':
+    case 'right':
+      return unsureFacing
+    case 'outside':
+    case 'inside':
+      return noInoutHere
+    case 'xyzzy':
+    case 'plugh':
+      return nothingHappens
+    case 'crawl':
+      return whichWay
+    default:
+      return cantApply
+  }
 }
 
-const gettingStarted = () => readAndAnswer(`\n\n${getLocationDescription()}`, answer => {
-  const message = checkAnswer(answer)
-  if (message !== null) console.log(message)
-})
+const goSomewhere = () => {
+  readAndAnswer(`\n\n${getLocationDescription()}`, answer => {
+    const locationDirections = getLocationPossibleDirections()
+    if (settings.repeat) settings.repeat = false
+    if (!locationDirections.includes(answer)) {
+      console.log(`\n\n${checkAnswer(answer)}`)
+      settings.repeat = true
+    } else {
+      const locationAction = getLocationAction(answer)
+      if (locationAction.name === 'goTo') {
+        settings.currentLocation = locationAction.description
+      } else if (locationAction.name === 'speak') {
+        console.log(`\n\n${messages[locationAction.description]}`)
+      }
+    }
+    goSomewhere()
+  })
+}
 
 const init = () => {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
@@ -117,11 +135,11 @@ const init = () => {
     if (yes_answer.includes(answer)) {
       console.log(`\n${caveNearby}`)
       settings.currentLocation = 'locStart'
-      gettingStarted()
+      goSomewhere()
     } else if (no_answer.includes(answer)) {
       settings.novice = false
       settings.currentLocation = 'locStart'
-      gettingStarted()
+      goSomewhere()
     } else {
       console.log(`\n${pleaseAnswer}`)
       settings.repeat = true
