@@ -33,17 +33,20 @@ const readAndAnswer = (question, callback) => {
 }
 
 const getLocationDescription = () => {
-  const { currentLocation, repeat } = settings
+  const { currentLocation, previousLocationBis, repeat } = settings
   const { description: { long, short }, conditions } = locations[currentLocation]
+  // The player came here two moves ago
+  // e.g. : locStart => locBuilding => locStart
+  const turnAround = currentLocation === previousLocationBis
 
   if (conditions.lit) {
-    return (short && repeat) ? short : long
+    return (short && (repeat || turnAround)) ? short : long
   } else {
     return messages.pitchDark
   }
 }
 
-const getLocationPossibleDirections = () => {
+const getLocationPossibleActions = () => {
   const { currentLocation } = settings
   const { travel } = locations[currentLocation]
 
@@ -109,9 +112,26 @@ const checkAnswer = answer => {
   }
 }
 
+const manageLocationsHistory = newLocation => {
+  const { currentLocation, previousLocation } = settings
+  settings.previousLocationBis = previousLocation
+  settings.previousLocation = currentLocation
+  settings.currentLocation = newLocation
+}
+
+/**
+ * Display current location description
+ * Get the current location's possible actions
+ * Depending the answer :
+ * if the answer does not includes any possible actions : display error message depending on the answer
+ * if the answer includes possible actions :
+ *  if the action is a goTo : manage history to replace the current location by the next one
+ *  if the actions is a speak : display the action's description
+ * Anyway : repeat all
+ */
 const goSomewhere = () => {
   readAndAnswer(`\n\n${getLocationDescription()}`, answer => {
-    const locationDirections = getLocationPossibleDirections()
+    const locationDirections = getLocationPossibleActions()
     if (settings.repeat) settings.repeat = false
     if (!locationDirections.includes(answer)) {
       console.log(`\n\n${checkAnswer(answer)}`)
@@ -119,8 +139,9 @@ const goSomewhere = () => {
     } else {
       const locationAction = getLocationAction(answer)
       if (locationAction.name === 'goTo') {
-        settings.currentLocation = locationAction.description
+        manageLocationsHistory(locationAction.description)
       } else if (locationAction.name === 'speak') {
+        settings.repeat = true
         console.log(`\n\n${messages[locationAction.description]}`)
       }
     }
@@ -134,11 +155,9 @@ const init = () => {
   readAndAnswer(question, (answer) => {
     if (yes_answer.includes(answer)) {
       console.log(`\n${caveNearby}`)
-      settings.currentLocation = 'locStart'
       goSomewhere()
     } else if (no_answer.includes(answer)) {
       settings.novice = false
-      settings.currentLocation = 'locStart'
       goSomewhere()
     } else {
       console.log(`\n${pleaseAnswer}`)
