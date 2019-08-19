@@ -1,7 +1,7 @@
 export { actions } from './actions'
+export { directions } from './directions'
 export { locations } from './locations'
 export { messages } from './messages'
-export { motions } from './motions'
 export { objects } from './objects'
 export { settings } from './settings'
 export { sounds } from './sounds'

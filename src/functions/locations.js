@@ -1,4 +1,4 @@
-import { locations, messages, motions, settings } from '../variables'
+import { locations, messages, directions, settings } from '../variables'
 import { getObjectsDescription } from './objects'
 
 export function getLocationDescription () {
@@ -20,20 +20,20 @@ export function getLocationDescription () {
   }
 }
 
-export function getLocationPossibleActions() {
+export function getLocationPossibleTravels() {
   const { currentLocation } = settings
   const { travel } = locations[currentLocation]
 
   // récupère tous les voyages possibles à partir d'un endroit
   const locationTravels = travel.map(({ verbs }) => verbs).flat()
   // récupère le dictionnaire de mots à partir de l'id des voyages
-  return locationTravels.map(name => motions[name]).flat()
+  return locationTravels.map(name => directions[name]).flat()
 }
 
-export function getLocationAction(direction) {
+export function getLocationTravel(direction) {
   const { currentLocation } = settings
   const { travel } = locations[currentLocation]
-  for (let [key, value] of Object.entries(motions)) {
+  for (let [key, value] of Object.entries(directions)) {
     if (value && value.includes(direction)) {
       return travel.find(({ verbs }) => verbs.includes(key)).action
     }
