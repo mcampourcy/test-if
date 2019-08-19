@@ -1,4 +1,5 @@
 import { directions, messages } from '../variables'
+import { display } from './console'
 
 export function getDirectionKeyFromValue(value) {
   let directionKey
@@ -22,20 +23,26 @@ export function getErrorMessage(answer) {
     case 'se':
     case 'up':
     case 'down':
-      return badDirection
+      display(badDirection)
+      break
     case 'forward':
     case 'left':
     case 'right':
-      return unsureFacing
+      display(unsureFacing)
+      break
     case 'outside':
     case 'inside':
-      return noInoutHere
+      display(noInoutHere)
+      break
     case 'xyzzy':
     case 'plugh':
-      return nothingHappens
+      display(nothingHappens)
+      break
     case 'crawl':
-      return whichWay
+      display(whichWay)
+      break
     default:
-      return cantApply
+      display(cantApply)
+      break
   }
 }
