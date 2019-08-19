@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { actions, messages, settings } from '../variables'
+import { actions, directions, messages, settings } from '../variables'
 import { display, format, readAndAnswer } from './console'
-import { getDirectionKeyFromValue, getErrorMessage } from './directions'
+import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
 import { manageLocationsHistory } from './settings'
 import { listen } from './actions'
@@ -33,25 +33,25 @@ export function doSomething () {
 }
 
 function manageActions(answer) {
-  const answerIsDirection = getDirectionKeyFromValue(answer)
+  const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
 
   if (answerIsDirection) {
     getErrorMessage(answer)
   } else {
-    switch (answer) {
-      case actions.listen.includes(answer):
-        display(listen())
-        break
-      case actions.look.includes(answer):
-        display(messages.noMoreDetail)
-        display(getLocationDescription())
-        break
-      case actions.carry.includes(answer):
-        display(listen())
-        break
-      default:
-        display(messages.cantApply)
-        break
+    const action = answer.split(/\s/)
+    const instruction = action[0]
+    let param = ''
+    if (action.length > 1) param = action[1]
+
+    if (actions.listen.includes(instruction)) {
+      display(listen())
+    } else if(actions.look.includes(instruction)) {
+      display(messages.noMoreDetail)
+      display(getLocationDescription())
+    } else if(actions.carry.includes(instruction)) {
+      // carryObject(param)
+    } else {
+      display(messages.cantApply)
     }
   }
 }

@@ -1,13 +1,5 @@
-import { directions, messages } from '../variables'
+import { messages } from '../variables'
 import { display } from './console'
-
-export function getDirectionKeyFromValue(value) {
-  let directionKey
-  for (let [key, verbs] of Object.entries(directions)) {
-    if (verbs && verbs.includes(value)) directionKey = key
-  }
-  return directionKey
-}
 
 export function getErrorMessage(answer) {
   const { badDirection, cantApply, noInoutHere, nothingHappens, unsureFacing, whichWay } = messages
