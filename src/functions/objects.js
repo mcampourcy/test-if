@@ -1,13 +1,14 @@
-import { locations, objects, settings } from '../variables'
+import { locations, messages, objects, settings } from '../variables'
+import { display } from './console'
 
 export function getObjectsDescription () {
-  const { currentLocation } = settings
+  const { currentLocation, inventory } = settings
   const { conditions } = locations[currentLocation]
   if (conditions.lit) {
-    // TODO : don't display objects that are already in inventory
     let description = []
-    objects.map(({ descriptions, locations, states }) => {
-      if (locations.includes(currentLocation)) {
+    objects.map(({ descriptions, locations, name, states }) => {
+      const alreadyInInventory = inventory.find((obj => obj.name === name ))
+      if (locations.includes(currentLocation) && !alreadyInInventory) {
         if (states) {
           description.push(states[0].description)
         } else {
@@ -16,5 +17,21 @@ export function getObjectsDescription () {
       }
     })
     return description.join('\n')
+  }
+}
+
+export function carryObject(object) {
+  const { currentLocation } = settings
+  const { conditions } = locations[currentLocation]
+  if (conditions.lit) {
+    const getObject = objects.find(({ locations, words }) => (
+      locations.includes(currentLocation) && words.includes(object)
+    ))
+    if (getObject) {
+      settings.inventory.push(getObject)
+      display(messages.okMan)
+    } else {
+      display(messages.doWhat)
+    }
   }
 }

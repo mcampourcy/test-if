@@ -6,7 +6,7 @@ import { display, format, readAndAnswer } from './functions/console'
 import { doSomething } from './functions/global'
 
 export function run() {
-  displayTitle()
+  // displayTitle()
   displayInstructions()
 }
 
@@ -27,9 +27,9 @@ function displayTitle() {
 
 function displayInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
-  const question = settings.repeat ? null : welcomeYou
+  const question = settings.repeat ? null : format(welcomeYou)
   settings.repeat = false
-  readAndAnswer(format(question), (answer) => {
+  readAndAnswer(question, (answer) => {
     if (yes_answer.includes(answer)) {
       display(caveNearby)
       doSomething()

@@ -3,6 +3,7 @@ import { actions, directions, messages, settings } from '../variables'
 import { display, format, readAndAnswer } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
+import { carryObject } from './objects'
 import { manageLocationsHistory } from './settings'
 import { listen } from './actions'
 
@@ -16,8 +17,8 @@ import { listen } from './actions'
  *  if the actions is a speak : display the action's description
  * Anyway : repeat all
  */
-export function doSomething () {
-  readAndAnswer(format(getLocationDescription()), answer => {
+export function doSomething (description = true) {
+  readAndAnswer(description ? format(getLocationDescription()) : null, answer => {
     const locationPossibleTravels = getLocationPossibleTravels()
 
     if (settings.repeat) settings.repeat = false
@@ -25,10 +26,11 @@ export function doSomething () {
     if (!locationPossibleTravels.includes(answer)) {
       manageActions(answer)
       settings.repeat = true
+      doSomething(false)
     } else {
       manageTravels(answer)
+      doSomething()
     }
-    doSomething()
   })
 }
 
@@ -49,7 +51,7 @@ function manageActions(answer) {
       display(messages.noMoreDetail)
       display(getLocationDescription())
     } else if(actions.carry.includes(instruction)) {
-      // carryObject(param)
+      carryObject(param)
     } else {
       display(messages.cantApply)
     }

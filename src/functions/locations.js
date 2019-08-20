@@ -1,4 +1,4 @@
-import { locations, messages, directions, settings } from '../variables'
+import { directions, locations, messages, settings, objects } from '../variables'
 import { getObjectsDescription } from './objects'
 
 export function getLocationDescription () {
