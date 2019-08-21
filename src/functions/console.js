@@ -1,29 +1,26 @@
 #!/usr/bin/env node
-import chalk from 'chalk'
-import figlet from 'figlet'
 import readline from 'readline'
 
-export function displayIntroduction() {
-  console.log(
-    chalk.green(
-      figlet.textSync("Colossal Cave \n Adventure", {
-        font: "Doom",
-        horizontalLayout: "default",
-        verticalLayout: "default"
-      })
-    )
-  )
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+export function consoleInput(question, callback) {
+  rl.question(question, (answer) => {
+    callback(answer)
+    rl.resume()
+  })
 }
 
-export function readAndAnswer(question, callback) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
+export function display(string) {
+  console.log(format(string))
+}
 
-  const q = question ?`${question} \n\n` : ''
-  rl.question(q, (answer) => {
-    rl.close()
-    callback(answer)
-  })
+export function displayLine(string) {
+  console.log(`\n${string}\n`)
+}
+
+export function format(string) {
+  return `\n${string}\n\n`
 }
