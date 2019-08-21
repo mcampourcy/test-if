@@ -2,7 +2,7 @@
 import chalk from 'chalk'
 import figlet from 'figlet'
 import { messages, settings } from './variables'
-import { display, format, readAndAnswer } from './functions/console'
+import { display, format, consoleInput, displayLine } from './functions/console'
 import { doSomething } from './functions/global'
 
 export function run() {
@@ -29,7 +29,9 @@ function displayInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
   const question = settings.repeat ? null : format(welcomeYou)
   settings.repeat = false
-  readAndAnswer(question, (answer) => {
+
+  consoleInput(question, input => {
+    const answer = input.trim()
     if (yes_answer.includes(answer)) {
       display(caveNearby)
       doSomething()
@@ -37,7 +39,7 @@ function displayInstructions() {
       settings.novice = false
       doSomething()
     } else {
-      display(pleaseAnswer)
+      displayLine(pleaseAnswer)
       settings.repeat = true
       displayInstructions()
     }

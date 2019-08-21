@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
-import { display, format, readAndAnswer } from './console'
+import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
-import { carryObject } from './objects'
+import { carryObject, listInventory } from './objects'
 import { manageLocationsHistory } from './settings'
 import { listen } from './actions'
 
@@ -18,7 +18,9 @@ import { listen } from './actions'
  * Anyway : repeat all
  */
 export function doSomething (description = true) {
-  readAndAnswer(description ? format(getLocationDescription()) : null, answer => {
+  const question = description ? format(getLocationDescription()) : ''
+  consoleInput(question, input => {
+    const answer = input.trim()
     const locationPossibleTravels = getLocationPossibleTravels()
 
     if (settings.repeat) settings.repeat = false
@@ -45,13 +47,15 @@ function manageActions(answer) {
     let param = ''
     if (action.length > 1) param = action[1]
 
-    if (actions.listen.includes(instruction)) {
+    if (isAction('listen', instruction)) {
       display(listen())
-    } else if(actions.look.includes(instruction)) {
-      display(messages.noMoreDetail)
-      display(getLocationDescription())
-    } else if(actions.carry.includes(instruction)) {
-      carryObject(param)
+    } else if (isAction('look', instruction)) {
+      displayLine(messages.noMoreDetail)
+      display(getLocationDescription(true))
+    } else if (isAction('inventory', instruction)) {
+      listInventory()
+    } else if (isAction('carry', instruction)) {
+      carryObject(param, instruction)
     } else {
       display(messages.cantApply)
     }
@@ -66,4 +70,8 @@ function manageTravels(answer) {
     settings.repeat = true
     display(messages[travel.description])
   }
+}
+
+function isAction(name, value) {
+  return actions[name].find(a => value.includes(a))
 }

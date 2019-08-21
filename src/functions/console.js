@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 import readline from 'readline'
 
-export function readAndAnswer(question, callback) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 
-  const q = question ? question : ''
-  rl.question(q, (answer) => {
-    rl.close()
+export function consoleInput(question, callback) {
+  rl.question(question, (answer) => {
     callback(answer)
+    rl.resume()
   })
 }
 
 export function display(string) {
   console.log(format(string))
+}
+
+export function displayLine(string) {
+  console.log(`\n${string}\n`)
 }
 
 export function format(string) {

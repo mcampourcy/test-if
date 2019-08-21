@@ -115,7 +115,7 @@ export const objects = [
   },
   {
     name: 'bottle',
-    words: ['bottl', 'jar'],
+    words: ['bottl', 'jar', 'bottle', 'water'],
     inventory: 'Small bottle',
     locations: ['locBuilding'],
     states: [

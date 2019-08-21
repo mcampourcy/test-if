@@ -1,7 +1,7 @@
-import { directions, locations, messages, settings, objects } from '../variables'
+import { directions, locations, messages, settings } from '../variables'
 import { getObjectsDescription } from './objects'
 
-export function getLocationDescription () {
+export function getLocationDescription (forceLong = false) {
   const { currentLocation, previousLocationBis, repeat } = settings
   const { conditions, description: { long, short } } = locations[currentLocation]
   // The player came here two moves ago
@@ -10,7 +10,7 @@ export function getLocationDescription () {
 
   if (conditions.lit) {
     const objectsDescription = getObjectsDescription()
-    if (short && (repeat || turnAround)) {
+    if (short && !forceLong && (repeat || turnAround)) {
       return short
     } else {
       return objectsDescription.length ? `${long}\n${objectsDescription}` : long

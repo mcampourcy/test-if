@@ -1,5 +1,6 @@
 import { locations, messages, objects, settings } from '../variables'
-import { display } from './console'
+import { display, displayLine } from './console'
+import { doSomething } from './global'
 
 export function getObjectsDescription () {
   const { currentLocation, inventory } = settings
@@ -20,7 +21,7 @@ export function getObjectsDescription () {
   }
 }
 
-export function carryObject(object) {
+export function carryObject(object, verb) {
   const { currentLocation } = settings
   const { conditions } = locations[currentLocation]
   if (conditions.lit) {
@@ -29,9 +30,20 @@ export function carryObject(object) {
     ))
     if (getObject) {
       settings.inventory.push(getObject)
-      display(messages.okMan)
+      displayLine(messages.okMan)
     } else {
-      display(messages.doWhat)
+      displayLine(messages.doWhat(verb))
     }
+  }
+}
+
+export function listInventory() {
+  const { inventory } = settings
+  if (inventory.length) {
+    displayLine(messages.nowHolding)
+    inventory.map(object => console.log(object.inventory))
+    console.log('\n')
+  } else {
+    displayLine(messages.noCarry)
   }
 }
