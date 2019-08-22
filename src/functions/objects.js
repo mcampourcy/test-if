@@ -1,6 +1,5 @@
 import { locations, messages, objects, settings } from '../variables'
-import { display, displayLine } from './console'
-import { doSomething } from './global'
+import { displayLine } from './console'
 
 export function getObjectsDescription () {
   const { currentLocation, inventory } = settings
@@ -19,6 +18,18 @@ export function getObjectsDescription () {
     })
     return description.join('\n')
   }
+}
+
+export function getObjectsSound () {
+  const { currentLocation, inventory } = settings
+  const description = []
+  objects.map(({ locations, name, states }) => {
+    const alreadyInInventory = inventory.find((obj => obj.name === name ))
+    if (locations.includes(currentLocation) && !alreadyInInventory && states) {
+      description.push(states[0].sound)
+    }
+  })
+  return description.join('\n')
 }
 
 export function carryObject(object, verb) {

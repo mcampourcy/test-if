@@ -48,7 +48,7 @@ function manageActions(answer) {
     if (action.length > 1) param = action[1]
 
     if (isAction('listen', instruction)) {
-      display(listen())
+      listen()
     } else if (isAction('look', instruction)) {
       displayLine(messages.noMoreDetail)
       display(getLocationDescription(true))
