@@ -1,5 +1,6 @@
 import { locations, messages, objects, settings } from '../variables'
 import { displayLine } from './console'
+import { getCurrentLocation } from './locations'
 
 export function getObjectFromHere(object) {
   const { currentLocation } = settings
@@ -11,7 +12,7 @@ export function getObjectFromHere(object) {
 
 export function getObjectsDescription () {
   const { currentLocation, inventory } = settings
-  const { conditions } = locations[currentLocation]
+  const { conditions } = getCurrentLocation()
   if (conditions.lit) {
     let description = []
     objects.map(({ descriptions, locations, name, states }) => {

@@ -4,7 +4,7 @@ import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
 import { manageLocationsHistory } from './settings'
-import { carry, inventory, listen } from './actions'
+import { carry, fill, inventory, listen } from './actions'
 
 /**
  * Display current location description
@@ -46,15 +46,17 @@ function manageActions(answer) {
     let param = ''
     if (action.length > 1) param = action[1]
 
-    if (isAction(instruction, 'listen')) {
+    if (isAction(instruction, 'carry')) {
+      carry(param, instruction)
+    } else if (isAction(instruction, 'inventory')) {
+      fill(param)
+    } else if (isAction(instruction, 'inventory')) {
+      inventory()
+    } else if (isAction(instruction, 'listen')) {
       display(listen())
     } else if (isAction(instruction, 'look')) {
       displayLine(messages.noMoreDetail)
       display(getLocationDescription(true))
-    } else if (isAction(instruction, 'inventory')) {
-      inventory()
-    } else if (isAction(instruction, 'carry')) {
-      carry(param, instruction)
     } else {
       display(messages.cantApply)
     }

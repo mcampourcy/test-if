@@ -6,7 +6,7 @@ import { display, format, consoleInput, displayLine } from './functions/console'
 import { doSomething } from './functions/global'
 
 export function run() {
-  // displayTitle()
+  displayTitle()
   displayInstructions()
 }
 

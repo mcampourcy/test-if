@@ -1,9 +1,14 @@
 import { directions, locations, messages, settings } from '../variables'
 import { getObjectsDescription } from './objects'
 
+export function getCurrentLocation() {
+  const { currentLocation } = settings
+  return locations.find(({ name }) => name === currentLocation)
+}
+
 export function getLocationDescription (forceLong = false) {
   const { currentLocation, previousLocationBis, repeat } = settings
-  const { conditions, description: { long, short } } = locations[currentLocation]
+  const { conditions, description: { long, short } } = getCurrentLocation()
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = currentLocation === previousLocationBis
@@ -20,18 +25,24 @@ export function getLocationDescription (forceLong = false) {
   }
 }
 
+export function getLocationLiquid() {
+  const { conditions } = getCurrentLocation()
+  if (conditions.fluid) {
+    return conditions.oily ? 'oil' : 'water'
+  }
+
+  return null
+}
+
 export function getLocationPossibleTravels() {
-  const { currentLocation } = settings
-  const { travel } = locations[currentLocation]
-  // récupère tous les voyages possibles à partir d'un endroit
+  const { travel } = getCurrentLocation()
   const locationTravels = travel.map(({ verbs }) => verbs).flat()
-  // récupère le dictionnaire de mots à partir de l'id des voyages
+  // get words dictionary from travel' ids
   return locationTravels.map(travel => directions.find(({ name }) => name === travel ).verbs).flat()
 }
 
 export function getLocationTravel(answer) {
-  const { currentLocation } = settings
-  const { travel } = locations[currentLocation]
+  const { travel } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
   return travel.find(({ verbs }) => verbs.includes(direction.name)).action
 }

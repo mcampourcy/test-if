@@ -37,8 +37,9 @@
 //                                     N may be numeric or a state label.
 //                      [nodwarves]    Dwarves must skip this rule.
 
-export const locations = {
-    locNowhere: {
+export const locations = [
+    {
+        name: 'locNowhere',
         description: {
             long: null,
             short: null,
@@ -46,7 +47,8 @@ export const locations = {
         conditions: {},
         travel: [],
     },
-    locAlcove: {
+    {
+        name: 'locAlcove',
         description: {
             long: 'You are in an alcove. A small nw path seems to widen after a short distance. An extremely tight tunnel leads east. It looks like a very tight squeeze. An eerie light can be seen at the other end.',
             short: 'You\'re in alcove.',
@@ -59,7 +61,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locPlover' } },
         ]
     },
-    locAlike1: {
+    {
+        name: 'locAlike1',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -74,7 +77,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locAlike11' } },
         ]
     },
-    locAlike2: {
+    {
+        name: 'locAlike2',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -87,7 +91,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locAlike4' } },
         ]
     },
-    locAlike3: {
+    {
+        name: 'locAlike3',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -101,7 +106,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locDeadend9' } },
         ]
     },
-    locAlike4: {
+    {
+        name: 'locAlike4',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -116,7 +122,8 @@ export const locations = {
             { verbs: ['upwar', 'down'], action: { name: 'goTo', description: 'locAlike14' } },
         ]
     },
-    locAlike5: {
+    {
+        name: 'locAlike5',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -128,7 +135,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locAlike7' } },
         ]
     },
-    locAlike6: {
+    {
+        name: 'locAlike6',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -142,7 +150,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locAlike8' } },
         ]
     },
-    locAlike7: {
+    {
+        name: 'locAlike7',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -156,7 +165,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locAlike9' } },
         ]
     },
-    locAlike8: {
+    {
+        name: 'locAlike8',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -172,7 +182,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'goTo', description: 'locDeadend11' } },
         ]
     },
-        locAlike9: {
+        {
+            name: 'locAlike9',
             description: {
                 long: 'You are in a maze of twisty little passages, all alike.',
                 short: null,
@@ -185,7 +196,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locDeadend4' } },
         ]
     },
-    locAlike10: {
+    {
+        name: 'locAlike10',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -199,7 +211,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locPitbrink' } },
         ]
     },
-    locAlike11: {
+    {
+        name: 'locAlike11',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -213,7 +226,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locDeadend8' } },
         ]
     },
-    locAlike12: {
+    {
+        name: 'locAlike12',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -227,7 +241,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locDeadend8' } },
         ]
     },
-    locAlike13: {
+    {
+        name: 'locAlike13',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -239,7 +254,8 @@ export const locations = {
             { verbs: ['nw'], action: { name: 'goTo', description: 'locDeadend12' } },
         ]
     },
-    locAlike14: {
+    {
+        name: 'locAlike14',
         description: {
             long: 'You are in a maze of twisty little passages, all alike.',
             short: null,
@@ -251,7 +267,8 @@ export const locations = {
             { verbs: ['nw'], action: { name: 'goTo', description: 'locDeadend12' } },
         ]
     },
-    locAnteroom: {
+    {
+        name: 'locAnteroom',
         description: {
             long: 'You are in an anteroom leading to a large passage to the east. Small passages go west and up. The remnants of recent digging are evident. A sign in midair here says "Cave under construction beyond this point. Proceed at own risk. [Witt Construction Company]"',
             short: 'You\'re in anteroom.'
@@ -263,7 +280,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locWittsend' } },
         ]
     },
-    locArched: {
+    {
+        name: 'locArched',
         description: {
             long: 'You are in an arched hall. A coral passage once continued up and east from here, but is now blocked by debris. The air smells of sea water.',
             short: 'You\'re in arched hall.',
@@ -273,7 +291,8 @@ export const locations = {
             { verbs: ['down', 'shell', 'out'], action: { name: 'goTo', description: 'locShellroom' } },
         ]
     },
-    locAwkward: {
+    {
+        name: 'locAwkward',
         description: {
             long: 'You are in an awkward sloping east/west canyon.',
             short: null,
@@ -295,7 +314,8 @@ export const locations = {
             { verbs: ['pit'], action: { name: 'goTo', description: 'locPittop' } },
         ],
     },
-    locBaddirection: {
+    {
+        name: 'locBaddirection',
         description: {
             long: 'There is no way to go that direction.',
             short: null,
@@ -303,7 +323,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: ['pit'], action: { name: 'goTo', description: 'locDeadend13' } }]
     },
-    locBarrenfront: {
+    {
+        name: 'locBarrenfront',
         description: {
             long: 'You are standing at the entrance to a large, barren room. A notice above the entrance reads: "Caution! Bear in room!"',
             short: 'You\'re in front of Barren Room.',
@@ -316,7 +337,8 @@ export const locations = {
             { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
         ]
     },
-    locBarrenroom: {
+    {
+        name: 'locBarrenroom',
         description: {
             long: 'You are inside a barren room. The center of the room is completely empty except for some dust. Marks in the dust lead away toward the far end of the room. The only exit is the way you came in.',
             short: 'You\'re in Barren Room.',
@@ -328,7 +350,8 @@ export const locations = {
             { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
         ]
     },
-    locBedquilt: {
+    {
+        name: 'locBedquilt',
         description: {
             long: 'You are in Bedquilt, a long east/west passage with holes everywhere. To explore at random select north, south, up, or down.',
           short: 'You\'re in Bedquilt.',
@@ -363,7 +386,8 @@ export const locations = {
             },
         ]
     },
-    locBelowgrate: {
+    {
+        name: 'locBelowgrate',
         description: {
             long: 'You are in a small chamber beneath a 3x3 steel grate to the surface. A low crawl over cobbles leads inward to the west.',
             short: 'You\'re below the grate.',
@@ -384,7 +408,8 @@ export const locations = {
             { verbs: ['debri'], action: { name: 'goTo', description: 'locDebris' } },
         ],
     },
-    locBird: {
+    {
+        name: 'locBird',
         description: {
             long: 'You are in a splendid chamber thirty feet high. The walls are frozen rivers of orange stone. An awkward canyon and a good passage exit from east and west sides of the chamber.',
             short: 'You\'re in bird chamber.',
@@ -407,7 +432,8 @@ export const locations = {
             { verbs: ['passa', 'pit', 'west'], action: { name: 'goTo', description: 'locPittop' } },
         ],
     },
-    locBoulders1: {
+    {
+        name: 'locBoulders1',
         description: {
             long: 'The canyon runs into a mass of boulders -- dead end.',
             short: null,
@@ -417,7 +443,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locTall' } },
         ]
     },
-    locBoulders2: {
+    {
+        name: 'locBoulders2',
         description: {
             long: 'You are in a small chamber filled with large boulders. The walls are very warm, causing the air in the room to be almost stifling from the heat. The only exit is a crawl heading west, through which is coming a low rumbling.',
             short: 'You\'re in Chamber of Boulders.',
@@ -430,7 +457,8 @@ export const locations = {
               { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
         ]
     },
-    locBreathtaking: {
+    {
+        name: 'locBreathtaking',
         description: {
             long: 'You are on the edge of a breath-taking view. Far below you is an active volcano, from which great gouts of molten lava come surging out, cascading back down into the depths. The glowing rock fills the farthest reaches of the cavern with a blood-red glare, giving everything an eerie, macabre appearance. The air is filled with flickering sparks of ash and a heavy smell of brimstone. The walls are hot to the touch, and the thundering of the volcano drowns out all other sounds. Embedded in the jagged roof far overhead are myriad twisted formations composed of pure white alabaster, which scatter the murky light into sinister apparitions upon the walls. To one side is a deep gorge, filled with a bizarre chaos of tortured rock which seems to have been crafted by the devil himself. An immense river of fire crashes out from the depths of the volcano, burns its way through the gorge, and plummets into a bottomless pit far off to your left. To the right, an immense geyser of blistering steam erupts continuously from a barren island in the center of a sulfurous lake, which bubbles ominously. The far right wall is aflame with an incandescence of its own, which lends an additional infernal splendor to the already hellish scene. A dark, foreboding passage exits to the south.',
           short: 'You\'re at breath-taking view.',
@@ -446,7 +474,8 @@ export const locations = {
             { verbs: ['jump'], action: { name: 'goTo', description: 'locGruesome' } },
         ]
     },
-    locBroken: {
+    {
+        name: 'locBroken',
         description: {
             long: 'You are in a dirty broken passage. To the east is a crawl. To the west is a large passage.  Above you is a hole to another passage.',
             short: 'You\'re in dirty passage.',
@@ -459,7 +488,8 @@ export const locations = {
             { verbs: ['bedquilt'], action: { name: 'goTo', description: 'locBedquilt' } },
         ],
     },
-    locBuilding: {
+    {
+        name: 'locBuilding',
         description: {
             long: 'You are inside a building, a well house for a large spring.',
             short: 'You\'re inside building.',
@@ -476,7 +506,8 @@ export const locations = {
             { verbs: ['downs', 'strea'], action: { name: 'goTo', description: 'locSewer' } },
         ],
     },
-    locBuilding1: {
+    {
+        name: 'locBuilding1',
         description: {
             long: '',
             short: null,
@@ -494,7 +525,8 @@ export const locations = {
             },
         ]
     },
-    locCavein: {
+    {
+        name: 'locCavein',
         description: {
             long: 'The passage here is blocked by a recent cave-in.',
             short: null,
@@ -504,7 +536,8 @@ export const locations = {
             { verbs: ['south', 'giant', 'out'], action: { name: 'goTo', description: 'locGiantroom' } },
         ],
     },
-    locCliff: {
+    {
+        name: 'locCliff',
         description: {
             long: 'The forest thins out here to reveal a steep cliff.  There is no way down, but a small ledge can be seen to the west across the chasm.',
             short: 'You\'re at cliff.',
@@ -517,7 +550,8 @@ export const locations = {
             { verbs: ['jump'], action: { name: 'goTo', description: 'locNomake' } },
         ]
     },
-    locClifface: {
+    {
+        name: 'locClifface',
         description: {
             long: 'You are climbing along a nearly vertical cliff.',
             short: null,
@@ -536,7 +570,8 @@ export const locations = {
             },
         ]
     },
-    locCliffbase: {
+    {
+        name: 'locCliffbase',
         description: {
             long: 'You are at the base of a nearly vertical cliff. There are some slim footholds which would enable you to climb up, but it looks extremely dangerous. Here at the base of the cliff lie the remains of several earlier adventurers who apparently failed to make it.',
             short: 'You\'re at base of cliff.',
@@ -547,7 +582,8 @@ export const locations = {
             { verbs: ['upwar', 'climb'], action: { name: 'goTo', description: 'locClifface' } },
         ]
     },
-    locCliffledge: {
+    {
+        name: 'locCliffledge',
         description: {
             long: 'You are on a small ledge at the top of a nearly vertical cliff. There is a low crawl leading off to the northeast.',
             short: 'You\'re at top of cliff.',
@@ -558,7 +594,8 @@ export const locations = {
             { verbs: ['ne', 'crawl'], action: { name: 'goTo', description: 'locReachdead' } },
         ]
     },
-    locClifftop: {
+    {
+        name: 'locClifftop',
         description: {
             long: 'Just as you reach the top, your foot slips on a loose rock and you make one last desperate grab. Your luck holds, as does your grip. With an enormous heave, you lift yourself to the ledge above.',
             short: null,
@@ -566,7 +603,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locCliffledge' } }],
     },
-    locClimbstalk: {
+    {
+        name: 'locClimbstalk',
         description: {
             long: 'You clamber up the plant and scurry through the hole at the top.',
             short: null,
@@ -574,7 +612,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locNarrow' } }],
     },
-    locCobble: {
+    {
+        name: 'locCobble',
         description: {
             long: 'You are crawling over cobbles in a low passage.  There is a dim light at the east end of the passage.',
             short: 'You\'re in cobble crawl.',
@@ -587,7 +626,8 @@ export const locations = {
             { verbs: ['out', 'surfa', 'east'], action: ['goTo', 'locBelowgrate'] },
         ]
     },
-    locComplex: {
+    {
+        name: 'locComplex',
         description: {
             long: 'You are at a complex junction. A low hands and knees passage from the north joins a higher crawl from the east to make a walking passage going west. There is also a large room above. The air is damp here.',
           short: 'You\'re at complex junction.',
@@ -602,7 +642,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locAnteroom' } },
         ]
     },
-    locCorridor: {
+    {
+        name: 'locCorridor',
         description: {
             long: 'You\'re in a long east/west corridor. A faint rumbling noise can be heard in the distance.',
             short: 'You\'re in corridor.',
@@ -616,7 +657,8 @@ export const locations = {
             { verbs: ['barre'], action: { name: 'goTo', description: 'locBarrenfront' } },
         ]
     },
-    locCrack: {
+    {
+        name: 'locCrack',
         description: {
             long: 'The crack is far too small for you to follow.  At its widest it is barely wide enough to admit your foot.',
             short: null,
@@ -624,7 +666,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locPittop' } }]
     },
-    locCrossover: {
+    {
+        name: 'locCrossover',
         description: {
             long: 'You are at a crossover of a high n/s passage and a low e/w one.',
             short: null,
@@ -637,7 +680,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locLongwest' } },
         ]
     },
-    locDarkroom: {
+    {
+        name: 'locDarkroom',
         description: {
             long: 'You\'re in the dark-room. A corridor leading south is the only exit.',
             short: 'You\'re in dark-room.',
@@ -646,7 +690,8 @@ export const locations = {
         hints: ['dark'],
         travel: [{ verbs: ['south', 'plove', 'out'], action: { name: 'goTo', description: 'locPlover' } }]
     },
-    locCuldesac: {
+    {
+        name: 'locCuldesac',
         description: {
             long: 'You are in a cul-de-sac about eight feet across.',
             short: null,
@@ -657,7 +702,8 @@ export const locations = {
             { verbs: ['shell'], action: { name: 'goTo', description: 'locShellroom' } },
         ],
     },
-    locDeadcrawl: {
+    {
+        name: 'locDeadcrawl',
         description: {
             long: 'Dead end crawl.',
             short: null,
@@ -667,7 +713,8 @@ export const locations = {
             { verbs: ['south', 'crawl', 'out'], action: { name: 'goTo', description: 'locLowroom' } },
         ],
     },
-    locDeadend1: {
+    {
+        name: 'locDeadend1',
         description: {
             long: 'Dead end',
             short: null,
@@ -678,7 +725,8 @@ export const locations = {
             { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike4' } },
         ]
     },
-    locDeadend2: {
+    {
+        name: 'locDeadend2',
         description: {
             long: 'Dead end',
             short: null,
@@ -689,7 +737,8 @@ export const locations = {
             { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locAlike4' } },
         ]
     },
-    locDeadend3: {
+    {
+        name: 'locDeadend3',
         description: {
             long: 'Dead end',
             short: null,
@@ -700,7 +749,8 @@ export const locations = {
             { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike3' } },
         ]
     },
-    locDeadend4: {
+    {
+        name: 'locDeadend4',
         description: {
             long: 'Dead end',
             short: null
@@ -711,7 +761,8 @@ export const locations = {
             { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike9' } },
         ]
     },
-    locDeadend5: {
+    {
+        name: 'locDeadend5',
         description: {
             long: 'Dead end',
             short: null,
@@ -722,7 +773,8 @@ export const locations = {
             { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike10' } },
         ]
     },
-    locDeadend6: {
+    {
+        name: 'locDeadend6',
         description: {
             long: 'Dead end',
             short: null,
@@ -732,7 +784,8 @@ export const locations = {
             { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locPitbrink' } },
         ]
     },
-    locDeadend7: {
+    {
+        name: 'locDeadend7',
         description: {
             long: 'Dead end',
             short: null,
@@ -742,7 +795,8 @@ export const locations = {
             { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locCrossover' } },
         ]
     },
-    locDeadend8: {
+    {
+        name: 'locDeadend8',
         description: {
             long: 'Dead end',
             short: null,
@@ -753,7 +807,8 @@ export const locations = {
             { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike11' } },
         ]
     },
-    locDeadend9: {
+    {
+        name: 'locDeadend9',
         description: {
             long: 'Dead end',
             short: null,
@@ -764,7 +819,8 @@ export const locations = {
             { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locAlike3' } },
         ]
     },
-    locDeadend10: {
+    {
+        name: 'locDeadend10',
         description: {
             long: 'Dead end',
             short: null,
@@ -774,7 +830,8 @@ export const locations = {
             { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locAlike12' } },
         ]
     },
-    locDeadend11: {
+    {
+        name: 'locDeadend11',
         description: {
             long: 'Dead end',
             short: null,
@@ -785,7 +842,8 @@ export const locations = {
             { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike8' } },
         ]
     },
-    locDeadend12: {
+    {
+        name: 'locDeadend12',
         description: {
             long: 'Dead end',
             short: null,
@@ -795,7 +853,8 @@ export const locations = {
             { verbs: ['se'], action: { name: 'goTo', description: 'locAlike13' } },
         ]
     },
-    locDeadend13: {
+    {
+        name: 'locDeadend13',
         description: {
             long: 'Dead end',
               short: null,
@@ -814,7 +873,8 @@ export const locations = {
             },
         ]
     },
-    locDebris: {
+    {
+        name: 'locDebris',
         description: {
             long: 'You are in a debris room filled with stuff washed in from the surface. A low wide passage with cobbles becomes plugged with mud and debris here, but an awkward canyon leads upward and west. In the mud someone has scrawled, "magic word xyzzy".',
             short: 'You\'re in debris room.',
@@ -837,7 +897,8 @@ export const locations = {
             { verbs: ['pit'], action: { name: 'goTo', description: 'locPittop' } },
         ],
     },
-    locDifferent1: {
+    {
+        name: 'locDifferent1',
         description: {
             long: 'You are in a maze of twisty little passages, all different.',
             short: null,
@@ -856,7 +917,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'goTo', description: 'locLongwest' } },
         ]
     },
-    locDifferent2: {
+    {
+        name: 'locDifferent2',
         description: {
             long: 'You are in a little maze of twisting passages, all different.',
             short: null,
@@ -875,7 +937,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locDeadend13' } },
         ]
     },
-    locDifferent3: {
+    {
+        name: 'locDifferent3',
         description: {
             long: 'You are in a maze of twisting little passages, all different.',
             short: null,
@@ -894,7 +957,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent4: {
+    {
+        name: 'locDifferent4',
         description: {
             long: 'You are in a little maze of twisty passages, all different.',
             short: null,
@@ -913,7 +977,8 @@ export const locations = {
             { verbs: ['se'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent5: {
+    {
+        name: 'locDifferent5',
         description: {
             long: 'You are in a twisting maze of little passages, all different.',
             short: null,
@@ -932,7 +997,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent6: {
+    {
+        name: 'locDifferent6',
         description: {
             long: 'You are in a twisting little maze of passages, all different.',
             short: null,
@@ -951,7 +1017,8 @@ export const locations = {
             { verbs: ['sw'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent7: {
+    {
+        name: 'locDifferent7',
         description: {
             long: 'You are in a twisty little maze of passages, all different.',
             short: null,
@@ -970,7 +1037,8 @@ export const locations = {
             { verbs: ['upwar'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent8: {
+    {
+        name: 'locDifferent8',
         description: {
             long: 'You are in a twisty maze of little passages, all different.',
             short: null,
@@ -989,7 +1057,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent9: {
+    {
+        name: 'locDifferent9',
         description: {
             long: 'You are in a little twisty maze of passages, all different.',
             short: null,
@@ -1008,7 +1077,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent10: {
+    {
+        name: 'locDifferent10',
         description: {
             long: 'You are in a maze of little twisting passages, all different.',
             short: null,
@@ -1027,7 +1097,8 @@ export const locations = {
             { verbs: ['nw'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDifferent11: {
+    {
+        name: 'locDifferent11',
         description: {
             long: 'You are in a maze of little twisty passages, all different.',
             short: null,
@@ -1046,7 +1117,8 @@ export const locations = {
             { verbs: ['ne'], action: { name: 'goTo', description: 'locDifferent2' } },
         ]
     },
-    locDome: {
+    {
+        name: 'locDome',
         description: {
             long: 'The dome is unclimbable.',
             short: null,
@@ -1054,7 +1126,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locMisthall' } }]
     },
-    locDusty: {
+    {
+        name: 'locDusty',
         description: {
             long: 'You are in a large room full of dusty rocks. There is a big hole in the floor. There are cracks everywhere, and a passage leading east.',
             short: 'You\'re in dusty rock room.',
@@ -1066,7 +1139,8 @@ export const locations = {
             { verbs: ['bedquilt'], action: { name: 'goTo', description: 'locBedquilt' } },
         ]
     },
-    locEastbank: {
+    {
+        name: 'locEastbank',
         description: {
             long: 'You are on the east bank of a fissure slicing clear across the hall. The mist is quite thick here, and the fissure is too wide to jump.',
             short: 'You\'re on east bank of fissure.',
@@ -1101,7 +1175,8 @@ export const locations = {
             { verbs: ['over'], action: { name: 'goTo', description: 'locWestbank' } },
         ]
     },
-    locEastend: {
+    {
+        name: 'locEastend',
         description: {
             long: 'You are at the east end of the Twopit Room. The floor here is littered with thin rock slabs, which make it easy to descend the pits. There is a path here bypassing the pits to connect passages from east and west. There are holes all over, but the only big one is on the wall directly over the west pit where you can\'t get to it.',
               short: 'You\'re at east end of Twopit Room.',
@@ -1113,7 +1188,8 @@ export const locations = {
             { verbs: ['down', 'pit'], action: { name: 'goTo', description: 'locEastpit' } },
         ]
     },
-    locEastpit: {
+    {
+        name: 'locEastpit',
         description: {
             long: 'You are at the bottom of the eastern pit in the Twopit Room. There is a small pool of oil in one corner of the pit.',
             short: 'You\'re in east pit.',
@@ -1123,7 +1199,8 @@ export const locations = {
             { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locEastend' } },
         ]
     },
-    locFloorhole: {
+    {
+        name: 'locFloorhole',
         description: {
             long: 'You are in a low n/s passage at a hole in the floor. The hole goes down to an e/w passage.',
             short: 'You\'re in n/s passage above e/w passage.',
@@ -1135,7 +1212,8 @@ export const locations = {
             { verbs: ['down', 'hole'], action: { name: 'goTo', description: 'locBroken' } },
         ]
     },
-    locFoof1: {
+    {
+        name: 'locFoof1',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1143,7 +1221,8 @@ export const locations = {
         conditions: {},
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locDebris' }}],
     },
-    locFoof2: {
+    {
+        name: 'locFoof2',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1151,7 +1230,8 @@ export const locations = {
         conditions: { above: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locBuilding' }}],
     },
-    locFoof3: {
+    {
+        name: 'locFoof3',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1159,7 +1239,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locY2' }}],
     },
-    locFoof4: {
+    {
+        name: 'locFoof4',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1167,7 +1248,8 @@ export const locations = {
         conditions: { above: true },
         travel: [{verbs: [], action: { name: 'goTo', description: 'locBuilding' }}],
     },
-    locFoof5: {
+    {
+        name: 'locFoof5',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1175,7 +1257,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locPlover' }}],
     },
-    locFoof6: {
+    {
+        name: 'locFoof6',
         description: {
             long: '>>Foof!<<',
             short: null,
@@ -1183,7 +1266,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locY2' }}],
     },
-    locFootslip: {
+    {
+        name: 'locFootslip',
         description: {
             long: 'Just as you reach the top, your foot slips on a loose rock and you tumble several hundred feet to join the other unlucky adventurers.',
             short: null,
@@ -1193,7 +1277,8 @@ export const locations = {
             { verbs: [], action: { name: 'goTo', description: 'locNowhere' }},
         ]
     },
-    locForest1: {
+    {
+        name: 'locForest1',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1207,7 +1292,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest3' } },
         ],
     },
-    locForest2: {
+    {
+        name: 'locForest2',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1221,7 +1307,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest18' } },
         ],
     },
-    locForest3: {
+    {
+        name: 'locForest3',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1234,7 +1321,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest1' } },
         ],
     },
-    locForest4: {
+    {
+        name: 'locForest4',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1246,7 +1334,8 @@ export const locations = {
             { verbs: ['west', 'south'], action: { name: 'goTo', description: 'locForest5' } },
         ]
     },
-    locForest5: {
+    {
+        name: 'locForest5',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1259,7 +1348,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest6' } },
         ]
     },
-    locForest6: {
+    {
+        name: 'locForest6',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1273,7 +1363,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locSlit' } },
         ],
     },
-    locForest7: {
+    {
+        name: 'locForest7',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1287,7 +1378,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest8' } },
         ],
     },
-    locForest8: {
+    {
+        name: 'locForest8',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1301,7 +1393,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest7' } },
         ]
     },
-    locForest9: {
+    {
+        name: 'locForest9',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1315,7 +1408,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locGrate' } },
         ],
     },
-    locForest10: {
+    {
+        name: 'locForest10',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1329,7 +1423,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locGrate' } },
         ],
     },
-    locForest11: {
+    {
+        name: 'locForest11',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1343,7 +1438,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest9' } },
         ]
     },
-    locForest12: {
+    {
+        name: 'locForest12',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1357,7 +1453,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locValley' } },
         ],
     },
-    locForest13: {
+    {
+        name: 'locForest13',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1371,7 +1468,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locHill' } },
         ],
     },
-    locForest14: {
+    {
+        name: 'locForest14',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1385,7 +1483,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest12' } },
         ],
     },
-    locForest15: {
+    {
+        name: 'locForest15',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1399,7 +1498,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest14' } },
         ],
     },
-    locForest16: {
+    {
+        name: 'locForest16',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1412,7 +1512,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest15' } },
         ],
     },
-    locForest17: {
+    {
+        name: 'locForest17',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1425,7 +1526,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locCliff' } },
         ],
     },
-    locForest18: {
+    {
+        name: 'locForest18',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1439,7 +1541,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest21' } },
         ],
     },
-    locForest19: {
+    {
+        name: 'locForest19',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1453,7 +1556,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest20' } },
         ],
     },
-    locForest20: {
+    {
+        name: 'locForest20',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1467,7 +1571,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest13' } },
         ]
     },
-    locForest21: {
+    {
+        name: 'locForest21',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1481,7 +1586,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest21' } },
         ],
     },
-    locForest22: {
+    {
+        name: 'locForest22',
         description: {
             long: 'You are wandering aimlessly through the forest.',
             short: null,
@@ -1495,7 +1601,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locForest12' } },
         ],
     },
-    locFork: {
+    {
+        name: 'locFork',
         description: {
             long: 'The path forks here. The left fork leads northeast. A dull rumbling seems to get louder in that direction. The right fork leads southeast down a gentle slope. The main corridor enters from the west.',
           short: 'You\'re at fork in path.',
@@ -1510,7 +1617,8 @@ export const locations = {
             { verbs: ['barre'], action: { name: 'goTo', description: 'locBarrenfront' } },
           ]
     },
-    locGiantroom: {
+    {
+        name: 'locGiantroom',
         description: {
             long: 'You are in the Giant Room. The ceiling here is too high up for your lamp to show it. Cavernous passages lead east, north, and south. On the west wall is scrawled the inscription, "fee fie foe foo" [sic].',
           short: 'You\'re in Giant Room.',
@@ -1522,7 +1630,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locImmense' } },
         ]
     },
-    locGrate: {
+    {
+        name: 'locGrate',
         description: {
             long: "You are in a 20-foot depression floored with bare dirt.  Set into the dirt is a strong steel grate mounted in concrete.  A dry streambed leads into the depression.",
             short: 'You\'re outside grate.',
@@ -1549,7 +1658,8 @@ export const locations = {
             },
         ],
     },
-    locGruesome: {
+    {
+        name: 'locGruesome',
         description: {
             long: 'There is now one more gruesome aspect to the spectacular vista.',
             short: null,
@@ -1557,7 +1667,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
     },
-    locHill: {
+    {
+        name: 'locHill',
         description: {
             long: 'You have walked up a hill, still in the forest.  The road slopes back down the other side of the hill.  There is a building in the distance.',
             short: 'You\'re at hill in road.',
@@ -1571,7 +1682,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'speak', description: 'whichWay' } },
         ],
     },
-    locImmense: {
+    {
+        name: 'locImmense',
         description: {
             long: 'You are at one end of an immense north/south passage.',
             short: null,
@@ -1591,7 +1703,8 @@ export const locations = {
             },
         ]
     },
-    locIncline: {
+    {
+        name: 'locIncline',
         description: {
             long: 'You are at the top of a steep incline above a large room. You could climb down here, but you would not be able to climb up. There is a passage leading back to the north.',
           short: 'You\'re at steep incline above large room.',
@@ -1602,7 +1715,8 @@ export const locations = {
             { verbs: ['down', 'climb'], action: { name: 'goTo', description: 'locLowroom' } },
         ]
     },
-    locJumble: {
+    {
+        name: 'locJumble',
         description: {
             long: 'You are in a jumble of rock, with cracks everywhere.',
             short: null,
@@ -1613,7 +1727,8 @@ export const locations = {
             { verbs: ['upwar'], action: { name: 'goTo', description: 'locMisthall' } },
         ]
     },
-    locKinghall: {
+    {
+        name: 'locKinghall',
         description: {
             long: 'You are in the Hall of the Mountain King, with passages off in all directions.',
             short: 'You\'re in Hall of Mt King.',
@@ -1670,7 +1785,8 @@ export const locations = {
             { verbs: ['secre'], action: { name: 'goTo', description: 'locSecret3' } },
         ],
     },
-    locLarge: {
+    {
+        name: 'locLarge',
         description: {
             long: 'You are in a large chamber with passages to the west and north.',
             short: null,
@@ -1690,7 +1806,8 @@ export const locations = {
             },
         ]
     },
-    locLedge: {
+    {
+        name: 'locLedge',
         description: {
             long: 'You are on a small ledge on one face of a sheer cliff.  There are no paths away from the ledge.  Across the chasm is a small clearing surrounded by forest.',
             short: 'You\'re on ledge.',
@@ -1700,7 +1817,8 @@ export const locations = {
             { verbs: ['jump'], action: { name: 'goTo', description: 'locNomake' } },
         ]
     },
-    locLimestone: {
+    {
+        name: 'locLimestone',
         description: {
             long: 'You are walking along a gently sloping north/south passage lined with oddly shaped limestone formations.',
             short: 'You\'re in limestone passage.',
@@ -1712,7 +1830,8 @@ export const locations = {
             { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
         ]
     },
-    locLongeast: {
+    {
+        name: 'locLongeast',
         description: {
             long: 'You are at the east end of a very long hall apparently without side chambers. To the east a low wide crawl slants up. To the north a round two foot hole slants down.',
             short: 'You\'re at east end of long hall.',
@@ -1724,7 +1843,8 @@ export const locations = {
             { verbs: ['north', 'down', 'hole'], action: { name: 'goTo', description: 'locCrossover' } },
         ]
     },
-    locLongwest: {
+    {
+        name: 'locLongwest',
         description: {
             long: 'You are at the west end of a very long featureless hall. The hall joins up with a narrow north/south passage.',
             short: 'You\'re at west end of long hall.',
@@ -1743,7 +1863,8 @@ export const locations = {
             },
         ]
     },
-    locLowroom: {
+    {
+        name: 'locLowroom',
         description: {
             long: 'You are in a large low room.  Crawls lead north, se, and sw.',
             short: 'You\'re in large low room.',
@@ -1756,7 +1877,8 @@ export const locations = {
             { verbs: ['se', 'oriental'], action: { name: 'goTo', description: 'locOriental' } },
         ]
     },
-    locMirrorcanyon: {
+    {
+        name: 'locMirrorcanyon',
         description: {
             long: 'You are in a north/south canyon about 25 feet across. The floor is covered by white mist seeping in from the north. The walls extend upward for well over 100 feet. Suspended from some unseen point far above you, an enormous two-sided mirror is hanging parallel to and midway between the canyon walls. (The mirror is obviously provided for the use of the dwarves who, as you know, are extremely vain.) A small window can be seen in either wall, some fifty feet up.',
             short: 'You\'re in Mirror Canyon.',
@@ -1769,7 +1891,8 @@ export const locations = {
             { verbs: ['north', 'reservoir'], action: { name: 'goTo', description: 'locReservoir' } },
         ]
     },
-    locMisthall: {
+    {
+        name: 'locMisthall',
         description: {
             long: 'You are at one end of a vast hall stretching forward out of sight to the west. There are openings to either side. Nearby, a wide stone staircase leads downward. The hall is filled with wisps of white mist swaying to and fro almost as if alive. A cold wind blows up the staircase. There is a passage at the top of a dome behind you.',
             short: 'You\'re in Hall of Mists.',
@@ -1793,7 +1916,8 @@ export const locations = {
             { verbs: ['Y2'], action: { name: 'goTo', description: 'locJumble' } },
         ]
     },
-    locMistwest: {
+    {
+        name: 'locMistwest',
         description: {
             long: 'You are at the west end of the Hall of Mists. A low wide crawl continues west and another goes north. To the south is a little passage 6 feet off the floor.',
         short: 'You\'re at west end of Hall of Mists.',
@@ -1806,7 +1930,8 @@ export const locations = {
             { verbs: ['west', 'crawl'], action: { name: 'goTo', description: 'locLongeast' } },
         ]
     },
-    locMisty: {
+    {
+        name: 'locMisty',
         description: {
             long: 'You are following a wide path around the outer edge of a large cavern. Far below, through a heavy white mist, strange splashing noises can be heard. The mist rises up through a fissure in the ceiling. The path exits to the south and west.',
             short: 'You\'re in misty cavern.',
@@ -1818,7 +1943,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locAlcove' } },
         ],
     },
-    locNarrow: {
+    {
+        name: 'locNarrow',
         description: {
             long: 'You are in a long, narrow corridor stretching out of sight to the west. At the eastern end is a hole through which you can see a profusion of leaves.',
             short: 'You\'re in narrow corridor.',
@@ -1830,7 +1956,8 @@ export const locations = {
             { verbs: ['west', 'giant'], action: { name: 'goTo', description: 'locGiantroom' } },
         ]
     },
-    locNe: {
+    {
+        name: 'locNe',
         description: {
             long: 'You are at the northeast end of an immense room, even larger than the Giant Room. It appears to be a repository for the "Adventure" program. Massive torches far overhead bathe the room with smoky yellow light. Scattered about you can be seen a pile of bottles (all of them empty), a nursery of young beanstalks murmuring quietly, a bed of oysters, a bundle of black rods with rusty stars on their ends, and a collection of brass lanterns. Off to one side a great many dwarves are sleeping on the floor, snoring loudly. A notice nearby reads: "Do not disturb the dwarves!" An immense mirror is hanging against one wall, and stretches to the other end of the room, where various other sundry objects can be glimpsed dimly in the distance.',
             short: 'You\'re at ne end.',
@@ -1841,7 +1968,8 @@ export const locations = {
             { verbs: ['sw'], action: { name: 'goTo', description: 'locSw' } },
         ]
     },
-    locNeckbroke: {
+    {
+        name: 'locNeckbroke',
         description: {
             long: 'You are at the bottom of the pit with a broken neck.',
             short: null,
@@ -1849,7 +1977,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
     },
-    locNechasm: {
+    {
+        name: 'locNechasm',
         description: {
             long: 'You are on the far side of the chasm. A ne path leads away from the chasm on this side.',
             short: 'You\'re on ne side of chasm.',
@@ -1872,7 +2001,8 @@ export const locations = {
             { verbs: ['barre'], action: { name: 'goTo', description: 'locBarrenfront' } },
         ]
     },
-    locNoclimb: {
+    {
+        name: 'locNoclimb',
         description: {
             long: 'There is nothing here to climb.  Use "up" or "out" to leave the pit.',
             short: null,
@@ -1880,7 +2010,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locWestpit' } }],
     },
-    locNomake: {
+    {
+        name: 'locNomake',
         description: {
             long: 'You didn\'t make it.',
             short: null,
@@ -1888,7 +2019,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
     },
-    locNugget: {
+    {
+        name: 'locNugget',
         description: {
             long: 'This is a low room with a crude note on the wall. The note says, "You won\'t get it up the steps".',
             short: 'You\'re in nugget-of-gold room.',
@@ -1896,7 +2028,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: ['hall', 'out', 'north'], action: { name: 'goTo', description: 'locMisthall' } }]
     },
-    locOriental: {
+    {
+        name: 'locOriental',
         description: {
             long: 'This is the Oriental Room. Ancient oriental cave drawings cover the walls. A gently sloping passage leads upward to the north, another passage leads se, and a hands and knees crawl leads west.',
           short: 'You\'re in Oriental Room.',
@@ -1908,7 +2041,8 @@ export const locations = {
           { verbs: ['upwar', 'north', 'cavern'], action: { name: 'goTo', description: 'locMisty' } },
         ],
     },
-    locParallel1: {
+    {
+        name: 'locParallel1',
         description: {
             long: 'You have crawled through a very low wide passage parallel to and north of the Hall of Mists.',
             short: null,
@@ -1918,7 +2052,8 @@ export const locations = {
             { verbs: ['se'], action: { name: 'goTo', description: 'locMistwest' } },
         ]
     },
-    locParallel2: {
+    {
+        name: 'locParallel2',
         description: {
             long: 'You have crawled through a very low wide passage parallel to and north of the Hall of Mists.',
             short: null,
@@ -1928,7 +2063,8 @@ export const locations = {
             { verbs: [], action: { name: 'goTo', description: 'locWestbank' } },
         ]
     },
-    locPitbrink: {
+    {
+        name: 'locPitbrink',
         description: {
             long: 'You are on the brink of a thirty foot pit with a massive orange column down one wall. You could climb down here but you could not get back up. The maze continues at this level.',
             short: 'You\'re at brink of pit.',
@@ -1942,7 +2078,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locAlike13' } },
         ]
     },
-    locPittop: {
+    {
+        name: 'locPittop',
         description: {
             long: 'At your feet is a small pit breathing traces of white mist. An east passage ends here except for a small crack leading on.',
             short: 'You\'re at top of small pit.',
@@ -1973,7 +2110,8 @@ export const locations = {
             { verbs: ['crack', 'west'], action: { name: 'goTo', description: 'locCrack' } },
         ]
     },
-    locPlanttop: {
+    {
+        name: 'locPlanttop',
         description: {
             long: 'You have climbed up the plant and out of the pit.',
             short: null,
@@ -1981,7 +2119,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action: { name: 'goTo', description: 'locWestend' } }],
     },
-    locPlover: {
+    {
+        name: 'locPlover',
         description: {
             long: 'You\'re in a small chamber lit by an eerie green light. An extremely narrow tunnel exits to the west. A dark corridor leads ne.',
             short: 'You\'re in Plover Room.',
@@ -2003,7 +2142,8 @@ export const locations = {
             { verbs: ['ne', 'dark'], action: { name: 'goTo', description: 'locDarkroom' } },
         ]
     },
-    locReachdead: {
+    {
+        name: 'locReachdead',
         description: {
             long: 'You have reached a dead end.',
             short: null,
@@ -2013,7 +2153,8 @@ export const locations = {
             { verbs: ['sw', 'out', 'crawl'], action: { name: 'goTo', description: 'locCliffledge' } },
         ]
     },
-    locResbottom: {
+    {
+        name: 'locResbottom',
         description: {
             long: 'You are walking across the bottom of the reservoir. Walls of water rear up on either side. The roar of the water cascading past is nearly deafening, and the mist is so thick you can barely see.',
           short: 'You\'re at bottom of reservoir.',
@@ -2026,7 +2167,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locReservoir' } },
         ]
     },
-    locResnorth: {
+    {
+        name: 'locResnorth',
         description: {
             long: 'You are at the northern edge of the reservoir. A northwest passage leads sharply up from here.',
             short: 'You\'re north of reservoir.',
@@ -2046,7 +2188,8 @@ export const locations = {
             { verbs: ['nw', 'upwar', 'out'], action: { name: 'goTo', description: 'locTreacherous' } },
         ],
     },
-    locReservoir: {
+    {
+        name: 'locReservoir',
         description: {
             long: 'You are at the edge of a large underground reservoir. An opaque cloud of white mist fills the room and rises rapidly upward. The lake is fed by a stream, which tumbles out of a hole in the wall about 10 feet overhead and splashes noisily into the water somewhere within the mist. There is a passage going back toward the south.',
           short: 'You\'re at reservoir.',
@@ -2066,7 +2209,8 @@ export const locations = {
             },
         ]
     },
-    locRoadend: {
+    {
+        name: 'locRoadend',
         description: {
             long: 'The road, which approaches from the east, ends here amid the trees.',
             short: 'You\'re at end of road.',
@@ -2080,7 +2224,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locForest21' } },
         ],
     },
-    locRoughhewn: {
+    {
+        name: 'locRoughhewn',
         description: {
             long: 'You are in a long, rough-hewn, north/south corridor.',
             short: null,
@@ -2091,7 +2236,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locLarge' } },
         ]
     },
-    locSecret1: {
+    {
+        name: 'locSecret1',
         description: {
             long: 'You are in a secret n/s canyon above a large room.',
             short: null,
@@ -2112,7 +2258,8 @@ export const locations = {
             { verbs: ['reservoir'], action: { name: 'goTo', description: 'locReservoir' } },
         ]
     },
-    locSecret2: {
+    {
+        name: 'locSecret2',
         description: {
             long: 'You are in a secret n/s canyon above a sizable passage.',
             short: null,
@@ -2125,7 +2272,8 @@ export const locations = {
 
         ]
     },
-    locSecret3: {
+    {
+        name: 'locSecret3',
         description: {
             long: 'You are in a secret canyon which here runs e/w. It crosses over a very tight canyon 15 feet below. If you go down you may not be able to get back up.',
           short: 'You\'re in secret e/w canyon above tight canyon.',
@@ -2140,7 +2288,8 @@ export const locations = {
     },
   // Following three rooms are where the dragon lives.  The code has a
   // wired-in assumption that the dragon corpse goes to locSecret5,
-    locSecret4: {
+    {
+        name: 'locSecret4',
         description: {
             long: 'You are in a secret canyon which exits to the north and east.',
             short: null,
@@ -2151,7 +2300,8 @@ export const locations = {
             { verbs: ['east', 'forwa'], action: { name: 'speak', description: 'nastyDragon' } },
         ]
       },
-    locSecret5: {
+    {
+        name: 'locSecret5',
         description: {
             long: 'You are in a secret canyon which exits to the north and east.',
             short: null,
@@ -2162,7 +2312,8 @@ export const locations = {
             { verbs: ['east'], action: { name: 'goTo', description: 'locSecret3' } },
         ],
     },
-    locSecret6: {
+    {
+        name: 'locSecret6',
         description: {
             long: 'You are in a secret canyon which exits to the north and east.',
             short: null,
@@ -2173,7 +2324,8 @@ export const locations = {
             { verbs: ['east', 'forwa'], action: { name: 'speak', description: 'nastyDragon' } },
         ],
     },
-    locSewer: {
+    {
+        name: 'locSewer',
         description: {
             long: 'The stream flows out through a pair of 1 foot diameter sewer pipes. It would be advisable to use the exit.',
             short: null,
@@ -2183,7 +2335,8 @@ export const locations = {
             { verbs: [], action: { name: 'goTo', description: 'locBuilding' } },
         ],
     },
-    locShellroom: {
+    {
+        name: 'locShellroom',
         description: {
             long: 'You\'re in a large room carved out of sedimentary rock. The floor and walls are littered with bits of shells embedded in the stone. A shallow passage proceeds downward, and a somewhat steeper one leads up. A low hands and knees passage enters from the south.',
               short: 'You\'re in Shell Room.'
@@ -2197,7 +2350,8 @@ export const locations = {
             { verbs: ['south'], action: { name: 'goTo', description: 'locComplex' } },
         ]
     },
-    locSlab: {
+    {
+        name: 'locSlab',
         description: {
             long: 'You are in a large low circular chamber whose floor is an immense slab fallen from the ceiling (Slab Room). East and west there once were large passages, but they are now filled with boulders. Low small passages go north and south, and the south one quickly bends west around the boulders.',
           short: 'You\'re in Slab Room.',
@@ -2209,7 +2363,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locBedquilt' } },
         ]
     },
-    locSlit: {
+    {
+        name: 'locSlit',
         description: {
             long: 'At your feet all the water of the stream splashes into a 2-inch slit in the rock. Downstream the streambed is bare rock.',
             short: 'You\'re at slit in streambed.',
@@ -2225,7 +2380,8 @@ export const locations = {
             { verbs: ['slit', 'strea', 'down', 'inside', 'enter'], action: { name: 'speak', description: 'dontFit' } },
         ],
     },
-    locSloping1: {
+    {
+        name: 'locSloping1',
         description: {
             long: 'You are in a long sloping corridor with ragged sharp walls.',
             short: null,
@@ -2236,7 +2392,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'goTo', description: 'locCuldesac' } },
         ]
     },
-    locSmallpit: {
+    {
+        name: 'locSmallpit',
         description: {
             long: 'You are in the bottom of a small pit with a little stream, which enters and exits through tiny slits.',
             short: 'You\'re at bottom of pit with stream.',
@@ -2248,7 +2405,8 @@ export const locations = {
             { verbs: ['slit', 'strea', 'down', 'upstr', 'downs', 'enter', 'inside'], action: { name: 'speak', description: 'dontFit' } },
         ],
     },
-    locSmallpitbrink: {
+    {
+        name: 'locSmallpitbrink',
         description: {
             long: 'You are on the brink of a small clean climbable pit. A crawl leads west.',
             short: 'You\'re at brink of small pit.',
@@ -2259,7 +2417,8 @@ export const locations = {
             { verbs: ['down', 'pit', 'climb'], action: { name: 'goTo', description: 'locSmallpit' } },
         ]
     },
-    locSnakeblock: {
+    {
+        name: 'locSnakeblock',
         description: {
             long: 'You can\'t get by the snake.',
             short: null,
@@ -2267,7 +2426,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: [], action:{ name: 'goTo', description: 'locKinghall' }}]
     },
-    locSoftroom: {
+    {
+        name: 'locSoftroom',
         description: {
             long: 'You are in the Soft Room. The walls are covered with heavy curtains, the floor with a thick pile carpet. Moss covers the ceiling.',
             short: 'You\'re in Soft Room.',
@@ -2277,7 +2437,8 @@ export const locations = {
             { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locSwisscheese' } },
         ],
     },
-    locSouthside: {
+    {
+        name: 'locSouthside',
         description: {
             long: 'You are in the south side chamber.',
             short: null,
@@ -2285,7 +2446,8 @@ export const locations = {
         conditions: { deep: true },
         travel: [{ verbs: ['hall', 'out', 'north'], action: { name: 'goTo', description: 'locKinghall' }}]
     },
-    locStart: {
+    {
+        name: 'locStart',
         description: {
             long: 'You are standing at the end of a road before a small brick building. Around you is a forest.  A small stream flows out of the building and down a gully.',
             short: 'You\'re in front of building.',
@@ -2309,7 +2471,8 @@ export const locations = {
             { verbs: ['depre'], action: { name: 'goTo', description: 'locGrate' } },
         ],
     },
-    locSteep: {
+    {
+        name: 'locSteep',
         description: {
             long: 'You are on a very steep incline, which widens at it goes upward.',
             short: null,
@@ -2320,7 +2483,8 @@ export const locations = {
             { verbs: ['upwar', 'nw'], action: { name: 'goTo', description: 'locCliffbase' } },
         ]
     },
-    locStoreroom: {
+    {
+        name: 'locStoreroom',
         description: {
             long: 'You are in the ogre\'s storeroom.  The only exit is to the south.',
             short: null,
@@ -2330,7 +2494,8 @@ export const locations = {
             { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locLarge' } },
         ]
     },
-    locSw: {
+    {
+        name: 'locSw',
         description: {
             long: 'You are at the southwest end of the repository. To one side is a pit full of fierce green snakes. On the other side is a row of small wicker cages, each of which contains a little sulking bird. In one corner is a bundle of black rods with rusty marks on their ends. A large number of velvet pillows are scattered about on the floor. A vast mirror stretches off to the northeast. At your feet is a large steel grate, next to which is a sign that reads, "Treasure Vault. Keys in main office."',
             short: 'You\'re at sw end.',
@@ -2342,7 +2507,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'speak', description: 'grateNoway' } },
         ]
     },
-    locSwchasm: {
+    {
+        name: 'locSwchasm',
         description: {
             long: 'You are on one side of a large, deep chasm. A heavy white mist rising up from below obscures all view of the far side. A sw path leads away from the chasm into a winding corridor.',
         short: 'You\'re on sw side of chasm.',
@@ -2364,7 +2530,8 @@ export const locations = {
             },
         ],
     },
-    locSwisscheese: {
+    {
+        name: 'locSwisscheese',
         description: {
             long: 'You are in a room whose walls resemble Swiss cheese. Obvious passages go west, east, ne, and nw. Part of the room is occupied by a large bedrock block.',
           short: 'You\'re in Swiss Cheese Room.',
@@ -2394,7 +2561,8 @@ export const locations = {
             { verbs: ['oriental'], action: { name: 'goTo', description: 'locOriental' } },
         ]
     },
-    locTall: {
+    {
+        name: 'locTall',
         description: {
             long: 'You are in a tall e/w canyon. A low tight crawl goes 3 feet north and seems to open up.',
             short: null,
@@ -2406,7 +2574,8 @@ export const locations = {
             { verbs: ['north', 'crawl'], action: { name: 'goTo', description: 'locSwisscheese' } },
         ],
     },
-    locThreejunction: {
+    {
+        name: 'locThreejunction',
         description: {
             long: 'You are in a secret canyon at a junction of three canyons, bearing north, south, and se. The north one is as tall as the other two combined.',
             short: 'You\'re at junction of three secret canyons.',
@@ -2418,7 +2587,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locWindow2' } },
         ]
     },
-    locTightplace: {
+    {
+        name: 'locTightplace',
         description: {
             long: 'The canyon here becomes too tight to go further south.',
             short: null,
@@ -2428,7 +2598,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locWideplace' } },
         ],
     },
-    locTopstalactite: {
+    {
+        name: 'locTopstalactite',
         description: {
             long: 'A large stalactite extends from the roof and almost reaches the floor below. You could climb down it, and jump from it to the floor, but having done so you would be unable to reach it to climb back up.',
         short: 'You\'re at top of stalactite.',
@@ -2441,7 +2612,8 @@ export const locations = {
             { verbs: ['down'], action: { name: 'goTo', description: 'locAlike4' } },
         ]
     },
-    locTreacherous: {
+    {
+        name: 'locTreacherous',
         description: {
             long: 'You are scrambling along a treacherously steep, rocky passage.',
             short: null,
@@ -2452,7 +2624,8 @@ export const locations = {
               { verbs: ['down', 'se'], action: { name: 'goTo', description: 'locResnorth' } },
         ]
     },
-    locValley: {
+    {
+        name: 'locValley',
         description: {
             long: 'You are in a valley in the forest beside a stream tumbling along a rocky bed.',
             short: 'You\'re in valley.',
@@ -2474,7 +2647,8 @@ export const locations = {
             { verbs: ['strea'], action: { name: 'speak', description: 'upstreamDownstream' } },
         ],
     },
-    locWarmwalls: {
+    {
+        name: 'locWarmwalls',
         description: {
             long: 'The walls are quite warm here. From the north can be heard a steady roar, so loud that the entire cave seems to be trembling. Another passage leads south, and a low crawl goes east.',
             short: 'You\'re at junction with warm walls.',
@@ -2487,7 +2661,8 @@ export const locations = {
             { verbs: ['east', 'crawl'], action: { name: 'goTo', description: 'locBoulders2' } },
         ]
     },
-    locWaterfall: {
+    {
+        name: 'locWaterfall',
         description: {
             long: 'You are in a magnificent cavern with a rushing stream, which cascades over a sparkling waterfall into a roaring whirlpool which disappears through a hole in the floor. Passages exit to the south and west.',
           short: 'You\'re in cavern with waterfall.',
@@ -2500,7 +2675,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locIncline'} },
         ]
     },
-    locWestbank: {
+    {
+        name: 'locWestbank',
         description: {
             long: 'You are on the west side of the fissure in the Hall of Mists.',
             short: 'You\'re on west bank of fissure.',
@@ -2537,7 +2713,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'goTo', description: 'locMistwest' } },
         ]
     },
-    locWestend: {
+    {
+        name: 'locWestend',
         description: {
             long: 'You are at the west end of the Twopit Room. There is a large hole in the wall above the pit at this end of the room.',
             short: 'You\'re at west end of Twopit Room.',
@@ -2550,7 +2727,8 @@ export const locations = {
             { verbs: ['hole'], action: { name: 'speak', description: 'tooFar' } },
         ],
     },
-    locWestpit: {
+    {
+        name: 'locWestpit',
         description: {
             long: 'You are at the bottom of the western pit in the Twopit Room. There is a large hole in the wall about 25 feet above you.',
             short: 'You\'re in west pit.',
@@ -2569,7 +2747,8 @@ export const locations = {
             },
         ]
     },
-    locWestside: {
+    {
+        name: 'locWestside',
         description: {
             long: 'You are in the west side chamber of the Hall of the Mountain King. \nA passage continues west and up here.',
             short: 'You\'re in the west side chamber.',
@@ -2580,7 +2759,8 @@ export const locations = {
             { verbs: ['west', 'upwar'], action: { name: 'goTo', description: 'locCrossover' } },
         ],
     },
-    locWideplace: {
+    {
+        name: 'locWideplace',
         description: {
             long: 'You are at a wide place in a very tight n/s canyon.',
             short: null,
@@ -2591,7 +2771,8 @@ export const locations = {
             { verbs: ['north'], action: { name: 'goTo', description: 'locTall' } },
         ]
     },
-    locWinding: {
+    {
+        name: 'locWinding',
         description: {
             long: 'You are in a long winding corridor sloping out of sight in both directions.',
             short: 'You\'re in sloping corridor.',
@@ -2602,7 +2783,8 @@ export const locations = {
             { verbs: ['upwar'], action: { name: 'goTo', description: 'locSwchasm' } },
         ]
     },
-    locWindow1: {
+    {
+        name: 'locWindow1',
         description: {
             long: 'You\'re at a low window overlooking a huge pit, which extends up out of sight. A floor is indistinctly visible over 50 feet below. Traces of white mist cover the floor of the pit, becoming thicker to the right. \nMarks in the dust around the window would seem to indicate that someone has been here recently. Directly across the pit from you and 25 feet away there is a similar window looking into a lighted room. A shadowy figure can be seen there peering back at you.',
           short: 'You\'re at window on pit.',
@@ -2613,7 +2795,8 @@ export const locations = {
             { verbs: ['jump'], action: { name: 'goTo', description: 'locNeckbroke' } },
         ]
     },
-    locWindow2: {
+    {
+        name: 'locWindow2',
         description: {
             long: 'You\'re at a low window overlooking a huge pit, which extends up out of sight. A floor is indistinctly visible over 50 feet below. Traces of white mist cover the floor of the pit, becoming thicker to the left. \nMarks in the dust around the window would seem to indicate that someone has been here recently. Directly across the pit from you and 25 feet away there is a similar window looking into a lighted room. A shadowy figure can be seen there peering back at you.',
           short: 'You\'re at window on pit.',
@@ -2624,7 +2807,8 @@ export const locations = {
             { verbs: ['jump'], action: { name: 'goTo', description: 'locNeckbroke' } },
         ]
     },
-    locWittsend: {
+    {
+        name: 'locWittsend',
         description: {
             long: 'You are at Witt\'s End. Passages lead off in *all* directions.',
             short: 'You\'re at Witt\s End.',
@@ -2641,7 +2825,8 @@ export const locations = {
             { verbs: ['west'], action: { name: 'speak', description: 'wayBlocked' } },
         ],
     },
-    locY2: {
+    {
+        name: 'locY2',
         description: {
             long: 'You are in a large room, with a passage to the south, a passage to the west, and a wall of broken rock to the east.  There is a large "Y2" on a rock in the room\'s center.',
             short: 'You\'re at "Y2".',
@@ -2663,4 +2848,4 @@ export const locations = {
             },
         ],
     },
-}
+]
