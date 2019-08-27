@@ -3,9 +3,8 @@ import { actions, directions, messages, settings } from '../variables'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
-import { carryObject, listInventory } from './objects'
 import { manageLocationsHistory } from './settings'
-import { listen } from './actions'
+import { carry, inventory, listen } from './actions'
 
 /**
  * Display current location description
@@ -47,15 +46,15 @@ function manageActions(answer) {
     let param = ''
     if (action.length > 1) param = action[1]
 
-    if (isAction('listen', instruction)) {
-      listen()
-    } else if (isAction('look', instruction)) {
+    if (isAction(instruction, 'listen')) {
+      display(listen())
+    } else if (isAction(instruction, 'look')) {
       displayLine(messages.noMoreDetail)
       display(getLocationDescription(true))
-    } else if (isAction('inventory', instruction)) {
-      listInventory()
-    } else if (isAction('carry', instruction)) {
-      carryObject(param, instruction)
+    } else if (isAction(instruction, 'inventory')) {
+      inventory()
+    } else if (isAction(instruction, 'carry')) {
+      carry(param, instruction)
     } else {
       display(messages.cantApply)
     }
@@ -72,6 +71,6 @@ function manageTravels(answer) {
   }
 }
 
-function isAction(name, value) {
-  return actions[name].find(a => value.includes(a))
+function isAction(instruction, name) {
+  return actions[name].find(a => instruction.includes(a))
 }

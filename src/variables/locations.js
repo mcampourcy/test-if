@@ -5,7 +5,7 @@
 //      conditions:   A dictionary of attributes
 //        lit		Light
 //        oily		If fluid flag is on: true for oil, false for water
-//        fluid		Liquid assehttps://www.nantes.fr/piscine-jules-vernet
+//        fluid		Liquid asset
 //        noarrr		Pirate doesn't go here unless following player
 //        noback		Cannot use "back" to move away
 //        hcave		Trying to get into cave

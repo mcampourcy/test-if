@@ -1,6 +1,14 @@
 import { locations, messages, objects, settings } from '../variables'
 import { displayLine } from './console'
 
+export function getObjectFromHere(object) {
+  const { currentLocation } = settings
+
+  return objects.find(({ locations, words }) => (
+    locations.includes(currentLocation) && words.includes(object)
+  ))
+}
+
 export function getObjectsDescription () {
   const { currentLocation, inventory } = settings
   const { conditions } = locations[currentLocation]
@@ -32,29 +40,21 @@ export function getObjectsSound () {
   return description.join('\n')
 }
 
-export function carryObject(object, verb) {
-  const { currentLocation } = settings
-  const { conditions } = locations[currentLocation]
-  if (conditions.lit) {
-    const getObject = objects.find(({ locations, words }) => (
-      locations.includes(currentLocation) && words.includes(object)
-    ))
-    if (getObject) {
-      settings.inventory.push(getObject)
-      displayLine(messages.okMan)
-    } else {
-      displayLine(messages.doWhat(verb))
-    }
-  }
+export function isLiquid(object) {
+  const water = objects.find(({ name }) => name === 'water')
+  const oil = objects.find(({ name }) => name === 'oil')
+  return water.concat(oil).includes(object)
 }
 
-export function listInventory() {
+export function isHere(object) {
+  const { currentLocation } = settings
+
+  return objects.find(({ locations, words }) => (
+    locations.includes(currentLocation) && words.includes(object)
+  ))
+}
+
+export function isInInventory(object) {
   const { inventory } = settings
-  if (inventory.length) {
-    displayLine(messages.nowHolding)
-    inventory.map(object => console.log(object.inventory))
-    console.log('\n')
-  } else {
-    displayLine(messages.noCarry)
-  }
+  return  inventory.find(({ words }) => words.includes(object))
 }
