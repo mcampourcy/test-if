@@ -4,7 +4,7 @@ import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
 import { manageLocationsHistory } from './settings'
-import { carry, fill, inventory, listen } from './actions'
+import { carry, fill, inventory, listen, unlock } from './actions'
 
 /**
  * Display current location description
@@ -41,24 +41,33 @@ function manageActions(answer) {
   if (answerIsDirection) {
     getErrorMessage(answer)
   } else {
-    const action = answer.split(/\s/)
-    const instruction = action[0]
+    const instruction = answer.split(/\s/)
+    const action = isAction(instruction[0])
     let param = ''
-    if (action.length > 1) param = action[1]
+    if (action.name.length > 1) param = instruction[1]
 
-    if (isAction(instruction, 'carry')) {
-      carry(param, instruction)
-    } else if (isAction(instruction, 'inventory')) {
-      fill(param, instruction)
-    } else if (isAction(instruction, 'inventory')) {
-      inventory()
-    } else if (isAction(instruction, 'listen')) {
-      display(listen())
-    } else if (isAction(instruction, 'look')) {
-      displayLine(messages.noMoreDetail)
-      display(getLocationDescription(true))
-    } else {
-      display(messages.cantApply)
+    switch (action.name) {
+      case 'carry':
+        carry(param, action.name)
+        break
+      case 'fill':
+        fill(param, action.name)
+        break
+      case 'inventory':
+        inventory()
+        break
+      case 'listen':
+        display(listen())
+        break
+      case 'look':
+        displayLine(messages.noMoreDetail)
+        display(getLocationDescription(true))
+        break
+      case 'unlock':
+        unlock(param, action.name)
+        break
+      default:
+        displayLine(messages.cantApply)
     }
   }
 }
@@ -73,6 +82,44 @@ function manageTravels(answer) {
   }
 }
 
-function isAction(instruction, name) {
-  return actions[name].find(a => instruction.includes(a.words))
+function isAction(instruction) {
+  return actions.find(({ verbs }) => verbs !== null && verbs.includes(instruction))
 }
+
+// void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
+// /* Find the skip+1st message from msg and print it.  Modes are:
+//  * feel = for inventory, what you can touch
+//  * look = the full description for the state the object is in
+//  * listen = the sound for the state the object is in
+//  * study = text on the object. */
+// {
+//   va_list ap;
+//   va_start(ap, skip);
+//   switch (mode) {
+//     case touch:
+//       vspeak(objects[msg].inventory, blank, ap);
+//       break;
+//     case look:
+//       vspeak(objects[msg].descriptions[skip], blank, ap);
+//       break;
+//     case hear:
+//       vspeak(objects[msg].sounds[skip], blank, ap);
+//       break;
+//     case study:
+//       vspeak(objects[msg].texts[skip], blank, ap);
+//       break;
+//     case change:
+//       vspeak(objects[msg].changes[skip], blank, ap);
+//       break;
+//   }
+//   va_end(ap);
+// }
+//
+// void rspeak(vocab_t i, ...)
+// /* Print the i-th "random" message (section 6 of database). */
+// {
+//   va_list ap;
+//   va_start(ap, i);
+//   vspeak(arbitrary_messages[i], true, ap);
+//   va_end(ap);
+// }

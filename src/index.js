@@ -6,7 +6,7 @@ import { display, format, consoleInput, displayLine } from './functions/console'
 import { doSomething } from './functions/global'
 
 export function run() {
-  displayTitle()
+  // displayTitle()
   displayInstructions()
 }
 
@@ -27,7 +27,7 @@ function displayTitle() {
 
 function displayInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
-  const question = settings.repeat ? null : format(welcomeYou)
+  const question = settings.repeat ? '' : format(welcomeYou)
   settings.repeat = false
 
   consoleInput(question, input => {

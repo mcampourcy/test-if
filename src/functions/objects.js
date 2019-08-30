@@ -1,6 +1,7 @@
 import { locations, messages, objects, settings } from '../variables'
 import { displayLine } from './console'
 import { getCurrentLocation } from './locations'
+import { displayLine } from './console'
 
 export function getObjectFromHere(object) {
   const { currentLocation } = settings
@@ -44,7 +45,7 @@ export function getObjectsSound () {
 export function isLiquid(object) {
   const water = objects.find(({ name }) => name === 'water')
   const oil = objects.find(({ name }) => name === 'oil')
-  return water.concat(oil).includes(object)
+  return water.words.includes(object) || oil.words.includes(object)
 }
 
 export function isHere(object) {
@@ -58,4 +59,10 @@ export function isHere(object) {
 export function isInInventory(object) {
   const { inventory } = settings
   return  inventory.find(({ words }) => words.includes(object))
+}
+
+export function stateChange(obj, nextStateName) {
+  const state = obj.states.find(({ name }) => name === nextStateName)
+  if (state.change) displayLine(state.change)
+  return state
 }

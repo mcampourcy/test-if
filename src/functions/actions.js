@@ -5,7 +5,7 @@ import { getCurrentLocation, getLocationLiquid } from './locations'
 
 export function carry(object, verb) {
   const { currentLocation } = settings
-  const { conditions } = locations[currentLocation]
+  const { conditions } = getCurrentLocation()
 
   if (conditions.lit) {
 
@@ -53,7 +53,7 @@ export function carry(object, verb) {
   }
 }
 
-export function fill(object, instruction) {
+export function fill(object, verb) {
   const obj = getObjectFromHere(object)
   const isInvent = isInInventory(object)
   const locationLiquid = getLocationLiquid()
@@ -79,12 +79,12 @@ export function fill(object, instruction) {
   } else {
     if (locationLiquid) { // oil or water here
       if (obj.name !== 'bottle') { // fill what ?
-        displayLine(actions[instruction.message])
+        displayLine(actions[verb.message])
         return
       }
 
       if (!isHere('bottle')) { // no bottle here
-        displayLine(messages.doWhat(instruction))
+        displayLine(messages.doWhat(verb))
       } else { // bottle here
         const bottle = getObjectFromHere('bottle')
         if (bottle.state !== 'emptyBottle') {
@@ -104,9 +104,9 @@ export function fill(object, instruction) {
 export function inventory() {
   const { inventory } = settings
   if (inventory.length) {
-    displayLine(messages.nowHolding)
+    console.log(`\n${messages.nowHolding}`)
     inventory.map(object => console.log(object.inventory))
-    console.log('\n')
+    console.log(`\n`)
   } else {
     displayLine(messages.noCarry)
   }
@@ -114,12 +114,78 @@ export function inventory() {
 
 export const listen = () => {
   const { currentLocation } = settings
-  const { loud, sound } = locations[currentLocation]
+  const { loud, sound } = getCurrentLocation()
   const objectsSounds = getObjectsSound()
   if (sound) {
     displayLine(sounds[sound])
     if (!loud && objectsSounds) display(objectsSounds)
   } else {
     displayLine(messages.allSilent)
+  }
+}
+
+export function unlock(object, verb) {
+  const obj = getObjectFromHere(object)
+  const action  = actions.find(a => a.name === verb)
+  const indexObject = objects.indexOf(obj)
+
+  switch (obj) {
+    case 'chain':
+      // if (isHere('keys')) {
+      //   return chain(verb);
+      // } else {
+      //   displayLine(messages.noKeys)
+      // }
+      break
+    case 'grate':
+      if (isInInventory('keys')) {
+        // if (game.closng) {
+        //   displayLine(messages.exitClosed)
+        //   if (!game.panic)
+        //     game.clock2 = PANICTIME;
+        //   game.panic = true;
+        // } else {
+        const state = stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
+        obj.state = state.name
+        objects[indexObject] = obj
+        // }
+      } else {
+        displayLine(messages.noKeys)
+      }
+      break
+    case 'clam':
+
+      // if (verb == LOCK)
+      //   rspeak(HUH_MAN);
+      // else if (!TOTING(TRIDENT))
+      //   rspeak(CLAM_OPENER);
+      // else {
+      //   DESTROY(CLAM);
+      //   drop(OYSTER, game.loc);
+      //   drop(PEARL, LOC_CULDESAC);
+      //   rspeak(PEARL_FALLS);
+      // }
+      break
+    case 'oyster':
+      // if (verb == LOCK)
+      //   rspeak(HUH_MAN);
+      // else if (TOTING(OYSTER))
+      //   rspeak(DROP_OYSTER);
+      // else if (!TOTING(TRIDENT))
+      //   rspeak(OYSTER_OPENER);
+      // else
+      //   rspeak(OYSTER_OPENS);
+      break
+    case 'door':
+      displayLine(obj.state === 'doorUnrusted' ? messages.okMan : messages.rustyDoor)
+      break
+    case 'cage':
+      displayLine(messages.noLock)
+      break
+    case 'keys':
+      displayLine(messages.cannotUnlock)
+      break
+    default:
+      displayLine(action.message)
   }
 }
