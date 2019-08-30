@@ -11,16 +11,22 @@ export function getObjectFromHere(object) {
   ))
 }
 
+export function getObjectsListFromHere() {
+  const { currentLocation } = settings
+  return objects.find(({ locations }) => locations.includes(currentLocation))
+}
+
 export function getObjectsDescription () {
   const { currentLocation, inventory } = settings
   const { conditions } = getCurrentLocation()
   if (conditions.lit) {
     let description = []
-    objects.map(({ descriptions, locations, name, states }) => {
+    objects.map(({ descriptions, locations, name, states, currentState }) => {
       const alreadyInInventory = inventory.find((obj => obj.name === name ))
       if (locations.includes(currentLocation) && !alreadyInInventory) {
         if (states) {
-          description.push(states[0].description)
+          const current = states.find(({ name }) => name === currentState)
+          description.push(currentState ? current.description : states[0].description)
         } else {
           description.push(descriptions[locations.indexOf(currentLocation)])
         }
@@ -63,6 +69,7 @@ export function isInInventory(object) {
 
 export function stateChange(obj, nextStateName) {
   const state = obj.states.find(({ name }) => name === nextStateName)
+  obj.currentState = state.name
   if (state.change) displayLine(state.change)
-  return state
+  return obj
 }

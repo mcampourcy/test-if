@@ -1,11 +1,16 @@
 import { actions, locations, messages, objects, settings, sounds } from '../variables'
 import { display, displayLine } from './console'
-import { getObjectFromHere, getObjectsSound, isHere, isInInventory, isLiquid } from './objects'
+import { getObjectFromHere, getObjectsListFromHere, getObjectsSound, isHere, isInInventory, isLiquid } from './objects'
 import { getCurrentLocation, getLocationLiquid } from './locations'
 
-export function carry(object, verb) {
+export function carry(object, verb, instruction) {
   const { currentLocation } = settings
   const { conditions } = getCurrentLocation()
+
+  if (isInInventory(object)) { // Already carrying
+    displayLine(actions.find(({ name }) => name === verb).message)
+    return
+  }
 
   if (conditions.lit) {
 
@@ -16,7 +21,7 @@ export function carry(object, verb) {
       if (!bottleHere && !bottleInvent) {
         displayLine(messages.noContainer)
       } else {
-        if (bottleHere || bottleInvent.state === 'emptyBottle') {
+        if (bottleHere || bottleInvent.currentState === 'emptyBottle') {
           // return fill(verb)
         } else {
           displayLine(messages.bottleFull)
@@ -24,7 +29,13 @@ export function carry(object, verb) {
       }
 
     } else {
-      const obj = getObjectFromHere(object)
+      let obj
+      // if user didn't mention any param ("take") and there is only one object here, take the object
+      if (!object && getObjectsListFromHere.length === 1) {
+        obj = getObjectsListFromHere()[0]
+      } else if (object) {
+        obj = getObjectFromHere(object)
+      }
 
       if (obj) { // Object in current location
 
@@ -34,20 +45,20 @@ export function carry(object, verb) {
             break
           case 'bottle':
             const { conditions } = currentLocation
-            obj.state = 'emptyBottle'
-            if (conditions.fluid) obj.state = conditions.oily ? 'oilBottle' : 'waterBottle'
+            obj.currentState = 'emptyBottle'
+            if (conditions.fluid) obj.currentState = conditions.oily ? 'oilBottle' : 'waterBottle'
             settings.inventory.push(obj)
             displayLine(messages.okMan)
             break
           default:
-            if (obj.states) obj.state = obj.states[0]
+            if (obj.states) obj.currentState = obj.states[0].name
             settings.inventory.push(obj)
             displayLine(messages.okMan)
             break
         }
 
       } else {
-        displayLine(messages.doWhat(verb))
+        displayLine(messages.doWhat(instruction))
       }
     }
   }
@@ -72,14 +83,14 @@ export function fill(object, verb) {
     }
 
     displayLine(messages.shatterVase)
-    obj.state = 'vaseBroken'
+    obj.currentState = 'vaseBroken'
     obj.locations = [settings.currentLocation]
     settings.inventory.splice(indexInvent)
 
   } else {
     if (locationLiquid) { // oil or water here
       if (obj.name !== 'bottle') { // fill what ?
-        displayLine(actions[verb.message])
+        displayLine(actions.find(({ name }) => name === verb).message)
         return
       }
 
@@ -87,10 +98,11 @@ export function fill(object, verb) {
         displayLine(messages.doWhat(verb))
       } else { // bottle here
         const bottle = getObjectFromHere('bottle')
-        if (bottle.state !== 'emptyBottle') {
+        if (bottle.currentState !== 'emptyBottle') {
           displayLine(messages.bottleFull)
         } else {
-          obj.state = `${locationLiquid}Bottle`
+          objects.splice(indexObject, 1, stateChange(obj, `${locationLiquid}Bottle`))
+          return
         }
         if (isInvent) settings.inventory[indexInvent] = obj
       }
@@ -98,7 +110,7 @@ export function fill(object, verb) {
       displayLine(messages.noLiquid)
     }
   }
-  objects[indexObject] = obj
+  objects.splice(indexObject, 1, obj)
 }
 
 export function inventory() {
@@ -125,11 +137,11 @@ export const listen = () => {
 }
 
 export function unlock(object, verb) {
-  const obj = getObjectFromHere(object)
+  let obj = getObjectFromHere(object)
   const action  = actions.find(a => a.name === verb)
   const indexObject = objects.indexOf(obj)
 
-  switch (obj) {
+  switch (obj.name) {
     case 'chain':
       // if (isHere('keys')) {
       //   return chain(verb);
@@ -145,9 +157,7 @@ export function unlock(object, verb) {
         //     game.clock2 = PANICTIME;
         //   game.panic = true;
         // } else {
-        const state = stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
-        obj.state = state.name
-        objects[indexObject] = obj
+        objects.splice(indexObject, 1, stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen'))
         // }
       } else {
         displayLine(messages.noKeys)
@@ -177,7 +187,7 @@ export function unlock(object, verb) {
       //   rspeak(OYSTER_OPENS);
       break
     case 'door':
-      displayLine(obj.state === 'doorUnrusted' ? messages.okMan : messages.rustyDoor)
+      displayLine(obj.currentState === 'doorUnrusted' ? messages.okMan : messages.rustyDoor)
       break
     case 'cage':
       displayLine(messages.noLock)

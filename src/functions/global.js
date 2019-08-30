@@ -43,12 +43,12 @@ function manageActions(answer) {
   } else {
     const instruction = answer.split(/\s/)
     const action = isAction(instruction[0])
-    let param = ''
+    let param
     if (action.name.length > 1) param = instruction[1]
 
     switch (action.name) {
       case 'carry':
-        carry(param, action.name)
+        carry(param, action.name, instruction[0])
         break
       case 'fill':
         fill(param, action.name)
