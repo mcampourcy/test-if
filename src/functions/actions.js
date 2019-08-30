@@ -1,4 +1,4 @@
-import { locations, messages, settings, sounds } from '../variables'
+import { actions, locations, messages, objects, settings, sounds } from '../variables'
 import { display, displayLine } from './console'
 import { getObjectFromHere, getObjectsSound, isHere, isInInventory, isLiquid } from './objects'
 import { getCurrentLocation, getLocationLiquid } from './locations'
@@ -53,12 +53,15 @@ export function carry(object, verb) {
   }
 }
 
-export function fill(object) {
+export function fill(object, instruction) {
   const obj = getObjectFromHere(object)
   const isInvent = isInInventory(object)
+  const locationLiquid = getLocationLiquid()
+  const indexObject = objects.indexOf(obj)
+  const indexInvent = settings.inventory.indexOf(obj)
 
   if (obj.name === 'vase') {
-    if (!getLocationLiquid()) {
+    if (!locationLiquid) {
       displayLine(messages.fillInvalid)
       return
     }
@@ -71,68 +74,31 @@ export function fill(object) {
     displayLine(messages.shatterVase)
     obj.state = 'vaseBroken'
     obj.locations = [settings.currentLocation]
-    // rspeak(SHATTER_VASE);
-    // game.prop[VASE] = VASE_BROKEN;
-    // game.fixed[VASE] = IS_FIXED;
-    // drop(VASE, game.loc);
-    // return GO_CLEAROBJ;
-  // }
-  //
-  //   if (obj == URN) {
-  //     if (game.prop[URN] != URN_EMPTY) {
-  //       rspeak(FULL_URN);
-  //       return GO_CLEAROBJ;
-  //     }
-  //     if (!HERE(BOTTLE)) {
-  //       rspeak(FILL_INVALID);
-  //       return GO_CLEAROBJ;
-  //     }
-  //     int k = LIQUID();
-  //     switch (k) {
-  //       case WATER:
-  //         game.prop[BOTTLE] = EMPTY_BOTTLE;
-  //         rspeak(WATER_URN);
-  //         break;
-  //       case OIL:
-  //         game.prop[URN] = URN_DARK;
-  //         game.prop[BOTTLE] = EMPTY_BOTTLE;
-  //         rspeak(OIL_URN);
-  //         break;
-  //       case NO_OBJECT:
-  //       default:
-  //         rspeak(FILL_INVALID);
-  //         return GO_CLEAROBJ;
-  //     }
-  //     game.place[k] = LOC_NOWHERE;
-  //     return GO_CLEAROBJ;
-  //   }
-  //   if (obj != INTRANSITIVE && obj != BOTTLE) {
-  //     speak(actions[verb].message);
-  //     return GO_CLEAROBJ;
-  //   }
-  //   if (obj == INTRANSITIVE && !HERE(BOTTLE))
-  //     return GO_UNKNOWN;
-  //
-  //   if (HERE(URN) && game.prop[URN] != URN_EMPTY) {
-  //     rspeak(URN_NOPOUR);
-  //     return GO_CLEAROBJ;
-  //   }
-  //   if (LIQUID() != NO_OBJECT) {
-  //     rspeak(BOTTLE_FULL);
-  //     return GO_CLEAROBJ;
-  //   }
-  //   if (LIQLOC(game.loc) == NO_OBJECT) {
-  //     rspeak(NO_LIQUID);
-  //     return GO_CLEAROBJ;
-  //   }
-  //
-  //   state_change(BOTTLE, (LIQLOC(game.loc) == OIL)
-  //     ? OIL_BOTTLE
-  //     : WATER_BOTTLE);
-  //   if (TOTING(BOTTLE))
-  //     game.place[LIQUID()] = CARRIED;
-  //   return GO_CLEAROBJ;
+    settings.inventory.splice(indexInvent)
+
+  } else {
+    if (locationLiquid) { // oil or water here
+      if (obj.name !== 'bottle') { // fill what ?
+        displayLine(actions[instruction.message])
+        return
+      }
+
+      if (!isHere('bottle')) { // no bottle here
+        displayLine(messages.doWhat(instruction))
+      } else { // bottle here
+        const bottle = getObjectFromHere('bottle')
+        if (bottle.state !== 'emptyBottle') {
+          displayLine(messages.bottleFull)
+        } else {
+          obj.state = `${locationLiquid}Bottle`
+        }
+        if (isInvent) settings.inventory[indexInvent] = obj
+      }
+    } else {
+      displayLine(messages.noLiquid)
+    }
   }
+  objects[indexObject] = obj
 }
 
 export function inventory() {

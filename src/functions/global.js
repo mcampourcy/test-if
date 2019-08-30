@@ -49,7 +49,7 @@ function manageActions(answer) {
     if (isAction(instruction, 'carry')) {
       carry(param, instruction)
     } else if (isAction(instruction, 'inventory')) {
-      fill(param)
+      fill(param, instruction)
     } else if (isAction(instruction, 'inventory')) {
       inventory()
     } else if (isAction(instruction, 'listen')) {
@@ -74,5 +74,5 @@ function manageTravels(answer) {
 }
 
 function isAction(instruction, name) {
-  return actions[name].find(a => instruction.includes(a))
+  return actions[name].find(a => instruction.includes(a.words))
 }
