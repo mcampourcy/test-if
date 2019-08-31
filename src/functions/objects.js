@@ -3,6 +3,10 @@ import { displayLine } from './console'
 import { getCurrentLocation } from './locations'
 import { displayLine } from './console'
 
+export function getObject(object) {
+  return objects.find(({ name }) => name === object)
+}
+
 export function getObjectFromHere(object) {
   const { currentLocation } = settings
 
@@ -17,18 +21,22 @@ export function getObjectsListFromHere() {
 }
 
 export function getObjectsDescription () {
-  const { currentLocation, inventory } = settings
+  const { currentLocation } = settings
   const { conditions } = getCurrentLocation()
-  if (conditions.lit) {
+  const lamp = getObject('lamp')
+
+  if (conditions.lit || lamp.currentState === 'lampBright') {
     let description = []
-    objects.map(({ descriptions, locations, name, states, currentState }) => {
-      const alreadyInInventory = inventory.find((obj => obj.name === name ))
-      if (locations.includes(currentLocation) && !alreadyInInventory) {
-        if (states) {
-          const current = states.find(({ name }) => name === currentState)
-          description.push(currentState ? current.description : states[0].description)
+    objects.map(object => {
+      if (object.locations.includes(currentLocation) && !isInInventory(object.name)) {
+        if (object.states) {
+          const current = object.states.find(({ name }) => name === object.currentState)
+          description.push(object.currentState ? current.description : object.states[0].description)
         } else {
-          description.push(descriptions[locations.indexOf(currentLocation)])
+          if (object.descriptions) {
+            const objDescription = object.descriptions[object.locations.indexOf(currentLocation)]
+            description.push(objDescription)
+          }
         }
       }
     })
@@ -64,12 +72,27 @@ export function isHere(object) {
 
 export function isInInventory(object) {
   const { inventory } = settings
-  return  inventory.find(({ words }) => words.includes(object))
+  return inventory.find((objName => objName === object))
 }
 
 export function stateChange(obj, nextStateName) {
   const state = obj.states.find(({ name }) => name === nextStateName)
   obj.currentState = state.name
   if (state.change) displayLine(state.change)
-  return obj
+  updateObject(obj)
+}
+
+export function removeFromInventory(object) {
+  const index = inventory.indexOf(inventory.find(o => o === object))
+  inventory.splice(index)
+}
+
+export function updateInventory(object) {
+  const index = inventory.indexOf(inventory.find(o => o === object))
+  inventory.splice(index, 1, object)
+}
+
+export function updateObject(object) {
+  const index = objects.indexOf(objects.find(({ name }) => name === object.name))
+  objects.splice(index, 1, object)
 }

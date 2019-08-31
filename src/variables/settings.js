@@ -5,6 +5,7 @@ The current previousLocation is saved in previousLocationBis, in case the player
 export const settings = {
     currentLocation: 'locStart',
     inventory: [],
+    inventoryLimit: 7,
     novice: true,
     previousLocation: 'locNowhere',
     previousLocationBis: 'locNowhere',

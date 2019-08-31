@@ -4,7 +4,7 @@ import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
 import { manageLocationsHistory } from './settings'
-import { carry, fill, inventory, listen, unlock } from './actions'
+import { carry, fill, inventory, light, listen, unlock } from './actions'
 
 /**
  * Display current location description
@@ -55,6 +55,9 @@ function manageActions(answer) {
         break
       case 'inventory':
         inventory()
+        break
+      case 'light':
+        light(param, action.name)
         break
       case 'listen':
         display(listen())

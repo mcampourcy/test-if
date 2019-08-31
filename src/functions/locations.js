@@ -1,5 +1,5 @@
 import { directions, locations, messages, settings } from '../variables'
-import { getObjectsDescription } from './objects'
+import { getObject, getObjectsDescription } from './objects'
 
 export function getCurrentLocation() {
   const { currentLocation } = settings
@@ -9,11 +9,12 @@ export function getCurrentLocation() {
 export function getLocationDescription (forceLong = false) {
   const { currentLocation, previousLocationBis, repeat } = settings
   const { conditions, description: { long, short } } = getCurrentLocation()
+  const lamp = getObject('lamp')
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = currentLocation === previousLocationBis
 
-  if (conditions.lit) {
+  if (conditions.lit || lamp.currentState === 'lampBright') {
     const objectsDescription = getObjectsDescription()
     if (short && !forceLong && (repeat || turnAround)) {
       return short

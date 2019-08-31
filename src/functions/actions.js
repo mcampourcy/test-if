@@ -1,11 +1,25 @@
 import { actions, locations, messages, objects, settings, sounds } from '../variables'
-import { display, displayLine } from './console'
-import { getObjectFromHere, getObjectsListFromHere, getObjectsSound, isHere, isInInventory, isLiquid } from './objects'
-import { getCurrentLocation, getLocationLiquid } from './locations'
+import { display, displayLine, format } from './console'
+import {
+  getObject,
+  getObjectFromHere,
+  getObjectsListFromHere,
+  isHere,
+  isInInventory,
+  isLiquid, removeFromInventory,
+  stateChange, updateInventory,
+  updateObject,
+} from './objects'
+import { getCurrentLocation, getLocationDescription, getLocationLiquid } from './locations'
 
 export function carry(object, verb, instruction) {
-  const { currentLocation } = settings
+  const { currentLocation, inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
+
+  if (inventory.length === inventoryLimit) {
+    displayLine(messages.carryLimit)
+    return
+  }
 
   if (isInInventory(object)) { // Already carrying
     displayLine(actions.find(({ name }) => name === verb).message)
@@ -47,12 +61,16 @@ export function carry(object, verb, instruction) {
             const { conditions } = currentLocation
             obj.currentState = 'emptyBottle'
             if (conditions.fluid) obj.currentState = conditions.oily ? 'oilBottle' : 'waterBottle'
-            settings.inventory.push(obj)
+            updateObject(obj)
+            settings.inventory.push(obj.name)
             displayLine(messages.okMan)
             break
           default:
-            if (obj.states) obj.currentState = obj.states[0].name
-            settings.inventory.push(obj)
+            if (obj.states) {
+              obj.currentState = obj.states[0].name
+              updateObject(obj)
+            }
+            settings.inventory.push(obj.name)
             displayLine(messages.okMan)
             break
         }
@@ -68,8 +86,6 @@ export function fill(object, verb) {
   const obj = getObjectFromHere(object)
   const isInvent = isInInventory(object)
   const locationLiquid = getLocationLiquid()
-  const indexObject = objects.indexOf(obj)
-  const indexInvent = settings.inventory.indexOf(obj)
 
   if (obj.name === 'vase') {
     if (!locationLiquid) {
@@ -85,7 +101,7 @@ export function fill(object, verb) {
     displayLine(messages.shatterVase)
     obj.currentState = 'vaseBroken'
     obj.locations = [settings.currentLocation]
-    settings.inventory.splice(indexInvent)
+    removeFromInventory(obj.name)
 
   } else {
     if (locationLiquid) { // oil or water here
@@ -101,27 +117,56 @@ export function fill(object, verb) {
         if (bottle.currentState !== 'emptyBottle') {
           displayLine(messages.bottleFull)
         } else {
-          objects.splice(indexObject, 1, stateChange(obj, `${locationLiquid}Bottle`))
+          stateChange(obj, `${locationLiquid}Bottle`)
           return
         }
-        if (isInvent) settings.inventory[indexInvent] = obj
+        if (isInvent) updateInventory(obj.name)
       }
     } else {
       displayLine(messages.noLiquid)
     }
   }
-  objects.splice(indexObject, 1, obj)
+  updateObject(obj)
 }
 
 export function inventory() {
   const { inventory } = settings
   if (inventory.length) {
     console.log(`\n${messages.nowHolding}`)
-    inventory.map(object => console.log(object.inventory))
+    inventory.map(object => {
+      const obj = objects.find(({ name }) => name === object)
+      console.log(obj.inventory)
+    })
     console.log(`\n`)
   } else {
     displayLine(messages.noCarry)
   }
+}
+
+/*  Light.  Applicable only to lamp and urn. */
+export function light(object, verb) {
+    let obj = object ? getObject(object) : { name: null }
+
+    if (!object && isInInventory('lamp')) {
+      const lamp = objects.find(({ name }) => name === 'lamp')
+      if (lamp.currentState === 'lampDark') obj = lamp
+    } else if (!object && isInInventory('urn')) {
+      const urn = objects.find(({ name }) => name === 'urn')
+      if (urn.currentState === 'urnDark') obj = urn
+    }
+
+    switch (obj.name) {
+      case 'urn':
+        stateChange(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+        break
+      case 'lamp':
+        stateChange(obj, 'lampBright')
+        displayLine(getLocationDescription())
+        break
+      default:
+        const action  = actions.find(a => a.name === verb)
+        displayLine(action.message)
+    }
 }
 
 export const listen = () => {
@@ -157,7 +202,7 @@ export function unlock(object, verb) {
         //     game.clock2 = PANICTIME;
         //   game.panic = true;
         // } else {
-        objects.splice(indexObject, 1, stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen'))
+        stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
         // }
       } else {
         displayLine(messages.noKeys)
