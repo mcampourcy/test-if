@@ -231,6 +231,7 @@ export const objects = [
     inventory: '*rusty door',
     locations: ['locImmense'],
     immovable: true,
+    state: 'doorUnrusted',
     states: [
       {
         name: 'doorRusted',
