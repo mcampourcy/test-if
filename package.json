@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint --ext js --ext jsx src",
+    "lint": "eslint --ext js src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,14 +21,35 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
-    "eslint": "^6.1.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint": "^6.2.1"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "eslintConfig": {
     "parser": "babel-eslint",
+    "env": {
+      "browser": true
+    },
     "rules": {
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "import/prefer-default-export": "off",
+      "max-len": "off",
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false
+        }
+      ],
+      "object-curly-newline": "off",
       "semi": [
-        2,
+        "error",
         "never"
       ]
     }

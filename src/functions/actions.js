@@ -1,12 +1,15 @@
 import { locations, messages, settings, sounds } from '../variables'
+import { display, displayLine } from './console'
+import { getObjectsSound } from './objects'
 
 export const listen = () => {
   const { currentLocation } = settings
-  const { sound } = locations[currentLocation]
+  const { loud, sound } = locations[currentLocation]
+  const objectsSounds = getObjectsSound()
   if (sound) {
-    console.log(`\n\n${sounds[sound]}`)
-    // If loc loud, no sound coming from objects
+    displayLine(sounds[sound])
+    if (!loud && objectsSounds) display(objectsSounds)
+  } else {
+    displayLine(messages.allSilent)
   }
-  //TODO: manage objects sounds
-  console.log(`\n\n${messages.allSilent}`)
 }
