@@ -1,5 +1,5 @@
-import { actions, locations, messages, objects, settings, sounds } from '../variables'
-import { display, displayLine, format } from './console'
+import { actions, messages, objects, settings, sounds } from '../variables'
+import { display, displayLine } from './console'
 import {
   getObject,
   getObjectFromHere,

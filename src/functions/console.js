@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 })
 
 export function consoleInput(question, callback) {
-  rl.question(question, (answer) => {
+  rl.question(question, answer => {
     callback(answer)
     rl.resume()
   })

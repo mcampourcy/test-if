@@ -1,7 +1,6 @@
-import { locations, messages, objects, settings } from '../variables'
+import { objects, settings } from '../variables'
 import { displayLine } from './console'
 import { getCurrentLocation } from './locations'
-import { displayLine } from './console'
 
 export function getObject(object) {
   return objects.find(({ name }) => name === object)
