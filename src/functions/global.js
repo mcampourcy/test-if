@@ -16,7 +16,7 @@ import { carry, fill, inventory, light, listen, unlock } from './actions'
  *  if the actions is a speak : display the action's description
  * Anyway : repeat all
  */
-export function doSomething (description = true) {
+export  function doSomething (description = true) {
   const question = description ? format(getLocationDescription()) : ''
   consoleInput(question, input => {
     const answer = input.trim()
@@ -24,7 +24,10 @@ export function doSomething (description = true) {
 
     if (settings.repeat) settings.repeat = false
 
-    if (!locationPossibleTravels.includes(answer)) {
+    if (!Array.isArray(locationPossibleTravels)) {
+      manageTravels(locationPossibleTravels)
+      doSomething()
+    } else if (!locationPossibleTravels.includes(answer)) {
       manageActions(answer)
       settings.repeat = true
       doSomething(false)

@@ -20,7 +20,7 @@ export function getObjectsListFromHere() {
   return objects.find(({ locations }) => locations.includes(currentLocation))
 }
 
-export function getObjectsDescription () {
+export function getObjectsDescription() {
   const { currentLocation } = settings
   const { conditions } = getCurrentLocation()
   const lamp = getObject('lamp')

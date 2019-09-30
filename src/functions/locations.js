@@ -1,5 +1,8 @@
 import { directions, locations, messages, settings } from '../variables'
 import { getObject, getObjectsDescription } from './objects'
+import { manageLocationsHistory } from './settings'
+import { doSomething } from './global'
+import { displayLine } from './console'
 
 export function getCurrentLocation() {
   const { currentLocation } = settings
@@ -8,19 +11,25 @@ export function getCurrentLocation() {
 
 export function getLocationDescription (forceLong = false) {
   const { currentLocation, previousLocationBis, repeat } = settings
-  const { conditions, description: { long, short } } = getCurrentLocation()
+  const { conditions, description: { long, short }, travel } = getCurrentLocation()
   const lamp = getObject('lamp')
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = currentLocation === previousLocationBis
 
-  if (conditions.lit || lamp.currentState === 'lampBright') {
+  if (conditions && (conditions.lit || lamp.currentState === 'lampBright')) {
     const objectsDescription = getObjectsDescription()
-    if (short && !forceLong && (repeat || turnAround)) {
-      return short
-    } else {
-      return objectsDescription.length ? `${long}\n${objectsDescription}` : long
+    const locationPossibleTravels = getLocationPossibleTravels()
+
+    const description = (short && !forceLong && (repeat || turnAround)) ? short : long
+
+    if (!locationPossibleTravels.length) {
+      displayLine(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
+      manageLocationsHistory(travel[0].action.description)
+      doSomething()
     }
+
+    return objectsDescription.length ? `${description}\n${objectsDescription}` : description
   } else {
     return messages.pitchDark
   }
@@ -39,7 +48,7 @@ export function getLocationPossibleTravels() {
   const { travel } = getCurrentLocation()
   const locationTravels = travel.map(({ verbs }) => verbs).flat()
   // get words dictionary from travel' ids
-  return locationTravels.map(travel => directions.find(({ name }) => name === travel ).verbs).flat()
+  return locationTravels.map(travel => directions.find(({ name }) => name === travel).verbs).flat()
 }
 
 export function getLocationTravel(answer) {
