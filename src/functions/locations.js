@@ -48,7 +48,7 @@ export function getLocationPossibleTravels() {
   const { travel } = getCurrentLocation()
   const locationTravels = travel.map(({ verbs }) => verbs).flat()
   // get words dictionary from travel' ids
-  return locationTravels.map(travel => directions.find(({ name }) => name === travel).verbs).flat()
+  return locationTravels.map(travel => directions.find(({ name }) => name === travel.toLowerCase()).verbs).flat()
 }
 
 export function getLocationTravel(answer) {
