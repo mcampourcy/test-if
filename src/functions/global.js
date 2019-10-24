@@ -5,6 +5,7 @@ import { getErrorMessage } from './directions'
 import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
 import { manageLocationsHistory } from './settings'
 import { carry, fill, inventory, light, listen, unlock } from './actions'
+import { getObject, isInInventory } from './objects'
 
 /**
  * Display current location description
@@ -81,10 +82,40 @@ function manageActions(answer) {
 function manageTravels(answer) {
   const travel = getLocationTravel(answer)
   if (travel.name === 'goTo') {
-    manageLocationsHistory(travel.description)
+    if (travel.condition) {
+      manageTravelConditions(travel)
+    } else {
+      manageLocationsHistory(travel.description)
+    }
   } else if (travel.name === 'speak') {
     settings.repeat = true
     display(messages[travel.description])
+  }
+}
+
+function manageTravelConditions(travel) {
+  const { condition } = travel
+  if (condition.type === 'object') {
+    const { currentState } = getObject(condition.object)
+    if (currentState !== condition.state) {
+      travelConditionFailed(travel.conditionFailed)
+    } else {
+      manageLocationsHistory(travel.description)
+    }
+  } else if (condition.type === 'carry') {
+    if (!isInInventory(condition.object)) {
+      travelConditionFailed(travel.conditionFailed)
+    }
+  }
+}
+
+function travelConditionFailed(conditionFailed) {
+  if (conditionFailed.name === 'goTo') {
+    manageLocationsHistory(conditionFailed.description)
+  }
+  if (conditionFailed.name === 'speak') {
+    settings.repeat = true
+    display(messages[conditionFailed.description])
   }
 }
 

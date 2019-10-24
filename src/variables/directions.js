@@ -115,7 +115,7 @@ export const directions = [
   },
   {
     name: 'forwa',
-    verbs: ['forwa', 'conti', 'onwar'],
+    verbs: ['forwa', 'forward', 'conti', 'continue', 'onwar', 'onward'],
   },
   {
     name: 'giant',
