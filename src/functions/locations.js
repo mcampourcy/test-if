@@ -13,6 +13,7 @@ export function getLocationDescription (forceLong = false) {
   const { currentLocation, previousLocationBis, repeat } = settings
   const { conditions, description: { long, short }, travel } = getCurrentLocation()
   const lamp = getObject('lamp')
+
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = currentLocation === previousLocationBis
@@ -31,6 +32,12 @@ export function getLocationDescription (forceLong = false) {
 
     return objectsDescription.length ? `${description}\n${objectsDescription}` : description
   } else {
+    const specialLocation = /^locFoof/.test(currentLocation)
+    if (specialLocation) {
+      displayLine(long)
+      manageLocationsHistory(travel[0].action.description)
+      doSomething()
+    }
     return messages.pitchDark
   }
 }

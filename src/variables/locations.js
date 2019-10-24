@@ -1198,38 +1198,34 @@ export const locations = [
         action: {
           name: 'speak',
           description: 'crossBridge',
-          condition: {
-            type: 'object',
-            object: 'fissure',
-            state: 'bridged',
-          },
         },
       },
       {
         verbs: ['forwa'],
         action: {
           name: 'goTo',
-          description: 'locNomake',
+          description: 'locWestbank',
           condition: {
             type: 'object',
             object: 'fissure',
             state: 'bridged',
           },
+          conditionFailed: { name: 'goTo', description: 'locNomake' },
         },
       },
       {
         verbs: ['over', 'acros', 'west', 'cross'],
         action: {
-          name: 'speak',
-          description: 'noCross',
+          name: 'goTo',
+          description: 'locWestbank',
           condition: {
             type: 'object',
             object: 'fissure',
             state: 'unbridged',
           },
+          conditionFailed: { name: 'speak', description: 'noCross' },
         },
       },
-      { verbs: ['over'], action: { name: 'goTo', description: 'locWestbank' } },
     ],
   },
   {

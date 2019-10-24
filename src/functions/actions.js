@@ -15,6 +15,7 @@ import { getCurrentLocation, getLocationDescription, getLocationLiquid } from '.
 export function carry(object, verb, instruction) {
   const { currentLocation, inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
+  const lamp = getObject('lamp')
 
   if (inventory.length === inventoryLimit) {
     displayLine(messages.carryLimit)
@@ -26,7 +27,7 @@ export function carry(object, verb, instruction) {
     return
   }
 
-  if (conditions.lit) {
+  if (conditions.lit || lamp.currentState === 'lampBright') {
 
     if (isLiquid(object)) { // "take water / oil"
       const bottleHere = isHere('bottle')
@@ -52,7 +53,6 @@ export function carry(object, verb, instruction) {
       }
 
       if (obj) { // Object in current location
-
         switch (obj.name) {
           case 'messag':
             // displayLine(messages.removeMessage)

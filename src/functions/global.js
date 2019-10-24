@@ -94,13 +94,13 @@ function manageTravels(answer) {
 }
 
 function manageTravelConditions(travel) {
-  const { condition, description } = travel
+  const { condition } = travel
   if (condition.type === 'object') {
     const { currentState } = getObject(condition.object)
     if (currentState !== condition.state) {
       travelConditionFailed(travel.conditionFailed)
     } else {
-      manageLocationsHistory(description)
+      manageLocationsHistory(travel.description)
     }
   } else if (condition.type === 'carry') {
     if (!isInInventory(condition.object)) {
