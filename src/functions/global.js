@@ -75,31 +75,40 @@ function manageActions(answer) {
     const [verb, param] = answer.split(/\s/)
     const action = getAction(verb)
 
-    switch (action.name) {
-      case 'carry':
-        carry(param, action.name, verb)
-        break
-      case 'fill':
-        fill(param, action.name)
-        break
-      case 'inventory':
-        inventory()
-        break
-      case 'light':
-        light(param, action.name)
-        break
-      case 'listen':
-        display(listen())
-        break
-      case 'look':
-        displayLine(messages.noMoreDetail)
-        display(getLocationDescription(true))
-        break
-      case 'unlock':
-        unlock(param, action.name)
-        break
-      default:
-        displayLine(messages.cantApply)
+    if (action) {
+      if (action.noaction) {
+        displayLine(action.message)
+        return
+      }
+
+      switch (action.name) {
+        case 'carry':
+          carry(param, action.name, verb)
+          break
+        case 'fill':
+          fill(param, action.name)
+          break
+        case 'inventory':
+          inventory()
+          break
+        case 'light':
+          light(param, action.name)
+          break
+        case 'listen':
+          display(listen())
+          break
+        case 'look':
+          displayLine(messages.noMoreDetail)
+          display(getLocationDescription(true))
+          break
+        case 'unlock':
+          unlock(param, action.name)
+          break
+        default:
+          displayLine(messages.cantApply)
+      }
+    } else {
+      displayLine(messages.cantApply)
     }
   }
 }
