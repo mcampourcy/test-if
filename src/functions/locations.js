@@ -4,62 +4,58 @@ import { manageLocationsHistory } from './settings'
 import { doSomething } from './global'
 import { displayLine } from './console'
 
-export function getCurrentLocation() {
-  const { currentLocation } = settings
-  return locations.find(({ name }) => name === currentLocation)
-}
+export const getCurrentLocation = () => locations.find(({ name }) => name === settings.currentLocation)
+const isSpecial = location => /^locFoof/.test(location)
 
-export function getLocationDescription (forceLong = false) {
-  const { currentLocation, previousLocationBis, repeat } = settings
-  const { conditions, description: { long, short }, travel } = getCurrentLocation()
+export const getLocationDescription = (forceLong = false) => {
+  const { previousLocationBis, repeat } = settings
+  const { conditions, description: { long, short }, name: current, travels } = getCurrentLocation()
   const lamp = getObject('lamp')
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
-  const turnAround = currentLocation === previousLocationBis
+  const turnAround = current === previousLocationBis
 
   if (conditions && (conditions.lit || lamp.currentState === 'lampBright')) {
     const objectsDescription = getObjectsDescription()
-    const locationPossibleTravels = getLocationPossibleTravels()
+    const routesFromLocation = getRoutesFromLocation()
 
     const description = (short && !forceLong && (repeat || turnAround)) ? short : long
 
-    if (!locationPossibleTravels.length) {
+    if (!routesFromLocation.length) {
       displayLine(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
-      manageLocationsHistory(travel[0].action.description)
+      manageLocationsHistory(travels[0].action.description)
       doSomething()
     }
 
     return objectsDescription.length ? `${description}\n${objectsDescription}` : description
-  } else {
-    const specialLocation = /^locFoof/.test(currentLocation)
-    if (specialLocation) {
-      displayLine(long)
-      manageLocationsHistory(travel[0].action.description)
-      doSomething()
-    }
-    return messages.pitchDark
   }
+
+  if (isSpecial(current)) {
+    displayLine(long)
+    manageLocationsHistory(travels[0].action.description)
+    doSomething()
+  }
+
+  return messages.pitchDark
 }
 
-export function getLocationLiquid() {
+export const getFluidConditions = () => {
   const { conditions } = getCurrentLocation()
-  if (conditions.fluid) {
-    return conditions.oily ? 'oil' : 'water'
-  }
+  if (conditions.fluid) conditions.oily ? 'oil' : 'water'
 
   return null
 }
 
-export function getLocationPossibleTravels() {
-  const { travel } = getCurrentLocation()
-  const locationTravels = travel.map(({ verbs }) => verbs).flat()
-  // get words dictionary from travel' ids
-  return locationTravels.map(travel => directions.find(({ name }) => name === travel.toLowerCase()).verbs).flat()
+export const getRoutesFromLocation = () => {
+  const { travels } = getCurrentLocation()
+  const travelsVerbs = travels.map(({ verbs }) => verbs).flat()
+  // get dictionary from travels ids
+  return travelsVerbs.map(travel => directions.find(({ name }) => name === travel).verbs).flat()
 }
 
-export function getLocationTravel(answer) {
-  const { travel } = getCurrentLocation()
+export const getTravel = (answer) => {
+  const { travels } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
-  return travel.find(({ verbs }) => verbs.includes(direction.name)).action
+  return travels.find(({ verbs }) => verbs.includes(direction.name)).action
 }

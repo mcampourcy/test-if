@@ -21,11 +21,11 @@
 //                    this location. (This is why locations has to follow hints.)
 //      sound:        Label for a location sound.
 //      loud:         If true, object sounds are drowned out at this location.
-//      travel:       A list of movement rules.  They're applied in the order
-//                    they appear.  For a rule to fire, (1) the movement command
+//      travels:       A list of movement rules. They're applied in the order
+//                    they appear. For a rule to fire, (1) the movement command
 //                    must be a synonym for one of its verbs, and (2) the
 //                    condition, if present, must evaluate to true. In that case
-//                    the action fires.  The action may be a goTo (move to
+//                    the action fires. The action may be a goTo (move to
 //                    a named location) a speak (utter a named message), or
 //                    a special (branch to special case in movement code).
 //                    The conditional may be one of the following:
@@ -44,7 +44,7 @@ export const locations = [
       short: null,
     },
     conditions: {},
-    travel: [],
+    travels: [],
   },
   {
     name: 'locAlcove',
@@ -54,7 +54,7 @@ export const locations = [
     },
     conditions: { deep: true },
     hints: ['dark'],
-    travel: [
+    travels: [
       { verbs: ['nw', 'cavern'], action: { name: 'goTo', description: 'locMisty' } },
       { verbs: ['east', 'passa'], action: { name: 'special', description: 1 } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locPlover' } },
@@ -68,7 +68,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locMistwest' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike1' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike2' } },
@@ -84,7 +84,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike1' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locAlike3' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike4' } },
@@ -98,7 +98,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike2' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locDeadend3' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locAlike6' } },
@@ -113,7 +113,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike1' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike2' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locDeadend1' } },
@@ -129,7 +129,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike6' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike7' } },
     ],
@@ -142,7 +142,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike3' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike5' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locAlike7' } },
@@ -157,7 +157,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike5' } },
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locAlike6' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike8' } },
@@ -172,7 +172,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike6' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locAlike7' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locAlike8' } },
@@ -189,7 +189,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike7' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike8' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locDeadend4' } },
@@ -203,7 +203,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike8' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike10' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locDeadend5' } },
@@ -218,7 +218,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike1' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike11' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locAlike11' } },
@@ -233,7 +233,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locAlike1' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike11' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locAlike11' } },
@@ -247,7 +247,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locPitbrink' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike12' } },
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDeadend12' } },
@@ -260,7 +260,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locPitbrink' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike12' } },
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDeadend12' } },
@@ -273,7 +273,7 @@ export const locations = [
       short: 'You\'re in anteroom.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locComplex' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locWittsend' } },
@@ -286,7 +286,7 @@ export const locations = [
       short: 'You\'re in arched hall.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'shell', 'out'], action: { name: 'goTo', description: 'locShellroom' } },
     ],
   },
@@ -297,7 +297,7 @@ export const locations = [
       short: null,
     },
     conditions: {},
-    travel: [
+    travels: [
       {
         verbs: ['depre'],
         action: {
@@ -324,7 +324,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: ['pit'], action: { name: 'goTo', description: 'locDeadend13' } }],
+    travels: [{ verbs: ['pit'], action: { name: 'goTo', description: 'locDeadend13' } }],
   },
   {
     name: 'locBarrenfront',
@@ -333,7 +333,7 @@ export const locations = [
       short: 'You\'re in front of Barren Room.',
     },
     conditions: { noarr: true, deep: true },
-    travel: [
+    travels: [
       { verbs: ['west', 'upwar'], action: { name: 'goTo', description: 'locLimestone' } },
       { verbs: ['fork'], action: { name: 'goTo', description: 'locFork' } },
       {
@@ -350,7 +350,7 @@ export const locations = [
       short: 'You\'re in Barren Room.',
     },
     conditions: { noarr: true, deep: true },
-    travel: [
+    travels: [
       { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locBarrenfront' } },
       { verbs: ['fork'], action: { name: 'goTo', description: 'locFork' } },
       { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
@@ -363,7 +363,7 @@ export const locations = [
       short: 'You\'re in Bedquilt.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locComplex' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locSwisscheese' } },
       {
@@ -399,7 +399,7 @@ export const locations = [
       short: 'You\'re below the grate.',
     },
     conditions: { lit: true },
-    travel: [
+    travels: [
       {
         verbs: ['out'],
         action: {
@@ -429,7 +429,7 @@ export const locations = [
     },
     conditions: {},
     hints: ['bird'],
-    travel: [
+    travels: [
       {
         verbs: ['depre'],
         action: {
@@ -456,7 +456,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locTall' } },
     ],
   },
@@ -468,7 +468,7 @@ export const locations = [
     },
     conditions: { noarr: true, deep: true },
     sound: 'dullRumbling',
-    travel: [
+    travels: [
       { verbs: ['west', 'out', 'crawl'], action: { name: 'goTo', description: 'locWarmwalls' } },
       { verbs: ['fork'], action: { name: 'goTo', description: 'locFork' } },
       { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
@@ -484,7 +484,7 @@ export const locations = [
     hints: ['jade'],
     sound: 'totalRoar',
     loud: true,
-    travel: [
+    travels: [
       { verbs: ['south', 'passa', 'out'], action: { name: 'goTo', description: 'locWarmwalls' } },
       { verbs: ['fork'], action: { name: 'goTo', description: 'locFork' } },
       { verbs: ['down'], action: { name: 'speak', description: 'ridiculousAttempt' } },
@@ -494,11 +494,11 @@ export const locations = [
   {
     name: 'locBroken',
     description: {
-      long: 'You are in a dirty broken passage. To the east is a crawl. To the west is a large passage.  Above you is a hole to another passage.',
+      long: 'You are in a dirty broken passage. To the east is a crawl. To the west is a large passage. Above you is a hole to another passage.',
       short: 'You\'re in dirty passage.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'crawl'], action: { name: 'goTo', description: 'locSmallpitbrink' } },
       { verbs: ['upwar', 'hole'], action: { name: 'goTo', description: 'locFloorhole' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locDusty' } },
@@ -513,7 +513,7 @@ export const locations = [
     },
     conditions: { fluid: true, above: true, lit: true },
     sound: 'streamGurgles',
-    travel: [
+    travels: [
       {
         verbs: ['out', 'outdo', 'west'],
         action: { name: 'goTo', description: 'locStart' },
@@ -530,7 +530,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       {
         verbs: [],
         action: {
@@ -554,19 +554,19 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south', 'giant', 'out'], action: { name: 'goTo', description: 'locGiantroom' } },
     ],
   },
   {
     name: 'locCliff',
     description: {
-      long: 'The forest thins out here to reveal a steep cliff.  There is no way down, but a small ledge can be seen to the west across the chasm.',
+      long: 'The forest thins out here to reveal a steep cliff. There is no way down, but a small ledge can be seen to the west across the chasm.',
       short: 'You\'re at cliff.',
     },
     conditions: { above: true, noback: true, lit: true },
     hints: ['urn'],
-    travel: [
+    travels: [
       { verbs: ['south', 'fores'], action: { name: 'goTo', description: 'locForest17' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest19' } },
       { verbs: ['jump'], action: { name: 'goTo', description: 'locNomake' } },
@@ -579,7 +579,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down'], action: { name: 'goTo', description: 'locCliffbase' } },
       {
         verbs: ['upwar'],
@@ -602,7 +602,7 @@ export const locations = [
       short: 'You\'re at base of cliff.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'se'], action: { name: 'goTo', description: 'locSteep' } },
       { verbs: ['upwar', 'climb'], action: { name: 'goTo', description: 'locClifface' } },
     ],
@@ -614,7 +614,7 @@ export const locations = [
       short: 'You\'re at top of cliff.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['climb', 'down'], action: { name: 'goTo', description: 'locClifface' } },
       { verbs: ['ne', 'crawl'], action: { name: 'goTo', description: 'locReachdead' } },
     ],
@@ -626,7 +626,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locCliffledge' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locCliffledge' } }],
   },
   {
     name: 'locClimbstalk',
@@ -635,16 +635,16 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locNarrow' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locNarrow' } }],
   },
   {
     name: 'locCobble',
     description: {
-      long: 'You are crawling over cobbles in a low passage.  There is a dim light at the east end of the passage.',
+      long: 'You are crawling over cobbles in a low passage. There is a dim light at the east end of the passage.',
       short: 'You\'re in cobble crawl.',
     },
     conditions: { lit: true },
-    travel: [
+    travels: [
       { verbs: ['out', 'surfa', 'east'], action: { name: 'goTo', description: 'locBelowgrate' } },
       {
         verbs: ['inside', 'dark', 'west', 'debri'],
@@ -663,7 +663,7 @@ export const locations = [
     conditions: { deep: true },
     hints: ['jade'],
     sound: 'windWhistles',
-    travel: [
+    travels: [
       { verbs: ['upwar', 'climb', 'room'], action: { name: 'goTo', description: 'locDusty' } },
       { verbs: ['west', 'bedquilt'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['north', 'shell'], action: { name: 'goTo', description: 'locShellroom' } },
@@ -678,7 +678,7 @@ export const locations = [
     },
     conditions: { noarr: true, deep: true },
     sound: 'dullRumbling',
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locNechasm' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locFork' } },
       { verbs: ['view'], action: { name: 'goTo', description: 'locBreathtaking' } },
@@ -688,11 +688,11 @@ export const locations = [
   {
     name: 'locCrack',
     description: {
-      long: 'The crack is far too small for you to follow.  At its widest it is barely wide enough to admit your foot.',
+      long: 'The crack is far too small for you to follow. At its widest it is barely wide enough to admit your foot.',
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locPittop' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locPittop' } }],
   },
   {
     name: 'locCrossover',
@@ -701,7 +701,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locLongeast' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locDeadend7' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locWestside' } },
@@ -716,7 +716,7 @@ export const locations = [
     },
     conditions: { deep: true },
     hints: ['dark'],
-    travel: [{
+    travels: [{
       verbs: ['south', 'plove', 'out'],
       action: { name: 'goTo', description: 'locPlover' },
     }],
@@ -728,7 +728,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locSloping1' } },
       { verbs: ['shell'], action: { name: 'goTo', description: 'locShellroom' } },
     ],
@@ -740,7 +740,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south', 'crawl', 'out'], action: { name: 'goTo', description: 'locLowroom' } },
     ],
   },
@@ -752,7 +752,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike4' } },
     ],
   },
@@ -764,7 +764,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locAlike4' } },
     ],
   },
@@ -776,7 +776,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike3' } },
     ],
   },
@@ -788,7 +788,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike9' } },
     ],
   },
@@ -800,7 +800,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike10' } },
     ],
   },
@@ -811,7 +811,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noarrr: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locPitbrink' } },
     ],
   },
@@ -822,7 +822,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locCrossover' } },
     ],
   },
@@ -834,7 +834,7 @@ export const locations = [
     },
     conditions: { deep: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locAlike11' } },
     ],
   },
@@ -846,7 +846,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locAlike3' } },
     ],
   },
@@ -857,7 +857,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noarrr: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'out'], action: { name: 'goTo', description: 'locAlike12' } },
     ],
   },
@@ -869,7 +869,7 @@ export const locations = [
     },
     conditions: { deep: true, noarrr: true },
     hints: ['maze'],
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locAlike8' } },
     ],
   },
@@ -880,7 +880,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['se'], action: { name: 'goTo', description: 'locAlike13' } },
     ],
   },
@@ -891,7 +891,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north', 'out'], action: { name: 'goTo', description: 'locDifferent2' } },
       {
         verbs: ['south'],
@@ -915,7 +915,7 @@ export const locations = [
       short: 'You\'re in debris room.',
     },
     conditions: {},
-    travel: [
+    travels: [
       {
         verbs: ['depre'],
         action: {
@@ -949,7 +949,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['sw'], action: { name: 'goTo', description: 'locDifferent4' } },
       { verbs: ['ne'], action: { name: 'goTo', description: 'locDifferent5' } },
@@ -969,7 +969,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['sw'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locDifferent4' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locDifferent5' } },
@@ -989,7 +989,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['se'], action: { name: 'goTo', description: 'locDifferent4' } },
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDifferent5' } },
@@ -1009,7 +1009,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locDifferent5' } },
@@ -1029,7 +1029,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1049,7 +1049,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['ne'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1069,7 +1069,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['se'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1089,7 +1089,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1109,7 +1109,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['se'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['ne'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1129,7 +1129,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['down'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['ne'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1149,7 +1149,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['sw'], action: { name: 'goTo', description: 'locDifferent1' } },
       { verbs: ['nw'], action: { name: 'goTo', description: 'locDifferent3' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locDifferent4' } },
@@ -1169,7 +1169,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locMisthall' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locMisthall' } }],
   },
   {
     name: 'locDusty',
@@ -1178,7 +1178,7 @@ export const locations = [
       short: 'You\'re in dusty rock room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'passa'], action: { name: 'goTo', description: 'locBroken' } },
       { verbs: ['down', 'hole', 'floor'], action: { name: 'goTo', description: 'locComplex' } },
       { verbs: ['bedquilt'], action: { name: 'goTo', description: 'locBedquilt' } },
@@ -1191,7 +1191,7 @@ export const locations = [
       short: 'You\'re on east bank of fissure.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['hall', 'east'], action: { name: 'goTo', description: 'locMisthall' } },
       {
         verbs: ['jump'],
@@ -1235,7 +1235,7 @@ export const locations = [
       short: 'You\'re at east end of Twopit Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locSwisscheese' } },
       { verbs: ['west', 'acros'], action: { name: 'goTo', description: 'locWestend' } },
       { verbs: ['down', 'pit'], action: { name: 'goTo', description: 'locEastpit' } },
@@ -1248,7 +1248,7 @@ export const locations = [
       short: 'You\'re in east pit.',
     },
     conditions: { fluid: true, deep: true, oily: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locEastend' } },
     ],
   },
@@ -1259,9 +1259,9 @@ export const locations = [
       short: 'You\'re in n/s passage above e/w passage.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['hall', 'out', 'south'], action: { name: 'goTo', description: 'locKinghall' } },
-      { verbs: ['north', 'Y2'], action: { name: 'goTo', description: 'locY2' } },
+      { verbs: ['north', 'y2'], action: { name: 'goTo', description: 'locY2' } },
       { verbs: ['down', 'hole'], action: { name: 'goTo', description: 'locBroken' } },
     ],
   },
@@ -1272,7 +1272,7 @@ export const locations = [
       short: null,
     },
     conditions: {},
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locDebris' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locDebris' } }],
   },
   {
     name: 'locFoof2',
@@ -1281,7 +1281,7 @@ export const locations = [
       short: null,
     },
     conditions: { above: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locBuilding' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locBuilding' } }],
   },
   {
     name: 'locFoof3',
@@ -1290,7 +1290,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locY2' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locY2' } }],
   },
   {
     name: 'locFoof4',
@@ -1299,7 +1299,7 @@ export const locations = [
       short: null,
     },
     conditions: { above: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locBuilding' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locBuilding' } }],
   },
   {
     name: 'locFoof5',
@@ -1308,7 +1308,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locPlover' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locPlover' } }],
   },
   {
     name: 'locFoof6',
@@ -1317,7 +1317,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locY2' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locY2' } }],
   },
   {
     name: 'locFootslip',
@@ -1326,7 +1326,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: [], action: { name: 'goTo', description: 'locNowhere' } },
     ],
   },
@@ -1338,7 +1338,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locStart' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest13' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest2' } },
@@ -1353,7 +1353,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest1' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest19' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest3' } },
@@ -1368,7 +1368,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east', 'west'], action: { name: 'goTo', description: 'locForest4' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest2' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locForest1' } },
@@ -1382,7 +1382,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east', 'north'], action: { name: 'goTo', description: 'locForest3' } },
       { verbs: ['west', 'south'], action: { name: 'goTo', description: 'locForest5' } },
     ],
@@ -1395,7 +1395,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east', 'north'], action: { name: 'goTo', description: 'locForest4' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest7' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locForest6' } },
@@ -1409,7 +1409,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest5' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest7' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locValley' } },
@@ -1424,7 +1424,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest5' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest6' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locGrate' } },
@@ -1439,7 +1439,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest9' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest11' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest22' } },
@@ -1454,7 +1454,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest11' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest8' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest10' } },
@@ -1469,7 +1469,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locSlit' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest11' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest9' } },
@@ -1484,7 +1484,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest10' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest8' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest22' } },
@@ -1499,7 +1499,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest13' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest14' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest22' } },
@@ -1514,7 +1514,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest1' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest12' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest20' } },
@@ -1529,7 +1529,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locRoadend' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest16' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest15' } },
@@ -1544,7 +1544,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest16' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest22' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locRoadend' } },
@@ -1559,7 +1559,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east', 'north'], action: { name: 'goTo', description: 'locForest17' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest14' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locForest15' } },
@@ -1573,7 +1573,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest18' } },
       { verbs: ['west', 'south'], action: { name: 'goTo', description: 'locForest16' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locCliff' } },
@@ -1587,7 +1587,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest19' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest17' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest2' } },
@@ -1602,7 +1602,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest2' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest18' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locCliff' } },
@@ -1617,7 +1617,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locHill' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest21' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest19' } },
@@ -1632,7 +1632,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest20' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locRoadend' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest18' } },
@@ -1647,7 +1647,7 @@ export const locations = [
     },
     conditions: { forest: true, noback: true, lit: true },
     hints: ['forest'],
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locForest8' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest11' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest15' } },
@@ -1662,7 +1662,7 @@ export const locations = [
     },
     conditions: { noarr: true, deep: true },
     sound: 'dullRumbling',
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locCorridor' } },
       { verbs: ['ne', 'left'], action: { name: 'goTo', description: 'locWarmwalls' } },
       { verbs: ['se', 'right', 'down'], action: { name: 'goTo', description: 'locLimestone' } },
@@ -1677,7 +1677,7 @@ export const locations = [
       short: 'You\'re in Giant Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locNarrow' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locCavein' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locImmense' } },
@@ -1686,12 +1686,12 @@ export const locations = [
   {
     name: 'locGrate',
     description: {
-      long: 'You are in a 20-foot depression floored with bare dirt.  Set into the dirt is a strong steel grate mounted in concrete.  A dry streambed leads into the depression.',
+      long: 'You are in a 20-foot depression floored with bare dirt. Set into the dirt is a strong steel grate mounted in concrete. A dry streambed leads into the depression.',
       short: 'You\'re outside grate.',
     },
     conditions: { above: true, lit: true },
     hints: ['grate', 'jade'],
-    travel: [
+    travels: [
       { verbs: ['east', 'fores'], action: { name: 'goTo', description: 'locForest7' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locForest10' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locForest9' } },
@@ -1722,16 +1722,16 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
   },
   {
     name: 'locHill',
     description: {
-      long: 'You have walked up a hill, still in the forest.  The road slopes back down the other side of the hill.  There is a building in the distance.',
+      long: 'You have walked up a hill, still in the forest. The road slopes back down the other side of the hill. There is a building in the distance.',
       short: 'You\'re at hill in road.',
     },
     conditions: { above: true, lit: true },
-    travel: [
+    travels: [
       { verbs: ['build', 'east'], action: { name: 'goTo', description: 'locStart' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locRoadend' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locForest20' } },
@@ -1747,7 +1747,7 @@ export const locations = [
     },
     conditions: { deep: true },
     sound: 'windWhistles',
-    travel: [
+    travels: [
       { verbs: ['south', 'giant', 'passa'], action: { name: 'goTO', description: 'locGiantroom' } },
       {
         verbs: ['north', 'enter', 'caver'],
@@ -1771,7 +1771,7 @@ export const locations = [
       short: 'You\'re at steep incline above large room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       {
         verbs: ['north', 'cavern', 'passa'],
         action: { name: 'goTo', description: 'locWaterfall' },
@@ -1786,8 +1786,8 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
-      { verbs: ['down', 'Y2'], action: { name: 'goTo', description: 'locY2' } },
+    travels: [
+      { verbs: ['down', 'y2'], action: { name: 'goTo', description: 'locY2' } },
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locMisthall' } },
     ],
   },
@@ -1799,7 +1799,7 @@ export const locations = [
     },
     conditions: { deep: true },
     hints: ['snake'],
-    travel: [
+    travels: [
       { verbs: ['stair', 'upwar', 'east'], action: { name: 'goTo', description: 'locMisthall' } },
       {
         verbs: ['north', 'right'],
@@ -1869,7 +1869,7 @@ export const locations = [
     },
     conditions: { deep: true },
     hints: ['ogre'],
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locSecret3' } },
       {
         verbs: ['north'],
@@ -1885,11 +1885,11 @@ export const locations = [
   {
     name: 'locLedge',
     description: {
-      long: 'You are on a small ledge on one face of a sheer cliff.  There are no paths away from the ledge.  Across the chasm is a small clearing surrounded by forest.',
+      long: 'You are on a small ledge on one face of a sheer cliff. There are no paths away from the ledge. Across the chasm is a small clearing surrounded by forest.',
       short: 'You\'re on ledge.',
     },
     conditions: { above: true, lit: true },
-    travel: [
+    travels: [
       { verbs: ['jump'], action: { name: 'goTo', description: 'locNomake' } },
     ],
   },
@@ -1900,7 +1900,7 @@ export const locations = [
       short: 'You\'re in limestone passage.',
     },
     conditions: { noarr: true, deep: true },
-    travel: [
+    travels: [
       { verbs: ['north', 'upwar', 'fork'], action: { name: 'goTo', description: 'locFork' } },
       {
         verbs: ['south', 'down', 'barre'],
@@ -1916,7 +1916,7 @@ export const locations = [
       short: 'You\'re at east end of long hall.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'upwar', 'crawl'], action: { name: 'goTo', description: 'locMistwest' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locLongwest' } },
       { verbs: ['north', 'down', 'hole'], action: { name: 'goTo', description: 'locCrossover' } },
@@ -1929,7 +1929,7 @@ export const locations = [
       short: 'You\'re at west end of long hall.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locLongeast' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locCrossover' } },
       {
@@ -1945,11 +1945,11 @@ export const locations = [
   {
     name: 'locLowroom',
     description: {
-      long: 'You are in a large low room.  Crawls lead north, se, and sw.',
+      long: 'You are in a large low room. Crawls lead north, se, and sw.',
       short: 'You\'re in large low room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['bedquilt'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['sw'], action: { name: 'goTo', description: 'locWinding' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locDeadcrawl' } },
@@ -1965,7 +1965,7 @@ export const locations = [
     conditions: { deep: true },
     hints: ['jade'],
     sound: 'windWhistles',
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locSecret1' } },
       { verbs: ['north', 'reservoir'], action: { name: 'goTo', description: 'locReservoir' } },
     ],
@@ -1979,7 +1979,7 @@ export const locations = [
     conditions: { deep: true },
     hints: ['jade'],
     sound: 'windWhistles',
-    travel: [
+    travels: [
       { verbs: ['left', 'south'], action: { name: 'goTo', description: 'locNugget' } },
       { verbs: ['forwa', 'hall', 'west'], action: { name: 'goTo', description: 'locEastbank' } },
       { verbs: ['stair', 'down', 'north'], action: { name: 'goTo', description: 'locKinghall' } },
@@ -1995,7 +1995,7 @@ export const locations = [
           conditionFailed: { name: 'goTo', description: 'locPittop' },
         },
       },
-      { verbs: ['Y2'], action: { name: 'goTo', description: 'locJumble' } },
+      { verbs: ['y2'], action: { name: 'goTo', description: 'locJumble' } },
     ],
   },
   {
@@ -2005,7 +2005,7 @@ export const locations = [
       short: 'You\'re at west end of Hall of Mists.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       {
         verbs: ['south', 'upwar', 'passa', 'climb'],
         action: { name: 'goTo', description: 'locAlike1' },
@@ -2023,7 +2023,7 @@ export const locations = [
     },
     conditions: { deep: true },
     sound: 'noMeaning',
-    travel: [
+    travels: [
       { verbs: ['south', 'oriental'], action: { name: 'goTo', description: 'locOriental' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlcove' } },
     ],
@@ -2035,7 +2035,7 @@ export const locations = [
       short: 'You\'re in narrow corridor.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'climb', 'east'], action: { name: 'goTo', description: 'locWestpit' } },
       { verbs: ['jump'], action: { name: 'goTo', description: 'locNeckbroke' } },
       { verbs: ['west', 'giant'], action: { name: 'goTo', description: 'locGiantroom' } },
@@ -2049,7 +2049,7 @@ export const locations = [
     },
     conditions: { deep: true, lit: true },
     sound: 'murmuringSnoring',
-    travel: [
+    travels: [
       { verbs: ['sw'], action: { name: 'goTo', description: 'locSw' } },
     ],
   },
@@ -2060,7 +2060,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
   },
   {
     name: 'locNechasm',
@@ -2069,7 +2069,7 @@ export const locations = [
       short: 'You\'re on ne side of chasm.',
     },
     conditions: { noarr: true, deep: true },
-    travel: [
+    travels: [
       { verbs: ['NE'], action: { name: 'goTo', description: 'locCorridor' } },
       {
         verbs: ['over', 'acros', 'cross', 'sw'],
@@ -2089,11 +2089,11 @@ export const locations = [
   {
     name: 'locNoclimb',
     description: {
-      long: 'There is nothing here to climb.  Use "up" or "out" to leave the pit.',
+      long: 'There is nothing here to climb. Use "up" or "out" to leave the pit.',
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locWestpit' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locWestpit' } }],
   },
   {
     name: 'locNomake',
@@ -2102,7 +2102,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locNowhere' } }],
   },
   {
     name: 'locNugget',
@@ -2111,7 +2111,7 @@ export const locations = [
       short: 'You\'re in nugget-of-gold room.',
     },
     conditions: { deep: true },
-    travel: [{
+    travels: [{
       verbs: ['hall', 'out', 'north'],
       action: { name: 'goTo', description: 'locMisthall' },
     }],
@@ -2123,7 +2123,7 @@ export const locations = [
       short: 'You\'re in Oriental Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['se'], action: { name: 'goTo', description: 'locSwisscheese' } },
       { verbs: ['west', 'crawl'], action: { name: 'goTo', description: 'locLowroom' } },
       { verbs: ['upwar', 'north', 'cavern'], action: { name: 'goTo', description: 'locMisty' } },
@@ -2136,7 +2136,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['se'], action: { name: 'goTo', description: 'locMistwest' } },
     ],
   },
@@ -2147,7 +2147,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: [], action: { name: 'goTo', description: 'locWestbank' } },
     ],
   },
@@ -2158,7 +2158,7 @@ export const locations = [
       short: 'You\'re at brink of pit.',
     },
     conditions: { deep: true, noback: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'climb'], action: { name: 'goTo', description: 'locBird' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlike10' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locDeadend6' } },
@@ -2173,7 +2173,7 @@ export const locations = [
       short: 'You\'re at top of small pit.',
     },
     conditions: {},
-    travel: [
+    travels: [
       {
         verbs: ['depre'],
         action: {
@@ -2212,7 +2212,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locWestend' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locWestend' } }],
   },
   {
     name: 'locPlover',
@@ -2222,7 +2222,7 @@ export const locations = [
     },
     conditions: { deep: true, lit: true },
     hints: ['dark'],
-    travel: [
+    travels: [
       { verbs: ['west', 'passa', 'out'], action: { name: 'special', description: 1 } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locAlcove' } },
       {
@@ -2247,7 +2247,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['sw', 'out', 'crawl'], action: { name: 'goTo', description: 'locCliffledge' } },
     ],
   },
@@ -2260,7 +2260,7 @@ export const locations = [
     conditions: { fluid: true, deep: true },
     sound: 'totalRoar',
     loud: true,
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locResnorth' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locReservoir' } },
     ],
@@ -2273,7 +2273,7 @@ export const locations = [
     },
     conditions: { fluid: true, deep: true },
     sound: 'watersCrashing',
-    travel: [
+    travels: [
       {
         verbs: ['south', 'acros', 'cross'],
         action: {
@@ -2298,7 +2298,7 @@ export const locations = [
     },
     conditions: { fluid: true, deep: true },
     sound: 'streamSplashes',
-    travel: [
+    travels: [
       { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locMirrorcanyon' } },
       {
         verbs: ['north', 'acros', 'cross'],
@@ -2322,7 +2322,7 @@ export const locations = [
       short: 'You\'re at end of road.',
     },
     conditions: { above: true, lit: true },
-    travel: [
+    travels: [
       { verbs: ['road', 'east', 'upwar'], action: { name: 'goTo', description: 'locHill' } },
       { verbs: ['build'], action: { name: 'goTo', description: 'locStart' } },
       { verbs: ['south', 'fores'], action: { name: 'goTo', description: 'locForest14' } },
@@ -2337,7 +2337,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locDeadend13' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locLarge' } },
     ],
@@ -2349,7 +2349,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'slab'], action: { name: 'goTo', description: 'locSlab' } },
       {
         verbs: ['south'],
@@ -2377,7 +2377,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locThreejunction' } },
       { verbs: ['down', 'passa'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locTopstalactite' } },
@@ -2391,14 +2391,14 @@ export const locations = [
       short: 'You\'re in secret e/w canyon above tight canyon.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locKinghall' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locSecret5' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locSecret6' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locWideplace' } },
     ],
   },
-  // Following three rooms are where the dragon lives.  The code has a
+  // Following three rooms are where the dragon lives. The code has a
   // wired-in assumption that the dragon corpse goes to locSecret5,
   {
     name: 'locSecret4',
@@ -2407,7 +2407,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north', 'out'], action: { name: 'goTo', description: 'locSecret1' } },
       { verbs: ['east', 'forwa'], action: { name: 'speak', description: 'nastyDragon' } },
     ],
@@ -2419,7 +2419,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locSecret1' } },
       { verbs: ['east'], action: { name: 'goTo', description: 'locSecret3' } },
     ],
@@ -2431,7 +2431,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north', 'out'], action: { name: 'goTo', description: 'locSecret3' } },
       { verbs: ['east', 'forwa'], action: { name: 'speak', description: 'nastyDragon' } },
     ],
@@ -2443,7 +2443,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: [], action: { name: 'goTo', description: 'locBuilding' } },
     ],
   },
@@ -2454,7 +2454,7 @@ export const locations = [
       short: 'You\'re in Shell Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'hall'], action: { name: 'goTo', description: 'locArched' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locSloping1' } },
       {
@@ -2476,7 +2476,7 @@ export const locations = [
       short: 'You\'re in Slab Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locWestend' } },
       { verbs: ['upwar', 'climb'], action: { name: 'goTo', description: 'locSecret1' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locBedquilt' } },
@@ -2490,7 +2490,7 @@ export const locations = [
     },
     conditions: { fluid: true, above: true, lit: true },
     sound: 'streamGurgles',
-    travel: [
+    travels: [
       { verbs: ['build'], action: { name: 'goTo', description: 'locStart' } },
       { verbs: ['upstr', 'north'], action: { name: 'goTo', description: 'locValley' } },
       { verbs: ['east', 'fores', 'upwar'], action: { name: 'goTo', description: 'locForest6' } },
@@ -2512,7 +2512,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'shell'], action: { name: 'goTo', description: 'locShellroom' } },
       { verbs: ['down'], action: { name: 'goTo', description: 'locCuldesac' } },
     ],
@@ -2525,7 +2525,7 @@ export const locations = [
     },
     conditions: { fluid: true, deep: true },
     sound: 'streamGurgles',
-    travel: [
+    travels: [
       {
         verbs: ['climb', 'upwar', 'out'],
         action: { name: 'goTo', description: 'locSmallpitbrink' },
@@ -2543,7 +2543,7 @@ export const locations = [
       short: 'You\'re at brink of small pit.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['west', 'crawl'], action: { name: 'goTo', description: 'locBroken' } },
       { verbs: ['down', 'pit', 'climb'], action: { name: 'goTo', description: 'locSmallpit' } },
     ],
@@ -2555,7 +2555,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{ verbs: [], action: { name: 'goTo', description: 'locKinghall' } }],
+    travels: [{ verbs: [], action: { name: 'goTo', description: 'locKinghall' } }],
   },
   {
     name: 'locSoftroom',
@@ -2564,7 +2564,7 @@ export const locations = [
       short: 'You\'re in Soft Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['west', 'out'], action: { name: 'goTo', description: 'locSwisscheese' } },
     ],
   },
@@ -2575,7 +2575,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [{
+    travels: [{
       verbs: ['hall', 'out', 'north'],
       action: { name: 'goTo', description: 'locKinghall' },
     }],
@@ -2583,12 +2583,12 @@ export const locations = [
   {
     name: 'locStart',
     description: {
-      long: 'You are standing at the end of a road before a small brick building. Around you is a forest.  A small stream flows out of the building and down a gully.',
+      long: 'You are standing at the end of a road before a small brick building. Around you is a forest. A small stream flows out of the building and down a gully.',
       short: 'You\'re in front of building.',
     },
     conditions: { fluid: true, above: true, lit: true },
     sound: 'streamGurgles',
-    travel: [
+    travels: [
       {
         verbs: ['road', 'west', 'upwar'],
         action: { name: 'goTo', description: 'locHill' },
@@ -2612,7 +2612,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down', 'se'], action: { name: 'goTo', description: 'locTreacherous' } },
       { verbs: ['upwar', 'nw'], action: { name: 'goTo', description: 'locCliffbase' } },
     ],
@@ -2620,11 +2620,11 @@ export const locations = [
   {
     name: 'locStoreroom',
     description: {
-      long: 'You are in the ogre\'s storeroom.  The only exit is to the south.',
+      long: 'You are in the ogre\'s storeroom. The only exit is to the south.',
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locLarge' } },
     ],
   },
@@ -2636,7 +2636,7 @@ export const locations = [
     },
     conditions: { deep: true, lit: true },
     sound: 'snakesHissing',
-    travel: [
+    travels: [
       { verbs: ['ne'], action: { name: 'goTo', description: 'locNe' } },
       { verbs: ['down'], action: { name: 'speak', description: 'grateNoway' } },
     ],
@@ -2648,7 +2648,7 @@ export const locations = [
       short: 'You\'re on sw side of chasm.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['sw'], action: { name: 'goTo', description: 'locWinding' } },
       // { verbs: ['over, 'acros', 'cross, 'ne'], condition: [with, troll], action: { name: 'speak', description: 'trollBlocks' } },
       {
@@ -2683,7 +2683,7 @@ export const locations = [
       short: 'You\'re in Swiss Cheese Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['ne'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locEastend' } },
       {
@@ -2714,7 +2714,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east'], action: { name: 'goTo', description: 'locWideplace' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locBoulders1' } },
       { verbs: ['north', 'crawl'], action: { name: 'goTo', description: 'locSwisscheese' } },
@@ -2727,7 +2727,7 @@ export const locations = [
       short: 'You\'re at junction of three secret canyons.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['se'], action: { name: 'goTo', description: 'locBedquilt' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locSecret2' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locWindow2' } },
@@ -2740,7 +2740,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locWideplace' } },
     ],
   },
@@ -2751,7 +2751,7 @@ export const locations = [
       short: 'You\'re at top of stalactite.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['north'], action: { name: 'goTo', description: 'locSecret2' } },
       // { verbs: ['down', 'jump', 'climb'], condition: [pct, 40], action: { name: 'goTo', description: 'locAlike6' } },
       // { verbs: ['down'], condition: [pct, 50], action: { name: 'goTo', description: 'locAlike9' } },
@@ -2765,7 +2765,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'nw'], action: { name: 'goTo', description: 'locSteep' } },
       { verbs: ['down', 'se'], action: { name: 'goTo', description: 'locResnorth' } },
     ],
@@ -2778,7 +2778,7 @@ export const locations = [
     },
     conditions: { fluid: true, above: true, lit: true },
     sound: 'streamGurgles',
-    travel: [
+    travels: [
       {
         verbs: ['upstr', 'build', 'north'],
         action: { name: 'goTo', description: 'locStart' },
@@ -2801,7 +2801,7 @@ export const locations = [
     },
     conditions: { noarr: true, deep: true },
     sound: 'loudRoar',
-    travel: [
+    travels: [
       { verbs: ['south', 'fork'], action: { name: 'goTo', description: 'locFork' } },
       { verbs: ['north', 'view'], action: { name: 'goTo', description: 'locBreathtaking' } },
       { verbs: ['east', 'crawl'], action: { name: 'goTo', description: 'locBoulders2' } },
@@ -2815,7 +2815,7 @@ export const locations = [
     },
     conditions: { fluid: true, deep: true },
     sound: 'streamSplashes',
-    travel: [
+    travels: [
       { verbs: ['south', 'out'], action: { name: 'goTo', description: 'locImmense' } },
       { verbs: ['giant'], action: { name: 'goTo', description: 'locGiantroom' } },
       { verbs: ['west'], action: { name: 'goTo', description: 'locIncline' } },
@@ -2828,7 +2828,7 @@ export const locations = [
       short: 'You\'re on west bank of fissure.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['stair', 'upwar', 'east'], action: { name: 'goTo', description: 'locMisthall' } },
       {
         verbs: ['jump'],
@@ -2878,7 +2878,7 @@ export const locations = [
       short: 'You\'re at west end of Twopit Room.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['east', 'acros'], action: { name: 'goTo', description: 'locEastend' } },
       { verbs: ['west', 'slab'], action: { name: 'goTo', description: 'locSlab' } },
       { verbs: ['down', 'pit'], action: { name: 'goTo', description: 'locWestpit' } },
@@ -2892,7 +2892,7 @@ export const locations = [
       short: 'You\'re in west pit.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['upwar', 'out'], action: { name: 'goTo', description: 'locWestend' } },
       {
         verbs: ['climb'],
@@ -2917,7 +2917,7 @@ export const locations = [
       short: 'You\'re in the west side chamber.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['hall', 'out', 'east'], action: { name: 'goTo', description: 'locKinghall' } },
       { verbs: ['west', 'upwar'], action: { name: 'goTo', description: 'locCrossover' } },
     ],
@@ -2929,7 +2929,7 @@ export const locations = [
       short: null,
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['south'], action: { name: 'goTo', description: 'locTightplace' } },
       { verbs: ['north'], action: { name: 'goTo', description: 'locTall' } },
     ],
@@ -2941,7 +2941,7 @@ export const locations = [
       short: 'You\'re in sloping corridor.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['down'], action: { name: 'goTo', description: 'locLowroom' } },
       { verbs: ['upwar'], action: { name: 'goTo', description: 'locSwchasm' } },
     ],
@@ -2953,8 +2953,8 @@ export const locations = [
       short: 'You\'re at window on pit.',
     },
     conditions: { deep: true },
-    travel: [
-      { verbs: ['east', 'Y2'], action: { name: 'goTo', description: 'locY2' } },
+    travels: [
+      { verbs: ['east', 'y2'], action: { name: 'goTo', description: 'locY2' } },
       { verbs: ['jump'], action: { name: 'goTo', description: 'locNeckbroke' } },
     ],
   },
@@ -2965,7 +2965,7 @@ export const locations = [
       short: 'You\'re at window on pit.',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['west'], action: { name: 'goTo', description: 'locThreejunction' } },
       { verbs: ['jump'], action: { name: 'goTo', description: 'locNeckbroke' } },
     ],
@@ -2978,7 +2978,7 @@ export const locations = [
     },
     conditions: { deep: true, noback: true },
     hints: ['witt'],
-    travel: [
+    travels: [
       {
         verbs: ['east', 'north', 'south', 'ne', 'se', 'sw', 'nw', 'upwar', 'down'],
         // conditions: [pct, 95],
@@ -2991,11 +2991,11 @@ export const locations = [
   {
     name: 'locY2',
     description: {
-      long: 'You are in a large room, with a passage to the south, a passage to the west, and a wall of broken rock to the east.  There is a large "Y2" on a rock in the room\'s center.',
-      short: 'You\'re at "Y2".',
+      long: 'You are in a large room, with a passage to the south, a passage to the west, and a wall of broken rock to the east. There is a large "y2" on a rock in the room\'s center.',
+      short: 'You\'re at "y2".',
     },
     conditions: { deep: true },
-    travel: [
+    travels: [
       { verbs: ['plugh'], action: { name: 'goTo', description: 'locFoof4' } },
       { verbs: ['south'], action: { name: 'goTo', description: 'locFloorhole' } },
       { verbs: ['east', 'wall', 'broke'], action: { name: 'goTo', description: 'locJumble' } },

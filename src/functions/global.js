@@ -1,11 +1,35 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
+import { carry, fill, inventory, light, listen, unlock } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
-import { getLocationDescription, getLocationPossibleTravels, getLocationTravel } from './locations'
-import { manageLocationsHistory } from './settings'
-import { carry, fill, inventory, light, listen, unlock } from './actions'
-import { getObject, isInInventory } from './objects'
+import { getLocationDescription, getRoutesFromLocation } from './locations'
+import { manageTravel } from './travels'
+
+const yesAnswer = ['y', 'yes']
+const noAnswer = ['n', 'no']
+
+export function getInstructions() {
+  const { caveNearby, pleaseAnswer, welcomeYou } = messages
+  const question = settings.repeat ? '' : format(welcomeYou)
+  settings.repeat = false
+
+  consoleInput(question, input => {
+    const yes = yesAnswer.includes(input.trim())
+    const no = noAnswer.includes(input.trim())
+
+    if (!yes && !no) {
+      settings.repeat = true
+      displayLine(pleaseAnswer)
+      getInstructions()
+    }
+
+    if (yes) display(caveNearby)
+    if (no) settings.novice = false
+
+    doSomething()
+  })
+}
 
 /**
  * Display current location description
@@ -17,42 +41,43 @@ import { getObject, isInInventory } from './objects'
  *  if the actions is a speak : display the action's description
  * Anyway : repeat all
  */
-export  function doSomething (description = true) {
+export function doSomething(description = true) {
   const question = description ? format(getLocationDescription()) : ''
+
   consoleInput(question, input => {
+    const routes = getRoutesFromLocation()
     const answer = input.trim()
-    const locationPossibleTravels = getLocationPossibleTravels()
 
     if (settings.repeat) settings.repeat = false
 
-    if (!Array.isArray(locationPossibleTravels)) {
-      manageTravels(locationPossibleTravels)
-      doSomething()
-    } else if (!locationPossibleTravels.includes(answer)) {
+    if (!routes.includes(answer)) {
       manageActions(answer)
       settings.repeat = true
       doSomething(false)
     } else {
-      manageTravels(answer)
+      const travels = !Array.isArray(routes) ? routes : answer
+      manageTravel(travels)
       doSomething()
     }
   })
 }
 
+/**
+ * Manage actions !== manage travels
+ * This function manage actions verbs, not directions indications
+**/
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
 
   if (answerIsDirection) {
     getErrorMessage(answer)
   } else {
-    const instruction = answer.split(/\s/)
-    const action = isAction(instruction[0])
-    let param
-    if (action.name.length > 1) param = instruction[1]
+    const [verb, param] = answer.split(/\s/)
+    const action = getAction(verb)
 
     switch (action.name) {
       case 'carry':
-        carry(param, action.name, instruction[0])
+        carry(param, action.name, verb)
         break
       case 'fill':
         fill(param, action.name)
@@ -79,49 +104,7 @@ function manageActions(answer) {
   }
 }
 
-function manageTravels(answer) {
-  const travel = getLocationTravel(answer)
-  if (travel.name === 'goTo') {
-    if (travel.condition) {
-      manageTravelConditions(travel)
-    } else {
-      manageLocationsHistory(travel.description)
-    }
-  } else if (travel.name === 'speak') {
-    settings.repeat = true
-    display(messages[travel.description])
-  }
-}
-
-function manageTravelConditions(travel) {
-  const { condition } = travel
-  if (condition.type === 'object') {
-    const { currentState } = getObject(condition.object)
-    if (currentState !== condition.state) {
-      travelConditionFailed(travel.conditionFailed)
-    } else {
-      manageLocationsHistory(travel.description)
-    }
-  } else if (condition.type === 'carry') {
-    if (!isInInventory(condition.object)) {
-      travelConditionFailed(travel.conditionFailed)
-    }
-  }
-}
-
-function travelConditionFailed(conditionFailed) {
-  if (conditionFailed.name === 'goTo') {
-    manageLocationsHistory(conditionFailed.description)
-  }
-  if (conditionFailed.name === 'speak') {
-    settings.repeat = true
-    display(messages[conditionFailed.description])
-  }
-}
-
-function isAction(instruction) {
-  return actions.find(({ verbs }) => verbs !== null && verbs.includes(instruction))
-}
+const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:

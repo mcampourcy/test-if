@@ -2,40 +2,36 @@ import { objects, settings } from '../variables'
 import { displayLine } from './console'
 import { getCurrentLocation } from './locations'
 
-export function getObject(object) {
-  return objects.find(({ name }) => name === object)
-}
+export const getObject = object => objects.find(({ name }) => name === object)
 
-export function getObjectFromHere(object) {
-  const { currentLocation } = settings
-
-  return objects.find(({ locations, words }) => (
-    locations.includes(currentLocation) && words.includes(object)
+export const getObjectFromLocation = object => (
+  objects.find(({ locations, words }) => (
+    locations.includes(settings.currentLocation) && words.includes(object)
   ))
-}
+)
 
-export function getObjectsListFromHere() {
-  const { currentLocation } = settings
-  return objects.find(({ locations }) => locations.includes(currentLocation))
-}
+export const getObjectsList = () => (
+  objects.find(({ locations }) => locations.includes(settings.currentLocation))
+)
 
-export function getObjectsDescription() {
-  const { currentLocation } = settings
-  const { conditions } = getCurrentLocation()
+export const getObjectsDescription = () => {
+  const { conditions, name: currentLocation } = getCurrentLocation()
   const lamp = getObject('lamp')
 
   if (conditions.lit || lamp.currentState === 'lampBright') {
-    let description = []
+    const description = []
+
     objects.map(object => {
       if (object.locations.includes(currentLocation) && !isInInventory(object.name)) {
         if (object.states) {
           const current = object.states.find(({ name }) => name === object.currentState)
           description.push(object.currentState ? current.description : object.states[0].description)
-        } else {
-          if (object.descriptions) {
-            const objDescription = object.descriptions[object.locations.indexOf(currentLocation)]
-            description.push(objDescription)
-          }
+          return
+        }
+
+        if (object.descriptions) {
+          const objDescription = object.descriptions[object.locations.indexOf(currentLocation)]
+          description.push(objDescription)
         }
       }
     })
@@ -43,25 +39,26 @@ export function getObjectsDescription() {
   }
 }
 
-export function getObjectsSound () {
+export const getObjectsSound = () => {
   const { currentLocation, inventory } = settings
   const description = []
   objects.map(({ locations, name, states }) => {
-    const alreadyInInventory = inventory.find((obj => obj.name === name ))
+    const alreadyInInventory = inventory.find((obj => obj.name === name))
     if (locations.includes(currentLocation) && !alreadyInInventory && states) {
       description.push(states[0].sound)
     }
+    return name
   })
   return description.join('\n')
 }
 
-export function isLiquid(object) {
+export const isLiquid = (object) => {
   const water = objects.find(({ name }) => name === 'water')
   const oil = objects.find(({ name }) => name === 'oil')
   return water.words.includes(object) || oil.words.includes(object)
 }
 
-export function isHere(object) {
+export const isHere = (object) => {
   const { currentLocation } = settings
 
   return objects.find(({ locations, words }) => (
@@ -69,10 +66,7 @@ export function isHere(object) {
   ))
 }
 
-export function isInInventory(object) {
-  const { inventory } = settings
-  return inventory.find((objName => objName === object))
-}
+export const isInInventory = object => settings.inventory.find((objName => objName === object))
 
 export function stateChange(obj, nextStateName) {
   const state = obj.states.find(({ name }) => name === nextStateName)
@@ -82,11 +76,13 @@ export function stateChange(obj, nextStateName) {
 }
 
 export function removeFromInventory(object) {
+  const { inventory } = settings
   const index = inventory.indexOf(inventory.find(o => o === object))
   inventory.splice(index)
 }
 
 export function updateInventory(object) {
+  const { inventory } = settings
   const index = inventory.indexOf(inventory.find(o => o === object))
   inventory.splice(index, 1, object)
 }
