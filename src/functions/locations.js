@@ -1,48 +1,44 @@
 import { directions, locations, messages, settings } from '../variables'
 import { getObject, getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
-import { doSomething } from './global'
-import { displayLine } from './console'
+import { displayLine, format } from './console'
 
 export const getCurrentLocation = () => locations.find(({ name }) => name === settings.currentLocation)
+
 const isSpecial = location => /^locFoof/.test(location)
 
 export const getLocationDescription = (forceLong = false) => {
-  const { previousLocationBis, repeat } = settings
+  const { previousPreviousLocation, repeat } = settings
   const { conditions, description: { long, short }, name: current, travels } = getCurrentLocation()
   const lamp = getObject('lamp')
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
-  const turnAround = current === previousLocationBis
+  const turnAround = current === previousPreviousLocation
 
-  if (conditions && (conditions.lit || lamp.currentState === 'lampBright')) {
+  if ((conditions && conditions.lit) || lamp.currentState === 'lampBright') {
     const objectsDescription = getObjectsDescription()
     const routesFromLocation = getRoutesFromLocation()
 
-    const description = (short && !forceLong && (repeat || turnAround)) ? short : long
+    const hasShortDescription = short && !forceLong
+    const description = hasShortDescription && (repeat || turnAround) ? short : long
 
-    if (!routesFromLocation.length) {
-      displayLine(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
-      manageLocationsHistory(travels[0].action.description)
-      doSomething()
-    }
+    if (!routesFromLocation.length) manageLocationsHistory(travels[0].action.description)
 
-    return objectsDescription.length ? `${description}\n${objectsDescription}` : description
+    return format(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
   }
 
   if (isSpecial(current)) {
     displayLine(long)
     manageLocationsHistory(travels[0].action.description)
-    doSomething()
   }
 
-  return messages.pitchDark
+  return format(messages.pitchDark)
 }
 
 export const getFluidConditions = () => {
   const { conditions } = getCurrentLocation()
-  if (conditions.fluid) conditions.oily ? 'oil' : 'water'
+  if (conditions.fluid) return conditions.oily ? 'oil' : 'water'
 
   return null
 }

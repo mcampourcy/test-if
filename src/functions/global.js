@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
-import { carry, fill, inventory, light, listen, unlock } from './actions'
+import { carry, drop, fill, inventory, light, listen, unlock } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
@@ -11,23 +11,23 @@ const noAnswer = ['n', 'no']
 
 export function getInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
-  const question = settings.repeat ? '' : format(welcomeYou)
+  const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
   settings.repeat = false
 
-  consoleInput(question, input => {
+  consoleInput(welcomeQuestion, input => {
     const yes = yesAnswer.includes(input.trim())
     const no = noAnswer.includes(input.trim())
 
     if (!yes && !no) {
       settings.repeat = true
       displayLine(pleaseAnswer)
-      getInstructions()
+      return getInstructions()
     }
 
     if (yes) display(caveNearby)
     if (no) settings.novice = false
 
-    doSomething()
+    return doSomething()
   })
 }
 
@@ -42,7 +42,7 @@ export function getInstructions() {
  * Anyway : repeat all
  */
 export function doSomething(description = true) {
-  const question = description ? format(getLocationDescription()) : ''
+  const question = description ? getLocationDescription() : ''
 
   consoleInput(question, input => {
     const routes = getRoutesFromLocation()
@@ -53,11 +53,11 @@ export function doSomething(description = true) {
     if (!routes.includes(answer)) {
       manageActions(answer)
       settings.repeat = true
-      doSomething(false)
+      return doSomething(false)
     } else {
       const travels = !Array.isArray(routes) ? routes : answer
       manageTravel(travels)
-      doSomething()
+      return doSomething()
     }
   })
 }
@@ -84,6 +84,9 @@ function manageActions(answer) {
       switch (action.name) {
         case 'carry':
           carry(param, action.name, verb)
+          break
+        case 'drop':
+          drop(param, action.name, verb)
           break
         case 'fill':
           fill(param, action.name)

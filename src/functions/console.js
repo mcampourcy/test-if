@@ -16,11 +16,11 @@ export function consoleInput(question, callback) {
 }
 
 export function display(string) {
-  console.log(format(string))
+  rl.write(format(string))
 }
 
 export function displayLine(string) {
-  console.log(`\n${string}\n`)
+  rl.write(`\n${string}\n`)
 }
 
 export function format(string) {
