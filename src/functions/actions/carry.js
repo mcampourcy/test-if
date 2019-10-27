@@ -52,7 +52,9 @@ export const carry = (object, actionName, instruction) => {
   if (obj.name === 'cage') {
     if (getObjectFromLocation('bird'))
     cageTheBird(obj, instruction)
+    return messages.okMan
   }
 
+  addObjectToInventory(obj)
   return messages.okMan
 }

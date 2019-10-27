@@ -5,7 +5,7 @@ export const objects = [
     inventory: 'Amber gemstone',
     locations: ['locNowhere'],
     treasure: true,
-    state: 'amberInUrn',
+    currentState: 'amberInUrn',
     states: [
       {
         name: 'amberInUrn',
@@ -22,7 +22,7 @@ export const objects = [
     words: ['axe'],
     inventory: 'Dwarf\'s axe',
     locations: ['locNowhere'],
-    state: 'axeHere',
+    currentState: 'axeHere',
     states: [
       {
         name: 'axeHere',
@@ -41,7 +41,7 @@ export const objects = [
     words: ['batte'],
     inventory: 'Batteries',
     locations: ['locNowhere'],
-    state: 'freshBatteries',
+    currentState: 'freshBatteries',
     states: [
       {
         name: 'freshBatteries',
@@ -59,7 +59,7 @@ export const objects = [
     inventory: null,
     locations: ['locBarrenroom'],
     immovable: true,
-    state: 'untamedBear',
+    currentState: 'untamedBear',
     states: [
       {
         name: 'untamedBear',
@@ -88,7 +88,7 @@ export const objects = [
     words: ['bird'],
     inventory: 'Little bird in cage',
     locations: ['locBird'],
-    state: 'birdUncaged',
+    currentState: 'birdUncaged',
     states: [
       {
         name: 'birdUncaged',
@@ -123,7 +123,7 @@ export const objects = [
     words: ['bottl', 'jar', 'bottle', 'water'],
     inventory: 'Small bottle',
     locations: ['locBuilding'],
-    state: 'waterBottle',
+    currentState: 'waterBottle',
     states: [
       {
         name: 'waterBottle',
@@ -155,7 +155,7 @@ export const objects = [
     inventory: '*cavity',
     locations: ['locNowhere'],
     immovable: true,
-    state: 'cavityFull',
+    currentState: 'cavityFull',
     states: [
       {
         name: 'cavityFull',
@@ -174,7 +174,7 @@ export const objects = [
     locations: ['locBarrenroom'],
     immovable: true,
     treasure: true,
-    state: 'chainHeap',
+    currentState: 'chainHeap',
     states: [
       {
         name: 'chainHeap',
@@ -196,7 +196,7 @@ export const objects = [
     inventory: '*chasm',
     locations: ['locSwchasm', 'locNechasm'],
     immovable: true,
-    state: 'trollBridge',
+    currentState: 'trollBridge',
     states: [
       {
         name: 'trollBridge',
@@ -240,7 +240,7 @@ export const objects = [
     inventory: '*rusty door',
     locations: ['locImmense'],
     immovable: true,
-    state: 'doorRusted',
+    currentState: 'doorRusted',
     states: [
       {
         name: 'doorRusted',
@@ -260,7 +260,7 @@ export const objects = [
     inventory: '*dragon',
     locations: ['locSecret4', 'locSecret6'],
     immovable: true,
-    state: 'dragonBars',
+    currentState: 'dragonBars',
     states: [
       {
         name: 'dragonBars',
@@ -296,7 +296,7 @@ export const objects = [
     inventory: 'Golden eggs',
     locations: ['locGiantroom'],
     treasure: true,
-    state: 'eggsHere',
+    currentState: 'eggsHere',
     states: [
       {
         name: 'eggsHere',
@@ -326,7 +326,7 @@ export const objects = [
     inventory: '*fissure',
     locations: ['locEastbank', 'locWestbank'],
     immovable: true,
-    state: 'unbridged',
+    currentState: 'unbridged',
     states: [
       {
         name: 'unbridged',
@@ -353,7 +353,7 @@ export const objects = [
     inventory: '*grate',
     locations: ['locGrate', 'locBelowgrate'],
     immovable: true,
-    state: 'grateClosed',
+    currentState: 'grateClosed',
     states: [
       {
         name: 'grateClosed',
@@ -394,7 +394,7 @@ export const objects = [
     words: ['lamp', 'lante'],
     inventory: 'Brass lantern',
     locations: ['locBuilding'],
-    state: 'lampDark',
+    currentState: 'lampDark',
     states: [
       {
         name: 'lampDark',
@@ -431,7 +431,7 @@ export const objects = [
     inventory: '*mirror',
     locations: ['locMirrorcanyon'],
     immovable: true,
-    state: 'mirrorUnbroken',
+    currentState: 'mirrorUnbroken',
     states: [
       {
         name: 'mirrorUnbroken',
@@ -612,7 +612,7 @@ export const objects = [
     inventory: '*plant',
     locations: ['locWestpit'],
     immovable: true,
-    state: 'plantThirsty',
+    currentState: 'plantThirsty',
     states: [
       {
         name: 'plantThirsty',
@@ -659,17 +659,17 @@ export const objects = [
     inventory: '*reservoir',
     locations: ['locReservoir', 'locResnorth'],
     immovable: true,
-    state: 'watersUnparted',
+    currentState: 'watersUnparted',
     states: [
       {
         name: 'watersUnparted',
         description: null,
-        changes: 'The waters crash together again.',
+        change: 'The waters crash together again.',
       },
       {
         name: 'watersParted',
         description: 'The waters have parted to form a narrow path across the reservoir.',
-        changes: 'The waters have parted to form a narrow path across the reservoir.',
+        change: 'The waters have parted to form a narrow path across the reservoir.',
       },
     ],
   },
@@ -703,7 +703,7 @@ export const objects = [
     locations: ['locSecret4', 'locSecret6'],
     immovable: true,
     treasure: true,
-    state: 'rugFloor',
+    currentState: 'rugFloor',
     states: [
       {
         name: 'rugFloor',
@@ -733,7 +733,7 @@ export const objects = [
     inventory: '*sign',
     locations: ['locAnteroom'],
     immovable: true,
-    state: 'ingameSign',
+    currentState: 'ingameSign',
     states: [
       {
         name: 'ingameSign',
@@ -753,7 +753,7 @@ export const objects = [
     inventory: '*snake',
     locations: ['locKinghall'],
     immovable: true,
-    state: 'snakeBlocks',
+    currentState: 'snakeBlocks',
     states: [
       {
         name: 'snakeBlocks',
@@ -773,7 +773,7 @@ export const objects = [
     inventory: '*steps',
     locations: ['locPittop', 'locMisthall'],
     immovable: true,
-    state: 'stepsDown',
+    currentState: 'stepsDown',
     states: [
       {
         name: 'stepsDown',
@@ -799,7 +799,7 @@ export const objects = [
     inventory: '*troll',
     locations: ['locSwchasm', 'locNechasm'],
     immovable: true,
-    state: 'trollUnpaid',
+    currentState: 'trollUnpaid',
     states: [
       {
         name: 'trollUnpaid',
@@ -835,22 +835,22 @@ export const objects = [
     inventory: '*urn',
     locations: ['locCliff'],
     immovable: true,
-    state: 'urnEmpty',
+    currentState: 'urnEmpty',
     states: [
       {
         name: 'urnEmpty',
         description: 'A small urn is embedded in the rock.',
-        changes: 'The urn is empty and will not light.',
+        change: 'The urn is empty and will not light.',
       },
       {
         name: 'urnDark',
         description: 'A small urn full of oil is embedded in the rock.',
-        changes: 'The urn is now dark.',
+        change: 'The urn is now dark.',
       },
       {
         name: 'urnLit',
         description: 'A small oil flame extrudes from an urn embedded in the rock.',
-        changes: 'The urn is now lit.',
+        change: 'The urn is now lit.',
       },
     ],
   },
@@ -860,22 +860,22 @@ export const objects = [
     inventory: 'Ming vase',
     locations: ['locOriental'],
     treasure: true,
-    state: 'vaseWhole',
+    currentState: 'vaseWhole',
     states: [
       {
         name: 'vaseWhole',
         description: 'There is a delicate, precious, ming vase here!',
-        changes: 'The vase is now resting, delicately, on a velvet pillow.',
+        change: 'The vase is now resting, delicately, on a velvet pillow.',
       },
       {
         name: 'vaseDropped',
         description: 'The floor is littered with worthless shards of pottery.',
-        changes: 'The ming vase drops with a delicate crash.',
+        change: 'The ming vase drops with a delicate crash.',
       },
       {
         name: 'vaseBroken',
         description: 'The floor is littered with worthless shards of pottery.',
-        changes: 'You have taken the vase and hurled it delicately to the ground.',
+        change: 'You have taken the vase and hurled it delicately to the ground.',
       },
     ],
   },
@@ -885,7 +885,7 @@ export const objects = [
     inventory: '*vending machine',
     locations: ['locDeadend13'],
     immovable: true,
-    state: 'vendBlocks',
+    currentState: 'vendBlocks',
     states: [
       {
         name: 'vendBlocks',

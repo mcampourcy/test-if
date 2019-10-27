@@ -140,7 +140,7 @@ export const actions = [
   {
     name: 'inventory',
     message: messages.nearby,
-    verbs: ['i', 'inven'],
+    verbs: ['i', 'inven', 'inventory'],
     oldstyle: false,
   },
   {

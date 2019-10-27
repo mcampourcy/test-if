@@ -71,7 +71,7 @@ function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   const { conditions } = getCurrentLocation()
   const lamp = getObject('lamp')
-  const locationTooDark = conditions.lit || lamp.currentState === 'lampBright'
+  const locationTooDark = !conditions.lit || lamp.currentState === 'lampBright'
 
   if (answerIsDirection) {
     getErrorMessage(answer)
@@ -101,7 +101,8 @@ function manageActions(answer) {
           inventory()
           break
         case 'light':
-          light(param, action.name)
+          const lightMessage = light(action, param)
+          displayLine(lightMessage)
           break
         case 'listen':
           display(listen())
@@ -115,9 +116,10 @@ function manageActions(answer) {
           break
         default:
           displayLine(messages.cantApply)
+          break
       }
     } else {
-      displayLine(messages.cantApply)
+      return displayLine(messages.cantApply)
     }
   }
 }

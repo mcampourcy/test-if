@@ -2,36 +2,30 @@
 import { displayLine } from '../console'
 import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
-import { getObject, changeObjectState } from '../objects'
-import { getAction } from './utils'
+import { getObject, changeObjectState, getObjectFromCurrentLocation } from '../objects'
 
-export function light(object, verb) {
-  const action = getAction(verb)
-  let obj = object ? getObject(object) : { name: null }
+export function light(action, object) {
+  const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
+  const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
+  let obj = object
 
-  if (!object && isObjectInInventory('lamp')) {
-    const lamp = getObject('lamp')
-    if (lamp.currentState === 'lampDark') obj = lamp
-  } else if (!object && isObjectInInventory('urn')) {
-    const urn = getObject('urn')
-    if (urn.currentState === 'urnDark') obj = urn
+  if (!object && (lamp || urn)) {
+    const name = lamp ? 'lamp' : 'urn'
+    const lightObj = getObject(name)
+    if (lightObj.currentState === `${name}Dark`) obj = lightObj
   }
 
   if (obj) {
-    switch (obj.name) {
-      case 'urn':
-        const urnState = changeObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
-        if (urnState.change) displayLine(urnState.change)
-        break
-      case 'lamp':
-        const lampState = changeObjectState(obj, 'lampBright')
-        if (lampState.change) displayLine(lampState.change)
-        displayLine(getLocationDescription())
-        break
-      default:
-        displayLine(action.message)
+    if (obj.name === 'lamp') {
+      const lampState = changeObjectState(obj, 'lampBright')
+      return `${lampState.change}\n${getLocationDescription()}`
     }
-  } else {
-    displayLine(action.message)
+
+    if (obj.name === 'urn') {
+      const urnState = changeObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+      return urnState.change
+    }
   }
+
+  return action.message
 }
