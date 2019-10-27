@@ -49,11 +49,7 @@ export const carry = (object, actionName, instruction) => {
     return `${bottleState.change}\n${messages.okMan}`
   }
 
-  if (obj.name === 'cage') {
-    if (getObjectFromLocation('bird'))
-    cageTheBird(obj, instruction)
-    return messages.okMan
-  }
+  if (obj.name === 'cage' && getObjectFromLocation('bird')) return cageTheBird(obj, instruction)
 
   addObjectToInventory(obj)
   return messages.okMan

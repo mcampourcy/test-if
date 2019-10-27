@@ -10,7 +10,8 @@ export const getTheBird = (bird) => {
   } else if (bird.currentState !== 'birdCaged') {
     if (!isObjectInInventory('cage')) return messages.cannotCarry
     if (isObjectInInventory('rod')) return messages.birdEvades
-    return changeObjectState(bird.name, 'birdCaged')
+    changeObjectState(bird, 'birdCaged')
+    return messages.okMan
   }
 }
 
@@ -21,7 +22,8 @@ export const cageTheBird = (cage, instruction) => {
 
   if (isObjectInInventory('bird') && bird.currentState !== 'birdCaged') {
     if (isObjectInInventory('rod')) return messages.birdEvades
-    return changeObjectState(bird.name, 'birdCaged')
+    changeObjectState(bird, 'birdCaged')
+    return messages.okMan
   }
 
   return messages.cannotCarry

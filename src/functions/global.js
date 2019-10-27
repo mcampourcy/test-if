@@ -71,7 +71,7 @@ function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   const { conditions } = getCurrentLocation()
   const lamp = getObject('lamp')
-  const locationTooDark = !conditions.lit || lamp.currentState === 'lampBright'
+  const locationTooDark = !conditions.lit && lamp.currentState === 'lampDark'
 
   if (answerIsDirection) {
     getErrorMessage(answer)
