@@ -1,5 +1,5 @@
 import { objects, settings } from '../variables'
-import { getObjectFromInventory } from './inventory'
+import { getObjectFromInventory, updateInventory } from './inventory'
 import { getCurrentLocation } from './locations'
 
 export const getObject = object => objects.find(({ name }) => name === object)
@@ -66,8 +66,11 @@ export const getObjectFromCurrentLocation = (object) => (
 
 export const changeObjectState = (obj, nextStateName) => {
   const state = obj.states.find(({ name }) => name === nextStateName)
+  const objectInInventory = getObjectFromInventory(obj.name)
+
   obj.currentState = state.name
   updateObjectsList(obj)
+  if (objectInInventory) updateInventory(obj)
   return state
 }
 

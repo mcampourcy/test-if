@@ -24,7 +24,7 @@ export function unlock(object, verb) {
           //   game.panic = true;
           // } else {
           const state = changeObjectState(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
-          if (state.change) displayLine(state.change)
+          if (state.changes) displayLine(state.changes)
           // }
         } else {
           displayLine(messages.noKeys)

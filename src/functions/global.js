@@ -69,6 +69,9 @@ export function doSomething(description = true) {
 **/
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
+  const { conditions } = getCurrentLocation()
+  const lamp = getObject('lamp')
+  const locationTooDark = conditions.lit || lamp.currentState === 'lampBright'
 
   if (answerIsDirection) {
     getErrorMessage(answer)
@@ -84,18 +87,15 @@ function manageActions(answer) {
 
       switch (action.name) {
         case 'carry':
-          const { conditions } = getCurrentLocation()
-          const lamp = getObject('lamp')
-          const locationTooDark = conditions.lit || lamp.currentState === 'lampBright'
-          
-          const message = locationTooDark ? messages.cantApply : carry(param, action.name, verb)
-          displayLine(message)
+          const carryMessage = locationTooDark ? messages.cantApply : carry(param, action.name, verb)
+          displayLine(carryMessage)
           break
         case 'drop':
           drop(param, action.name, verb)
           break
         case 'fill':
-          fill(param, action.name)
+          const fillMessage = locationTooDark ? messages.cantApply : drop(param, action.name, verb)
+          displayLine(fillMessage)
           break
         case 'inventory':
           inventory()
