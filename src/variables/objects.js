@@ -5,6 +5,7 @@ export const objects = [
     inventory: 'Amber gemstone',
     locations: ['locNowhere'],
     treasure: true,
+    state: 'amberInUrn',
     states: [
       {
         name: 'amberInUrn',
@@ -21,6 +22,7 @@ export const objects = [
     words: ['axe'],
     inventory: 'Dwarf\'s axe',
     locations: ['locNowhere'],
+    state: 'axeHere',
     states: [
       {
         name: 'axeHere',
@@ -39,6 +41,7 @@ export const objects = [
     words: ['batte'],
     inventory: 'Batteries',
     locations: ['locNowhere'],
+    state: 'freshBatteries',
     states: [
       {
         name: 'freshBatteries',
@@ -56,6 +59,7 @@ export const objects = [
     inventory: null,
     locations: ['locBarrenroom'],
     immovable: true,
+    state: 'untamedBear',
     states: [
       {
         name: 'untamedBear',
@@ -84,6 +88,7 @@ export const objects = [
     words: ['bird'],
     inventory: 'Little bird in cage',
     locations: ['locBird'],
+    state: 'birdUncaged',
     states: [
       {
         name: 'birdUncaged',
@@ -118,6 +123,7 @@ export const objects = [
     words: ['bottl', 'jar', 'bottle', 'water'],
     inventory: 'Small bottle',
     locations: ['locBuilding'],
+    state: 'waterBottle',
     states: [
       {
         name: 'waterBottle',
@@ -149,6 +155,7 @@ export const objects = [
     inventory: '*cavity',
     locations: ['locNowhere'],
     immovable: true,
+    state: 'cavityFull',
     states: [
       {
         name: 'cavityFull',
@@ -167,6 +174,7 @@ export const objects = [
     locations: ['locBarrenroom'],
     immovable: true,
     treasure: true,
+    state: 'chainHeap',
     states: [
       {
         name: 'chainHeap',
@@ -188,6 +196,7 @@ export const objects = [
     inventory: '*chasm',
     locations: ['locSwchasm', 'locNechasm'],
     immovable: true,
+    state: 'trollBridge',
     states: [
       {
         name: 'trollBridge',
@@ -231,7 +240,7 @@ export const objects = [
     inventory: '*rusty door',
     locations: ['locImmense'],
     immovable: true,
-    state: 'doorUnrusted',
+    state: 'doorRusted',
     states: [
       {
         name: 'doorRusted',
@@ -251,6 +260,7 @@ export const objects = [
     inventory: '*dragon',
     locations: ['locSecret4', 'locSecret6'],
     immovable: true,
+    state: 'dragonBars',
     states: [
       {
         name: 'dragonBars',
@@ -286,6 +296,7 @@ export const objects = [
     inventory: 'Golden eggs',
     locations: ['locGiantroom'],
     treasure: true,
+    state: 'eggsHere',
     states: [
       {
         name: 'eggsHere',
@@ -315,6 +326,7 @@ export const objects = [
     inventory: '*fissure',
     locations: ['locEastbank', 'locWestbank'],
     immovable: true,
+    state: 'unbridged',
     states: [
       {
         name: 'unbridged',
@@ -341,6 +353,7 @@ export const objects = [
     inventory: '*grate',
     locations: ['locGrate', 'locBelowgrate'],
     immovable: true,
+    state: 'grateClosed',
     states: [
       {
         name: 'grateClosed',
@@ -381,6 +394,7 @@ export const objects = [
     words: ['lamp', 'lante'],
     inventory: 'Brass lantern',
     locations: ['locBuilding'],
+    state: 'lampDark',
     states: [
       {
         name: 'lampDark',
@@ -417,6 +431,7 @@ export const objects = [
     inventory: '*mirror',
     locations: ['locMirrorcanyon'],
     immovable: true,
+    state: 'mirrorUnbroken',
     states: [
       {
         name: 'mirrorUnbroken',
@@ -597,6 +612,7 @@ export const objects = [
     inventory: '*plant',
     locations: ['locWestpit'],
     immovable: true,
+    state: 'plantThirsty',
     states: [
       {
         name: 'plantThirsty',
@@ -643,6 +659,7 @@ export const objects = [
     inventory: '*reservoir',
     locations: ['locReservoir', 'locResnorth'],
     immovable: true,
+    state: 'watersUnparted',
     states: [
       {
         name: 'watersUnparted',
@@ -686,6 +703,7 @@ export const objects = [
     locations: ['locSecret4', 'locSecret6'],
     immovable: true,
     treasure: true,
+    state: 'rugFloor',
     states: [
       {
         name: 'rugFloor',
@@ -715,6 +733,7 @@ export const objects = [
     inventory: '*sign',
     locations: ['locAnteroom'],
     immovable: true,
+    state: 'ingameSign',
     states: [
       {
         name: 'ingameSign',
@@ -734,6 +753,7 @@ export const objects = [
     inventory: '*snake',
     locations: ['locKinghall'],
     immovable: true,
+    state: 'snakeBlocks',
     states: [
       {
         name: 'snakeBlocks',
@@ -753,6 +773,7 @@ export const objects = [
     inventory: '*steps',
     locations: ['locPittop', 'locMisthall'],
     immovable: true,
+    state: 'stepsDown',
     states: [
       {
         name: 'stepsDown',
@@ -778,6 +799,7 @@ export const objects = [
     inventory: '*troll',
     locations: ['locSwchasm', 'locNechasm'],
     immovable: true,
+    state: 'trollUnpaid',
     states: [
       {
         name: 'trollUnpaid',
@@ -813,6 +835,7 @@ export const objects = [
     inventory: '*urn',
     locations: ['locCliff'],
     immovable: true,
+    state: 'urnEmpty',
     states: [
       {
         name: 'urnEmpty',
@@ -837,6 +860,7 @@ export const objects = [
     inventory: 'Ming vase',
     locations: ['locOriental'],
     treasure: true,
+    state: 'vaseWhole',
     states: [
       {
         name: 'vaseWhole',
@@ -861,6 +885,7 @@ export const objects = [
     inventory: '*vending machine',
     locations: ['locDeadend13'],
     immovable: true,
+    state: 'vendBlocks',
     states: [
       {
         name: 'vendBlocks',

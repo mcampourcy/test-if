@@ -2,7 +2,7 @@ import { getTravel } from './locations'
 import { manageLocationsHistory } from './settings'
 import { messages, settings } from '../variables'
 import { display } from './console'
-import { getObject, isInInventory } from './objects'
+import { getObject, getObjectFromInventory } from './objects'
 
 export function manageTravel(answer) {
   const travel = getTravel(answer)
@@ -28,7 +28,7 @@ function manageTravelConditions(travels) {
       manageLocationsHistory(travels.description)
     }
   } else if (condition.type === 'carry') {
-    if (!isInInventory(condition.object)) {
+    if (!getObjectFromInventory(condition.object)) {
       travelConditionFailed(travels.conditionFailed)
     }
   }

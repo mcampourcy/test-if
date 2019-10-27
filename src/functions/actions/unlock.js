@@ -1,4 +1,4 @@
-import { getObjectFromLocation, isInInventory, changeObjectState } from '../objects'
+import { getObjectFromLocation, getObjectFromInventory, changeObjectState } from '../objects'
 import { actions, messages } from '../../variables'
 import { displayLine } from '../console'
 
@@ -9,14 +9,14 @@ export function unlock(object, verb) {
   if (obj) {
     switch (obj.name) {
       case 'chain':
-        // if (isHere('keys')) {
+        // if (getObjectFromCurrentLocation('keys')) {
         //   return chain(verb);
         // } else {
         //   displayLine(messages.noKeys)
         // }
         break
       case 'grate':
-        if (isInInventory('keys')) {
+        if (getObjectFromInventory('keys')) {
           // if (game.closng) {
           //   displayLine(messages.exitClosed)
           //   if (!game.panic)

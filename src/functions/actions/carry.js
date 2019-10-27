@@ -1,15 +1,13 @@
 import { messages, settings } from '../../variables'
 import { fill, inventory } from '../actions'
-import { display, displayLine } from '../console'
 import { getCurrentLocation } from '../locations'
-import { isInInventory } from '../inventory'
+import { addObjectToInventory, getObjectFromInventory } from '../inventory'
 import {
-  getObject,
+  changeObjectState,
   getObjectFromLocation,
   getObjectsList,
-  isHere,
-  isLiquid,
-  updateObjectsList,
+  getObjectFromCurrentLocation,
+  isObjectALiquid,
 } from '../objects'
 import { getAction } from './utils'
 import { getTheBird } from '../bird'
@@ -17,66 +15,38 @@ import { getTheBird } from '../bird'
 export const carry = (object, actionName, instruction) => {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
-  const lamp = getObject('lamp')
+  let obj
 
-  if (inventory.length === inventoryLimit) { // Inventory full
-    displayLine(messages.carryLimit)
-    return
+  // Inventory full
+  if (inventory.length === inventoryLimit) return messages.carryLimit
+
+  // if user didn't mention any param ("take") and there is only one object here, take the object
+  // Otherwise, return error message
+  if (!object && getObjectsList.length > 1) return messages.doWhat(instruction)
+  if (!object && getObjectsList.length === 1) [obj] = getObjectsList()
+
+  if (object) obj = getObjectFromLocation(object)
+
+  // Already carrying
+  if (getObjectFromInventory(obj.name)) return getAction(actionName).message
+
+  // "take water / oil"
+  if (isObjectALiquid(obj.name)) {
+    const bottle = getObjectFromCurrentLocation('bottle') || getObjectFromInventory('bottle')
+
+    if (!bottle) return messages.noContainer
+    if (bottle.currentState === 'fullBottle') return messages.bottleFull
+
+    return fill(actionName)
   }
 
-  if (isInInventory(object)) { // Already carrying
-    displayLine(getAction(actionName).message)
-    return
+  if (obj.name === 'bottle' && conditions.currentLocation.fluid) {
+    const bottleState = changeObjectState(obj.name, conditions.currentLocation.oily ? 'oilBottle' : 'waterBottle')
+    addObjectToInventory(obj.name)
+    return `${bottleState.change}\n${messages.okMan}`
   }
 
-  if (conditions.lit || lamp.currentState === 'lampBright') {
-    if (isLiquid(object)) { // "take water / oil"
-      const isBottleHere = isHere('bottle')
-      const isBottleInInvent = isInInventory('bottle')
+  if (obj.name === 'bird') getTheBird(obj)
 
-      if (!isBottleHere && !isBottleInInvent) {
-        displayLine(messages.noContainer)
-      } else {
-        if (isBottleHere || isBottleInInvent.currentState === 'emptyBottle') {
-          fill(actionName)
-          return
-        }
-        displayLine(messages.bottleFull)
-      }
-    } else {
-      let obj
-      // if user didn't mention any param ("take") and there is only one object here, take the object
-      if (!object && getObjectsList.length === 1) {
-        [obj] = getObjectsList()
-      } else if (object) {
-        obj = getObjectFromLocation(object)
-      }
-
-      if (obj) { // Object in current location
-        switch (obj.name) {
-          case 'bird':
-            const birdState = getTheBird(obj)
-            display(birdState)
-            break
-          case 'bottle':
-            obj.currentState = 'emptyBottle'
-            if (conditions.currentLocation.fluid) obj.currentState = conditions.currentLocation.oily ? 'oilBottle' : 'waterBottle'
-            updateObjectsList(obj)
-            settings.inventory.push(obj.name)
-            displayLine(messages.okMan)
-            break
-          default:
-            if (obj.states) {
-              obj.currentState = obj.states[0].name
-              updateObjectsList(obj)
-            }
-            settings.inventory.push(obj.name)
-            displayLine(messages.okMan)
-            break
-        }
-      } else {
-        displayLine(messages.doWhat(instruction))
-      }
-    }
-  }
+  return messages.okMan
 }

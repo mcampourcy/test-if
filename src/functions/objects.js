@@ -1,5 +1,5 @@
 import { objects, settings } from '../variables'
-import { displayLine } from './console'
+import { getObjectFromInventory } from './inventory'
 import { getCurrentLocation } from './locations'
 
 export const getObject = object => objects.find(({ name }) => name === object)
@@ -11,7 +11,7 @@ export const getObjectFromLocation = object => (
 )
 
 export const getObjectsList = () => (
-  objects.find(({ locations }) => locations.includes(settings.currentLocation))
+  objects.filter(({ locations }) => locations.includes(settings.currentLocation))
 )
 
 export const getObjectsDescription = () => {
@@ -22,7 +22,7 @@ export const getObjectsDescription = () => {
     const description = []
 
     objects.map(object => {
-      if (object.locations.includes(currentLocation) && !isInInventory(object.name)) {
+      if (object.locations.includes(currentLocation) && !getObjectFromInventory(object.name)) {
         if (object.states) {
           const current = object.states.find(({ name }) => name === object.currentState)
           description.push(object.currentState ? current.description : object.states[0].description)
@@ -52,28 +52,29 @@ export const getObjectsSound = () => {
   return description.join('\n')
 }
 
-export const isLiquid = (object) => {
+export const isObjectALiquid = (object) => {
   const water = objects.find(({ name }) => name === 'water')
   const oil = objects.find(({ name }) => name === 'oil')
   return water.words.includes(object) || oil.words.includes(object)
 }
 
-export const isHere = (object) => {
-  const { currentLocation } = settings
-
-  return objects.find(({ locations, words }) => (
-    locations.includes(currentLocation) && words.includes(object)
+export const getObjectFromCurrentLocation = (object) => (
+  objects.find(({ locations, words }) => (
+    locations.includes(settings.currentLocation) && words.includes(object)
   ))
-}
+)
 
-export function changeObjectState(obj, nextStateName) {
+export const changeObjectState = (obj, nextStateName) => {
   const state = obj.states.find(({ name }) => name === nextStateName)
   obj.currentState = state.name
   updateObjectsList(obj)
   return state
 }
 
-export function updateObjectsList(object) {
-  const index = objects.indexOf(objects.find(({ name }) => name === object.name))
-  return objects.splice(index, 1, object)
-}
+export const updateObjectsList = (object) => (
+  objects.splice(
+    objects.indexOf(objects.find(({ name }) => name === object.name)),
+    1,
+    object
+  )
+)

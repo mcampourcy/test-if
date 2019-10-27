@@ -1,16 +1,16 @@
 import { messages } from '../../variables'
-import { isInInventory, removeFromInventory } from '../inventory'
+import { getObjectFromInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
 import { getObject } from '../objects'
 import { displayLine } from '../console'
 
 export const drop = (object, actionName, instruction) => {
-  if (isInInventory(object)) {
+  if (getObjectFromInventory(object)) {
     const currentLocation = getCurrentLocation()
     const obj = getObject(object)
 
     obj.locations = [currentLocation]
-    removeFromInventory(object)
+    removeObjectFromInventory(object)
     displayLine(messages.okMan)
   } else {
     displayLine(messages.doWhat(instruction))

@@ -1,6 +1,6 @@
 import { settings } from '../../variables'
 import { getObject } from '../objects'
-import { removeFromInventory } from '../inventory'
+import { removeObjectFromInventory } from '../inventory'
 
 /**
  * To destroy an object :
@@ -9,7 +9,7 @@ import { removeFromInventory } from '../inventory'
  * @param object
  */
 export const destroy = (object) => {
-  removeFromInventory(object.name)
+  removeObjectFromInventory(object.name)
   object.locations = ['locNowhere']
   return object
 }

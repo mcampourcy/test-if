@@ -1,7 +1,7 @@
 import { destroy } from './actions'
 import { display } from './console'
 import { messages } from '../variables'
-import { isInInventory } from './inventory'
+import { getObjectFromInventory } from './inventory'
 import { changeObjectState } from './objects'
 
 export const getTheBird = (bird) => {
@@ -9,8 +9,8 @@ export const getTheBird = (bird) => {
     destroy(bird)
     return messages.birdCrap
   } else if (bird.currentState !== 'birdCaged') {
-    if (!isInInventory('cage')) return messages.cannotCarry
-    if (isInInventory('rod')) return messages.birdEvades
+    if (!getObjectFromInventory('cage')) return messages.cannotCarry
+    if (getObjectFromInventory('rod')) return messages.birdEvades
     return changeObjectState(bird.name, 'birdCaged')
   // } else {
     // if ((obj == BIRD ||

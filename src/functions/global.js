@@ -3,8 +3,9 @@ import { actions, directions, messages, settings } from '../variables'
 import { carry, drop, fill, inventory, light, listen, unlock } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
-import { getLocationDescription, getRoutesFromLocation } from './locations'
+import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTravel } from './travels'
+import { getObject } from './objects'
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']
@@ -83,7 +84,12 @@ function manageActions(answer) {
 
       switch (action.name) {
         case 'carry':
-          carry(param, action.name, verb)
+          const { conditions } = getCurrentLocation()
+          const lamp = getObject('lamp')
+          const locationTooDark = conditions.lit || lamp.currentState === 'lampBright'
+          
+          const message = locationTooDark ? messages.cantApply : carry(param, action.name, verb)
+          displayLine(message)
           break
         case 'drop':
           drop(param, action.name, verb)
