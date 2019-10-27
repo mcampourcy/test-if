@@ -1,16 +1,18 @@
 import { messages, settings } from '../../variables'
+import { destroy, fill, inventory } from '../actions'
+import { display, displayLine } from '../console'
 import { getCurrentLocation } from '../locations'
+import { isInInventory } from '../inventory'
 import {
   getObject,
   getObjectFromLocation,
   getObjectsList,
   isHere,
-  isInInventory,
-  isLiquid, updateObject,
+  isLiquid, stateChange,
+  updateObject,
 } from '../objects'
-import { displayLine } from '../console'
-import { fill, inventory } from '../actions'
 import { getAction } from './utils'
+import { getTheBird } from '../bird'
 
 export const carry = (object, actionName, instruction) => {
   const { inventoryLimit } = settings
@@ -52,8 +54,9 @@ export const carry = (object, actionName, instruction) => {
 
       if (obj) { // Object in current location
         switch (obj.name) {
-          case 'messag':
-            // displayLine(messages.removeMessage)
+          case 'bird':
+            const birdState = getTheBird(obj)
+            display(birdState)
             break
           case 'bottle':
             obj.currentState = 'emptyBottle'
