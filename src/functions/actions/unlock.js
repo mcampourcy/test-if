@@ -1,6 +1,7 @@
-import { getObjectFromLocation, getObjectFromInventory, changeObjectState } from '../objects'
 import { actions, messages } from '../../variables'
 import { displayLine } from '../console'
+import { isObjectInInventory } from '../inventory'
+import { getObjectFromLocation, changeObjectState } from '../objects'
 
 export function unlock(object, verb) {
   const obj = getObjectFromLocation(object)
@@ -16,7 +17,7 @@ export function unlock(object, verb) {
         // }
         break
       case 'grate':
-        if (getObjectFromInventory('keys')) {
+        if (isObjectInInventory('keys')) {
           // if (game.closng) {
           //   displayLine(messages.exitClosed)
           //   if (!game.panic)

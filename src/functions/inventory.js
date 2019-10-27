@@ -2,7 +2,7 @@ import { settings } from '../variables'
 
 export const addObjectToInventory = object => settings.inventory.push(object.name)
 
-export const getObjectFromInventory = object => settings.inventory.find((objName => objName === object))
+export const isObjectInInventory = object => settings.inventory.find((objName => objName === object))
 
 export const removeObjectFromInventory = (object) => {
   const { inventory } = settings

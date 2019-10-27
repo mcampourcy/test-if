@@ -1,17 +1,18 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { getObject, getObjectFromInventory, changeObjectState } from '../objects'
 import { displayLine } from '../console'
+import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
+import { getObject, changeObjectState } from '../objects'
 import { getAction } from './utils'
 
 export function light(object, verb) {
   const action = getAction(verb)
   let obj = object ? getObject(object) : { name: null }
 
-  if (!object && getObjectFromInventory('lamp')) {
+  if (!object && isObjectInInventory('lamp')) {
     const lamp = getObject('lamp')
     if (lamp.currentState === 'lampDark') obj = lamp
-  } else if (!object && getObjectFromInventory('urn')) {
+  } else if (!object && isObjectInInventory('urn')) {
     const urn = getObject('urn')
     if (urn.currentState === 'urnDark') obj = urn
   }

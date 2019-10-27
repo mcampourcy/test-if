@@ -1,11 +1,11 @@
-import { getObjectFromInventory, removeObjectFromInventory } from '../inventory'
+import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getFluidConditions } from '../locations'
 import { getObjectFromLocation, changeObjectState, } from '../objects'
 import { actions, messages, settings } from '../../variables'
 
 export function fill(object, verb) {
   const obj = getObjectFromLocation(object)
-  const isInInvent = getObjectFromInventory(object)
+  const isInInvent = isObjectInInventory(object)
   const fluid = getFluidConditions()
   const bottle = getObjectFromLocation('bottle')
 

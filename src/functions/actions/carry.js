@@ -1,7 +1,7 @@
 import { messages, settings } from '../../variables'
 import { fill, inventory } from '../actions'
 import { getCurrentLocation } from '../locations'
-import { addObjectToInventory, getObjectFromInventory } from '../inventory'
+import { addObjectToInventory, isObjectInInventory } from '../inventory'
 import {
   changeObjectState,
   getObjectFromLocation,
@@ -10,7 +10,7 @@ import {
   isObjectALiquid,
 } from '../objects'
 import { getAction } from './utils'
-import { getTheBird } from '../bird'
+import { cageTheBird, getTheBird } from '../bird'
 
 export const carry = (object, actionName, instruction) => {
   const { inventoryLimit } = settings
@@ -26,13 +26,14 @@ export const carry = (object, actionName, instruction) => {
   if (!object && getObjectsList.length === 1) [obj] = getObjectsList()
 
   if (object) obj = getObjectFromLocation(object)
+  if (!obj) return messages.doWhat(instruction)
 
   // Already carrying
-  if (getObjectFromInventory(obj.name)) return getAction(actionName).message
+  if (isObjectInInventory(obj.name)) return getAction(actionName).message
 
   // "take water / oil"
   if (isObjectALiquid(obj.name)) {
-    const bottle = getObjectFromCurrentLocation('bottle') || getObjectFromInventory('bottle')
+    const bottle = getObjectFromCurrentLocation('bottle') || isObjectInInventory('bottle')
 
     if (!bottle) return messages.noContainer
     if (bottle.currentState === 'fullBottle') return messages.bottleFull
@@ -40,13 +41,18 @@ export const carry = (object, actionName, instruction) => {
     return fill(actionName)
   }
 
+  if (obj.name === 'bird') return getTheBird(obj)
+
   if (obj.name === 'bottle' && conditions.currentLocation.fluid) {
     const bottleState = changeObjectState(obj.name, conditions.currentLocation.oily ? 'oilBottle' : 'waterBottle')
     addObjectToInventory(obj.name)
     return `${bottleState.change}\n${messages.okMan}`
   }
 
-  if (obj.name === 'bird') getTheBird(obj)
+  if (obj.name === 'cage') {
+    if (getObjectFromLocation('bird'))
+    cageTheBird(obj, instruction)
+  }
 
   return messages.okMan
 }

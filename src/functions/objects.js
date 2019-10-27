@@ -1,5 +1,5 @@
 import { objects, settings } from '../variables'
-import { getObjectFromInventory, updateInventory } from './inventory'
+import { isObjectInInventory, updateInventory } from './inventory'
 import { getCurrentLocation } from './locations'
 
 export const getObject = object => objects.find(({ name }) => name === object)
@@ -22,7 +22,7 @@ export const getObjectsDescription = () => {
     const description = []
 
     objects.map(object => {
-      if (object.locations.includes(currentLocation) && !getObjectFromInventory(object.name)) {
+      if (object.locations.includes(currentLocation) && !isObjectInInventory(object.name)) {
         if (object.states) {
           const current = object.states.find(({ name }) => name === object.currentState)
           description.push(object.currentState ? current.description : object.states[0].description)
@@ -66,7 +66,7 @@ export const getObjectFromCurrentLocation = (object) => (
 
 export const changeObjectState = (obj, nextStateName) => {
   const state = obj.states.find(({ name }) => name === nextStateName)
-  const objectInInventory = getObjectFromInventory(obj.name)
+  const objectInInventory = isObjectInInventory(obj.name)
 
   obj.currentState = state.name
   updateObjectsList(obj)
