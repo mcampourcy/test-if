@@ -3,7 +3,7 @@ import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
 import { getObject, updateObjectsList } from '../objects'
 
-export const drop = (object, actionName, instruction) => {
+export const drop = (object, instruction = 'drop') => {
   if (isObjectInInventory(object)) {
 
     if (['bird', 'cage'].includes(object)) {

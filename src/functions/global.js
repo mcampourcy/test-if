@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
-import { carry, drop, fill, inventory, light, listen, unlock } from './actions'
+import { carry, drop, fill, inventory, light, listen, unlock, wave } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
@@ -76,6 +76,10 @@ function manageActions(answer) {
   if (answerIsDirection) {
     getErrorMessage(answer)
   } else {
+    // Difference between 'action.name' and 'verb' :
+    // action.name is the generic name of 'verb'
+    // 'verb' is the instruction given by the user
+
     const [verb, param] = answer.split(/\s/)
     const action = getAction(verb)
 
@@ -91,7 +95,7 @@ function manageActions(answer) {
           displayLine(carryMessage)
           break
         case 'drop':
-          const dropMessage = drop(param, action.name, verb)
+          const dropMessage = drop(param, verb)
           displayLine(dropMessage)
           break
         case 'fill':
@@ -114,6 +118,10 @@ function manageActions(answer) {
           break
         case 'unlock':
           unlock(param, action.name)
+          break
+        case 'wave':
+          const waveMessage = wave(param, verb)
+          displayLine(waveMessage)
           break
         default:
           displayLine(messages.cantApply)
