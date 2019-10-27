@@ -1,12 +1,7 @@
-import {
-  getObjectFromLocation,
-  isHere,
-  isInInventory,
-  removeFromInventory,
-  stateChange, updateInventory, updateObject,
-} from '../objects'
-import { getFluidConditions } from '../locations'
 import { displayLine } from '../console'
+import { isInInventory, removeFromInventory, updateInventory } from '../inventory'
+import { getFluidConditions } from '../locations'
+import { getObjectFromLocation, isHere, stateChange, updateObject, } from '../objects'
 import { actions, messages, settings } from '../../variables'
 
 export function fill(object, verb) {

@@ -66,25 +66,11 @@ export const isHere = (object) => {
   ))
 }
 
-export const isInInventory = object => settings.inventory.find((objName => objName === object))
-
 export function stateChange(obj, nextStateName) {
   const state = obj.states.find(({ name }) => name === nextStateName)
   obj.currentState = state.name
-  if (state.change) displayLine(state.change)
   updateObject(obj)
-}
-
-export function removeFromInventory(object) {
-  const { inventory } = settings
-  const index = inventory.indexOf(inventory.find(o => o === object))
-  inventory.splice(index)
-}
-
-export function updateInventory(object) {
-  const { inventory } = settings
-  const index = inventory.indexOf(inventory.find(o => o === object))
-  inventory.splice(index, 1, object)
+  if (state.change) displayLine(state.change)
 }
 
 export function updateObject(object) {
