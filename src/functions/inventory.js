@@ -1,6 +1,8 @@
 import { settings } from '../variables'
 
-export const addObjectToInventory = object => settings.inventory.push(object.name)
+export const addObjectToInventory = object => {
+  if (!isObjectInInventory(object)) return settings.inventory.push(object)
+}
 
 export const isObjectInInventory = object => settings.inventory.find((objName => objName === object))
 

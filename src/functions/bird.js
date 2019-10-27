@@ -1,7 +1,7 @@
 import { destroy } from './actions'
 import { messages } from '../variables'
-import { isObjectInInventory } from './inventory'
-import { changeObjectState, getObject, getObjectFromLocation } from './objects'
+import { addObjectToInventory, isObjectInInventory } from './inventory'
+import { changeObjectState, getObjectFromLocation } from './objects'
 
 export const getTheBird = (bird) => {
   if (bird.currentState === 'birdForestUncaged') {
@@ -11,18 +11,20 @@ export const getTheBird = (bird) => {
     if (!isObjectInInventory('cage')) return messages.cannotCarry
     if (isObjectInInventory('rod')) return messages.birdEvades
     changeObjectState(bird, 'birdCaged')
+    addObjectToInventory('bird')
     return messages.okMan
   }
 }
 
 export const cageTheBird = (cage, instruction) => {
-  if (!getObjectFromLocation('bird')) return messages.doWhat(instruction)
+  const bird = getObjectFromLocation('bird')
+  if (!bird) return messages.doWhat(instruction)
 
-  const bird = getObject('bird')
-
-  if (isObjectInInventory('bird') && bird.currentState !== 'birdCaged') {
+  if (bird && bird.currentState !== 'birdCaged') {
     if (isObjectInInventory('rod')) return messages.birdEvades
     changeObjectState(bird, 'birdCaged')
+    addObjectToInventory('bird')
+    addObjectToInventory('cage')
     return messages.okMan
   }
 

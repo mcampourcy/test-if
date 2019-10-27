@@ -91,7 +91,8 @@ function manageActions(answer) {
           displayLine(carryMessage)
           break
         case 'drop':
-          drop(param, action.name, verb)
+          const dropMessage = drop(param, action.name, verb)
+          displayLine(dropMessage)
           break
         case 'fill':
           const fillMessage = locationTooDark ? messages.cantApply : drop(param, action.name, verb)

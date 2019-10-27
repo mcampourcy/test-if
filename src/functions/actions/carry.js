@@ -51,6 +51,6 @@ export const carry = (object, actionName, instruction) => {
 
   if (obj.name === 'cage' && getObjectFromLocation('bird')) return cageTheBird(obj, instruction)
 
-  addObjectToInventory(obj)
+  addObjectToInventory(obj.name)
   return messages.okMan
 }
