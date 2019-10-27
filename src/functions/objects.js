@@ -66,14 +66,14 @@ export const isHere = (object) => {
   ))
 }
 
-export function stateChange(obj, nextStateName) {
+export function changeObjectState(obj, nextStateName) {
   const state = obj.states.find(({ name }) => name === nextStateName)
   obj.currentState = state.name
-  updateObject(obj)
-  if (state.change) displayLine(state.change)
+  updateObjectsList(obj)
+  return state
 }
 
-export function updateObject(object) {
+export function updateObjectsList(object) {
   const index = objects.indexOf(objects.find(({ name }) => name === object.name))
-  objects.splice(index, 1, object)
+  return objects.splice(index, 1, object)
 }

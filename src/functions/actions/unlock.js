@@ -1,4 +1,4 @@
-import { getObjectFromLocation, isInInventory, stateChange } from '../objects'
+import { getObjectFromLocation, isInInventory, changeObjectState } from '../objects'
 import { actions, messages } from '../../variables'
 import { displayLine } from '../console'
 
@@ -23,7 +23,8 @@ export function unlock(object, verb) {
           //     game.clock2 = PANICTIME;
           //   game.panic = true;
           // } else {
-          stateChange(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
+          const state = changeObjectState(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
+          if (state.change) displayLine(state.change)
           // }
         } else {
           displayLine(messages.noKeys)

@@ -1,5 +1,5 @@
 import { messages, settings } from '../../variables'
-import { destroy, fill, inventory } from '../actions'
+import { fill, inventory } from '../actions'
 import { display, displayLine } from '../console'
 import { getCurrentLocation } from '../locations'
 import { isInInventory } from '../inventory'
@@ -8,8 +8,8 @@ import {
   getObjectFromLocation,
   getObjectsList,
   isHere,
-  isLiquid, stateChange,
-  updateObject,
+  isLiquid,
+  updateObjectsList,
 } from '../objects'
 import { getAction } from './utils'
 import { getTheBird } from '../bird'
@@ -61,14 +61,14 @@ export const carry = (object, actionName, instruction) => {
           case 'bottle':
             obj.currentState = 'emptyBottle'
             if (conditions.currentLocation.fluid) obj.currentState = conditions.currentLocation.oily ? 'oilBottle' : 'waterBottle'
-            updateObject(obj)
+            updateObjectsList(obj)
             settings.inventory.push(obj.name)
             displayLine(messages.okMan)
             break
           default:
             if (obj.states) {
               obj.currentState = obj.states[0].name
-              updateObject(obj)
+              updateObjectsList(obj)
             }
             settings.inventory.push(obj.name)
             displayLine(messages.okMan)

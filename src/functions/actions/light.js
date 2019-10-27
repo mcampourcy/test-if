@@ -1,5 +1,5 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { getObject, isInInventory, stateChange } from '../objects'
+import { getObject, isInInventory, changeObjectState } from '../objects'
 import { displayLine } from '../console'
 import { getLocationDescription } from '../locations'
 import { getAction } from './utils'
@@ -19,10 +19,12 @@ export function light(object, verb) {
   if (obj) {
     switch (obj.name) {
       case 'urn':
-        stateChange(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+        const urnState = changeObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+        if (urnState.change) displayLine(urnState.change)
         break
       case 'lamp':
-        stateChange(obj, 'lampBright')
+        const lampState = changeObjectState(obj, 'lampBright')
+        if (lampState.change) displayLine(lampState.change)
         displayLine(getLocationDescription())
         break
       default:

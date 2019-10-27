@@ -2,21 +2,16 @@ import { destroy } from './actions'
 import { display } from './console'
 import { messages } from '../variables'
 import { isInInventory } from './inventory'
-import { stateChange } from './objects'
+import { changeObjectState } from './objects'
 
 export const getTheBird = (bird) => {
-  if (bird.currentState !== 'birdCaged') {
-    if (bird.currentState === 'birdForestUncaged') {
-      destroy(bird)
-      return messages.birdCrap
-    }
-    if (!isInInventory('cage')) {
-      return messages.cannotCarry
-    }
-    if (isInInventory('rod')) {
-      return messages.birdEvades
-    }
-    stateChange(bird.name, 'birdCaged')
+  if (bird.currentState === 'birdForestUncaged') {
+    destroy(bird)
+    return messages.birdCrap
+  } else if (bird.currentState !== 'birdCaged') {
+    if (!isInInventory('cage')) return messages.cannotCarry
+    if (isInInventory('rod')) return messages.birdEvades
+    return changeObjectState(bird.name, 'birdCaged')
   // } else {
     // if ((obj == BIRD ||
     //   obj == CAGE) &&

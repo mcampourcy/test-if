@@ -1,7 +1,7 @@
 import { displayLine } from '../console'
 import { isInInventory, removeFromInventory, updateInventory } from '../inventory'
 import { getFluidConditions } from '../locations'
-import { getObjectFromLocation, isHere, stateChange, updateObject, } from '../objects'
+import { getObjectFromLocation, isHere, changeObjectState, updateObjectsList, } from '../objects'
 import { actions, messages, settings } from '../../variables'
 
 export function fill(object, verb) {
@@ -38,7 +38,7 @@ export function fill(object, verb) {
         if (bottle.currentState !== 'emptyBottle') {
           displayLine(messages.bottleFull)
         } else {
-          stateChange(obj, `${fluid}Bottle`)
+          displayLine(changeObjectState(obj, `${fluid}Bottle`))
           return
         }
         if (isInInvent) updateInventory(obj.name)
@@ -47,5 +47,5 @@ export function fill(object, verb) {
       displayLine(messages.noLiquid)
     }
   }
-  updateObject(obj)
+  updateObjectsList(obj)
 }
