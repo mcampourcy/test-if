@@ -1,7 +1,7 @@
-import { messages } from '../../variables'
+import { messages, objects } from '../../variables'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
-import { getObject } from '../objects'
+import { getObject, updateObjectsList } from '../objects'
 import { displayLine } from '../console'
 
 export const drop = (object, actionName, instruction) => {
@@ -9,7 +9,8 @@ export const drop = (object, actionName, instruction) => {
     const currentLocation = getCurrentLocation()
     const obj = getObject(object)
 
-    obj.locations = [currentLocation]
+    obj.locations = [currentLocation.name]
+    updateObjectsList(obj)
     removeObjectFromInventory(object)
     displayLine(messages.okMan)
   } else {
