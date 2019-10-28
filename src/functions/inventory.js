@@ -7,7 +7,7 @@ export const getObjectFromInventory = object => settings.inventory.find((objName
 export const removeObjectFromInventory = (object) => {
   const { inventory } = settings
   const index = inventory.indexOf(inventory.find(o => o === object))
-  if (index >= 0) return inventory.splice(index)
+  if (index >= 0) return inventory.splice(index, 1)
   return null
 }
 
