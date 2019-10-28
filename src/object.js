@@ -1,6 +1,7 @@
 import { objects, settings } from './data'
 import { isObjectInInventory, removeObjectFromInventory, updateInventory } from './inventory'
 import { updateObjectsList } from './objects'
+import { getCurrentLocation } from './locations'
 
 export const destroyObject = (object) => {
   removeObjectFromInventory(object.name)
@@ -8,6 +9,16 @@ export const destroyObject = (object) => {
   updateObjectsList(object)
   return object
 }
+
+export const dropObject = (name) => {
+  const currentLocation = getCurrentLocation()
+  const obj = getObject(name)
+
+  obj.locations = [currentLocation.name]
+  updateObjectsList(obj)
+  removeObjectFromInventory(obj.name)
+}
+
 
 export const getObject = name => objects.find(({ words }) => words.includes(name))
 

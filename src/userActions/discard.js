@@ -1,7 +1,7 @@
 import { actions, messages, settings } from '../data'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
-import { updateObjectState, getObject, getObjectFromCurrentLocation } from '../object'
+import { updateObjectState, getObject, getObjectFromCurrentLocation, dropObject } from '../object'
 import { updateObjectsList } from '../objects'
 import { isPreciousGem } from '../treasure'
 import { displayLine } from '../console'
@@ -46,7 +46,7 @@ export const discard = (name, verb) => {
         }
       }
 
-      // drop(obj, currentLocation)
+     dropObject(obj.name)
     }
   }
 
@@ -56,7 +56,7 @@ export const discard = (name, verb) => {
   //     moveObject('bird')
   //     updateObjectState(getObject('bird'), 'birdUncaged')
   //   } else {
-  //     moveObject(object)
+  //     drop(object)
   //   }
   //
   //   return messages.okMan
@@ -154,12 +154,3 @@ export const discard = (name, verb) => {
 // rspeak(OK_MAN);
 // drop(obj, game.loc);
 // return GO_CLEAROBJ;
-
-// const moveObject = (object) => {
-//   const currentLocation = getCurrentLocation()
-//   const obj = getObject(object)
-//
-//   obj.locations = [currentLocation.name]
-//   updateObjectsList(obj)
-//   removeObjectFromInventory(obj.name)
-// }
