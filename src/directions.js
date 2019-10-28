@@ -1,4 +1,4 @@
-import { messages } from '../data'
+import { messages } from './data'
 import { display } from './console'
 
 export function getErrorMessage(answer) {

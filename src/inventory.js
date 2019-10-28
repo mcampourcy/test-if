@@ -1,4 +1,4 @@
-import { settings } from '../data'
+import { settings } from './data'
 
 export const addObjectToInventory = object => {
   if (!isObjectInInventory(object)) return settings.inventory.push(object)

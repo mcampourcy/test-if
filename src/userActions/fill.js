@@ -1,4 +1,4 @@
-import { actions, messages, settings } from '../../data'
+import { actions, messages, settings } from '../data'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getFluidConditions } from '../locations'
 import { getObjectFromCurrentLocation, updateObjectState, } from '../object'

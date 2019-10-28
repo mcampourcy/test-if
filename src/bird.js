@@ -1,4 +1,4 @@
-import { messages } from '../data'
+import { messages } from './data'
 import { destroy } from './userActions'
 import { addObjectToInventory, isObjectInInventory } from './inventory'
 import { updateObjectState, getObjectFromCurrentLocation } from './object'
