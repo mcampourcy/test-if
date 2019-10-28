@@ -1,33 +1,70 @@
-import { messages } from '../data'
+import { actions, messages, settings } from '../data'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
-import { updateObjectState, getObject } from '../object'
+import { updateObjectState, getObject, getObjectFromCurrentLocation } from '../object'
 import { updateObjectsList } from '../objects'
+import { isPreciousGem } from '../treasure'
+import { displayLine } from '../console'
 
-export const discard = (object, instruction) => {
-  if (isObjectInInventory(object)) {
+/**
+ * Discard object. "Throw" also comes here for most objects. Special cases for bird (might attack snake or dragon) and cage (might contain bird) and vase.
+ * Drop coins at vending machine for extra batteries.
+**/
 
-    if (['bird', 'cage'].includes(object)) {
-      moveObject('bird')
-      updateObjectState(getObject('bird'), 'birdUncaged')
-    } else {
-      moveObject(object)
-    }
+export const discard = (name, verb) => {
+  const cavity = getObjectFromCurrentLocation('cavity')
+  const rug = getObjectFromCurrentLocation('rug')
+  let obj = getObject(name)
 
-    return messages.okMan
-  } else {
-    return messages.doWhat(instruction)
+  if (obj.name === 'rod' && !isObjectInInventory(obj.name) && isObjectInInventory('rod2')) {
+    obj = getObject('rod2')
   }
+
+  if (!isObjectInInventory(obj.name)) return actions[verb].message
+
+  if (isPreciousGem(obj.name) && cavity && cavity.currentState !== 'cavityFull') {
+    displayLine(messages.gemFits)
+    obj.currentState = 'inCavity'
+    updateObjectsList(obj)
+    updateObjectState(cavity.name, 'cavityFull')
+
+    if(rug && (
+      (obj.name === 'emerald' && rug.currentState !== 'rugHover') ||
+      (obj.name === 'ruby' && rug.currentState === 'rugHover')
+    )) {
+      if (obj.name === 'ruby') return messages.rugSettles
+      if (isObjectInInventory(rug.name)) return messages.rugWiggles
+      else return messages.rugRises
+
+      if (!isObjectInInventory(rug.name) || obj.name !== 'ruby') {
+        const state = (rug.currentState === 'rugHover') ? 'rugFloor' : 'rugHover'
+        updateObjectState(rug.name, state)
+        if (state === 'rugHover') {
+          const sapph = getObject('sapph')
+          // k = objects[SAPPH].plac;
+          // move(RUG + NOBJECTS, k);
+        }
+      }
+
+      // drop(obj, currentLocation)
+    }
+  }
+
+  // if (isObjectInInventory(object)) {
+  //
+  //   if (['bird', 'cage'].includes(object)) {
+  //     moveObject('bird')
+  //     updateObjectState(getObject('bird'), 'birdUncaged')
+  //   } else {
+  //     moveObject(object)
+  //   }
+  //
+  //   return messages.okMan
+  // } else {
+  //   return messages.doWhat(instruction)
+  // }
 }
 
-// if (obj == ROD && !TOTING(ROD) && TOTING(ROD2)) {
-//   obj = ROD2;
-// }
-//²
-// if (!TOTING(obj)) {
-//   speak(actions[verb].message);
-//   return GO_CLEAROBJ;
-// }
 //
 // if (GSTONE(obj) && AT(CAVITY) && game.prop[CAVITY] != CAVITY_FULL) {
 //   rspeak(GEM_FITS);
@@ -118,11 +155,11 @@ export const discard = (object, instruction) => {
 // drop(obj, game.loc);
 // return GO_CLEAROBJ;
 
-const moveObject = (object) => {
-  const currentLocation = getCurrentLocation()
-  const obj = getObject(object)
-
-  obj.locations = [currentLocation.name]
-  updateObjectsList(obj)
-  removeObjectFromInventory(obj.name)
-}
+// const moveObject = (object) => {
+//   const currentLocation = getCurrentLocation()
+//   const obj = getObject(object)
+//
+//   obj.locations = [currentLocation.name]
+//   updateObjectsList(obj)
+//   removeObjectFromInventory(obj.name)
+// }

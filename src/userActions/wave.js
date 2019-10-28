@@ -1,11 +1,7 @@
-import { isObjectInInventory } from '../inventory'
-import {
-  getObject,
-  getObjectFromCurrentLocation,
-  isTreasureFound,
-  updateObjectState,
-} from '../object'
 import { actions, messages, settings } from '../data'
+import { isObjectInInventory } from '../inventory'
+import { getObject, getObjectFromCurrentLocation, updateObjectState } from '../object'
+import { isTreasureFound } from '../treasure'
 
 // Wave - No effect unless waving rod at fissure or at bird
 export const wave = (object, verb) => {

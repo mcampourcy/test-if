@@ -9,7 +9,7 @@ export const destroyObject = (object) => {
   return object
 }
 
-export const getObject = object => objects.find(({ name }) => name === object)
+export const getObject = name => objects.find(({ words }) => words.includes(name))
 
 export const getObjectFromCurrentLocation = (object) => (
   objects.find(({ locations, words }) => (
@@ -22,8 +22,6 @@ export const isObjectALiquid = (object) => {
   const oil = objects.find(({ name }) => name === 'oil')
   return water.words.includes(object) || oil.words.includes(object)
 }
-
-export const isTreasureFound = (treasure) => getObject(treasure).locations[0] !== 'locNowhere'
 
 export const updateObjectState = (obj, nextStateName) => {
   const state = obj.states.find(({ name }) => name === nextStateName)

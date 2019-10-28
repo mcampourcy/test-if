@@ -77,8 +77,7 @@ function manageActions(answer) {
     getErrorMessage(answer)
   } else {
     // Difference between 'action.name' and 'verb' :
-    // action.name is the generic name of 'verb'
-    // 'verb' is the instruction given by the user
+    // 'verb' is the instruction given by the user, action.name is the generic name of 'verb'
 
     const [verb, param] = answer.split(/\s/)
     const action = getAction(verb)
