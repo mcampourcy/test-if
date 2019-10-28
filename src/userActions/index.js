@@ -1,5 +1,4 @@
 export { carry } from './carry'
-export { destroy } from './destroy'
 export { discard } from './discard'
 export { fill } from './fill'
 export { inventory } from './inventory'

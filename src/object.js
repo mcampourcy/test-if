@@ -1,6 +1,13 @@
 import { objects, settings } from './data'
-import { isObjectInInventory, updateInventory } from './inventory'
+import { isObjectInInventory, removeObjectFromInventory, updateInventory } from './inventory'
 import { updateObjectsList } from './objects'
+
+export const destroyObject = (object) => {
+  removeObjectFromInventory(object.name)
+  object.locations = ['locNowhere']
+  updateObjectsList(object)
+  return object
+}
 
 export const getObject = object => objects.find(({ name }) => name === object)
 

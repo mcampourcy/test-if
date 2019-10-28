@@ -1,11 +1,10 @@
 import { messages } from './data'
-import { destroy } from './userActions'
 import { addObjectToInventory, isObjectInInventory } from './inventory'
-import { updateObjectState, getObjectFromCurrentLocation } from './object'
+import { destroyObject, getObjectFromCurrentLocation, updateObjectState } from './object'
 
 export const getTheBird = (bird) => {
   if (bird.currentState === 'birdForestUncaged') {
-    destroy(bird)
+    destroyObject(bird)
     return messages.birdCrap
   } else if (bird.currentState !== 'birdCaged') {
     if (!isObjectInInventory('cage')) return messages.cannotCarry
