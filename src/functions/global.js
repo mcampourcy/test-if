@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
-import { carry, drop, fill, inventory, light, listen, unlock } from './actions'
+import { carry, discard, fill, inventory, light, listen, unlock, wave } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
-import { getLocationDescription, getRoutesFromLocation } from './locations'
+import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTravel } from './travels'
+import { getObject } from './objects'
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']
@@ -68,10 +69,17 @@ export function doSomething(description = true) {
 **/
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
+  const { conditions } = getCurrentLocation()
+  const lamp = getObject('lamp')
+  const locationTooDark = !conditions.lit && lamp.currentState === 'lampDark'
 
   if (answerIsDirection) {
     getErrorMessage(answer)
   } else {
+    // Difference between 'action.name' and 'verb' :
+    // action.name is the generic name of 'verb'
+    // 'verb' is the instruction given by the user
+
     const [verb, param] = answer.split(/\s/)
     const action = getAction(verb)
 
@@ -83,19 +91,23 @@ function manageActions(answer) {
 
       switch (action.name) {
         case 'carry':
-          carry(param, action.name, verb)
+          const carryMessage = locationTooDark ? messages.cantApply : carry(param, action.name, verb)
+          displayLine(carryMessage)
           break
-        case 'drop':
-          drop(param, action.name, verb)
+        case 'discard':
+          const discardMessage = discard(param, verb)
+          displayLine(discardMessage)
           break
         case 'fill':
-          fill(param, action.name)
+          const fillMessage = locationTooDark ? messages.cantApply : discard(param, action.name, verb)
+          displayLine(fillMessage)
           break
         case 'inventory':
           inventory()
           break
         case 'light':
-          light(param, action.name)
+          const lightMessage = light(action, param)
+          displayLine(lightMessage)
           break
         case 'listen':
           display(listen())
@@ -107,11 +119,16 @@ function manageActions(answer) {
         case 'unlock':
           unlock(param, action.name)
           break
+        case 'wave':
+          const waveMessage = wave(param, verb)
+          displayLine(waveMessage)
+          break
         default:
           displayLine(messages.cantApply)
+          break
       }
     } else {
-      displayLine(messages.cantApply)
+      return displayLine(messages.cantApply)
     }
   }
 }
