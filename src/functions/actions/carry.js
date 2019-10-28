@@ -7,7 +7,7 @@ import {
   getObjectFromLocation,
   getObjectsList,
   getObjectFromCurrentLocation,
-  isObjectALiquid,
+  isObjectALiquid, getObject,
 } from '../objects'
 import { getAction } from './utils'
 import { cageTheBird, getTheBird } from '../bird'

@@ -1,9 +1,13 @@
 // Wave - No effect unless waving rod at fissure or at bird
 
-import { changeObjectState, getObjectFromCurrentLocation, isTreasureFound } from '../objects'
+import {
+  changeObjectState,
+  getObject,
+  getObjectFromCurrentLocation,
+  isTreasureFound,
+} from '../objects'
 import { isObjectInInventory } from '../inventory'
-import { actions, messages } from '../../variables'
-import { drop } from './drop'
+import { actions, messages, settings } from '../../variables'
 
 export const wave = (object, verb) => {
   const isInInventory = isObjectInInventory(object)
@@ -19,8 +23,9 @@ export const wave = (object, verb) => {
     return actions[verb].message
   }
 
-  if (bird.currentState !== 'birdUncaged' && steps && !isTreasureFound('jade')) {
-    drop('jade')
+  if (bird.currentState === 'birdUncaged' && steps && !isTreasureFound('jade')) {
+    const treasure = getObject('jade')
+    treasure.locations = [settings.currentLocation]
     return messages.necklaceFly
   } else {
     if (bird) {

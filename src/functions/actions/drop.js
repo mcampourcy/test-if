@@ -1,13 +1,14 @@
 import { messages } from '../../variables'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
-import { getObject, updateObjectsList } from '../objects'
+import { changeObjectState, getObject, updateObjectsList } from '../objects'
 
 export const drop = (object, instruction = 'drop') => {
   if (isObjectInInventory(object)) {
 
     if (['bird', 'cage'].includes(object)) {
-      ['bird', 'cage'].map(obj => moveObject(obj))
+      moveObject('bird')
+      changeObjectState(getObject('bird'), 'birdUncaged')
     } else {
       moveObject(object)
     }

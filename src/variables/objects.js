@@ -369,7 +369,7 @@ export const objects = [
   },
   {
     name: 'jade',
-    words: ['jade', 'neckl'],
+    words: ['jade', 'neckl', 'necklace'],
     inventory: 'Jade necklace',
     locations: ['locNowhere'],
     treasure: true,

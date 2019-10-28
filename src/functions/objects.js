@@ -58,7 +58,7 @@ export const isObjectALiquid = (object) => {
   return water.words.includes(object) || oil.words.includes(object)
 }
 
-export const isTreasureFound = (treasure) => getObject(treasure).currentLocation !== 'locNowhere'
+export const isTreasureFound = (treasure) => getObject(treasure).locations[0] !== 'locNowhere'
 
 export const getObjectFromCurrentLocation = (object) => (
   objects.find(({ locations, words }) => (
