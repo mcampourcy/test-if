@@ -1,5 +1,5 @@
 import { settings } from '../../variables'
-import { getObject } from '../objects'
+import {getObject, updateObjectsList} from '../objects'
 import { removeObjectFromInventory } from '../inventory'
 
 /**
@@ -11,5 +11,6 @@ import { removeObjectFromInventory } from '../inventory'
 export const destroy = (object) => {
   removeObjectFromInventory(object.name)
   object.locations = ['locNowhere']
+  updateObjectsList(object)
   return object
 }
