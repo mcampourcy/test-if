@@ -1,4 +1,4 @@
-import { actions, messages } from '../../variables'
+import { actions, messages } from '../../data'
 import { displayLine } from '../console'
 import { isObjectInInventory } from '../inventory'
 import { getObjectFromCurrentLocation, updateObjectState } from '../object'

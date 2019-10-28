@@ -1,4 +1,4 @@
-import { messages, settings } from '../../variables'
+import { messages, settings } from '../../data'
 import { displayLine } from '../console'
 import { getObject } from '../objects'
 

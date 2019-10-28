@@ -1,4 +1,4 @@
-import { settings } from '../../variables'
+import { settings } from '../../data'
 import {getObject, updateObjectsList} from '../objects'
 import { removeObjectFromInventory } from '../inventory'
 

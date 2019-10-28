@@ -1,4 +1,4 @@
-import { messages, settings } from '../../variables'
+import { messages, settings } from '../../data'
 import { fill, inventory } from './'
 import { cageTheBird, getTheBird } from '../bird'
 import { addObjectToInventory, isObjectInInventory } from '../inventory'

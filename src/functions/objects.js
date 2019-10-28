@@ -1,4 +1,4 @@
-import { objects, settings } from '../variables'
+import { objects, settings } from '../data'
 import { getCurrentLocation } from './locations'
 import { isObjectInInventory } from './inventory'
 import { getObject } from './object'

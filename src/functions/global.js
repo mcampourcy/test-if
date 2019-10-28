@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { actions, directions, messages, settings } from '../variables'
+import { actions, directions, messages, settings } from '../data'
 import { carry, discard, fill, inventory, light, listen, unlock, wave } from './userActions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'

@@ -5,7 +5,7 @@ import {
   isTreasureFound,
   updateObjectState,
 } from '../object'
-import { actions, messages, settings } from '../../variables'
+import { actions, messages, settings } from '../../data'
 
 // Wave - No effect unless waving rod at fissure or at bird
 export const wave = (object, verb) => {

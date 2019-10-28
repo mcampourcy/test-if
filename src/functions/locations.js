@@ -1,4 +1,4 @@
-import { directions, locations, messages, settings } from '../variables'
+import { directions, locations, messages, settings } from '../data'
 import { getObject, getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
 import { displayLine, format } from './console'
