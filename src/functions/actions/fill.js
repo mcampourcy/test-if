@@ -1,22 +1,22 @@
+import { actions, messages, settings } from '../../variables'
 import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getFluidConditions } from '../locations'
-import { getObjectFromLocation, changeObjectState, } from '../objects'
-import { actions, messages, settings } from '../../variables'
+import { getObjectFromCurrentLocation, updateObjectState, } from '../object'
 
 export function fill(object, verb) {
-  const obj = getObjectFromLocation(object)
+  const obj = getObjectFromCurrentLocation(object)
   const isInInvent = isObjectInInventory(object)
   const fluid = getFluidConditions()
-  const bottle = getObjectFromLocation('bottle')
+  const bottle = getObjectFromCurrentLocation('bottle')
 
   if (obj.name === 'vase') {
     if (!fluid) return messages.fillInvalid
     if (!isInInvent) return messages.arentCarrying
 
-    const state = changeObjectState(obj.name, 'vaseBroken')
+    const state = updateObjectState(obj.name, 'vaseBroken')
     obj.locations = [settings.currentLocation]
     removeObjectFromInventory(obj.name)
-    return `${state.changes}\n${messages.shatterVase}`
+    return `${state.change}\n${messages.shatterVase}`
   }
 
   if (!fluid) return messages.noLiquid
@@ -29,5 +29,5 @@ export function fill(object, verb) {
 
   // Bottle full
   if (bottle.currentState !== 'emptyBottle') return messages.bottleFull
-  return changeObjectState(obj, `${fluid}Bottle`)
+  return updateObjectState(obj, `${fluid}Bottle`)
 }

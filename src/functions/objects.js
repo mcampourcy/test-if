@@ -1,18 +1,7 @@
 import { objects, settings } from '../variables'
-import { isObjectInInventory, updateInventory } from './inventory'
 import { getCurrentLocation } from './locations'
-
-export const getObject = object => objects.find(({ name }) => name === object)
-
-export const getObjectFromLocation = object => (
-  objects.find(({ locations, words }) => (
-    locations.includes(settings.currentLocation) && words.includes(object)
-  ))
-)
-
-export const getObjectsList = () => (
-  objects.filter(({ locations }) => locations.includes(settings.currentLocation))
-)
+import { isObjectInInventory } from './inventory'
+import { getObject } from './object'
 
 export const getObjectsDescription = () => {
   const { conditions, name: currentLocation } = getCurrentLocation()
@@ -39,6 +28,10 @@ export const getObjectsDescription = () => {
   }
 }
 
+export const getObjectsList = () => (
+  objects.filter(({ locations }) => locations.includes(settings.currentLocation))
+)
+
 export const getObjectsSound = () => {
   const { currentLocation, inventory } = settings
   const description = []
@@ -50,30 +43,6 @@ export const getObjectsSound = () => {
     return name
   })
   return description.join('\n')
-}
-
-export const isObjectALiquid = (object) => {
-  const water = objects.find(({ name }) => name === 'water')
-  const oil = objects.find(({ name }) => name === 'oil')
-  return water.words.includes(object) || oil.words.includes(object)
-}
-
-export const isTreasureFound = (treasure) => getObject(treasure).locations[0] !== 'locNowhere'
-
-export const getObjectFromCurrentLocation = (object) => (
-  objects.find(({ locations, words }) => (
-    locations.includes(settings.currentLocation) && words.includes(object)
-  ))
-)
-
-export const changeObjectState = (obj, nextStateName) => {
-  const state = obj.states.find(({ name }) => name === nextStateName)
-  const objectInInventory = isObjectInInventory(obj.name)
-
-  obj.currentState = state.name
-  updateObjectsList(obj)
-  if (objectInInventory) updateInventory(obj)
-  return state
 }
 
 export const updateObjectsList = (object) => (

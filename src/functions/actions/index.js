@@ -1,6 +1,6 @@
 export { carry } from './carry'
 export { destroy } from './destroy'
-export { drop } from './drop'
+export { discard } from './discard'
 export { fill } from './fill'
 export { inventory } from './inventory'
 export { light } from './light'

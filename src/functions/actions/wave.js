@@ -1,14 +1,13 @@
-// Wave - No effect unless waving rod at fissure or at bird
-
+import { isObjectInInventory } from '../inventory'
 import {
-  changeObjectState,
   getObject,
   getObjectFromCurrentLocation,
   isTreasureFound,
-} from '../objects'
-import { isObjectInInventory } from '../inventory'
+  updateObjectState,
+} from '../object'
 import { actions, messages, settings } from '../../variables'
 
+// Wave - No effect unless waving rod at fissure or at bird
 export const wave = (object, verb) => {
   const isInInventory = isObjectInInventory(object)
   const bird = getObjectFromCurrentLocation('bird')
@@ -32,7 +31,7 @@ export const wave = (object, verb) => {
       return bird.currentState === 'birdCaged' ? messages.cageFly : messages.freeFly
     }
 
-    const state = changeObjectState('fissure', fissure.currentState === 'bridged' ? 'unbridged' : 'bridged')
+    const state = updateObjectState('fissure', fissure.currentState === 'bridged' ? 'unbridged' : 'bridged')
 
     return state.change
   }

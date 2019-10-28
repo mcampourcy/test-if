@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from '../variables'
-import { carry, drop, fill, inventory, light, listen, unlock, wave } from './actions'
+import { carry, discard, fill, inventory, light, listen, unlock, wave } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
@@ -94,12 +94,12 @@ function manageActions(answer) {
           const carryMessage = locationTooDark ? messages.cantApply : carry(param, action.name, verb)
           displayLine(carryMessage)
           break
-        case 'drop':
-          const dropMessage = drop(param, verb)
-          displayLine(dropMessage)
+        case 'discard':
+          const discardMessage = discard(param, verb)
+          displayLine(discardMessage)
           break
         case 'fill':
-          const fillMessage = locationTooDark ? messages.cantApply : drop(param, action.name, verb)
+          const fillMessage = locationTooDark ? messages.cantApply : discard(param, action.name, verb)
           displayLine(fillMessage)
           break
         case 'inventory':

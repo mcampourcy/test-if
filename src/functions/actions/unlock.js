@@ -1,10 +1,10 @@
 import { actions, messages } from '../../variables'
 import { displayLine } from '../console'
 import { isObjectInInventory } from '../inventory'
-import { getObjectFromLocation, changeObjectState } from '../objects'
+import { getObjectFromCurrentLocation, updateObjectState } from '../object'
 
 export function unlock(object, verb) {
-  const obj = getObjectFromLocation(object)
+  const obj = getObjectFromCurrentLocation(object)
   const action = actions.find(a => a.name === verb)
 
   if (obj) {
@@ -24,7 +24,7 @@ export function unlock(object, verb) {
           //     game.clock2 = PANICTIME;
           //   game.panic = true;
           // } else {
-          const state = changeObjectState(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
+          const state = updateObjectState(obj, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
           if (state.changes) displayLine(state.changes)
           // }
         } else {

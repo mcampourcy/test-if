@@ -1,7 +1,7 @@
 /*  Light.  Applicable only to lamp and urn. */
 import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
-import { getObject, changeObjectState, getObjectFromCurrentLocation } from '../objects'
+import { getObject, updateObjectState, getObjectFromCurrentLocation } from '../object'
 
 export function light(action, object) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
@@ -15,12 +15,12 @@ export function light(action, object) {
   }
 
   if (obj && obj.name === 'lamp') {
-    const lampState = changeObjectState(obj, 'lampBright')
+    const lampState = updateObjectState(obj, 'lampBright')
     return `${lampState.change}\n${getLocationDescription()}`
   }
 
   if (obj && obj.name === 'urn') {
-    const urnState = changeObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+    const urnState = updateObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
     return urnState.change
   }
 
