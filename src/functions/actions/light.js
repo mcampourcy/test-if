@@ -1,34 +1,28 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { getObject, isInInventory, stateChange } from '../objects'
-import { displayLine } from '../console'
+import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
-import { getAction } from './utils'
+import { getObject, updateObjectState, getObjectFromCurrentLocation } from '../object'
 
-export function light(object, verb) {
-  const action = getAction(verb)
-  let obj = object ? getObject(object) : { name: null }
+export function light(action, object) {
+  const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
+  const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
+  let obj = object
 
-  if (!object && isInInventory('lamp')) {
-    const lamp = getObject('lamp')
-    if (lamp.currentState === 'lampDark') obj = lamp
-  } else if (!object && isInInventory('urn')) {
-    const urn = getObject('urn')
-    if (urn.currentState === 'urnDark') obj = urn
+  if (!object && (lamp || urn)) {
+    const name = lamp ? 'lamp' : 'urn'
+    const lightObj = getObject(name)
+    if (lightObj.currentState === `${name}Dark`) obj = lightObj
   }
 
-  if (obj) {
-    switch (obj.name) {
-      case 'urn':
-        stateChange(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
-        break
-      case 'lamp':
-        stateChange(obj, 'lampBright')
-        displayLine(getLocationDescription())
-        break
-      default:
-        displayLine(action.message)
-    }
-  } else {
-    displayLine(action.message)
+  if (obj && obj.name === 'lamp') {
+    const lampState = updateObjectState(obj, 'lampBright')
+    return `${lampState.change}\n${getLocationDescription()}`
   }
+
+  if (obj && obj.name === 'urn') {
+    const urnState = updateObjectState(obj, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+    return urnState.change
+  }
+
+  return action.message
 }

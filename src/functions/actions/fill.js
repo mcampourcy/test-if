@@ -1,56 +1,33 @@
-import {
-  getObjectFromLocation,
-  isHere,
-  isInInventory,
-  removeFromInventory,
-  stateChange, updateInventory, updateObject,
-} from '../objects'
-import { getFluidConditions } from '../locations'
-import { displayLine } from '../console'
 import { actions, messages, settings } from '../../variables'
+import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
+import { getFluidConditions } from '../locations'
+import { getObjectFromCurrentLocation, updateObjectState, } from '../object'
 
 export function fill(object, verb) {
-  const obj = getObjectFromLocation(object)
-  const isInInvent = isInInventory(object)
+  const obj = getObjectFromCurrentLocation(object)
+  const isInInvent = isObjectInInventory(object)
   const fluid = getFluidConditions()
+  const bottle = getObjectFromCurrentLocation('bottle')
 
   if (obj.name === 'vase') {
-    if (!fluid) {
-      displayLine(messages.fillInvalid)
-      return
-    }
+    if (!fluid) return messages.fillInvalid
+    if (!isInInvent) return messages.arentCarrying
 
-    if (!isInInvent) {
-      displayLine(messages.arentCarrying)
-      return
-    }
-
-    displayLine(messages.shatterVase)
-    obj.currentState = 'vaseBroken'
+    const state = updateObjectState(obj.name, 'vaseBroken')
     obj.locations = [settings.currentLocation]
-    removeFromInventory(obj.name)
-  } else {
-    if (fluid) { // oil or water here
-      if (obj.name !== 'bottle') { // fill what ?
-        displayLine(actions.find(({ name }) => name === verb).message)
-        return
-      }
-
-      if (!isHere('bottle')) { // no bottle here
-        displayLine(messages.doWhat(verb))
-      } else { // bottle here
-        const bottle = getObjectFromLocation('bottle')
-        if (bottle.currentState !== 'emptyBottle') {
-          displayLine(messages.bottleFull)
-        } else {
-          stateChange(obj, `${fluid}Bottle`)
-          return
-        }
-        if (isInInvent) updateInventory(obj.name)
-      }
-    } else {
-      displayLine(messages.noLiquid)
-    }
+    removeObjectFromInventory(obj.name)
+    return `${state.change}\n${messages.shatterVase}`
   }
-  updateObject(obj)
+
+  if (!fluid) return messages.noLiquid
+
+  // Fill what ?
+  if (obj.name !== 'bottle') return actions.find(({ name }) => name === verb).message
+
+  // No bottle here
+  if (!bottle) return messages.doWhat(verb)
+
+  // Bottle full
+  if (bottle.currentState !== 'emptyBottle') return messages.bottleFull
+  return updateObjectState(obj, `${fluid}Bottle`)
 }

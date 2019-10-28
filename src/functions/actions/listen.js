@@ -1,7 +1,7 @@
+import { messages, sounds } from '../../variables'
+import { display, displayLine } from '../console'
 import { getCurrentLocation } from '../locations'
 import { getObjectsSound } from '../objects'
-import { display, displayLine } from '../console'
-import { messages, sounds } from '../../variables'
 
 export const listen = () => {
   const { loud, sound } = getCurrentLocation()

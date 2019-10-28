@@ -49,9 +49,10 @@ export const actions = [
     verbs: ['drink'],
   },
   {
-    name: 'drop',
+    // name: 'drop',
+    name: 'discard',
     message: messages.arentCarrying,
-    verbs: ['drop', 'relea', 'free', 'disca', 'dump'],
+    verbs: ['drop', 'relea', 'free', 'disca', 'dump', 'discard'],
   },
   {
     name: 'eat',
@@ -140,7 +141,7 @@ export const actions = [
   {
     name: 'inventory',
     message: messages.nearby,
-    verbs: ['i', 'inven'],
+    verbs: ['i', 'inven', 'inventory'],
     oldstyle: false,
   },
   {
