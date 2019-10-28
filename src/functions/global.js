@@ -102,7 +102,8 @@ function manageActions(answer) {
           inventory()
           break
         case 'light':
-          light(param, action.name)
+          const lightMessage = light(action.name, param)
+          displayLine(lightMessage)
           break
         case 'listen':
           display(listen())

@@ -16,7 +16,7 @@ export const getTheBird = (object) => {
       if (getObjectFromInventory('rod')) return messages.birdEvades
 
       addObjectToInventory(bird.name)
-      return changeObjectState(bird.name, 'birdCaged').change
+      return changeObjectState(bird, 'birdCaged').change
     }
   }
 }
