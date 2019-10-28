@@ -1,5 +1,5 @@
 import { messages } from '../variables'
-import { destroy } from './actions'
+import { destroy } from './userActions'
 import { addObjectToInventory, isObjectInInventory } from './inventory'
 import { updateObjectState, getObjectFromCurrentLocation } from './object'
 
