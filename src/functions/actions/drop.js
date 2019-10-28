@@ -1,18 +1,24 @@
-import { messages } from '../../variables'
+import {messages, settings} from '../../variables'
 import { getObjectFromInventory, removeObjectFromInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
-import { getObject } from '../objects'
-import { displayLine } from '../console'
+import {changeObjectState, getObject, updateObjectsList} from '../objects'
 
 export const drop = (object, actionName, instruction) => {
   if (getObjectFromInventory(object)) {
-    const currentLocation = getCurrentLocation()
     const obj = getObject(object)
 
-    obj.locations = [currentLocation]
-    removeObjectFromInventory(object)
-    displayLine(messages.okMan)
-  } else {
-    displayLine(messages.doWhat(instruction))
+    if (['bird', 'cage'].includes(obj.name)) {
+      if (obj.name === 'bird') changeObjectState('bird', 'birdUncaged')
+      if (obj.name === 'cage') removeObject('bird')
+    }
+
+    removeObject(obj)
+    return messages.okMan
   }
+  return messages.doWhat(instruction)
+}
+
+const removeObject = (obj) => {
+  obj.locations = [settings.currentLocation]
+  removeObjectFromInventory(obj.name)
+  updateObjectsList(obj)
 }
