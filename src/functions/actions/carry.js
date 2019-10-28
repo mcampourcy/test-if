@@ -48,5 +48,6 @@ export const carry = (object, actionName, instruction) => {
 
   if (obj.name === 'bird') getTheBird(obj)
 
+  addObjectToInventory(obj)
   return messages.okMan
 }
