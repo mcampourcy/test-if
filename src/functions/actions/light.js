@@ -1,7 +1,8 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { getObject, getObjectFromInventory, changeObjectState } from '../objects'
 import { displayLine } from '../console'
+import { getObjectFromInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
+import { getObject, changeObjectState } from '../objects'
 import { getAction } from './utils'
 
 export function light(object, verb) {

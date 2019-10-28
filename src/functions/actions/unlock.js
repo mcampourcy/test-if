@@ -1,6 +1,7 @@
-import { getObjectFromLocation, getObjectFromInventory, changeObjectState } from '../objects'
-import { actions, messages } from '../../variables'
 import { displayLine } from '../console'
+import { getObjectFromInventory } from '../inventory'
+import { getObjectFromLocation, changeObjectState } from '../objects'
+import { actions, messages } from '../../variables'
 
 export function unlock(object, verb) {
   const obj = getObjectFromLocation(object)
