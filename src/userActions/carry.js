@@ -1,5 +1,5 @@
-import { messages, settings } from '../../variables'
-import { fill, inventory } from '../actions'
+import { messages, settings } from '../data'
+import { fill, inventory } from './index'
 import { cageTheBird, getTheBird } from '../bird'
 import { addObjectToInventory, isObjectInInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'

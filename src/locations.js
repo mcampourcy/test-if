@@ -1,7 +1,8 @@
-import { directions, locations, messages, settings } from '../variables'
-import { getObject, getObjectsDescription } from './objects'
-import { manageLocationsHistory } from './settings'
+import { directions, locations, messages, settings } from './data'
 import { displayLine, format } from './console'
+import { getObject } from './object'
+import { getObjectsDescription } from './objects'
+import { manageLocationsHistory } from './settings'
 
 export const getCurrentLocation = () => locations.find(({ name }) => name === settings.currentLocation)
 

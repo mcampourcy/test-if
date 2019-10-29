@@ -1,4 +1,4 @@
-import { messages, sounds } from '../../variables'
+import { messages, sounds } from '../data'
 import { display, displayLine } from '../console'
 import { getCurrentLocation } from '../locations'
 import { getObjectsSound } from '../objects'

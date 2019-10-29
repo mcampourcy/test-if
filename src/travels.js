@@ -1,9 +1,9 @@
 import { getTravel } from './locations'
 import { manageLocationsHistory } from './settings'
-import { messages, settings } from '../variables'
+import { messages, settings } from './data'
 import { display } from './console'
 import { isObjectInInventory } from './inventory'
-import { getObject } from './objects'
+import { getObject } from './object'
 
 export function manageTravel(answer) {
   const travel = getTravel(answer)
