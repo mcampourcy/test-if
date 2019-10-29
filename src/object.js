@@ -28,10 +28,10 @@ export const getObjectFromCurrentLocation = (object) => (
   ))
 )
 
-export const isObjectALiquid = (object) => {
+export const isObjectALiquid = (name) => {
   const water = objects.find(({ name }) => name === 'water')
   const oil = objects.find(({ name }) => name === 'oil')
-  return water.words.includes(object) || oil.words.includes(object)
+  return [...water.words, ...oil.words].includes(name)
 }
 
 export const updateObjectState = (obj, nextStateName) => {

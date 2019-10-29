@@ -4,8 +4,8 @@ import { carry, discard, fill, inventory, light, listen, unlock, wave } from './
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
+import { getObject } from './object'
 import { manageTravel } from './travels'
-import { getObject } from './objects'
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']

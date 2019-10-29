@@ -1,6 +1,6 @@
 import { messages, settings } from '../data'
 import { displayLine } from '../console'
-import { getObject } from '../objects'
+import { getObject } from '../object'
 
 export function inventory() {
   const { inventory: i } = settings
