@@ -29,5 +29,5 @@ export function fill(object, verb) {
 
   // Bottle full
   if (bottle.currentState !== 'emptyBottle') return messages.bottleFull
-  return updateObjectState(obj, `${fluid}Bottle`)
+  return updateObjectState(obj.name, `${fluid}Bottle`)
 }

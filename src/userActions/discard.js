@@ -86,5 +86,6 @@ export const discard = (name, verb) => {
     return `${messages.okMan}\n${state.change}`
   }
 
+  dropObject(obj.name)
   return messages.okMan
 }

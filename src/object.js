@@ -34,7 +34,8 @@ export const isObjectALiquid = (name) => {
   return [...water.words, ...oil.words].includes(name)
 }
 
-export const updateObjectState = (obj, nextStateName) => {
+export const updateObjectState = (name, nextStateName) => {
+  const obj = getObject(name)
   const state = obj.states.find(({ name }) => name === nextStateName)
   const objectInInventory = isObjectInInventory(obj.name)
 
