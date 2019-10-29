@@ -77,13 +77,14 @@ export const discard = (name, verb) => {
 
     if (snake) {
       updateObjectState('snake', 'snakeChased')
-      destroyObject('snake')
+      destroyObject(snake)
+      updateObjectState('bird', conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
+      dropObject('bird')
       return messages.birdAttacks
     }
 
-    const state = updateObjectState('bird', conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
+    updateObjectState('bird', conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
     dropObject('bird')
-    return `${messages.okMan}\n${state.change}`
   }
 
   dropObject(obj.name)
