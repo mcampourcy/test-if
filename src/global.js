@@ -134,6 +134,9 @@ function manageActions(answer) {
 
 const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 
+// true N% of the time (N integer from 0 to 100)
+export const pct = (number = 0) => Math.random() < (number / 100)
+
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:
 //  * feel = for inventory, what you can touch

@@ -3,6 +3,7 @@ import { displayLine, format } from './console'
 import { getObject } from './object'
 import { getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
+import { pct } from './global'
 
 export const getCurrentLocation = () => locations.find(({ name }) => name === settings.currentLocation)
 
@@ -22,9 +23,11 @@ export const getLocationDescription = (forceLong = false) => {
     const routesFromLocation = getRoutesFromLocation()
 
     const hasShortDescription = short && !forceLong
-    const description = hasShortDescription && (repeat || turnAround) ? short : long
+    let description = hasShortDescription && (repeat || turnAround) ? short : long
 
     if (!routesFromLocation.length) manageLocationsHistory(travels[0].action.description)
+
+    if (current === 'y2' && pct(25)) description += `\n ${messages.saysPlugh}`
 
     return format(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
   }
