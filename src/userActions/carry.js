@@ -17,8 +17,8 @@ export const carry = (object, actionName, verb) => {
 
   // if user didn't mention any param ("take") and there is only one object here, take the object
   // Otherwise, return error message
-  if (!object && getObjectsList.length > 1) return messages.doWhat(verb)
-  if (!object && getObjectsList.length === 1) [obj] = getObjectsList()
+  if (!object && getObjectsList().length > 1) return messages.doWhat(verb)
+  if (!object && getObjectsList().length === 1) [obj] = getObjectsList()
 
   if (object) obj = getObjectFromCurrentLocation(object)
   if (!obj) return messages.doWhat(verb)
