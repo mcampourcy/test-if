@@ -848,7 +848,7 @@ export const objects = [
         change: 'The urn is now dark.',
       },
       {
-        name: 'urnLit',
+        name: 'urnBright',
         description: 'A small oil flame extrudes from an urn embedded in the rock.',
         change: 'The urn is now lit.',
       },
