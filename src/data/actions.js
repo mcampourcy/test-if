@@ -35,7 +35,7 @@ export const actions = [
   {
     name: 'carry',
     message: messages.alreadyCarrying,
-    verbs: ['g', 'carry', 'take', 'keep', 'catch', 'steal', 'captu', 'get', 'tote', 'snarf'],
+    verbs: ['g', 'carry', 'take', 'keep', 'catch', 'steal', 'captu', 'get', 'tote', 'snarf', 'cage'],
   },
   {
     name: 'dig',
