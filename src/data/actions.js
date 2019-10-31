@@ -62,7 +62,7 @@ export const actions = [
   {
     name: 'extinguish',
     message: messages.dontUnderstand,
-    verbs: ['extin', 'off'],
+    verbs: ['extin', 'extinguish', 'off'],
   },
   {
     name: 'fbomb',

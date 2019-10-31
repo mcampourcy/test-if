@@ -10,9 +10,16 @@ export const getCurrentLocation = () => locations.find(({ name }) => name === se
 const isSpecial = location => /^locFoof/.test(location)
 
 export const getLocationDescription = (forceLong = false) => {
-  const { previousPreviousLocation, repeat } = settings
-  const { conditions, description: { long, short }, name: current, travels } = getCurrentLocation()
   const lamp = getObject('lamp')
+  const { previousPreviousLocation, repeat } = settings
+  let description = ''
+
+  if (isSpecial(getCurrentLocation().name)) {
+    description += `${getCurrentLocation().description.long}\n`
+    manageLocationsHistory(getCurrentLocation().travels[0].action.description)
+  }
+
+  const { conditions, description: { long, short }, name: current, travels } = getCurrentLocation()
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
@@ -21,20 +28,15 @@ export const getLocationDescription = (forceLong = false) => {
   if ((conditions && conditions.lit) || lamp.currentState === 'lampBright') {
     const objectsDescription = getObjectsDescription()
     const routesFromLocation = getRoutesFromLocation()
-
     const hasShortDescription = short && !forceLong
-    let description = hasShortDescription && (repeat || turnAround) ? short : long
+
+    description += hasShortDescription && (repeat || turnAround) ? short : long
 
     if (!routesFromLocation.length) manageLocationsHistory(travels[0].action.description)
 
     if (current === 'y2' && pct(25)) description += `\n ${messages.saysPlugh}`
 
     return format(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
-  }
-
-  if (isSpecial(current)) {
-    displayLine(long)
-    manageLocationsHistory(travels[0].action.description)
   }
 
   return format(messages.pitchDark)
