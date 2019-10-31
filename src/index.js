@@ -3,6 +3,6 @@ import { displayTitle } from './console'
 import { getInstructions } from './global'
 
 export function run() {
-  displayTitle()
+  // displayTitle()
   getInstructions()
 }

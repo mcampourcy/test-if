@@ -545,7 +545,7 @@ export const objects = [
   },
   {
     name: 'obj53',
-    words: ['jewel'],
+    words: ['jewel', 'jewelry'],
     inventory: 'Precious jewelry',
     locations: ['locSouthside'],
     treasure: true,

@@ -20,7 +20,7 @@ export const dropObject = (name) => {
 }
 
 
-export const getObject = name => objects.find(({ words }) => words.includes(name))
+export const getObject = objName => objects.find(({ name, words }) => words.includes(objName) || name === objName)
 
 export const getObjectFromCurrentLocation = (object) => (
   objects.find(({ locations, words }) => (
