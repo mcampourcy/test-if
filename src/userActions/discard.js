@@ -28,6 +28,8 @@ export const discard = (name, verb) => {
 
   let obj = getObject(name)
 
+  if (!obj) return messages.doWhat(verb)
+
   if (obj.name === 'rod' && hasAnotherRodInInventory) obj = getObject('rod2')
 
   if (!isObjectInInventory(obj.name)) return actions[verb].message
