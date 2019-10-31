@@ -9,7 +9,7 @@ import {
 } from '../object'
 import { messages } from '../data'
 
-export function extinguish(action, object) {
+export function extinguish(object) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
   const { conditions } = getCurrentLocation()

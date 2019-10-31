@@ -104,11 +104,11 @@ function manageActions(answer) {
           displayLine(carryMessage)
           break
         case 'discard':
-          const discardMessage = discard(param, verb)
+          const discardMessage = discard(param, action.name, verb)
           displayLine(discardMessage)
           break
         case 'extinguish':
-          const extinguishMessage = extinguish(action, param)
+          const extinguishMessage = extinguish(param)
           displayLine(extinguishMessage)
           break
         case 'fill':
