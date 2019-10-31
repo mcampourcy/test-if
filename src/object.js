@@ -19,7 +19,6 @@ export const dropObject = (name) => {
   removeObjectFromInventory(obj.name)
 }
 
-
 export const getObject = objName => objects.find(({ name, words }) => words.includes(objName) || name === objName)
 
 export const getObjectFromCurrentLocation = (object) => (
@@ -27,6 +26,11 @@ export const getObjectFromCurrentLocation = (object) => (
     locations.includes(settings.currentLocation) && words.includes(object)
   ))
 )
+
+export const getObjectState = (objName) => {
+  const obj = getObject(objName)
+  return obj.states.find(({ name }) => name === obj.currentState)
+}
 
 export const isObjectALiquid = (name) => {
   const water = objects.find(({ name }) => name === 'water')

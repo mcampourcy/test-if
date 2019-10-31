@@ -1,6 +1,16 @@
 #!/usr/bin/env node
 import { actions, directions, messages, settings } from './data'
-import { carry, discard, fill, inventory, light, listen, unlock, wave } from './userActions'
+import {
+  carry,
+  discard,
+  extinguish,
+  fill,
+  inventory,
+  light,
+  listen,
+  unlock,
+  wave,
+} from './userActions'
 import { consoleInput, display, displayLine, format } from './console'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription, getRoutesFromLocation } from './locations'
@@ -96,6 +106,10 @@ function manageActions(answer) {
         case 'discard':
           const discardMessage = discard(param, verb)
           displayLine(discardMessage)
+          break
+        case 'extinguish':
+          const extinguishMessage = extinguish(action, param)
+          displayLine(extinguishMessage)
           break
         case 'fill':
           const fillMessage = locationTooDark ? messages.cantApply : discard(param, action.name, verb)

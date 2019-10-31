@@ -20,7 +20,7 @@ export function light(action, object) {
   }
 
   if (obj && obj.name === 'urn') {
-    const urnState = updateObjectState(obj.name, obj.currentState === 'urnEmpty' ? 'urnLit' : 'urnEmpty')
+    const urnState = updateObjectState(obj.name, obj.currentState === 'urnEmpty' ? 'urnBright' : 'urnEmpty')
     return urnState.change
   }
 
