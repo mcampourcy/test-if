@@ -76,8 +76,6 @@ export function doSomething(description = true) {
 /**
  * Manage actions !== manage travels
  * This function manage actions verbs, not directions indications
- * Correct input form : <verb> <object>
- * <object> <verb>: Irregular form of input, but should be allowed
 **/
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))

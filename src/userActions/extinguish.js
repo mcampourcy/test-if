@@ -1,6 +1,6 @@
 /*  Light.  Applicable only to lamp and urn. */
 import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
+import { getCurrentLocation, getLocationDescription } from '../locations'
 import {
   getObject,
   updateObjectState,
@@ -9,7 +9,7 @@ import {
 } from '../object'
 import { messages } from '../data'
 
-export function extinguish(object) {
+export function extinguish(action, object) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
   const { conditions } = getCurrentLocation()
