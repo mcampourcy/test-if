@@ -10,11 +10,11 @@ export const destroyObject = (object) => {
   return object
 }
 
-export const dropObject = (name) => {
+export const dropObject = (name, location = null) => {
   const currentLocation = getCurrentLocation()
   const obj = getObject(name)
 
-  obj.locations = [currentLocation.name]
+  obj.locations = location || [currentLocation.name]
   updateObjectsList(obj)
   removeObjectFromInventory(obj.name)
 }

@@ -8,7 +8,7 @@ import {
   inventory,
   light,
   listen,
-  unlock,
+  lock,
   wave,
 } from './userActions'
 import { consoleInput, display, displayLine, format } from './console'
@@ -126,7 +126,8 @@ function manageActions(answer) {
           displayLine(fillMessage)
           break
         case 'inventory':
-          inventory()
+          const inventoryMessage = inventory()
+          display(inventoryMessage)
           break
         case 'light':
           const lightMessage = light(action, param)
@@ -139,8 +140,9 @@ function manageActions(answer) {
           displayLine(messages.noMoreDetail)
           display(getLocationDescription(true))
           break
+        case 'lock':
         case 'unlock':
-          unlock(param, action.name)
+          lock(param, action.name)
           break
         case 'wave':
           const waveMessage = wave(param, verb)
