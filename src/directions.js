@@ -1,9 +1,6 @@
 import { messages } from './data'
-import { display } from './console'
 
 export function getErrorMessage(answer) {
-  const { badDirection, cantApply, noInoutHere, nothingHappens, unsureFacing, whichWay } = messages
-
   switch (answer) {
     case 'east':
     case 'west':
@@ -15,26 +12,20 @@ export function getErrorMessage(answer) {
     case 'se':
     case 'up':
     case 'down':
-      display(badDirection)
-      break
+      return messages.badDirection
     case 'forward':
     case 'left':
     case 'right':
-      display(unsureFacing)
-      break
+      return messages.unsureFacing
     case 'outside':
     case 'inside':
-      display(noInoutHere)
-      break
+      return messages.noInoutHere
     case 'xyzzy':
     case 'plugh':
-      display(nothingHappens)
-      break
+      return messages.nothingHappens
     case 'crawl':
-      display(whichWay)
-      break
+      return messages.whichWay
     default:
-      display(cantApply)
-      break
+      return messages.cantApply
   }
 }
