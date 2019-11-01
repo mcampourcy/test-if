@@ -3,12 +3,12 @@ import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
 import { getObject, updateObjectState, getObjectFromCurrentLocation } from '../object'
 
-export function light(action, object) {
+export function light(action, param) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
-  let obj = object
+  let obj = param
 
-  if (!object && (lamp || urn)) {
+  if (!param && (lamp || urn)) {
     const name = lamp ? 'lamp' : 'urn'
     const lightObj = getObject(name)
     if (lightObj.currentState === `${name}Dark`) obj = lightObj

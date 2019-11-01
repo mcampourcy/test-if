@@ -3,15 +3,15 @@ import { displayLine } from '../console'
 import { isObjectInInventory } from '../inventory'
 import { getObjectFromCurrentLocation, updateObjectState } from '../object'
 
-export function unlock(object, verb) {
-  const obj = getObjectFromCurrentLocation(object)
-  const action = actions.find(a => a.name === verb)
+export function unlock(oaram, actionName) {
+  const obj = getObjectFromCurrentLocation(oaram)
+  const action = actions.find(a => a.name === actionName)
 
   if (obj) {
     switch (obj.name) {
       case 'chain':
         // if (getObjectFromCurrentLocation('keys')) {
-        //   return chain(verb);
+        //   return chain(actionName);
         // } else {
         //   displayLine(messages.noKeys)
         // }
@@ -24,7 +24,7 @@ export function unlock(object, verb) {
           //     game.clock2 = PANICTIME;
           //   game.panic = true;
           // } else {
-          const state = updateObjectState(obj.name, (verb === 'lock') ? 'grateClosed' : 'grateOpen')
+          const state = updateObjectState(obj.name, (actionName === 'lock') ? 'grateClosed' : 'grateOpen')
           if (state.change) displayLine(state.change)
           // }
         } else {
@@ -33,7 +33,7 @@ export function unlock(object, verb) {
         break
       case 'clam':
 
-        // if (verb == LOCK)
+        // if (actionName == LOCK)
         //   rspeak(HUH_MAN);
         // else if (!TOTING(TRIDENT))
         //   rspeak(CLAM_OPENER);
@@ -45,7 +45,7 @@ export function unlock(object, verb) {
         // }
         break
       case 'oyster':
-        // if (verb == LOCK)
+        // if (actionName == LOCK)
         //   rspeak(HUH_MAN);
         // else if (TOTING(OYSTER))
         //   rspeak(DROP_OYSTER);

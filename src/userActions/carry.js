@@ -7,7 +7,7 @@ import { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } from
 import { getObjectsList } from '../objects'
 import { getAction } from './utils'
 
-export const carry = (object, actionName, verb) => {
+export const carry = (param, actionName, verb) => {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
   let obj
@@ -17,10 +17,10 @@ export const carry = (object, actionName, verb) => {
 
   // if user didn't mention any param ("take") and there is only one object here, take the object
   // Otherwise, return error message
-  if (!object && getObjectsList().length > 1) return messages.doWhat(verb)
-  if (!object && getObjectsList().length === 1) [obj] = getObjectsList()
+  if (!param && getObjectsList().length > 1) return messages.doWhat(verb)
+  if (!param && getObjectsList().length === 1) [obj] = getObjectsList()
 
-  if (object) obj = getObjectFromCurrentLocation(object)
+  if (param) obj = getObjectFromCurrentLocation(param)
   if (!obj) return messages.doWhat(verb)
 
   // Already carrying

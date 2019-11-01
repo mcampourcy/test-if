@@ -76,6 +76,8 @@ export function doSomething(description = true) {
 /**
  * Manage actions !== manage travels
  * This function manage actions verbs, not directions indications
+ * Correct input form : <verb> <object>
+ * <object> <verb>: Irregular form of input, but should be allowed
 **/
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
@@ -89,7 +91,15 @@ function manageActions(answer) {
     // Difference between 'action.name' and 'verb' :
     // 'verb' is the instruction given by the user, action.name is the generic name of 'verb'
 
-    const [verb, param] = answer.split(/\s/)
+    let [verb, param] = answer.split(/\s/)
+
+    // <object> <verb> form
+    if (getAction(param) && getObject(verb)) {
+      const oldVerb = verb
+      verb = param
+      param = oldVerb
+    }
+
     const action = getAction(verb)
 
     if (action) {
@@ -112,7 +122,7 @@ function manageActions(answer) {
           displayLine(extinguishMessage)
           break
         case 'fill':
-          const fillMessage = locationTooDark ? messages.cantApply : discard(param, action.name, verb)
+          const fillMessage = locationTooDark ? messages.cantApply : fill(param, action.name, verb)
           displayLine(fillMessage)
           break
         case 'inventory':
