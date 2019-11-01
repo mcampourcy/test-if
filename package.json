@@ -20,7 +20,6 @@
     "adventure": "./bin/adventure.js"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
     "eslint": "^6.6.0"
   },
   "browserslist": [

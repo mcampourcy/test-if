@@ -7,46 +7,47 @@ import {
   updateObjectState,
 } from '../object'
 
-export function lock(param, actionName) {
-  const action = actions.find(a => a.name === actionName)
+export function lock(param, actionId) {
+  const action = actions.find(a => a.id === actionId)
   const keys = isObjectInInventory('keys') || getObjectFromCurrentLocation('keys')
-  const lock = actionName === 'lock'
+  const lock = actionId === 'lock'
   let obj
 
   // Lock, unlock, no object given
 
-  if (!param) {
-    ['chain', 'clam', 'oyster'].map(name => {
-      obj = getObjectFromCurrentLocation(name) || isObjectInInventory(name)
+  if (param) {
+    obj = getObjectFromCurrentLocation(param)
+    if (!obj) return action.message
+  } else {
+    const objects = ['chain', 'clam', 'oyster']
+    const places = ['door', 'grate']
+
+    objects.forEach((id) => {
+      obj = getObjectFromCurrentLocation(id) || isObjectInInventory(id)
     })
 
-    ['door', 'grate'].map(name => {
-      obj = getObjectFromCurrentLocation(name)
+    places.forEach((id) => {
+      obj = getObjectFromCurrentLocation(id)
     })
 
     if (!obj) return messages.nothingLocked
-  } else {
-    obj = getObjectFromCurrentLocation(param)
-    if (!obj) return action.message
   }
 
   // Lock, unlock object. Special stuff for opening clam/oyster and for chain.
 
   if (obj) {
-    switch (obj.name) {
+    switch (obj.id) {
       case 'chain':
-        // if (keys) return chain(actionName)
+        // if (keys) return chain(actionId)
         return messages.noKeys
       case 'grate':
         if (!keys) return messages.noKeys
-        const state = updateObjectState(obj.name, (lock) ? 'grateClosed' : 'grateOpen')
-        if (state.change) return state.change
-        break
+        return updateObjectState(obj.id, (lock) ? 'grateClosed' : 'grateOpen').change || ''
       case 'clam':
         if (lock) return messages.huhMan
         if (!isObjectInInventory('trident')) return messages.clamOpener
 
-        destroyObject(obj.name)
+        destroyObject(obj.id)
         dropObject('oyster')
         dropObject('pearl', 'locCuldesac')
         return messages.pearlFalls
@@ -63,7 +64,9 @@ export function lock(param, actionName) {
       case 'keys':
         return messages.cannotUnlock
       default:
-        return actionName.message
+        return actionId.message
     }
   }
+
+  return actionId.message
 }

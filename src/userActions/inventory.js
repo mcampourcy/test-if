@@ -6,12 +6,12 @@ export function inventory() {
   let description = i.length ? messages.nowHolding : messages.noCarry
 
   if (i.length) {
-    const hasBird = i.find( name => name === 'bird')
-    const hasCage = i.find( name => name === 'cage')
-    let invent = (hasBird && hasCage) ? i.filter(name => name !== 'cage') : i
+    const hasBird = i.find(id => id === 'bird')
+    const hasCage = i.find(id => id === 'cage')
+    const invent = (hasBird && hasCage) ? i.filter(id => id !== 'cage') : i
 
-    invent.map(name => {
-      const obj = getObject(name)
+    invent.map((id) => {
+      const obj = getObject(id)
       description += `\n${obj.inventory}`
     })
   }

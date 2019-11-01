@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import { actions, directions, messages } from './data'
-import { display, displayLine } from './console'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription } from './locations'
 import { getObject } from './object'
@@ -27,11 +26,10 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
  * Correct input form : <verb> <object>
  * <object> <verb>: Irregular form of input, but should be allowed
  *
- * Difference between 'action.name' and 'verb' :
- * 'verb' is the instruction given by the user, action.name is the generic name of 'verb'
+ * Difference between 'action.id' and 'verb' :
+ * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
  **/
 export function manageActions(answer) {
-
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
 
@@ -54,15 +52,15 @@ export function manageActions(answer) {
 
   if (action.noaction) return action.message
 
-  switch (action.name) {
+  switch (action.id) {
     case 'carry':
-      return locationTooDark ? messages.cantApply : carry(param, action.name, verb)
+      return locationTooDark ? messages.cantApply : carry(param, action.id, verb)
     case 'discard':
-      return discard(param, action.name, verb)
+      return discard(param, action.id, verb)
     case 'extinguish':
       return extinguish(param)
     case 'fill':
-      return locationTooDark ? messages.cantApply : fill(param, action.name, verb)
+      return locationTooDark ? messages.cantApply : fill(param, action.id, verb)
     case 'inventory':
       return inventory()
     case 'light':
@@ -73,7 +71,7 @@ export function manageActions(answer) {
       return `${messages.noMoreDetail}\n${getLocationDescription(true)}`
     case 'lock':
     case 'unlock':
-      return lock(param, action.name)
+      return lock(param, action.id)
     case 'wave':
       return wave(param, verb)
     default:

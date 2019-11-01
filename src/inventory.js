@@ -1,10 +1,11 @@
 import { settings } from './data'
 
-export const addObjectToInventory = object => {
+export const addObjectToInventory = (object) => {
   if (!isObjectInInventory(object)) return settings.inventory.push(object)
+  return null
 }
 
-export const isObjectInInventory = object => settings.inventory.find((objName => objName === object))
+export const isObjectInInventory = object => settings.inventory.find((objid => objid === object))
 
 export const removeObjectFromInventory = (object) => {
   const { inventory } = settings

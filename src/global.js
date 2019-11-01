@@ -13,7 +13,7 @@ export function getInstructions() {
   const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
   settings.repeat = false
 
-  consoleInput(welcomeQuestion, input => {
+  consoleInput(welcomeQuestion, (input) => {
     const yes = yesAnswer.includes(input.trim())
     const no = noAnswer.includes(input.trim())
 
@@ -43,7 +43,7 @@ export function getInstructions() {
 export function doSomething(description = true) {
   const question = description ? getLocationDescription() : ''
 
-  consoleInput(question, input => {
+  consoleInput(question, (input) => {
     const routes = getRoutesFromLocation()
     const answer = input.trim()
 
@@ -53,11 +53,11 @@ export function doSomething(description = true) {
       display(manageActions(answer))
       settings.repeat = true
       return doSomething(false)
-    } else {
-      const travels = !Array.isArray(routes) ? routes : answer
-      manageTravel(travels)
-      return doSomething()
     }
+
+    const travels = Array.isArray(routes) ? answer : routes
+    manageTravel(travels)
+    return doSomething()
   })
 }
 

@@ -8,10 +8,10 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-export function consoleInput(question, callback) {
-  rl.question(question, answer => {
-    callback(answer)
+export function consoleInput(question, cb) {
+  rl.question(question, (answer) => {
     rl.resume()
+    cb(answer)
   })
 }
 
@@ -28,13 +28,9 @@ export function format(string) {
 }
 
 export function displayTitle() {
-  console.log(
-    chalk.green(
-      figlet.textSync('Colossal Cave \n Adventure', {
-        font: 'Doom',
-        horizontalLayout: 'default',
-        verticalLayout: 'default',
-      }),
-    ),
-  )
+  console.log(chalk.green(figlet.textSync('Colossal Cave \n Adventure', {
+    font: 'Doom',
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+  })))
 }
