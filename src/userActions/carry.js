@@ -7,7 +7,7 @@ import { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } from
 import { getObjectsList } from '../objects'
 import { getAction } from './utils'
 
-export const carry = (param, actionid, verb) => {
+export const carry = (param, actionId, verb) => {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
   const onlyOneObjectHere = getObjectsList().length === 1
@@ -27,7 +27,7 @@ export const carry = (param, actionid, verb) => {
   if (!obj) return messages.doWhat(verb)
 
   // Already carrying
-  if (isObjectInInventory(obj.id)) return getAction(actionid).message
+  if (isObjectInInventory(obj.id)) return getAction(actionId).message
 
   // "take water / oil"
   if (isObjectALiquid(obj.id)) {
@@ -36,7 +36,7 @@ export const carry = (param, actionid, verb) => {
     if (!bottle) return messages.noContainer
     if (bottle.currentState === 'fullBottle') return messages.bottleFull
 
-    return fill(actionid)
+    return fill(actionId)
   }
 
   if (obj.id === 'bird') return getTheBird(obj)

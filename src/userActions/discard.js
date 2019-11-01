@@ -17,7 +17,7 @@ import { isPreciousGem } from '../treasure'
  * Drop coins at vending machine for extra batteries.
 **/
 
-export const discard = (param, actionid, verb) => {
+export const discard = (param, actionId, verb) => {
   const cavity = getObjectFromCurrentLocation('cavity')
   const dragon = getObjectFromCurrentLocation('dragon')
   const rug = getObjectFromCurrentLocation('rug')
@@ -32,7 +32,7 @@ export const discard = (param, actionid, verb) => {
 
   if (obj.id === 'rod' && hasAnotherRodInInventory) obj = getObject('rod2')
 
-  if (!isObjectInInventory(obj.id)) return actions[actionid].message
+  if (!isObjectInInventory(obj.id)) return actions[actionId].message
 
   if (isPreciousGem(obj.id) && cavity && cavity.currentState !== 'cavityFull') {
     const rugIsHover = rug.currentState === 'rugHover'

@@ -19,11 +19,11 @@ export const dropObject = (id, location = null) => {
   removeObjectFromInventory(obj.id)
 }
 
-export const getObject = objId => objects.find(({ id, words }) => words.includes(id) || id === objId)
+export const getObject = objId => objects.find(({ id, words }) => words.includes(objId) || id === objId)
 
-export const getObjectFromCurrentLocation = object => (
+export const getObjectFromCurrentLocation = name => (
   objects.find(({ locations, words }) => (
-    locations.includes(settings.currentLocation) && words.includes(object)
+    locations.includes(settings.currentLocation) && words.includes(name)
   ))
 )
 

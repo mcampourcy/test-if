@@ -7,10 +7,10 @@ import {
   updateObjectState,
 } from '../object'
 
-export function lock(param, actionid) {
-  const action = actions.find(a => a.id === actionid)
+export function lock(param, actionId) {
+  const action = actions.find(a => a.id === actionId)
   const keys = isObjectInInventory('keys') || getObjectFromCurrentLocation('keys')
-  const lock = actionid === 'lock'
+  const lock = actionId === 'lock'
   let obj
 
   // Lock, unlock, no object given
@@ -38,7 +38,7 @@ export function lock(param, actionid) {
   if (obj) {
     switch (obj.id) {
       case 'chain':
-        // if (keys) return chain(actionid)
+        // if (keys) return chain(actionId)
         return messages.noKeys
       case 'grate':
         if (!keys) return messages.noKeys
@@ -64,9 +64,9 @@ export function lock(param, actionid) {
       case 'keys':
         return messages.cannotUnlock
       default:
-        return actionid.message
+        return actionId.message
     }
   }
 
-  return actionid.message
+  return actionId.message
 }

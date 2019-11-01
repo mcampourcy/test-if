@@ -4,7 +4,7 @@ import { getObject, getObjectFromCurrentLocation, updateObjectState } from '../o
 import { isTreasureFound } from '../treasure'
 
 // Wave - No effect unless waving rod at fissure or at bird
-export const wave = (param, actionid) => {
+export const wave = (param, actionId) => {
   const isInInventory = isObjectInInventory(param)
   const bird = getObjectFromCurrentLocation('bird')
   const fissure = getObjectFromCurrentLocation('fissure')
@@ -15,7 +15,7 @@ export const wave = (param, actionid) => {
     if (!isInInventory && (param !== 'rod' || !rod2InInventory)) {
       return messages.arentCarrying
     }
-    return actions[actionid].message
+    return actions[actionId].message
   }
 
   if (bird.currentState === 'birdUncaged' && steps && !isTreasureFound('jade')) {
