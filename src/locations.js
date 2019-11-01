@@ -1,11 +1,11 @@
 import { directions, locations, messages, settings } from './data'
-import { displayLine, format } from './console'
+import { format } from './console'
 import { getObject } from './object'
 import { getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
 import { pct } from './global'
 
-export const getCurrentLocation = () => locations.find(({ name }) => name === settings.currentLocation)
+export const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
 
 const isSpecial = location => /^locFoof/.test(location)
 
@@ -14,12 +14,12 @@ export const getLocationDescription = (forceLong = false) => {
   const { previousPreviousLocation, repeat } = settings
   let description = ''
 
-  if (isSpecial(getCurrentLocation().name)) {
+  if (isSpecial(getCurrentLocation().id)) {
     description += `${getCurrentLocation().description.long}\n`
     manageLocationsHistory(getCurrentLocation().travels[0].action.description)
   }
 
-  const { conditions, description: { long, short }, name: current, travels } = getCurrentLocation()
+  const { conditions, description: { long, short }, id: current, travels } = getCurrentLocation()
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
@@ -53,11 +53,11 @@ export const getRoutesFromLocation = () => {
   const { travels } = getCurrentLocation()
   const travelsVerbs = travels.map(({ verbs }) => verbs).flat()
   // get dictionary from travels ids
-  return travelsVerbs.map(travel => directions.find(({ name }) => name === travel).verbs).flat()
+  return travelsVerbs.map(travel => directions.find(({ id }) => id === travel).verbs).flat()
 }
 
 export const getTravel = (answer) => {
   const { travels } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
-  return travels.find(({ verbs }) => verbs.includes(direction.name)).action
+  return travels.find(({ verbs }) => verbs.includes(direction.id)).action
 }

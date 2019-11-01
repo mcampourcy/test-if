@@ -1,19 +1,19 @@
-import { objects, settings } from './data'
+import { messages, objects, settings } from './data'
 import { getCurrentLocation } from './locations'
 import { isObjectInInventory } from './inventory'
 import { getObject } from './object'
 
 export const getObjectsDescription = () => {
-  const { conditions, name: currentLocation } = getCurrentLocation()
+  const { conditions, id: currentLocation } = getCurrentLocation()
   const lamp = getObject('lamp')
 
   if (conditions.lit || lamp.currentState === 'lampBright') {
     const description = []
 
-    objects.map(object => {
-      if (object.locations.includes(currentLocation) && !isObjectInInventory(object.name)) {
+    objects.map((object) => {
+      if (object.locations.includes(currentLocation) && !isObjectInInventory(object.id)) {
         if (object.states) {
-          const current = object.states.find(({ name }) => name === object.currentState)
+          const current = object.states.find(({ id }) => id === object.currentState)
           description.push(object.currentState ? current.description : object.states[0].description)
           return
         }
@@ -26,6 +26,8 @@ export const getObjectsDescription = () => {
     })
     return description.join('\n')
   }
+
+  return messages.pitchDark
 }
 
 export const getObjectsList = () => (
@@ -35,19 +37,19 @@ export const getObjectsList = () => (
 export const getObjectsSound = () => {
   const { currentLocation, inventory } = settings
   const description = []
-  objects.map(({ locations, name, states }) => {
-    const alreadyInInventory = inventory.find((obj => obj.name === name))
+  objects.map(({ locations, id, states }) => {
+    const alreadyInInventory = inventory.find((obj => obj.id === id))
     if (locations.includes(currentLocation) && !alreadyInInventory && states) {
       description.push(states[0].sound)
     }
-    return name
+    return id
   })
   return description.join('\n')
 }
 
-export const updateObjectsList = (object) => (
+export const updateObjectsList = object => (
   objects.splice(
-    objects.indexOf(objects.find(({ name }) => name === object.name)),
+    objects.indexOf(objects.find(({ id }) => id === object.id)),
     1,
     object
   )

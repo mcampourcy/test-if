@@ -17,7 +17,7 @@ import { isPreciousGem } from '../treasure'
  * Drop coins at vending machine for extra batteries.
 **/
 
-export const discard = (param, actionName, verb) => {
+export const discard = (param, actionid, verb) => {
   const cavity = getObjectFromCurrentLocation('cavity')
   const dragon = getObjectFromCurrentLocation('dragon')
   const rug = getObjectFromCurrentLocation('rug')
@@ -30,48 +30,48 @@ export const discard = (param, actionName, verb) => {
 
   if (!obj) return messages.doWhat(verb)
 
-  if (obj.name === 'rod' && hasAnotherRodInInventory) obj = getObject('rod2')
+  if (obj.id === 'rod' && hasAnotherRodInInventory) obj = getObject('rod2')
 
-  if (!isObjectInInventory(obj.name)) return actions[actionName].message
+  if (!isObjectInInventory(obj.id)) return actions[actionid].message
 
-  if (isPreciousGem(obj.name) && cavity && cavity.currentState !== 'cavityFull') {
+  if (isPreciousGem(obj.id) && cavity && cavity.currentState !== 'cavityFull') {
     const rugIsHover = rug.currentState === 'rugHover'
-    const rugInInventory = isObjectInInventory(rug.name)
+    const rugInInventory = isObjectInInventory(rug.id)
     let message = messages.gemFits
 
     obj.currentState = 'inCavity'
     updateObjectsList(obj)
-    updateObjectState(cavity.name, 'cavityFull')
+    updateObjectState(cavity.id, 'cavityFull')
 
-    if(rug && ((obj.name === 'emerald' && !rugIsHover) || (obj.name === 'ruby' && rugIsHover))) {
-      if (obj.name === 'ruby') message += `\n${messages.rugSettles}`
+    if (rug && ((obj.id === 'emerald' && !rugIsHover) || (obj.id === 'ruby' && rugIsHover))) {
+      if (obj.id === 'ruby') message += `\n${messages.rugSettles}`
 
       if (rugInInventory) message += `\n${messages.rugWiggles}`
 
-      if (!rugInInventory && obj.name !== 'ruby') message += `\n${messages.rugRises}`
+      if (!rugInInventory && obj.id !== 'ruby') message += `\n${messages.rugRises}`
 
-      if (!rugInInventory || obj.name !== 'ruby') {
+      if (!rugInInventory || obj.id !== 'ruby') {
         const state = (rug.currentState === 'rugHover') ? 'rugFloor' : 'rugHover'
-        updateObjectState(rug.name, state)
+        updateObjectState(rug.id, state)
       }
 
-      dropObject(obj.name)
+      dropObject(obj.id)
       return message
     }
   }
 
-  if (obj.name === 'coins' && vendingMachine) {
+  if (obj.id === 'coins' && vendingMachine) {
     destroyObject('coins')
     dropObject('battery')
     // pspeak(BATTERY, look, true, FRESH_BATTERIES);
     return null
   }
 
-  if (isObjectALiquid(obj.name)) obj = getObject('bottle')
+  if (isObjectALiquid(obj.id)) obj = getObject('bottle')
 
-  if (obj.name === 'cage' && getObject('bird').currentState === 'birdCaged') dropObject('bird')
+  if (obj.id === 'cage' && getObject('bird').currentState === 'birdCaged') dropObject('bird')
 
-  if (obj.name === 'bird') {
+  if (obj.id === 'bird') {
     if (dragon && dragon.currentState === 'dragonBars') {
       destroyObject('bird')
       return messages.birdBurnt
@@ -89,6 +89,6 @@ export const discard = (param, actionName, verb) => {
     dropObject('bird')
   }
 
-  dropObject(obj.name)
+  dropObject(obj.id)
   return messages.okMan
 }

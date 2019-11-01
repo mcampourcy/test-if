@@ -2,295 +2,295 @@
 
 export const directions = [
   {
-    name: 'acros',
+    id: 'acros',
     verbs: ['acros'],
   },
   {
-    name: 'awkwa',
+    id: 'awkwa',
     verbs: ['awkwa'],
   },
   {
-    name: 'back',
+    id: 'back',
     verbs: ['back', 'retur', 'retre'],
   },
   {
-    name: 'barre',
+    id: 'barre',
     verbs: ['barre'],
   },
   {
-    name: 'bed',
+    id: 'bed',
     verbs: ['bed'],
   },
   {
-    name: 'bedquilt',
+    id: 'bedquilt',
     verbs: ['bedqu'],
   },
   {
-    name: 'broke',
+    id: 'broke',
     verbs: ['broke'],
   },
   {
-    name: 'build',
+    id: 'build',
     verbs: ['build', 'house'],
   },
   {
-    name: 'canyo',
+    id: 'canyo',
     verbs: ['canyo'],
   },
   {
-    name: 'cave',
+    id: 'cave',
     verbs: ['cave'],
   },
   {
-    name: 'cavern',
+    id: 'cavern',
     verbs: ['caver'],
   },
   {
-    name: 'climb',
+    id: 'climb',
     verbs: ['climb'],
   },
   {
-    name: 'cobbl',
+    id: 'cobbl',
     verbs: ['cobbl'],
   },
   {
-    name: 'crack',
+    id: 'crack',
     verbs: ['crack'],
   },
   {
-    name: 'crawl',
+    id: 'crawl',
     verbs: ['crawl'],
   },
   {
-    name: 'cross',
+    id: 'cross',
     verbs: ['cross'],
   },
   {
-    name: 'dark',
+    id: 'dark',
     verbs: ['dark'],
   },
   {
-    name: 'debri',
+    id: 'debri',
     verbs: ['debri'],
   },
   {
-    name: 'depre',
+    id: 'depre',
     verbs: ['depre'],
   },
   {
-    name: 'dome',
+    id: 'dome',
     verbs: ['dome'],
   },
   {
-    name: 'down',
+    id: 'down',
     verbs: ['d', 'downw', 'down', 'desce'],
   },
   {
-    name: 'downs',
+    id: 'downs',
     verbs: ['downs'],
   },
   {
-    name: 'east',
+    id: 'east',
     verbs: ['east', 'e'],
   },
   {
-    name: 'enter',
+    id: 'enter',
     verbs: ['enter'],
   },
   {
-    name: 'entra',
+    id: 'entra',
     verbs: ['entra'],
   },
   {
-    name: 'floor',
+    id: 'floor',
     verbs: ['floor'],
   },
   {
-    name: 'fores',
+    id: 'fores',
     verbs: ['fores'],
   },
   {
-    name: 'fork',
+    id: 'fork',
     verbs: ['fork'],
   },
   {
-    name: 'forwa',
+    id: 'forwa',
     verbs: ['forwa', 'forward', 'conti', 'continue', 'onwar', 'onward'],
   },
   {
-    name: 'giant',
+    id: 'giant',
     verbs: ['giant'],
   },
   {
-    name: 'gully',
+    id: 'gully',
     verbs: ['gully'],
   },
   {
-    name: 'hall',
+    id: 'hall',
     verbs: ['hall'],
   },
   {
-    name: 'hole',
+    id: 'hole',
     verbs: ['hole'],
   },
   {
-    name: 'inside',
+    id: 'inside',
     verbs: ['inwar', 'insid', 'in'],
   },
   {
-    name: 'jump',
+    id: 'jump',
     verbs: ['jump'],
   },
   {
-    name: 'left',
+    id: 'left',
     verbs: ['left'],
   },
   {
-    name: 'low',
+    id: 'low',
     verbs: ['low'],
   },
   {
-    name: 'ne',
+    id: 'ne',
     verbs: ['ne'],
   },
   {
-    name: 'north',
+    id: 'north',
     verbs: ['north', 'n'],
   },
   {
-    name: 'nul',
+    id: 'nul',
     verbs: ['null', 'nowhe'],
   },
   {
-    name: 'nw',
+    id: 'nw',
     verbs: ['nw'],
   },
   {
-    name: 'office',
+    id: 'office',
     verbs: ['main', 'offic'],
   },
   {
-    name: 'oriental',
+    id: 'oriental',
     verbs: ['orien'],
   },
   {
-    name: 'out',
+    id: 'out',
     verbs: ['out', 'outsi', 'exit', 'leave'],
   },
   {
-    name: 'outdo',
+    id: 'outdo',
     verbs: ['outdo'],
   },
   {
-    name: 'over',
+    id: 'over',
     verbs: ['over'],
   },
   {
-    name: 'passa',
+    id: 'passa',
     verbs: ['passa', 'tunne'],
   },
   {
-    name: 'pit',
+    id: 'pit',
     verbs: ['pit'],
   },
   {
-    name: 'plove',
+    id: 'plove',
     verbs: ['plove'],
   },
   {
-    name: 'plugh',
+    id: 'plugh',
     verbs: ['plugh'],
   },
   {
-    name: 'reservoir',
+    id: 'reservoir',
     verbs: ['reser'],
   },
   {
-    name: 'right',
+    id: 'right',
     verbs: ['right'],
   },
   {
-    name: 'road',
+    id: 'road',
     verbs: ['road', 'hill'],
   },
   {
-    name: 'room',
+    id: 'room',
     verbs: ['room'],
   },
   {
-    name: 'se',
+    id: 'se',
     verbs: ['se'],
   },
   {
-    name: 'secre',
+    id: 'secre',
     verbs: ['secre'],
   },
   {
-    name: 'shellroom',
+    id: 'shellroom',
     verbs: ['shell'],
   },
   {
-    name: 'slab',
+    id: 'slab',
     verbs: ['slab', 'slabr'],
   },
   {
-    name: 'slit',
+    id: 'slit',
     verbs: ['slit'],
   },
   {
-    name: 'south',
+    id: 'south',
     verbs: ['south', 's'],
   },
   {
-    name: 'stair',
+    id: 'stair',
     verbs: ['stair'],
   },
   {
-    name: 'steps',
+    id: 'steps',
     verbs: ['steps'],
   },
   {
-    name: 'strea',
+    id: 'strea',
     verbs: ['strea'],
   },
   {
-    name: 'surfa',
+    id: 'surfa',
     verbs: ['surfa'],
   },
   {
-    name: 'sw',
+    id: 'sw',
     verbs: ['sw'],
   },
   {
-    name: 'upstr',
+    id: 'upstr',
     verbs: ['upstr'],
   },
   {
-    name: 'upwar',
+    id: 'upwar',
     verbs: ['upwar', 'up', 'u', 'above', 'ascen'],
   },
   {
-    name: 'valle',
+    id: 'valle',
     verbs: ['valle'],
   },
   {
-    name: 'view',
+    id: 'view',
     verbs: ['view'],
   },
   {
-    name: 'wall',
+    id: 'wall',
     verbs: ['wall'],
   },
   {
-    name: 'west',
+    id: 'west',
     verbs: ['west', 'w'],
   },
   {
-    name: 'xyzzy',
+    id: 'xyzzy',
     verbs: ['xyzzy'],
   },
   {
-    name: 'y2',
+    id: 'y2',
     verbs: ['y2'],
   },
 ]

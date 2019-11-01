@@ -1,6 +1,6 @@
 /*  Light.  Applicable only to lamp and urn. */
 import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation, getLocationDescription } from '../locations'
+import { getCurrentLocation } from '../locations'
 import {
   getObject,
   updateObjectState,
@@ -16,19 +16,21 @@ export function extinguish(action, object) {
   let obj = object
 
   if (!object && (lamp || urn)) {
-    const name = lamp ? 'lamp' : 'urn'
-    const lightObj = getObject(name)
-    if (lightObj.currentState === `${name}Bright`) obj = lightObj
+    const id = lamp ? 'lamp' : 'urn'
+    const lightObj = getObject(id)
+    if (lightObj.currentState === `${id}Bright`) obj = lightObj
   }
 
-  if (obj.name === 'urn') {
-    if (obj.currentState !== 'urnEmpty') return updateObjectState(obj.name, 'urnDark').change
-    return getObjectState(obj.name).change
+  if (obj.id === 'urn') {
+    if (obj.currentState !== 'urnEmpty') return updateObjectState(obj.id, 'urnDark').change
+    return getObjectState(obj.id).change
   }
 
-  if (obj.name === 'lamp') {
-    let description = updateObjectState(obj.name, 'lampDark').change
+  if (obj.id === 'lamp') {
+    let description = updateObjectState(obj.id, 'lampDark').change
     if ((conditions && !conditions.lit)) description += `\n${messages.pitchDark}`
     return description
   }
+
+  return messages[action.id].message
 }

@@ -9,18 +9,18 @@ export function light(action, param) {
   let obj = param
 
   if (!param && (lamp || urn)) {
-    const name = lamp ? 'lamp' : 'urn'
-    const lightObj = getObject(name)
-    if (lightObj.currentState === `${name}Dark`) obj = lightObj
+    const id = lamp ? 'lamp' : 'urn'
+    const lightObj = getObject(id)
+    if (lightObj.currentState === `${id}Dark`) obj = lightObj
   }
 
-  if (obj && obj.name === 'lamp') {
-    const lampState = updateObjectState(obj.name, 'lampBright')
+  if (obj && obj.id === 'lamp') {
+    const lampState = updateObjectState(obj.id, 'lampBright')
     return `${lampState.change}\n${getLocationDescription()}`
   }
 
-  if (obj && obj.name === 'urn') {
-    const urnState = updateObjectState(obj.name, obj.currentState === 'urnEmpty' ? 'urnBright' : 'urnEmpty')
+  if (obj && obj.id === 'urn') {
+    const urnState = updateObjectState(obj.id, obj.currentState === 'urnEmpty' ? 'urnBright' : 'urnEmpty')
     return urnState.change
   }
 

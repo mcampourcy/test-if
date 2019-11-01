@@ -3,11 +3,11 @@ The current previousLocation is saved in previousPreviousLocation, in case the p
 (if he/she does, previousLocation will be what killed him/her, so we need previousPreviousLocation, which is the last safe place) */
 
 export const settings = {
-    currentLocation: 'locStart',
-    inventory: [],
-    inventoryLimit: 7,
-    novice: true,
-    previousLocation: 'locNowhere',
-    previousPreviousLocation: 'locNowhere',
-    repeat: false,
+  currentLocation: 'locStart',
+  inventory: [],
+  inventoryLimit: 7,
+  novice: true,
+  previousLocation: 'locNowhere',
+  previousPreviousLocation: 'locNowhere',
+  repeat: false,
 }

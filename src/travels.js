@@ -7,13 +7,13 @@ import { getObject } from './object'
 
 export function manageTravel(answer) {
   const travel = getTravel(answer)
-  if (travel.name === 'goTo') {
+  if (travel.id === 'goTo') {
     if (travel.condition) {
       manageTravelConditions(travel)
     } else {
       manageLocationsHistory(travel.description)
     }
-  } else if (travel.name === 'speak') {
+  } else if (travel.id === 'speak') {
     settings.repeat = true
     display(messages[travel.description])
   }
@@ -23,10 +23,10 @@ function manageTravelConditions(travels) {
   const { condition } = travels
   if (condition.type === 'object') {
     const { currentState } = getObject(condition.object)
-    if (currentState !== condition.state) {
-      travelConditionFailed(travels.conditionFailed)
-    } else {
+    if (currentState === condition.state) {
       manageLocationsHistory(travels.description)
+    } else {
+      travelConditionFailed(travels.conditionFailed)
     }
   } else if (condition.type === 'carry') {
     if (!isObjectInInventory(condition.object)) {
@@ -36,10 +36,10 @@ function manageTravelConditions(travels) {
 }
 
 function travelConditionFailed(conditionFailed) {
-  if (conditionFailed.name === 'goTo') {
+  if (conditionFailed.id === 'goTo') {
     manageLocationsHistory(conditionFailed.description)
   }
-  if (conditionFailed.name === 'speak') {
+  if (conditionFailed.id === 'speak') {
     settings.repeat = true
     display(messages[conditionFailed.description])
   }
