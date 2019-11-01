@@ -50,7 +50,7 @@ export function doSomething(description = true) {
     if (settings.repeat) settings.repeat = false
 
     if (!routes.includes(answer)) {
-      manageActions(answer)
+      display(manageActions(answer))
       settings.repeat = true
       return doSomething(false)
     } else {
