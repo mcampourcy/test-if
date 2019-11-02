@@ -1,8 +1,7 @@
-#!/usr/bin/env node
 import { actions, directions, messages } from './data'
 import { getErrorMessage } from './directions'
-import { getCurrentLocation, getLocationDescription } from './locations'
-import { getObject } from './object'
+import { getLocationDescription, getCurrentLocation } from './locations'
+import { getObjectByWord } from './object'
 import {
   carry,
   discard,
@@ -29,18 +28,19 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
  * Difference between 'action.id' and 'verb' :
  * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
  **/
+
 export function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
 
   const { conditions } = getCurrentLocation()
-  const lamp = getObject('lamp')
+  const lamp = getObjectByWord('lamp')
   const locationTooDark = !conditions.lit && lamp.currentState === 'lampDark'
 
   let [verb, param] = answer.split(/\s/)
 
   // <object> <verb> form
-  if (getAction(param) && getObject(verb)) {
+  if (getAction(param) && getObjectByWord(verb)) {
     const oldVerb = verb
     verb = param
     param = oldVerb

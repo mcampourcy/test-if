@@ -1,7 +1,4 @@
-#!/usr/bin/env node
 import readline from 'readline'
-import chalk from 'chalk'
-import figlet from 'figlet'
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,22 +12,14 @@ export function consoleInput(question, cb) {
   })
 }
 
-export function display(string) {
-  rl.write(format(string))
+export function displayText(string) {
+  console.log(format(string))
 }
 
 export function displayLine(string) {
-  rl.write(`\n${string}\n`)
+  console.log(`\n${string}\n`)
 }
 
 export function format(string) {
   return `\n${string}\n\n`
-}
-
-export function displayTitle() {
-  console.log(chalk.green(figlet.textSync('Colossal Cave \n Adventure', {
-    font: 'Doom',
-    horizontalLayout: 'default',
-    verticalLayout: 'default',
-  })))
 }

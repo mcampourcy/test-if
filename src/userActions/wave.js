@@ -1,10 +1,10 @@
 import { actions, messages, settings } from '../data'
 import { isObjectInInventory } from '../inventory'
-import { getObject, getObjectFromCurrentLocation, updateObjectState } from '../object'
+import { getObjectByWord, getObjectFromCurrentLocation, updateObjectState } from '../object'
 import { isTreasureFound } from '../treasure'
 
 // Wave - No effect unless waving rod at fissure or at bird
-export const wave = (param, actionId) => {
+export function wave(param, actionId) {
   const isInInventory = isObjectInInventory(param)
   const bird = getObjectFromCurrentLocation('bird')
   const fissure = getObjectFromCurrentLocation('fissure')
@@ -19,7 +19,7 @@ export const wave = (param, actionId) => {
   }
 
   if (bird.currentState === 'birdUncaged' && steps && !isTreasureFound('jade')) {
-    const treasure = getObject('jade')
+    const treasure = getObjectByWord('jade')
     treasure.locations = [settings.currentLocation]
     return messages.necklaceFly
   }

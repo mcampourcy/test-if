@@ -1,3 +1,5 @@
 import { actions } from '../data'
 
-export const getAction = actionId => actions.find(({ id }) => id === actionId)
+export function getAction(actionId) {
+  return actions.find(({ id }) => id === actionId)
+}

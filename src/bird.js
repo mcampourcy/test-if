@@ -2,7 +2,7 @@ import { messages } from './data'
 import { addObjectToInventory, isObjectInInventory } from './inventory'
 import { destroyObject, getObjectFromCurrentLocation, updateObjectState } from './object'
 
-export const getTheBird = (bird) => {
+export function getTheBird(bird) {
   if (bird.currentState === 'birdForestUncaged') {
     destroyObject(bird)
     return messages.birdCrap
@@ -17,7 +17,7 @@ export const getTheBird = (bird) => {
   return messages.okMan
 }
 
-export const cageTheBird = (cage, instruction) => {
+export function cageTheBird(cage, instruction) {
   const bird = getObjectFromCurrentLocation('bird')
   if (!bird) return messages.doWhat(instruction)
 

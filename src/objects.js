@@ -1,13 +1,10 @@
 import { messages, objects, settings } from './data'
-import { getCurrentLocation } from './locations'
 import { isObjectInInventory } from './inventory'
-import { getObject } from './object'
 
-export const getObjectsDescription = () => {
-  const { conditions, id: currentLocation } = getCurrentLocation()
-  const lamp = getObject('lamp')
+export function getObjectsDescription(location, isLocationLight) {
+  const { id: currentLocation } = location
 
-  if (conditions.lit || lamp.currentState === 'lampBright') {
+  if (isLocationLight) {
     const description = []
 
     objects.map((object) => {
@@ -30,11 +27,11 @@ export const getObjectsDescription = () => {
   return messages.pitchDark
 }
 
-export const getObjectsList = () => (
-  objects.filter(({ locations }) => locations.includes(settings.currentLocation))
-)
+export function getObjectsList() {
+  return objects.filter(({ locations }) => locations.includes(settings.currentLocation))
+}
 
-export const getObjectsSound = () => {
+export function getObjectsSound() {
   const { currentLocation, inventory } = settings
   const description = []
   objects.map(({ locations, id, states }) => {
@@ -47,10 +44,10 @@ export const getObjectsSound = () => {
   return description.join('\n')
 }
 
-export const updateObjectsList = object => (
-  objects.splice(
+export function updateObjectsList(object) {
+  return objects.splice(
     objects.indexOf(objects.find(({ id }) => id === object.id)),
     1,
     object
   )
-)
+}

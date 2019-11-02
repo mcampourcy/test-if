@@ -2,7 +2,7 @@
 import { isObjectInInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
 import {
-  getObject,
+  getObjectByWord,
   updateObjectState,
   getObjectFromCurrentLocation,
   getObjectState,
@@ -17,7 +17,7 @@ export function extinguish(action, object) {
 
   if (!object && (lamp || urn)) {
     const id = lamp ? 'lamp' : 'urn'
-    const lightObj = getObject(id)
+    const lightObj = getObjectByWord(id)
     if (lightObj.currentState === `${id}Bright`) obj = lightObj
   }
 

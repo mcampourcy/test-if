@@ -3,43 +3,56 @@ import { isObjectInInventory, removeObjectFromInventory, updateInventory } from 
 import { updateObjectsList } from './objects'
 import { getCurrentLocation } from './locations'
 
-export const destroyObject = (object) => {
+export function destroyObject(object) {
   removeObjectFromInventory(object.id)
   object.locations = ['locNowhere']
   updateObjectsList(object)
   return object
 }
 
-export const dropObject = (id, location = null) => {
+export function dropObject(id, location = null) {
   const currentLocation = getCurrentLocation()
-  const obj = getObject(id)
+  const obj = getObjectById(id)
 
   obj.locations = location || [currentLocation.id]
   updateObjectsList(obj)
   removeObjectFromInventory(obj.id)
 }
 
-export const getObject = objId => objects.find(({ id, words }) => words.includes(objId) || id === objId)
+export function getObjectByWord(word) {
+  return objects.find(({ words }) => words.includes(word))
+}
 
-export const getObjectFromCurrentLocation = name => (
-  objects.find(({ locations, words }) => (
+export function getObjectById(objId) {
+  return objects.find(({ id }) => id === objId)
+}
+
+export function getObjectFromLocationOrInventory(name) {
+  const isInInventory = isObjectInInventory(name)
+  if (isInInventory) return getObjectByWord(name)
+
+  return getObjectFromCurrentLocation(name)
+}
+
+export function getObjectFromCurrentLocation(name) {
+  return objects.find(({ locations, words }) => (
     locations.includes(settings.currentLocation) && words.includes(name)
   ))
-)
+}
 
-export const getObjectState = (objId) => {
-  const obj = getObject(objId)
+export function getObjectState(objId) {
+  const obj = getObjectById(objId)
   return obj.states.find(({ id }) => id === obj.currentState)
 }
 
-export const isObjectALiquid = (id) => {
+export function isObjectALiquid(objectId) {
   const water = objects.find(({ id }) => id === 'water')
   const oil = objects.find(({ id }) => id === 'oil')
-  return [...water.words, ...oil.words].includes(id)
+  return [...water.words, ...oil.words].includes(objectId)
 }
 
-export const updateObjectState = (id, nextStateId) => {
-  const obj = getObject(id)
+export function updateObjectState(objectId, nextStateId) {
+  const obj = getObjectById(objectId)
   const state = obj.states.find(({ id }) => id === nextStateId)
   const objectInInventory = isObjectInInventory(obj.id)
 

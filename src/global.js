@@ -1,7 +1,6 @@
-#!/usr/bin/env node
 import { messages, settings } from './data'
 import { manageActions } from './actions'
-import { consoleInput, display, displayLine, format } from './console'
+import { consoleInput, displayLine, format } from './console'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTravel } from './travels'
 
@@ -23,7 +22,7 @@ export function getInstructions() {
       return getInstructions()
     }
 
-    if (yes) display(caveNearby)
+    if (yes) displayLine(caveNearby)
     if (no) settings.novice = false
 
     return doSomething()
@@ -50,7 +49,7 @@ export function doSomething(description = true) {
     if (settings.repeat) settings.repeat = false
 
     if (!routes.includes(answer)) {
-      display(manageActions(answer))
+      displayLine(manageActions(answer))
       settings.repeat = true
       return doSomething(false)
     }
@@ -63,6 +62,8 @@ export function doSomething(description = true) {
 
 // true N% of the time (N integer from 0 to 100)
 export const pct = (number = 0) => Math.random() < (number / 100)
+
+// module.exports = { getInstructions, pct }
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:

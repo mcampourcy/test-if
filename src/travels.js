@@ -1,9 +1,9 @@
 import { getTravel } from './locations'
 import { manageLocationsHistory } from './settings'
 import { messages, settings } from './data'
-import { display } from './console'
+import { displayText } from './console'
 import { isObjectInInventory } from './inventory'
-import { getObject } from './object'
+import { getObjectByWord } from './object'
 
 export function manageTravel(answer) {
   const travel = getTravel(answer)
@@ -15,14 +15,14 @@ export function manageTravel(answer) {
     }
   } else if (travel.id === 'speak') {
     settings.repeat = true
-    display(messages[travel.description])
+    displayText(messages[travel.description])
   }
 }
 
 function manageTravelConditions(travels) {
   const { condition } = travels
   if (condition.type === 'object') {
-    const { currentState } = getObject(condition.object)
+    const { currentState } = getObjectByWord(condition.object)
     if (currentState === condition.state) {
       manageLocationsHistory(travels.description)
     } else {
@@ -41,6 +41,6 @@ function travelConditionFailed(conditionFailed) {
   }
   if (conditionFailed.id === 'speak') {
     settings.repeat = true
-    display(messages[conditionFailed.description])
+    displayText(messages[conditionFailed.description])
   }
 }

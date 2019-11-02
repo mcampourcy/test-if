@@ -1,16 +1,23 @@
-import { directions, locations, messages, settings } from './data'
+import {
+  directions,
+  locations,
+  messages,
+  settings,
+} from './data'
 import { format } from './console'
-import { getObject } from './object'
 import { getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
 import { pct } from './global'
 
-export const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
+export function getCurrentLocation() {
+  return locations.find(({ id }) => id === settings.currentLocation)
+}
 
-const isSpecial = location => /^locFoof/.test(location)
+function isSpecial(location) {
+  return /^locFoof/.test(location)
+}
 
-export const getLocationDescription = (forceLong = false) => {
-  const lamp = getObject('lamp')
+export function getLocationDescription(forceLong = false) {
   const { previousPreviousLocation, repeat } = settings
   let description = ''
 
@@ -42,21 +49,21 @@ export const getLocationDescription = (forceLong = false) => {
   return format(messages.pitchDark)
 }
 
-export const getFluidConditions = () => {
+export function getFluidConditions() {
   const { conditions } = getCurrentLocation()
   if (conditions.fluid) return conditions.oily ? 'oil' : 'water'
 
   return null
 }
 
-export const getRoutesFromLocation = () => {
+export function getRoutesFromLocation() {
   const { travels } = getCurrentLocation()
   const travelsVerbs = travels.map(({ verbs }) => verbs).flat()
   // get dictionary from travels ids
   return travelsVerbs.map(travel => directions.find(({ id }) => id === travel).verbs).flat()
 }
 
-export const getTravel = (answer) => {
+export function getTravel(answer) {
   const { travels } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
   return travels.find(({ verbs }) => verbs.includes(direction.id)).action

@@ -1,5 +1,6 @@
 import { messages, settings } from '../data'
-import { fill, inventory } from './index'
+import {fill } from './fill'
+import { inventory } from './inventory'
 import { cageTheBird, getTheBird } from '../bird'
 import { addObjectToInventory, isObjectInInventory } from '../inventory'
 import { getCurrentLocation } from '../locations'
@@ -7,7 +8,7 @@ import { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } from
 import { getObjectsList } from '../objects'
 import { getAction } from './utils'
 
-export const carry = (param, actionId, verb) => {
+export function carry(param, actionId, verb) {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
   const onlyOneObjectHere = getObjectsList().length === 1
