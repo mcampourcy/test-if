@@ -10,4 +10,8 @@ export const settings = {
   previousLocation: 'locNowhere',
   previousPreviousLocation: 'locNowhere',
   repeat: false,
+  turns: {
+    current: 0,
+    global: 0,
+  },
 }
