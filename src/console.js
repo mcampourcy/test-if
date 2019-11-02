@@ -3,7 +3,7 @@ import readline from 'readline'
 import chalk from 'chalk'
 import figlet from 'figlet'
 
-const rl = readline.createInterface({
+export const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 })
