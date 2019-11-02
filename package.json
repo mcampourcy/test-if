@@ -5,11 +5,14 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext js src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-jest": "^24.9.0",
     "chalk": "^2.4.2",
     "esm": "^3.2.25",
     "figlet": "^1.2.4",
@@ -20,7 +23,8 @@
     "adventure": "./bin/adventure.js"
   },
   "devDependencies": {
-    "eslint": "^6.6.0"
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0"
   },
   "browserslist": [
     ">0.2%",
