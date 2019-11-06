@@ -1,3 +1,4 @@
+export { attack } from './attack'
 export { carry } from './carry'
 export { discard } from './discard'
 export { extinguish } from './extinguish'

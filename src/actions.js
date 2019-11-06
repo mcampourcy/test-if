@@ -4,6 +4,7 @@ import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription } from './locations'
 import { getObject } from './object'
 import {
+  attack,
   carry,
   discard,
   extinguish,
@@ -53,6 +54,8 @@ export function manageActions(answer) {
   if (action.noaction) return action.message
 
   switch (action.id) {
+    case 'attack':
+      return locationTooDark ? messages.cantApply : attack(action.id, verb, param)
     case 'carry':
       return locationTooDark ? messages.cantApply : carry(param, action.id, verb)
     case 'discard':
