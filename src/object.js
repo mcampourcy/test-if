@@ -27,6 +27,20 @@ export const getObjectFromCurrentLocation = name => (
   ))
 )
 
+export const isInCurrentOrPreviousLocation = (name) => {
+  const inCurrentLocation = getObjectFromCurrentLocation(name)
+
+  const inPreviousLocation = objects.find(({ locations, words }) => (
+    locations.includes(settings.previousLocation) && words.includes(name)
+  ))
+
+  const inPreviousPreviousLocation = objects.find(({ locations, words }) => (
+    locations.includes(settings.previousPreviousLocation) && words.includes(name)
+  ))
+
+  return inCurrentLocation || inPreviousLocation || inPreviousPreviousLocation
+}
+
 export const getObjectState = (objId) => {
   const obj = getObject(objId)
   return obj.states.find(({ id }) => id === obj.currentState)

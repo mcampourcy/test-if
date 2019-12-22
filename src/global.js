@@ -2,7 +2,9 @@
 import { messages, settings } from './data'
 import { manageActions } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
+import { manageHints } from './hints'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
+import { manageTurns } from './settings'
 import { manageTravel } from './travels'
 
 const yesAnswer = ['y', 'yes']
@@ -12,6 +14,7 @@ export function getInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
   const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
   settings.repeat = false
+  manageTurns()
 
   consoleInput(welcomeQuestion, (input) => {
     const yes = yesAnswer.includes(input.trim())
@@ -42,6 +45,8 @@ export function getInstructions() {
  */
 export function doSomething(description = true) {
   const question = description ? getLocationDescription() : ''
+  manageTurns()
+  const hint = manageHints()
 
   consoleInput(question, (input) => {
     const routes = getRoutesFromLocation()

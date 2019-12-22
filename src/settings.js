@@ -6,3 +6,9 @@ export function manageLocationsHistory(newLocation) {
   settings.previousLocation = currentLocation
   settings.currentLocation = newLocation
 }
+
+export function manageTurns() {
+  settings.turns.global++
+  if (settings.repeat) settings.turns.current++
+  else settings.turns.current = 0
+}
