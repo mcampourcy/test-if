@@ -2,6 +2,7 @@
 import { messages, settings } from './data'
 import { manageActions } from './actions'
 import { consoleInput, display, displayLine, format } from './console'
+import { manageHints } from './hints'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTurns } from './settings'
 import { manageTravel } from './travels'
@@ -45,6 +46,7 @@ export function getInstructions() {
 export function doSomething(description = true) {
   const question = description ? getLocationDescription() : ''
   manageTurns()
+  const hint = manageHints()
 
   consoleInput(question, (input) => {
     const routes = getRoutesFromLocation()

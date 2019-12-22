@@ -1,5 +1,6 @@
 export { actions } from './actions'
 export { directions } from './directions'
+export { hints } from './hints'
 export { locations } from './locations'
 export { messages } from './messages'
 export { objects } from './objects'

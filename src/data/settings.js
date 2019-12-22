@@ -4,6 +4,7 @@ The current previousLocation is saved in previousPreviousLocation, in case the p
 
 export const settings = {
   currentLocation: 'locStart',
+  hinted: [],
   inventory: [],
   inventoryLimit: 7,
   novice: true,

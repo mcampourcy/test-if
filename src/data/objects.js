@@ -1,3 +1,8 @@
+// For treasures only
+// STATE_NOTFOUND  -1	  // 'Not found" state of treasures
+// STATE_FOUND	0	  // After discovered, before messed with
+// STATE_IN_CAVITY	1	  // State value common to all gemstones
+
 export const objects = [
   {
     id: 'axe',
@@ -68,6 +73,8 @@ export const objects = [
   {
     id: 'amber',
     currentState: 'amberInUrn',
+    isFound: false,
+    inCavity: true,
     inventory: 'Amber gemstone',
     locations: ['locNowhere'],
     states: [
@@ -152,6 +159,8 @@ export const objects = [
   {
     id: 'chain',
     currentState: 'chainHeap',
+    isFound: false,
+    inCavity: true,
     immovable: true,
     inventory: 'Golden chain',
     locations: ['locBarrenroom'],
@@ -175,6 +184,8 @@ export const objects = [
   {
     id: 'chest',
     descriptions: ['The pirate\'s treasure chest is here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Treasure chest',
     locations: ['locNowhere'],
     treasure: true,
@@ -209,6 +220,8 @@ export const objects = [
   {
     id: 'coins',
     descriptions: ['There are many coins here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Rare coins',
     locations: ['locWestside'],
     treasure: true,
@@ -265,6 +278,8 @@ export const objects = [
   {
     id: 'eggs',
     currentState: 'eggsHere',
+    isFound: false,
+    inCavity: true,
     inventory: 'Golden eggs',
     locations: ['locGiantroom'],
     states: [
@@ -287,6 +302,8 @@ export const objects = [
   {
     id: 'emerald',
     descriptions: ['There is an emerald here the size of a plover\'s egg!', 'There is an emerald resting in a small cavity in the rock!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Egg-sized emerald',
     locations: ['locPlover'],
     treasure: true,
@@ -330,6 +347,8 @@ export const objects = [
   {
     id: 'jade',
     descriptions: ['A precious jade necklace has been dropped here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Jade necklace',
     locations: ['locNowhere'],
     treasure: true,
@@ -409,6 +428,8 @@ export const objects = [
   {
     id: 'nugget',
     descriptions: ['There is a large sparkling nugget of gold here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Large gold nugget',
     locations: ['locNugget'],
     treasure: true,
@@ -530,6 +551,8 @@ export const objects = [
   {
     id: 'obj51',
     descriptions: ['There are diamonds here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Several diamonds',
     locations: ['locWestbank'],
     treasure: true,
@@ -538,6 +561,8 @@ export const objects = [
   {
     id: 'obj52',
     descriptions: ['There are bars of silver here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Bars of silver',
     locations: ['locFloorhole'],
     treasure: true,
@@ -546,6 +571,8 @@ export const objects = [
   {
     id: 'obj53',
     descriptions: ['There is precious jewelry here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Precious jewelry',
     locations: ['locSouthside'],
     treasure: true,
@@ -554,6 +581,8 @@ export const objects = [
   {
     id: 'obj63',
     descriptions: ['There are rare spices here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Rare spices',
     locations: ['locBoulders2'],
     treasure: true,
@@ -562,6 +591,8 @@ export const objects = [
   {
     id: 'obj69',
     descriptions: ['There is a richly-carved ebony statuette here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Ebony statuette',
     locations: ['locReachdead'],
     treasure: true,
@@ -594,6 +625,8 @@ export const objects = [
   {
     id: 'pearl',
     descriptions: ['Off to one side lies a glistening pearl!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Glistening pearl',
     locations: ['locNowhere'],
     treasure: true,
@@ -620,6 +653,8 @@ export const objects = [
   {
     id: 'pyramid',
     descriptions: ['There is a platinum pyramid here, 8 inches on a side!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Platinum pyramid',
     locations: ['locDarkroom'],
     treasure: true,
@@ -670,6 +705,8 @@ export const objects = [
   {
     id: 'ruby',
     descriptions: ['There is an enormous ruby here!', 'There is a ruby resting in a small cavity in the rock!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Giant ruby',
     locations: ['locStoreroom'],
     treasure: true,
@@ -698,6 +735,8 @@ export const objects = [
   {
     id: 'rug',
     currentState: 'rugFloor',
+    isFound: false,
+    inCavity: true,
     immovable: true,
     inventory: 'Persian rug',
     locations: ['locSecret4', 'locSecret6'],
@@ -721,6 +760,8 @@ export const objects = [
   {
     id: 'sapph',
     descriptions: ['A brilliant blue star sapphire is here!', 'There is a star sapphire resting in a small cavity in the rock!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Star sapphire',
     locations: ['locLedge'],
     treasure: true,
@@ -787,6 +828,8 @@ export const objects = [
   {
     id: 'trident',
     descriptions: ['There is a jewel-encrusted trident here!'],
+    isFound: false,
+    inCavity: true,
     inventory: 'Jeweled trident',
     locations: ['locWaterfall'],
     treasure: true,
@@ -828,6 +871,8 @@ export const objects = [
   {
     id: 'vase',
     currentState: 'vaseWhole',
+    isFound: false,
+    inCavity: true,
     inventory: 'Ming vase',
     locations: ['locOriental'],
     treasure: true,
