@@ -12,11 +12,12 @@ const isSpecial = location => /^locFoof/.test(location)
 export const getLocationDescription = (forceLong = false) => {
   const lamp = getObjectById('lamp')
   const { previousPreviousLocation, repeat } = settings
+  const currentLocation = getCurrentLocation()
   let description = ''
 
-  if (isSpecial(getCurrentLocation().id)) {
-    description += `${getCurrentLocation().description.long}\n`
-    manageLocationsHistory(getCurrentLocation().travels[0].action.description)
+  if (isSpecial(currentLocation.id)) {
+    description += `${currentLocation.description.long}\n`
+    manageLocationsHistory(currentLocation.travels[0].action.description)
   }
 
   const { conditions, description: { long, short }, id: current, travels } = getCurrentLocation()
@@ -39,7 +40,7 @@ export const getLocationDescription = (forceLong = false) => {
     return format(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
   }
 
-  return format(messages.pitchDark)
+  return format(description.length ? `${description}\n${messages.pitchDark}` : messages.pitchDark)
 }
 
 export const getFluidConditions = () => {

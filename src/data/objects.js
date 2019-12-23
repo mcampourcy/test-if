@@ -503,11 +503,11 @@ export const objects = [
     words: ['carpe', 'moss'],
   },
   {
-    id: 'obj46',
+    id: 'appendage',
     descriptions: ['Your keen eye spots a severed leporine appendage lying on the ground.'],
     inventory: 'Leporine appendage',
     locations: ['locForest22'],
-    words: ['appen', 'lepor'],
+    words: ['appen', 'lepor', 'appendage'],
   },
   {
     id: 'obj47',
