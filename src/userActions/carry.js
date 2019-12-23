@@ -34,6 +34,7 @@ export const carry = (param, actionId, verb) => {
     const bottle = getObjectFromCurrentLocation('bottle') || isObjectInInventory('bottle')
 
     if (!bottle) return messages.noContainer
+    if (getObjectFromCurrentLocation('bottle')) addObjectToInventory(obj.id)
     if (bottle.currentState === 'fullBottle') return messages.bottleFull
 
     return fill(actionId)
@@ -41,10 +42,15 @@ export const carry = (param, actionId, verb) => {
 
   if (obj.id === 'bird') return getTheBird(obj)
 
-  if (obj.id === 'bottle' && conditions.currentLocation.fluid) {
-    const bottleState = updateObjectState(obj.id, conditions.currentLocation.oily ? 'oilBottle' : 'waterBottle')
+  if (obj.id === 'bottle' && conditions.fluid) {
     addObjectToInventory(obj.id)
-    return `${bottleState.change}\n${messages.okMan}`
+
+    if (obj.currentState === 'emptyBottle') {
+      const bottleState = updateObjectState(obj.id, conditions.oily ? 'oilBottle' : 'waterBottle')
+      return `${bottleState.change}\n${messages.okMan}`
+    }
+
+    return messages.okMan
   }
 
   if ((obj.id === 'cage' && getObjectFromCurrentLocation('bird')) || (obj.id === 'bird' && verb === 'cage')) {

@@ -4,7 +4,7 @@ import { getCurrentLocation } from '../locations'
 import {
   destroyObject,
   dropObject,
-  getObject,
+  getObjectByWord,
   getObjectFromCurrentLocation,
   isObjectALiquid,
   updateObjectState,
@@ -26,11 +26,11 @@ export const discard = (param, actionId, verb) => {
   const hasAnotherRodInInventory = !isObjectInInventory('rod') && isObjectInInventory('rod2')
   const { conditions } = getCurrentLocation()
 
-  let obj = getObject(param)
+  let obj = getObjectByWord(param)
 
   if (!obj) return messages.doWhat(verb)
 
-  if (obj.id === 'rod' && hasAnotherRodInInventory) obj = getObject('rod2')
+  if (obj.id === 'rod' && hasAnotherRodInInventory) obj = getObjectByWord('rod2')
 
   if (!isObjectInInventory(obj.id)) return actions[actionId].message
 
@@ -67,9 +67,9 @@ export const discard = (param, actionId, verb) => {
     return null
   }
 
-  if (isObjectALiquid(obj.id)) obj = getObject('bottle')
+  if (isObjectALiquid(obj.id)) obj = getObjectByWord('bottle')
 
-  if (obj.id === 'cage' && getObject('bird').currentState === 'birdCaged') dropObject('bird')
+  if (obj.id === 'cage' && getObjectByWord('bird').currentState === 'birdCaged') dropObject('bird')
 
   if (obj.id === 'bird') {
     if (dragon && dragon.currentState === 'dragonBars') {

@@ -33,7 +33,7 @@ export const objects = [
         description: 'Some worn-out batteries have been discarded nearby.',
       },
     ],
-    words: ['batte'],
+    words: ['batte', 'battery'],
   },
   {
     id: 'bear',
@@ -204,7 +204,7 @@ export const objects = [
         description: 'There is a small urn-shaped cavity in the rock.',
       },
     ],
-    words: ['cavit'],
+    words: ['cavit', 'cavity'],
   },
   {
     id: 'coins',
@@ -260,7 +260,7 @@ export const objects = [
     immovable: true,
     inventory: null,
     locations: ['locNowhere'],
-    words: ['dwarf', 'dwarv'],
+    words: ['dwarf', 'dwarv', 'dwarves'],
   },
   {
     id: 'eggs',
@@ -290,7 +290,7 @@ export const objects = [
     inventory: 'Egg-sized emerald',
     locations: ['locPlover'],
     treasure: true,
-    words: ['emera'],
+    words: ['emera', 'emerald'],
   },
   {
     id: 'dragon',
@@ -318,7 +318,7 @@ export const objects = [
         sound: 'The dragon is, not surprisingly, silent.',
       },
     ],
-    words: ['drago'],
+    words: ['drago', 'dragon'],
   },
   {
     id: 'food',
@@ -360,7 +360,7 @@ export const objects = [
         description: 'A crystal bridge spans the fissure.',
       },
     ],
-    words: ['fissu'],
+    words: ['fissu', 'fissure'],
   },
   {
     id: 'knife',
@@ -395,16 +395,16 @@ export const objects = [
     inventory: '"Spelunker Today"',
     locations: ['locAnteroom'],
     texts: 'I\'m afraid the magazine is written in dwarvish. But pencilled on one cover you see, "Please leave the magazines at the construction site."',
-    words: ['magaz', 'issue', 'spelu', '"spel'],
+    words: ['magaz', 'issue', 'spelu', 'spel', 'magazine'],
   },
   {
-    id: 'messag',
+    id: 'message',
     descriptions: ['There is a message scrawled in the dust in a flowery script, reading: "This is not the maze where the pirate leaves his treasure chest."'],
     immovable: true,
     inventory: '*message in second maze',
     locations: ['locNowhere'],
     texts: '"This is not the maze where the pirate leaves his treasure chest."',
-    words: ['messa'],
+    words: ['messa', 'message'],
   },
   {
     id: 'nugget',
@@ -412,7 +412,7 @@ export const objects = [
     inventory: 'Large gold nugget',
     locations: ['locNugget'],
     treasure: true,
-    words: ['gold', 'nugge'],
+    words: ['gold', 'nugge', 'nugget'],
   },
   {
     id: 'lamp',
@@ -468,7 +468,7 @@ export const objects = [
         description: null,
       },
     ],
-    words: ['mirro'],
+    words: ['mirro', 'mirror'],
   },
   {
     id: 'obj27',
@@ -589,7 +589,7 @@ export const objects = [
     inventory: 'Giant oyster  >GROAN!<',
     locations: ['locNowhere'],
     sounds: ['Even though it\'s an oyster, the critter\'s as tight-mouthed as a clam.', 'It says the same thing it did before.  Hm, maybe it\'s a pun?'],
-    words: ['oyste'],
+    words: ['oyste', 'oyster'],
   },
   {
     id: 'pearl',
@@ -604,7 +604,7 @@ export const objects = [
     descriptions: ['A small velvet pillow lies on the floor.'],
     inventory: 'Velvet pillow',
     locations: ['locSoftroom'],
-    words: ['pillo', 'velve'],
+    words: ['pillo', 'velve', 'pillow'],
   },
   {
     id: 'plant2',
@@ -623,7 +623,7 @@ export const objects = [
     inventory: 'Platinum pyramid',
     locations: ['locDarkroom'],
     treasure: true,
-    words: ['plati', 'pyram'],
+    words: ['plati', 'pyram', 'pyramid'],
   },
   {
     id: 'rod',
@@ -790,7 +790,7 @@ export const objects = [
     inventory: 'Jeweled trident',
     locations: ['locWaterfall'],
     treasure: true,
-    words: ['tride'],
+    words: ['tride', 'trident'],
   },
   {
     id: 'troll2',
@@ -898,7 +898,7 @@ export const objects = [
         text: '"Drop coins here to receive fresh batteries."',
       },
     ],
-    words: ['machi', 'vendi'],
+    words: ['machi', 'vendi', 'machine', 'vending'],
   },
   {
     id: 'volcano',
@@ -906,7 +906,7 @@ export const objects = [
     immovable: true,
     inventory: '*volcano and/or geyser',
     locations: ['locBreathtaking'],
-    words: ['volca', 'geyse'],
+    words: ['volca', 'geyse', 'volcano'],
   },
   {
     id: 'water',

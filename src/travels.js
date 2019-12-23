@@ -3,7 +3,7 @@ import { manageLocationsHistory } from './settings'
 import { messages, settings } from './data'
 import { display } from './console'
 import { isObjectInInventory } from './inventory'
-import { getObject } from './object'
+import { getObjectById } from './object'
 
 export function manageTravel(answer) {
   const travel = getTravel(answer)
@@ -22,7 +22,7 @@ export function manageTravel(answer) {
 function manageTravelConditions(travels) {
   const { condition } = travels
   if (condition.type === 'object') {
-    const { currentState } = getObject(condition.object)
+    const { currentState } = getObjectById(condition.object)
     if (currentState === condition.state) {
       manageLocationsHistory(travels.description)
     } else {

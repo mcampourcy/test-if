@@ -2,7 +2,7 @@
 import { actions, directions, messages } from './data'
 import { getErrorMessage } from './directions'
 import { getCurrentLocation, getLocationDescription } from './locations'
-import { getObject } from './object'
+import { getObjectById, getObjectByWord } from './object'
 import {
   carry,
   discard,
@@ -34,13 +34,13 @@ export function manageActions(answer) {
   if (answerIsDirection) return getErrorMessage(answer)
 
   const { conditions } = getCurrentLocation()
-  const lamp = getObject('lamp')
+  const lamp = getObjectById('lamp')
   const locationTooDark = !conditions.lit && lamp.currentState === 'lampDark'
 
   let [verb, param] = answer.split(/\s/)
 
   // <object> <verb> form
-  if (getAction(param) && getObject(verb)) {
+  if (getAction(param) && getObjectByWord(verb)) {
     const oldVerb = verb
     verb = param
     param = oldVerb

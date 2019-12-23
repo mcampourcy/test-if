@@ -1,7 +1,7 @@
 /*  Light.  Applicable only to lamp and urn. */
 import { isObjectInInventory } from '../inventory'
 import { getLocationDescription } from '../locations'
-import { getObject, updateObjectState, getObjectFromCurrentLocation } from '../object'
+import { getObjectByWord, updateObjectState, getObjectFromCurrentLocation } from '../object'
 
 export function light(action, param) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
@@ -10,7 +10,7 @@ export function light(action, param) {
 
   if (!param && (lamp || urn)) {
     const id = lamp ? 'lamp' : 'urn'
-    const lightObj = getObject(id)
+    const lightObj = getObjectByWord(id)
     if (lightObj.currentState === `${id}Dark`) obj = lightObj
   }
 

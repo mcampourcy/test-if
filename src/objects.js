@@ -1,11 +1,11 @@
 import { messages, objects, settings } from './data'
 import { getCurrentLocation } from './locations'
 import { isObjectInInventory } from './inventory'
-import { getObject } from './object'
+import { getObjectByWord } from './object'
 
 export const getObjectsDescription = () => {
   const { conditions, id: currentLocation } = getCurrentLocation()
-  const lamp = getObject('lamp')
+  const lamp = getObjectByWord('lamp')
 
   if (conditions.lit || lamp.currentState === 'lampBright') {
     const description = []

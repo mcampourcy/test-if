@@ -12,14 +12,16 @@ export const destroyObject = (object) => {
 
 export const dropObject = (id, location = null) => {
   const currentLocation = getCurrentLocation()
-  const obj = getObject(id)
+  const obj = getObjectById(id)
 
   obj.locations = location || [currentLocation.id]
   updateObjectsList(obj)
   removeObjectFromInventory(obj.id)
 }
 
-export const getObject = objId => objects.find(({ id, words }) => words.includes(objId) || id === objId)
+export const getObjectByWord = word => objects.find(({ id, words }) => words.includes(word))
+
+export const getObjectById = objId => objects.find(({ id }) => id === objId)
 
 export const getObjectFromCurrentLocation = name => (
   objects.find(({ locations, words }) => (
@@ -28,7 +30,7 @@ export const getObjectFromCurrentLocation = name => (
 )
 
 export const getObjectState = (objId) => {
-  const obj = getObject(objId)
+  const obj = getObjectById(objId)
   return obj.states.find(({ id }) => id === obj.currentState)
 }
 
@@ -39,7 +41,7 @@ export const isObjectALiquid = (id) => {
 }
 
 export const updateObjectState = (id, nextStateId) => {
-  const obj = getObject(id)
+  const obj = getObjectById(id)
   const state = obj.states.find(({ id }) => id === nextStateId)
   const objectInInventory = isObjectInInventory(obj.id)
 

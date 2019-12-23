@@ -1,5 +1,5 @@
 import { messages, settings } from '../data'
-import { getObject } from '../object'
+import { getObjectById, getObjectByWord } from '../object'
 
 export function inventory() {
   const { inventory: i } = settings
@@ -10,9 +10,16 @@ export function inventory() {
     const hasCage = i.find(id => id === 'cage')
     const invent = (hasBird && hasCage) ? i.filter(id => id !== 'cage') : i
 
-    invent.map((id) => {
-      const obj = getObject(id)
-      description += `\n${obj.inventory}`
+    invent.map((objId) => {
+      const { id, currentState, inventory } = getObjectByWord(objId)
+      description += `\n${inventory}`
+
+      if (id === 'bottle' && currentState !== 'emptyBottle') {
+        const type = currentState.substring(0, currentState.indexOf('Bottle'))
+        const liquid = getObjectById(type).inventory
+
+        description += `\n${liquid}`
+      }
     })
   }
 
