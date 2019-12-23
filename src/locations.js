@@ -1,6 +1,5 @@
 import { directions, locations, messages, settings } from './data'
 import { format } from './console'
-import { getObjectById } from './object'
 import { getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
 import { pct } from './global'
@@ -11,7 +10,6 @@ export const getCurrentLocation = () => locations.find(({ id }) => id === settin
 const isSpecial = location => /^locFoof/.test(location)
 
 export const getLocationDescription = (forceLong = false) => {
-  const lamp = getObjectById('lamp')
   const { previousPreviousLocation, repeat } = settings
   const currentLocation = getCurrentLocation()
   let description = ''
@@ -27,7 +25,7 @@ export const getLocationDescription = (forceLong = false) => {
   // e.g. : locStart => locBuilding => locStart
   const turnAround = current === previousPreviousLocation
 
-  if (isLocationLight) {
+  if (isLocationLight()) {
     const objectsDescription = getObjectsDescription()
     const routesFromLocation = getRoutesFromLocation()
     const hasShortDescription = short && !forceLong

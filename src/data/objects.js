@@ -528,12 +528,12 @@ export const objects = [
     words: ['note'],
   },
   {
-    id: 'obj51',
+    id: 'diamonds',
     descriptions: ['There are diamonds here!'],
     inventory: 'Several diamonds',
     locations: ['locWestbank'],
     treasure: true,
-    words: ['diamo'],
+    words: ['diamo', 'diamonds'],
   },
   {
     id: 'obj52',

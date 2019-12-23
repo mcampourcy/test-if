@@ -35,7 +35,7 @@ export function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
 
-  const locationTooDark = isLocationLight()
+  const locationTooDark = !isLocationLight()
 
   let [verb, param] = answer.split(/\s/)
 

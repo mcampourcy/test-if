@@ -1193,13 +1193,7 @@ export const locations = [
     },
     travels: [
       { verbs: ['hall', 'east'], action: { id: 'goTo', description: 'locMisthall' } },
-      {
-        verbs: ['jump'],
-        action: {
-          id: 'speak',
-          description: 'crossBridge',
-        },
-      },
+      { verbs: ['jump'], action: { id: 'speak', description: 'crossBridge' } },
       {
         verbs: ['forwa'],
         action: {
@@ -1221,7 +1215,7 @@ export const locations = [
           condition: {
             type: 'object',
             object: 'fissure',
-            state: 'unbridged',
+            state: 'bridged',
           },
           conditionFailed: { id: 'speak', description: 'noCross' },
         },
@@ -2829,46 +2823,49 @@ export const locations = [
       short: 'You\'re on west bank of fissure.',
     },
     travels: [
-      { verbs: ['stair', 'upwar', 'east'], action: { id: 'goTo', description: 'locMisthall' } },
-      {
-        verbs: ['jump'],
-        action: {
-          id: 'speak',
-          description: 'crossBridge',
-          condition: {
-            type: 'object',
-            object: 'fissure',
-            state: 'bridged',
-          },
-        },
-      },
+      { verbs: ['stair', 'upwar'], action: { id: 'goTo', description: 'locMisthall' } },
+      { verbs: ['north'], action: { id: 'goTo', description: 'locParallel1' } },
+      { verbs: ['jump'], action: { id: 'speak', description: 'crossBridge' } },
+      { verbs: ['acros', 'cross'], action: { id: 'speak', description: 'noCross' } },
       {
         verbs: ['forwa'],
         action: {
           id: 'goTo',
-          description: 'locNomake',
+          description: 'locMistwest',
           condition: {
             type: 'object',
             object: 'fissure',
             state: 'bridged',
           },
+          conditionFailed: { id: 'goTo', description: 'locNomake' },
         },
       },
       {
-        verbs: ['over', 'acros', 'west', 'cross'],
+        verbs: ['over', 'east'],
         action: {
-          id: 'speak',
-          description: 'noCross',
+          id: 'goTo',
+          description: 'locEastbank',
           condition: {
             type: 'object',
             object: 'fissure',
-            state: 'unbridged',
+            state: 'bridged',
           },
+          conditionFailed: { id: 'speak', description: 'noCross' },
         },
       },
-      { verbs: ['over'], action: { id: 'goTo', description: 'locEastbank' } },
-      { verbs: ['north'], action: { id: 'goTo', description: 'locParallel1' } },
-      { verbs: ['west'], action: { id: 'goTo', description: 'locMistwest' } },
+      {
+        verbs: ['west'],
+        action: {
+          id: 'goTo',
+          description: 'locMistwest',
+          condition: {
+            type: 'object',
+            object: 'fissure',
+            state: 'bridged',
+          },
+          conditionFailed: { id: 'speak', description: 'noCross' },
+        },
+      },
     ],
   },
   {

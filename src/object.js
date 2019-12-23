@@ -23,6 +23,13 @@ export const getObjectByWord = word => objects.find(({ words }) => words.include
 
 export const getObjectById = objId => objects.find(({ id }) => id === objId)
 
+export const getObjectFromLocationOrInventory = (name) => {
+  const isInInventory = isObjectInInventory(name)
+  if (isInInventory) return getObjectByWord(name)
+
+  return getObjectFromCurrentLocation(name)
+}
+
 export const getObjectFromCurrentLocation = name => (
   objects.find(({ locations, words }) => (
     locations.includes(settings.currentLocation) && words.includes(name)

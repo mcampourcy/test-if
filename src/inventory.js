@@ -5,7 +5,7 @@ export const addObjectToInventory = (object) => {
   return null
 }
 
-export const isObjectInInventory = object => settings.inventory.find((objid => objid === object))
+export const isObjectInInventory = object => settings.inventory.find((id => id === object))
 
 export const removeObjectFromInventory = (object) => {
   const { inventory } = settings
