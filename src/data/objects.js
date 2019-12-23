@@ -519,7 +519,7 @@ export const objects = [
     words: ['mud'],
   },
   {
-    id: 'obj48',
+    id: 'note',
     descriptions: null,
     immovable: true,
     inventory: '*note',

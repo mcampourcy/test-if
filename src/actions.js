@@ -12,8 +12,10 @@ import {
   light,
   listen,
   lock,
+  read,
   wave,
 } from './userActions'
+import { isLocationLight } from './light'
 
 const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 
@@ -33,9 +35,7 @@ export function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
 
-  const { conditions } = getCurrentLocation()
-  const lamp = getObjectById('lamp')
-  const locationTooDark = !conditions.lit && lamp.currentState === 'lampDark'
+  const locationTooDark = isLocationLight()
 
   let [verb, param] = answer.split(/\s/)
 
@@ -72,6 +72,8 @@ export function manageActions(answer) {
     case 'lock':
     case 'unlock':
       return lock(param, action.id)
+    case 'read':
+      return read(param)
     case 'wave':
       return wave(param, verb)
     default:

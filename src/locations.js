@@ -4,6 +4,7 @@ import { getObjectById } from './object'
 import { getObjectsDescription } from './objects'
 import { manageLocationsHistory } from './settings'
 import { pct } from './global'
+import { isLocationLight } from './light'
 
 export const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
 
@@ -20,13 +21,13 @@ export const getLocationDescription = (forceLong = false) => {
     manageLocationsHistory(currentLocation.travels[0].action.description)
   }
 
-  const { conditions, description: { long, short }, id: current, travels } = getCurrentLocation()
+  const { description: { long, short }, id: current, travels } = getCurrentLocation()
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = current === previousPreviousLocation
 
-  if ((conditions && conditions.lit) || lamp.currentState === 'lampBright') {
+  if (isLocationLight) {
     const objectsDescription = getObjectsDescription()
     const routesFromLocation = getRoutesFromLocation()
     const hasShortDescription = short && !forceLong

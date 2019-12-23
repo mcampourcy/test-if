@@ -29,6 +29,9 @@ export const carry = (param, actionId, verb) => {
   // Already carrying
   if (isObjectInInventory(obj.id)) return getAction(actionId).message
 
+  // Not moveable
+  if (obj.immovable) return messages.youJoking
+
   // "take water / oil"
   if (isObjectALiquid(obj.id)) {
     const bottle = getObjectFromCurrentLocation('bottle') || isObjectInInventory('bottle')
