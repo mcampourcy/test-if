@@ -898,7 +898,7 @@ export const objects = [
         text: '"Drop coins here to receive fresh batteries."',
       },
     ],
-    words: ['machi', 'vendi', 'machine', 'vending'],
+    words: ['machi', 'vendi', 'machine', 'vending', 'vend'],
   },
   {
     id: 'volcano',

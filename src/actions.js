@@ -16,6 +16,7 @@ import {
   wave,
 } from './userActions'
 import { isLocationLight } from './light'
+import { attack } from './userActions/attack'
 
 const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 
@@ -53,6 +54,9 @@ export function manageActions(answer) {
   if (action.noaction) return action.message
 
   switch (action.id) {
+    case 'attack':
+    case 'throw':
+      return attack(param, action.id)
     case 'carry':
       return locationTooDark ? messages.cantApply : carry(param, action.id, verb)
     case 'discard':
