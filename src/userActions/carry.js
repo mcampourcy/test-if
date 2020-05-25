@@ -1,5 +1,5 @@
 const { messages, settings } = require('../data')
-const { fill, inventory } = require('./index')
+const { fill, inventory } = require('./inventory')
 const { cageTheBird, getTheBird } = require('../bird')
 const { addObjectToInventory, isObjectInInventory } = require('../inventory')
 const { getCurrentLocation } = require('../locations')
@@ -7,10 +7,11 @@ const { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } = req
 const { getObjectsList } = require('../objects')
 const { getAction } = require('./utils')
 
-const carry = (param, actionId, verb) => {
+function carry(param, actionId, verb) {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
-  const onlyOneObjectHere = getObjectsList().length === 1
+  const objectsList = getObjectsList()
+  const onlyOneObjectHere = objectsList.length === 1
   let obj
 
   // Inventory full
@@ -19,7 +20,7 @@ const carry = (param, actionId, verb) => {
   // if user didn't mention any param ("take") and there is only one object here, take the object
   // Otherwise, return error message
   if (!param) {
-    [obj] = getObjectsList()
+    [obj] = objectsList
     if (!onlyOneObjectHere) return messages.doWhat(verb)
   }
 

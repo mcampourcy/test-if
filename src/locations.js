@@ -5,13 +5,18 @@ const { manageLocationsHistory } = require('./settings')
 const { pct } = require('./global')
 const { isLocationLight } = require('./light')
 
-const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
+function getCurrentLocation() {
+  return locations.find(({ id }) => id === settings.currentLocation)
+}
 
-const isSpecial = location => /^locFoof/.test(location)
+function isSpecial(location) {
+  return /^locFoof/.test(location)
+}
 
-const getLocationDescription = (forceLong = false) => {
+function getLocationDescription(forceLong = false) {
   const { previousPreviousLocation, repeat } = settings
   const currentLocation = getCurrentLocation()
+  const locationLight = isLocationLight(currentLocation)
   let description = ''
 
   if (isSpecial(currentLocation.id)) {
@@ -19,14 +24,14 @@ const getLocationDescription = (forceLong = false) => {
     manageLocationsHistory(currentLocation.travels[0].action.description)
   }
 
-  const { description: { long, short }, id: current, travels } = getCurrentLocation()
+  const { description: { long, short }, id: current, travels } = currentLocation
 
   // The player came here two moves ago
   // e.g. : locStart => locBuilding => locStart
   const turnAround = current === previousPreviousLocation
 
-  if (isLocationLight()) {
-    const objectsDescription = getObjectsDescription()
+  if (locationLight) {
+    const objectsDescription = getObjectsDescription(currentLocation, locationLight)
     const routesFromLocation = getRoutesFromLocation()
     const hasShortDescription = short && !forceLong
 
@@ -42,24 +47,30 @@ const getLocationDescription = (forceLong = false) => {
   return format(description.length ? `${description}\n${messages.pitchDark}` : messages.pitchDark)
 }
 
-const getFluidConditions = () => {
+function getFluidConditions() {
   const { conditions } = getCurrentLocation()
   if (conditions.fluid) return conditions.oily ? 'oil' : 'water'
 
   return null
 }
 
-const getRoutesFromLocation = () => {
+function getRoutesFromLocation() {
   const { travels } = getCurrentLocation()
   const travelsVerbs = travels.map(({ verbs }) => verbs).flat()
   // get dictionary from travels ids
   return travelsVerbs.map(travel => directions.find(({ id }) => id === travel).verbs).flat()
 }
 
-const getTravel = (answer) => {
+function getTravel(answer) {
   const { travels } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
   return travels.find(({ verbs }) => verbs.includes(direction.id)).action
 }
 
-module.exports = { getCurrentLocation, getLocationDescription, getFluidConditions, getRoutesFromLocation, getTravel }
+module.exports = {
+  getCurrentLocation,
+  getLocationDescription,
+  getFluidConditions,
+  getRoutesFromLocation,
+  getTravel,
+}

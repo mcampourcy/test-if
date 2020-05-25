@@ -1,20 +1,22 @@
 const { settings } = require('./data')
 
-const addObjectToInventory = (object) => {
+function addObjectToInventory(object) {
   if (!isObjectInInventory(object)) return settings.inventory.push(object)
   return null
 }
 
-const isObjectInInventory = object => settings.inventory.find((id => id === object))
+function isObjectInInventory(object) {
+  return settings.inventory.find((id => id === object))
+}
 
-const removeObjectFromInventory = (object) => {
+function removeObjectFromInventory(object) {
   const { inventory } = settings
   const index = inventory.indexOf(inventory.find(o => o === object))
   if (index >= 0) return inventory.splice(index, 1)
   return null
 }
 
-const updateInventory = (object) => {
+function updateInventory(object) {
   const { inventory } = settings
   const index = inventory.indexOf(inventory.find(o => o === object))
   if (index >= 0) return inventory.splice(index, 1, object)

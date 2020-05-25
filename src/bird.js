@@ -2,7 +2,7 @@ const { messages } = require('./data')
 const { addObjectToInventory, isObjectInInventory } = require('./inventory')
 const { destroyObject, getObjectFromCurrentLocation, updateObjectState } = require('./object')
 
-const getTheBird = (bird) => {
+function getTheBird(bird) {
   if (bird.currentState === 'birdForestUncaged') {
     destroyObject(bird)
     return messages.birdCrap
@@ -17,7 +17,7 @@ const getTheBird = (bird) => {
   return messages.okMan
 }
 
-const cageTheBird = (cage, instruction) => {
+function cageTheBird(cage, instruction) {
   const bird = getObjectFromCurrentLocation('bird')
   if (!bird) return messages.doWhat(instruction)
 

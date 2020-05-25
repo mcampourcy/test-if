@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { actions, directions, messages } = require('./data')
 const { getErrorMessage } = require('./directions')
-const { getLocationDescription } = require('./locations')
+const { getLocationDescription, getCurrentLocation } = require('./locations')
 const { getObjectByWord } = require('./object')
 const {
   carry,
@@ -35,8 +35,8 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
-
-  const locationTooDark = !isLocationLight()
+  const currentLocation = getCurrentLocation()
+  const locationTooDark = !isLocationLight(currentLocation)
 
   let [verb, param] = answer.split(/\s/)
 

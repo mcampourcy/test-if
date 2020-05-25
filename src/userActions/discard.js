@@ -17,21 +17,20 @@ const { isPreciousGem } = require('../treasure')
  * Drop coins at vending machine for extra batteries.
 **/
 
-const discard = (param, actionId, verb) => {
+function discard(param, actionId, verb) {
   const cavity = getObjectFromCurrentLocation('cavity')
   const dragon = getObjectFromCurrentLocation('dragon')
   const rug = getObjectFromCurrentLocation('rug')
   const snake = getObjectFromCurrentLocation('snake')
   const vendingMachine = getObjectFromCurrentLocation('vend')
   const hasAnotherRodInInventory = !isObjectInInventory('rod') && isObjectInInventory('rod2')
-  const { conditions } = getCurrentLocation()
+  const currentLocation = getCurrentLocation()
 
   let obj = getObjectByWord(param)
 
   if (!obj) return messages.doWhat(verb)
 
   if (obj.id === 'rod' && hasAnotherRodInInventory) obj = getObjectByWord('rod2')
-
   if (!isObjectInInventory(obj.id)) return actions[actionId].message
 
   if (isPreciousGem(obj.id) && cavity && cavity.currentState !== 'cavityFull') {
@@ -55,21 +54,21 @@ const discard = (param, actionId, verb) => {
         updateObjectState(rug.id, state)
       }
 
-      dropObject(obj.id)
+      dropObject(obj.id, currentLocation.id)
       return message
     }
   }
 
   if (obj.id === 'coins' && vendingMachine) {
     destroyObject('coins')
-    dropObject('battery')
+    dropObject('battery', currentLocation.id)
     // pspeak(BATTERY, look, true, FRESH_BATTERIES);
     return null
   }
 
   if (isObjectALiquid(obj.id)) obj = getObjectByWord('bottle')
 
-  if (obj.id === 'cage' && getObjectByWord('bird').currentState === 'birdCaged') dropObject('bird')
+  if (obj.id === 'cage' && getObjectByWord('bird').currentState === 'birdCaged') dropObject('bird', currentLocation.id)
 
   if (obj.id === 'bird') {
     if (dragon && dragon.currentState === 'dragonBars') {
@@ -80,16 +79,16 @@ const discard = (param, actionId, verb) => {
     if (snake) {
       updateObjectState('snake', 'snakeChased')
       destroyObject(snake)
-      updateObjectState('bird', conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
-      dropObject('bird')
+      updateObjectState('bird', currentLocation.conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
+      dropObject('bird', currentLocation.id)
       return messages.birdAttacks
     }
 
-    updateObjectState('bird', conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
-    dropObject('bird')
+    updateObjectState('bird', currentLocation.conditions.forest ? 'birdForestUncaged' : 'birdUncaged')
+    dropObject('bird', currentLocation.id)
   }
 
-  dropObject(obj.id)
+  dropObject(obj.id, currentLocation.id)
   return messages.okMan
 }
 

@@ -1,12 +1,10 @@
 const { messages, objects, settings } = require('./data')
-const { getCurrentLocation } = require('./locations')
 const { isObjectInInventory } = require('./inventory')
-const { isLocationLight } = require('./light')
 
-const getObjectsDescription = () => {
-  const { id: currentLocation } = getCurrentLocation()
+function getObjectsDescription(location, isLocationLight) {
+  const { id: currentLocation } = location
 
-  if (isLocationLight()) {
+  if (isLocationLight) {
     const description = []
 
     objects.map((object) => {
@@ -29,11 +27,11 @@ const getObjectsDescription = () => {
   return messages.pitchDark
 }
 
-const getObjectsList = () => (
-  objects.filter(({ locations }) => locations.includes(settings.currentLocation))
-)
+function getObjectsList() {
+  return objects.filter(({ locations }) => locations.includes(settings.currentLocation))
+}
 
-const getObjectsSound = () => {
+function getObjectsSound() {
   const { currentLocation, inventory } = settings
   const description = []
   objects.map(({ locations, id, states }) => {
@@ -46,12 +44,12 @@ const getObjectsSound = () => {
   return description.join('\n')
 }
 
-const updateObjectsList = object => (
-  objects.splice(
+function updateObjectsList(object) {
+  return objects.splice(
     objects.indexOf(objects.find(({ id }) => id === object.id)),
     1,
     object
   )
-)
+}
 
 module.exports = { getObjectsDescription, getObjectsList, getObjectsSound, updateObjectsList }

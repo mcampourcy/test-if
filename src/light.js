@@ -1,8 +1,7 @@
-const { getCurrentLocation } = require('./locations')
 const { getObjectFromLocationOrInventory } = require('./object')
 
-function isLocationLight() {
-  const { conditions } = getCurrentLocation()
+function isLocationLight(currentLocation) {
+  const { conditions } = currentLocation
   const lamp = getObjectFromLocationOrInventory('lamp')
 
   return (conditions && conditions.lit) || (lamp && lamp.currentState === 'lampBright')

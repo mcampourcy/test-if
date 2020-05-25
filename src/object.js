@@ -1,53 +1,55 @@
-import { objects, settings } from './data'
+const { objects, settings } = require('./data')
 const { isObjectInInventory, removeObjectFromInventory, updateInventory } = require('./inventory')
 const { updateObjectsList } = require('./objects')
-const { getCurrentLocation } = require('./locations')
 
-const destroyObject = (object) => {
+function destroyObject(object) {
   removeObjectFromInventory(object.id)
   object.locations = ['locNowhere']
   updateObjectsList(object)
   return object
 }
 
-const dropObject = (id, location = null) => {
-  const currentLocation = getCurrentLocation()
+function dropObject(id, location = null) {
   const obj = getObjectById(id)
 
-  obj.locations = location || [currentLocation.id]
+  obj.locations = location
   updateObjectsList(obj)
   removeObjectFromInventory(obj.id)
 }
 
-const getObjectByWord = word => objects.find(({ words }) => words.includes(word))
+function getObjectByWord(word) {
+  return objects.find(({ words }) => words.includes(word))
+}
 
-const getObjectById = objId => objects.find(({ id }) => id === objId)
+function getObjectById(objId) {
+  return objects.find(({ id }) => id === objId)
+}
 
-const getObjectFromLocationOrInventory = (name) => {
+function getObjectFromLocationOrInventory(name) {
   const isInInventory = isObjectInInventory(name)
   if (isInInventory) return getObjectByWord(name)
 
   return getObjectFromCurrentLocation(name)
 }
 
-const getObjectFromCurrentLocation = name => (
-  objects.find(({ locations, words }) => (
+function getObjectFromCurrentLocation(name) {
+  return objects.find(({ locations, words }) => (
     locations.includes(settings.currentLocation) && words.includes(name)
   ))
-)
+}
 
-const getObjectState = (objId) => {
+function getObjectState(objId) {
   const obj = getObjectById(objId)
   return obj.states.find(({ id }) => id === obj.currentState)
 }
 
-const isObjectALiquid = (id) => {
+function isObjectALiquid(id) {
   const water = objects.find(({ id }) => id === 'water')
   const oil = objects.find(({ id }) => id === 'oil')
   return [...water.words, ...oil.words].includes(id)
 }
 
-const updateObjectState = (id, nextStateId) => {
+function updateObjectState(id, nextStateId) {
   const obj = getObjectById(id)
   const state = obj.states.find(({ id }) => id === nextStateId)
   const objectInInventory = isObjectInInventory(obj.id)

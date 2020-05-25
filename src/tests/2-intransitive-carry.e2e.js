@@ -13,7 +13,6 @@ describe('Scenario for instructions at the beginning', () => {
   it('should display instructions on yes', async () => {
     const response = await executeInput(path.join(__dirname + '/../../bin', 'adventure.js'), answers)
     const scenario = `${welcomeScreen}\n${text.join('\n')}\n\n`
-    console.log(response.toString())
 
     expect(response.toString()).toEqual(scenario)
   })

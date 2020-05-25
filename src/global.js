@@ -41,14 +41,14 @@ function getInstructions() {
  * Anyway : repeat all
  */
 function doSomething(description = true) {
-  const question = description ? getLocationDescription() : ''
+  const locationDescription = getLocationDescription()
+  const question = description ? locationDescription : ''
 
   consoleInput(question, (input) => {
     const routes = getRoutesFromLocation()
     const answer = input.trim()
 
     if (settings.repeat) settings.repeat = false
-
     if (!routes.includes(answer)) {
       display(manageActions(answer))
       settings.repeat = true

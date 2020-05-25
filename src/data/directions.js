@@ -296,3 +296,5 @@ const directions = [
 ]
 
 module.exports = { directions }
+
+

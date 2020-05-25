@@ -10,13 +10,13 @@ function executeInput(processPath, inputs = []) {
     throw new Error('Input are in not correct format')
   }
 
-  const timeout = 100
+  const timeout = 50
 
   const childProcess = spawn('node', [processPath])
   let result = ''
   let logs = ''
 
-  const iterate = (inputs) => {
+  function iterate(inputs) {
     if (!inputs.length) {
       childProcess.stdin.end()
       return
@@ -25,7 +25,6 @@ function executeInput(processPath, inputs = []) {
     setTimeout(() => {
       const ENTER = '\x0D'
       childProcess.stdin.write(`${inputs[0]}${ENTER}`)
-      console.log(inputs)
       logs += `${inputs[0]}\n`
       iterate(inputs.slice(1))
     }, timeout)
@@ -63,6 +62,4 @@ function executeInput(processPath, inputs = []) {
   return promise
 }
 
-module.exports = {
-  executeInput,
-}
+module.exports = { executeInput }
