@@ -36,7 +36,7 @@
 //                                     N may be numeric or a state label.
 //                      [nodwarves]    Dwarves must skip this rule.
 
-export const locations = [
+const locations = [
   {
     id: 'locNowhere',
     conditions: {},
@@ -3012,3 +3012,5 @@ export const locations = [
     ],
   },
 ]
+
+module.exports = { locations }

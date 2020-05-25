@@ -2,7 +2,7 @@
 The current previousLocation is saved in previousPreviousLocation, in case the player dies.
 (if he/she does, previousLocation will be what killed him/her, so we need previousPreviousLocation, which is the last safe place) */
 
-export const settings = {
+const settings = {
   currentLocation: 'locStart',
   inventory: [],
   inventoryLimit: 7,
@@ -11,3 +11,5 @@ export const settings = {
   previousPreviousLocation: 'locNowhere',
   repeat: false,
 }
+
+module.exports = { settings }

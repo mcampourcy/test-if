@@ -1,4 +1,4 @@
-export const objects = [
+const objects = [
   {
     id: 'axe',
     currentState: 'axeHere',
@@ -916,3 +916,5 @@ export const objects = [
     words: ['water', 'h2o'],
   },
 ]
+
+module.exports = { objects }

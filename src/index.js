@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-import { displayTitle } from './console'
-import { getInstructions } from './global'
+const { displayTitle } = require('./console')
+const { getInstructions } = require('./global')
 
-export function run() {
+function run() {
   displayTitle()
   getInstructions()
 }
+
+module.exports = { run }

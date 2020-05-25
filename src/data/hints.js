@@ -1,4 +1,4 @@
-export const hints = {
+const hints = {
   grate: {
     id: 'CAVE',
     hint: 'The grate is very solid and has a hardened steel lock. You cannot enter without a key, and there are no keys nearby. I would recommend looking elsewhere for the keys.',
@@ -80,3 +80,5 @@ export const hints = {
     turns: 1,
   },
 }
+
+module.exports = { hints }

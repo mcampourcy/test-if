@@ -1,6 +1,6 @@
 // motions: Motion words, grouped into synonyms.  The 'oldstyle' attribute, if false, means that single-letter synonyms should be accepted in oldstyle mode; it defaults to true.
 
-export const directions = [
+const directions = [
   {
     id: 'acros',
     verbs: ['acros'],
@@ -294,3 +294,5 @@ export const directions = [
     verbs: ['y2'],
   },
 ]
+
+module.exports = { directions }

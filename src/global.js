@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import { messages, settings } from './data'
-import { manageActions } from './actions'
-import { consoleInput, display, displayLine, format } from './console'
-import { getLocationDescription, getRoutesFromLocation } from './locations'
-import { manageTravel } from './travels'
+const { messages, settings } = require('./data')
+const { manageActions } = require('./actions')
+const { consoleInput, display, displayLine, format } = require('./console')
+const { getLocationDescription, getRoutesFromLocation } = require('./locations')
+const { manageTravel } = require('./travels')
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']
 
-export function getInstructions() {
+function getInstructions() {
   const { caveNearby, pleaseAnswer, welcomeYou } = messages
   const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
   settings.repeat = false
@@ -40,7 +40,7 @@ export function getInstructions() {
  *  if the actions is a speak : display the action's description
  * Anyway : repeat all
  */
-export function doSomething(description = true) {
+function doSomething(description = true) {
   const question = description ? getLocationDescription() : ''
 
   consoleInput(question, (input) => {
@@ -62,7 +62,9 @@ export function doSomething(description = true) {
 }
 
 // true N% of the time (N integer from 0 to 100)
-export const pct = (number = 0) => Math.random() < (number / 100)
+const pct = (number = 0) => Math.random() < (number / 100)
+
+module.exports = { getInstructions, doSomething, pct }
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:

@@ -1,6 +1,6 @@
-import { messages } from './messages'
+const { messages } = require('./messages')
 
-export const actions = [
+const actions = [
   {
     id: 'act_unknown',
     message: messages.huhMan,
@@ -308,3 +308,5 @@ export const actions = [
     verbs: ['yes'],
   },
 ]
+
+module.exports = { actions }

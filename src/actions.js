@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { actions, directions, messages } from './data'
-import { getErrorMessage } from './directions'
-import { getCurrentLocation, getLocationDescription } from './locations'
-import { getObjectById, getObjectByWord } from './object'
-import {
+const { actions, directions, messages } = require('./data')
+const { getErrorMessage } = require('./directions')
+const { getCurrentLocation, getLocationDescription } = require('./locations')
+const { getObjectById, getObjectByWord } = require('./object')
+const {
   carry,
   discard,
   extinguish,
@@ -14,9 +14,9 @@ import {
   lock,
   read,
   wave,
-} from './userActions'
-import { isLocationLight } from './light'
-import { attack } from './userActions/attack'
+} = require('./userActions')
+const { isLocationLight } = require('./light')
+const { attack } = require('./userActions/attack')
 
 const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 
@@ -32,7 +32,7 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
  * Difference between 'action.id' and 'verb' :
  * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
  **/
-export function manageActions(answer) {
+function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
 
@@ -84,3 +84,5 @@ export function manageActions(answer) {
       return messages.cantApply
   }
 }
+
+module.exports = { manageActions }

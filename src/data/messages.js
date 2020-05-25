@@ -1,4 +1,4 @@
-export const messages = {
+const messages = {
   allSilent: 'All is silent.',
   alreadyCarrying: 'You are already carrying it!',
   alreadyDead: 'For crying out loud, the poor thing is already dead!',
@@ -198,7 +198,7 @@ export const messages = {
   watersCrashing: 'The waters are crashing loudly against the shore.',
   wayBlocked: 'You have crawled around in some little holes and found your way blocked by a recent cave-in. You are now back in the main passage.',
   wayoutClue: 'It says, "There is a way out of this place. Do you need any more information to escape? Sorry, but this initial hint is all you get."',
-  welcomeYou: 'Welcome to Adventure!! \nWould you like instructions?',
+  welcomeYou: 'Welcome to Adventure!!\nWould you like instructions?',
   wellPointless: 'Well, that was remarkably pointless.',
   whatDo: object => `What do you want to do with the ${object}?`,
   whereQuery: 'Where?',
@@ -208,3 +208,5 @@ export const messages = {
   youHaveit: 'I believe what you want is right here with you.',
   youJoking: 'You can\'t be serious!',
 }
+
+module.exports = { messages }
