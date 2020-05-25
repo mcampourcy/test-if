@@ -1,4 +1,6 @@
-export const WORDS = {
+const WORDS = {
   NO: ['n', 'no'],
-  YES: ['y', 'yes']
+  YES: ['y', 'yes'],
 }
+
+module.exports = { WORDS }

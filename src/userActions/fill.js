@@ -1,9 +1,9 @@
-import { actions, messages, settings } from '../data'
-import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
-import { getFluidConditions } from '../locations'
-import { getObjectFromCurrentLocation, updateObjectState } from '../object'
+const { actions, messages, settings } = require('../data')
+const { isObjectInInventory, removeObjectFromInventory } = require('../inventory')
+const { getFluidConditions } = require('../locations')
+const { getObjectFromCurrentLocation, updateObjectState } = require('../object')
 
-export function fill(param, actionId, verb) {
+function fill(param, actionId, verb) {
   const obj = getObjectFromCurrentLocation(param)
   const isInInvent = isObjectInInventory(obj.id)
   const fluid = getFluidConditions()
@@ -31,3 +31,5 @@ export function fill(param, actionId, verb) {
   if (bottle.currentState !== 'emptyBottle') return messages.bottleFull
   return updateObjectState(obj.id, `${fluid}Bottle`)
 }
+
+module.exports = { fill }

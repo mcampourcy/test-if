@@ -1,6 +1,6 @@
-import { messages } from './data'
+const { messages } = require('./data')
 
-export function getErrorMessage(answer) {
+function getErrorMessage(answer) {
   switch (answer) {
     case 'east':
     case 'west':
@@ -29,3 +29,5 @@ export function getErrorMessage(answer) {
       return messages.cantApply
   }
 }
+
+module.exports = { getErrorMessage }

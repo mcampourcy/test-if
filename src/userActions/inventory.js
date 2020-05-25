@@ -1,7 +1,7 @@
-import { messages, settings } from '../data'
-import { getObjectById, getObjectByWord } from '../object'
+const { messages, settings } = require('../data')
+const { getObjectById, getObjectByWord } = require('../object')
 
-export function inventory() {
+function inventory() {
   const { inventory: i } = settings
   let description = i.length ? messages.nowHolding : messages.noCarry
 
@@ -25,3 +25,5 @@ export function inventory() {
 
   return description
 }
+
+module.exports = { inventory }

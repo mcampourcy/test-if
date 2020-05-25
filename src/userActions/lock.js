@@ -1,13 +1,13 @@
-import { actions, messages } from '../data'
-import { isObjectInInventory } from '../inventory'
-import {
+const { actions, messages } = require('../data')
+const { isObjectInInventory } = require('../inventory')
+const {
   destroyObject,
   dropObject,
   getObjectFromCurrentLocation,
   updateObjectState,
-} from '../object'
+} = require('../object')
 
-export function lock(param, actionId) {
+function lock(param, actionId) {
   const action = actions.find(a => a.id === actionId)
   const keys = isObjectInInventory('keys') || getObjectFromCurrentLocation('keys')
   const lock = actionId === 'lock'
@@ -70,3 +70,5 @@ export function lock(param, actionId) {
 
   return actionId.message
 }
+
+module.exports = { lock }

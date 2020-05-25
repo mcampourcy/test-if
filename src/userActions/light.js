@@ -1,9 +1,9 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { isObjectInInventory } from '../inventory'
-import { getLocationDescription } from '../locations'
-import { getObjectByWord, updateObjectState, getObjectFromCurrentLocation } from '../object'
+const { isObjectInInventory } = require('../inventory')
+const { getLocationDescription } = require('../locations')
+const { getObjectByWord, updateObjectState, getObjectFromCurrentLocation } = require('../object')
 
-export function light(action, param) {
+function light(action, param) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
   let obj = param
@@ -26,3 +26,5 @@ export function light(action, param) {
 
   return action.message
 }
+
+module.exports = { light }

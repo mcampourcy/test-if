@@ -1,3 +1,5 @@
-import { actions } from '../data'
+const { actions } = require('../data')
 
-export const getAction = actionId => actions.find(({ id }) => id === actionId)
+const getAction = actionId => actions.find(({ id }) => id === actionId)
+
+module.exports = { getAction }

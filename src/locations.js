@@ -1,15 +1,15 @@
-import { directions, locations, messages, settings } from './data'
-import { format } from './console'
-import { getObjectsDescription } from './objects'
-import { manageLocationsHistory } from './settings'
-import { pct } from './global'
-import { isLocationLight } from './light'
+const { directions, locations, messages, settings } = require('./data')
+const { format } = require('./console')
+const { getObjectsDescription } = require('./objects')
+const { manageLocationsHistory } = require('./settings')
+const { pct } = require('./global')
+const { isLocationLight } = require('./light')
 
-export const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
+const getCurrentLocation = () => locations.find(({ id }) => id === settings.currentLocation)
 
 const isSpecial = location => /^locFoof/.test(location)
 
-export const getLocationDescription = (forceLong = false) => {
+const getLocationDescription = (forceLong = false) => {
   const { previousPreviousLocation, repeat } = settings
   const currentLocation = getCurrentLocation()
   let description = ''
@@ -42,22 +42,24 @@ export const getLocationDescription = (forceLong = false) => {
   return format(description.length ? `${description}\n${messages.pitchDark}` : messages.pitchDark)
 }
 
-export const getFluidConditions = () => {
+const getFluidConditions = () => {
   const { conditions } = getCurrentLocation()
   if (conditions.fluid) return conditions.oily ? 'oil' : 'water'
 
   return null
 }
 
-export const getRoutesFromLocation = () => {
+const getRoutesFromLocation = () => {
   const { travels } = getCurrentLocation()
   const travelsVerbs = travels.map(({ verbs }) => verbs).flat()
   // get dictionary from travels ids
   return travelsVerbs.map(travel => directions.find(({ id }) => id === travel).verbs).flat()
 }
 
-export const getTravel = (answer) => {
+const getTravel = (answer) => {
   const { travels } = getCurrentLocation()
   const direction = directions.find(({ verbs }) => verbs.includes(answer))
   return travels.find(({ verbs }) => verbs.includes(direction.id)).action
 }
+
+module.exports = { getCurrentLocation, getLocationDescription, getFluidConditions, getRoutesFromLocation, getTravel }

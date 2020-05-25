@@ -1,12 +1,12 @@
-import { format } from '../console'
-import { actions, messages } from '../data'
-import { destroyObject, getObjectByWord, getObjectFromCurrentLocation, getObjectFromLocationOrInventory, updateObjectState } from '../object'
+const { format } = require('../console')
+const { actions, messages } = require('../data')
+const { destroyObject, getObjectByWord, getObjectFromCurrentLocation, getObjectFromLocationOrInventory, updateObjectState } = require('../object')
 
 // ATTACK. ASSUME TARGET IF UNAMBIGUOUS. "THROW" ALSO LINKS HERE. ATTACKABLE
 // OBJECTS FALL INTO TWO CATEGORIES: ENEMIES (SNAKE, DWARF, ETC.) AND OTHERS (BIRD, CLAM).
 // AMBIGUOUS IF TWO ENEMIES, OR IF NO ENEMIES BUT TWO OTHERS.
 
-export function attack(param, actionId) {
+function attack(param, actionId) {
   const bird = getObjectFromLocationOrInventory('bird')
   const clam = getObjectFromCurrentLocation('clam')
   const oyster = getObjectFromCurrentLocation('oyster')
@@ -160,3 +160,5 @@ export function attack(param, actionId) {
       return actions[actionId].message
   }
 }
+
+module.exports = { attack }

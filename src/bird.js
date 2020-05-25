@@ -1,8 +1,8 @@
-import { messages } from './data'
-import { addObjectToInventory, isObjectInInventory } from './inventory'
-import { destroyObject, getObjectFromCurrentLocation, updateObjectState } from './object'
+const { messages } = require('./data')
+const { addObjectToInventory, isObjectInInventory } = require('./inventory')
+const { destroyObject, getObjectFromCurrentLocation, updateObjectState } = require('./object')
 
-export const getTheBird = (bird) => {
+const getTheBird = (bird) => {
   if (bird.currentState === 'birdForestUncaged') {
     destroyObject(bird)
     return messages.birdCrap
@@ -17,7 +17,7 @@ export const getTheBird = (bird) => {
   return messages.okMan
 }
 
-export const cageTheBird = (cage, instruction) => {
+const cageTheBird = (cage, instruction) => {
   const bird = getObjectFromCurrentLocation('bird')
   if (!bird) return messages.doWhat(instruction)
 
@@ -27,3 +27,5 @@ export const cageTheBird = (cage, instruction) => {
   addObjectToInventory('cage')
   return messages.okMan
 }
+
+module.exports = { getTheBird, cageTheBird }

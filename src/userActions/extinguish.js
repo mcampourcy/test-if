@@ -1,15 +1,15 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
-import {
+const { isObjectInInventory } = require('../inventory')
+const { getCurrentLocation } = require('../locations')
+const {
   getObjectByWord,
   updateObjectState,
   getObjectFromCurrentLocation,
   getObjectState,
-} from '../object'
-import { messages } from '../data'
+} = require('../object')
+const { messages } = require('../data')
 
-export function extinguish(action, object) {
+function extinguish(action, object) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
   const { conditions } = getCurrentLocation()
@@ -34,3 +34,5 @@ export function extinguish(action, object) {
 
   return messages[action.id].message
 }
+
+module.exports = { extinguish }

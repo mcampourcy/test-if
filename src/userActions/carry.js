@@ -1,13 +1,13 @@
-import { messages, settings } from '../data'
-import { fill, inventory } from './index'
-import { cageTheBird, getTheBird } from '../bird'
-import { addObjectToInventory, isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
-import { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } from '../object'
-import { getObjectsList } from '../objects'
-import { getAction } from './utils'
+const { messages, settings } = require('../data')
+const { fill, inventory } = require('./index')
+const { cageTheBird, getTheBird } = require('../bird')
+const { addObjectToInventory, isObjectInInventory } = require('../inventory')
+const { getCurrentLocation } = require('../locations')
+const { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } = require('../object')
+const { getObjectsList } = require('../objects')
+const { getAction } = require('./utils')
 
-export const carry = (param, actionId, verb) => {
+const carry = (param, actionId, verb) => {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
   const onlyOneObjectHere = getObjectsList().length === 1
@@ -63,3 +63,5 @@ export const carry = (param, actionId, verb) => {
   addObjectToInventory(obj.id)
   return messages.okMan
 }
+
+module.exports = { carry }

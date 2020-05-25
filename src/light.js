@@ -1,9 +1,11 @@
-import { getCurrentLocation } from './locations'
-import { getObjectFromLocationOrInventory } from './object'
+const { getCurrentLocation } = require('./locations')
+const { getObjectFromLocationOrInventory } = require('./object')
 
-export function isLocationLight() {
+function isLocationLight() {
   const { conditions } = getCurrentLocation()
   const lamp = getObjectFromLocationOrInventory('lamp')
 
   return (conditions && conditions.lit) || (lamp && lamp.currentState === 'lampBright')
 }
+
+module.exports = { isLocationLight }

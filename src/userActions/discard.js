@@ -1,23 +1,23 @@
-import { actions, messages } from '../data'
-import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
-import {
+const { actions, messages } = require('../data')
+const { isObjectInInventory } = require('../inventory')
+const { getCurrentLocation } = require('../locations')
+const {
   destroyObject,
   dropObject,
   getObjectByWord,
   getObjectFromCurrentLocation,
   isObjectALiquid,
   updateObjectState,
-} from '../object'
-import { updateObjectsList } from '../objects'
-import { isPreciousGem } from '../treasure'
+} = require('../object')
+const { updateObjectsList } = require('../objects')
+const { isPreciousGem } = require('../treasure')
 
 /**
  * Discard object. "Throw" also comes here for most objects. Special cases for bird (might attack snake or dragon) and cage (might contain bird) and vase.
  * Drop coins at vending machine for extra batteries.
 **/
 
-export const discard = (param, actionId, verb) => {
+const discard = (param, actionId, verb) => {
   const cavity = getObjectFromCurrentLocation('cavity')
   const dragon = getObjectFromCurrentLocation('dragon')
   const rug = getObjectFromCurrentLocation('rug')
@@ -92,3 +92,5 @@ export const discard = (param, actionId, verb) => {
   dropObject(obj.id)
   return messages.okMan
 }
+
+module.exports = { discard }

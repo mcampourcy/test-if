@@ -1,5 +1,7 @@
-import { getObjectById } from './object'
+const { getObjectById } = require('./object')
 
-export const isTreasureFound = treasure => getObjectById(treasure).locations[0] !== 'locNowhere'
+const isTreasureFound = treasure => getObjectById(treasure).locations[0] !== 'locNowhere'
 
-export const isPreciousGem = id => ['emerald', 'ruby', 'amber', 'sapph'].includes(id)
+const isPreciousGem = id => ['emerald', 'ruby', 'amber', 'sapph'].includes(id)
+
+module.exports = { isTreasureFound, isPreciousGem }

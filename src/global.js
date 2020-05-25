@@ -64,7 +64,7 @@ function doSomething(description = true) {
 // true N% of the time (N integer from 0 to 100)
 const pct = (number = 0) => Math.random() < (number / 100)
 
-module.exports = { getInstructions, doSomething, pct }
+module.exports = { getInstructions, pct }
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:

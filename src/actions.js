@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const { actions, directions, messages } = require('./data')
 const { getErrorMessage } = require('./directions')
-const { getCurrentLocation, getLocationDescription } = require('./locations')
-const { getObjectById, getObjectByWord } = require('./object')
+const { getLocationDescription } = require('./locations')
+const { getObjectByWord } = require('./object')
 const {
   carry,
   discard,

@@ -1,8 +1,8 @@
-import { messages, sounds } from '../data'
-import { getCurrentLocation } from '../locations'
-import { getObjectsSound } from '../objects'
+const { messages, sounds } = require('../data')
+const { getCurrentLocation } = require('../locations')
+const { getObjectsSound } = require('../objects')
 
-export const listen = () => {
+const listen = () => {
   const { loud, sound } = getCurrentLocation()
   const objectsSounds = getObjectsSound()
 
@@ -12,3 +12,5 @@ export const listen = () => {
 
   return messages.allSilent
 }
+
+module.exports = { listen }

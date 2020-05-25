@@ -25,6 +25,7 @@ function executeInput(processPath, inputs = []) {
     setTimeout(() => {
       const ENTER = '\x0D'
       childProcess.stdin.write(`${inputs[0]}${ENTER}`)
+      console.log(inputs)
       logs += `${inputs[0]}\n`
       iterate(inputs.slice(1))
     }, timeout)
