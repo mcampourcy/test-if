@@ -1,3 +1,5 @@
+'use strict'
+
 const { actions, messages, settings } = require('../data')
 const { isObjectInInventory, removeObjectFromInventory } = require('../inventory')
 const { getFluidConditions } = require('../locations')

@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages } = require('./messages')
 
 const actions = [

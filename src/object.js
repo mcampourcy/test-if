@@ -1,12 +1,15 @@
+'use strict'
+
 const { objects, settings } = require('./data')
 const { isObjectInInventory, removeObjectFromInventory, updateInventory } = require('./inventory')
 const { updateObjectsList } = require('./objects')
 
 function destroyObject(object) {
   removeObjectFromInventory(object.id)
-  object.locations = ['locNowhere']
-  updateObjectsList(object)
-  return object
+  const newObject = object
+  newObject.locations = ['locNowhere']
+  updateObjectsList(newObject)
+  return newObject
 }
 
 function dropObject(id, location = null) {
@@ -43,14 +46,14 @@ function getObjectState(objId) {
   return obj.states.find(({ id }) => id === obj.currentState)
 }
 
-function isObjectALiquid(id) {
+function isObjectALiquid(objectId) {
   const water = objects.find(({ id }) => id === 'water')
   const oil = objects.find(({ id }) => id === 'oil')
-  return [...water.words, ...oil.words].includes(id)
+  return [...water.words, ...oil.words].includes(objectId)
 }
 
-function updateObjectState(id, nextStateId) {
-  const obj = getObjectById(id)
+function updateObjectState(objectId, nextStateId) {
+  const obj = getObjectById(objectId)
   const state = obj.states.find(({ id }) => id === nextStateId)
   const objectInInventory = isObjectInInventory(obj.id)
 

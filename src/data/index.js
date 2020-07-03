@@ -1,3 +1,5 @@
+'use strict'
+
 const { actions } = require('./actions')
 const { directions } = require('./directions')
 const { locations } = require('./locations')

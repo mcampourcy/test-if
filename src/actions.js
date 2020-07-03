@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+'use strict'
+
 const { actions, directions, messages } = require('./data')
 const { getErrorMessage } = require('./directions')
 const { getLocationDescription, getCurrentLocation } = require('./locations')
@@ -15,7 +16,7 @@ const {
   read,
   wave,
 } = require('./userActions')
-const { isLocationLight } = require('./light')
+const { getLocationLight } = require('./light')
 const { attack } = require('./userActions/attack')
 
 const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
@@ -31,12 +32,12 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
  *
  * Difference between 'action.id' and 'verb' :
  * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
- **/
+ * */
 function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
   const currentLocation = getCurrentLocation()
-  const locationTooDark = !isLocationLight(currentLocation)
+  const locationTooDark = !getLocationLight(currentLocation)
 
   let [verb, param] = answer.split(/\s/)
 

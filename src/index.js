@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+'use strict'
+
 const { displayTitle } = require('./console')
 const { getInstructions } = require('./global')
 

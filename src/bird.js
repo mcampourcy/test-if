@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages } = require('./data')
 const { addObjectToInventory, isObjectInInventory } = require('./inventory')
 const { destroyObject, getObjectFromCurrentLocation, updateObjectState } = require('./object')
@@ -6,7 +8,7 @@ function getTheBird(bird) {
   if (bird.currentState === 'birdForestUncaged') {
     destroyObject(bird)
     return messages.birdCrap
-  } else if (bird.currentState !== 'birdCaged') {
+  } if (bird.currentState !== 'birdCaged') {
     if (!isObjectInInventory('cage')) return messages.cannotCarry
     if (isObjectInInventory('rod')) return messages.birdEvades
     updateObjectState(bird.id, 'birdCaged')

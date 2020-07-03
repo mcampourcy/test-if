@@ -1,3 +1,5 @@
+'use strict'
+
 const { actions, messages, settings } = require('../data')
 const { isObjectInInventory } = require('../inventory')
 const { getObjectByWord, getObjectFromCurrentLocation, updateObjectState } = require('../object')
@@ -34,6 +36,8 @@ const wave = (param, actionId) => {
 
     return description
   }
+
+  return null
 }
 
 module.exports = { wave }

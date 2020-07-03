@@ -1,8 +1,10 @@
+'use strict'
+
 const objects = [
   {
     id: 'axe',
     currentState: 'axeHere',
-    inventory: 'Dwarf\'s axe',
+    inventoryName: 'Dwarf\'s axe',
     locations: ['locNowhere'],
     states: [
       {
@@ -21,7 +23,7 @@ const objects = [
   {
     id: 'battery',
     currentState: 'freshBatteries',
-    inventory: 'Batteries',
+    inventoryName: 'Batteries',
     locations: ['locNowhere'],
     states: [
       {
@@ -39,7 +41,7 @@ const objects = [
     id: 'bear',
     currentState: 'untamedBear',
     immovable: true,
-    inventory: null,
+    inventoryName: null,
     locations: ['locBarrenroom'],
     states: [
       {
@@ -68,7 +70,7 @@ const objects = [
   {
     id: 'amber',
     currentState: 'amberInUrn',
-    inventory: 'Amber gemstone',
+    inventoryName: 'Amber gemstone',
     locations: ['locNowhere'],
     states: [
       {
@@ -87,14 +89,14 @@ const objects = [
     id: 'blood',
     descriptions: null, // described with dragon
     immovable: true,
-    inventory: '*blood',
+    inventoryName: '*blood',
     locations: ['locNowhere'],
     words: ['blood'],
   },
   {
     id: 'bottle',
     currentState: 'waterBottle',
-    inventory: 'Small bottle',
+    inventoryName: 'Small bottle',
     locations: ['locBuilding'],
     states: [
       {
@@ -118,13 +120,14 @@ const objects = [
   {
     id: 'bird',
     currentState: 'birdUncaged',
-    inventory: 'Little bird in cage',
+    inventoryName: 'Little bird in cage',
     locations: ['locBird'],
     states: [
       {
         id: 'birdUncaged',
         description: 'A cheerful little bird is sitting here singing.',
-        // if dragonblood : To your surprise, you can understand the bird\'s chirping; it is singing about the joys of its forest home.
+        // if dragonblood : To your surprise, you can
+        // understand the bird\'s chirping; it is singing about the joys of its forest home.
         sound: 'The bird\'s singing is quite melodious.',
       },
       {
@@ -136,7 +139,12 @@ const objects = [
       {
         id: 'birdForestUncaged',
         description: 'A cheerful little bird is sitting here singing.',
-        // if dragonblood : The bird is singing to you in gratitude for your having returned it to its home. In return, it informs you of a magic word which it thinks you may find useful somewhere near the Hall of Mists. The magic word changes frequently, but for now the bird believes it is "%s". You thank the bird for this information, and it flies off into the forest.
+        // if dragonblood : The bird is singing to you in gratitude for
+        // your having returned it to its home. In return, it informs you
+        // of a magic word which it thinks you may find useful somewhere
+        // near the Hall of Mists. The magic word changes frequently,
+        // but for now the bird believes it is "%s". You thank the bird
+        // for this information, and it flies off into the forest.
         sound: 'It almost seems as though the bird is trying to tell you something.',
       },
     ],
@@ -145,7 +153,7 @@ const objects = [
   {
     id: 'cage',
     descriptions: ['There is a small wicker cage discarded nearby.'],
-    inventory: 'Wicker cage',
+    inventoryName: 'Wicker cage',
     locations: ['locCobble'],
     words: ['cage'],
   },
@@ -153,7 +161,7 @@ const objects = [
     id: 'chain',
     currentState: 'chainHeap',
     immovable: true,
-    inventory: 'Golden chain',
+    inventoryName: 'Golden chain',
     locations: ['locBarrenroom'],
     states: [
       {
@@ -175,7 +183,7 @@ const objects = [
   {
     id: 'chest',
     descriptions: ['The pirate\'s treasure chest is here!'],
-    inventory: 'Treasure chest',
+    inventoryName: 'Treasure chest',
     locations: ['locNowhere'],
     treasure: true,
     words: ['chest', 'box', 'treas'],
@@ -183,7 +191,7 @@ const objects = [
   {
     id: 'clam',
     descriptions: ['There is an enormous clam here with its shell tightly closed.'],
-    inventory: 'Giant clam  >GRUNT!<',
+    inventoryName: 'Giant clam  >GRUNT!<',
     locations: ['locShellroom'],
     sounds: ['The clam is as tight-mouthed as a, er, clam.'],
     words: ['clam'],
@@ -192,7 +200,7 @@ const objects = [
     id: 'cavity',
     currentState: 'cavityFull',
     immovable: true,
-    inventory: '*cavity',
+    inventoryName: '*cavity',
     locations: ['locNowhere'],
     states: [
       {
@@ -209,7 +217,7 @@ const objects = [
   {
     id: 'coins',
     descriptions: ['There are many coins here!'],
-    inventory: 'Rare coins',
+    inventoryName: 'Rare coins',
     locations: ['locWestside'],
     treasure: true,
     words: ['coins'],
@@ -218,7 +226,7 @@ const objects = [
     id: 'chasm',
     currentState: 'trollBridge',
     immovable: true,
-    inventory: '*chasm',
+    inventoryName: '*chasm',
     locations: ['locSwchasm', 'locNechasm'],
     states: [
       {
@@ -238,7 +246,7 @@ const objects = [
     id: 'door',
     currentState: 'doorRusted',
     immovable: true,
-    inventory: '*rusty door',
+    inventoryName: '*rusty door',
     locations: ['locImmense'],
     states: [
       {
@@ -258,14 +266,14 @@ const objects = [
     id: 'dwarf',
     descriptions: null,
     immovable: true,
-    inventory: null,
+    inventoryName: null,
     locations: ['locNowhere'],
     words: ['dwarf', 'dwarv', 'dwarves'],
   },
   {
     id: 'eggs',
     currentState: 'eggsHere',
-    inventory: 'Golden eggs',
+    inventoryName: 'Golden eggs',
     locations: ['locGiantroom'],
     states: [
       {
@@ -287,7 +295,7 @@ const objects = [
   {
     id: 'emerald',
     descriptions: ['There is an emerald here the size of a plover\'s egg!', 'There is an emerald resting in a small cavity in the rock!'],
-    inventory: 'Egg-sized emerald',
+    inventoryName: 'Egg-sized emerald',
     locations: ['locPlover'],
     treasure: true,
     words: ['emera', 'emerald'],
@@ -296,7 +304,7 @@ const objects = [
     id: 'dragon',
     currentState: 'dragonBars',
     immovable: true,
-    inventory: '*dragon',
+    inventoryName: '*dragon',
     locations: ['locSecret4', 'locSecret6'],
     states: [
       {
@@ -323,14 +331,14 @@ const objects = [
   {
     id: 'food',
     descriptions: ['There is food here.'],
-    inventory: 'Tasty food',
+    inventoryName: 'Tasty food',
     locations: ['locBuilding'],
     words: ['food', 'ratio'],
   },
   {
     id: 'jade',
     descriptions: ['A precious jade necklace has been dropped here!'],
-    inventory: 'Jade necklace',
+    inventoryName: 'Jade necklace',
     locations: ['locNowhere'],
     treasure: true,
     words: ['jade', 'neckl', 'necklace'],
@@ -338,7 +346,7 @@ const objects = [
   {
     id: 'keys',
     descriptions: ['There are some keys on the ground here.'],
-    inventory: 'Set of keys',
+    inventoryName: 'Set of keys',
     locations: ['locBuilding'],
     words: ['keys', 'key'],
   },
@@ -346,7 +354,7 @@ const objects = [
     id: 'fissure',
     currentState: 'unbridged',
     immovable: true,
-    inventory: '*fissure',
+    inventoryName: '*fissure',
     locations: ['locEastbank', 'locWestbank'],
     states: [
       {
@@ -365,7 +373,7 @@ const objects = [
   {
     id: 'knife',
     descriptions: null,
-    inventory: null,
+    inventoryName: null,
     locations: ['locNowhere'],
     words: ['knife', 'knive'],
   },
@@ -373,7 +381,7 @@ const objects = [
     id: 'grate',
     currentState: 'grateClosed',
     immovable: true,
-    inventory: '*grate',
+    inventoryName: '*grate',
     locations: ['locGrate', 'locBelowgrate'],
     states: [
       {
@@ -392,7 +400,7 @@ const objects = [
   {
     id: 'magazine',
     descriptions: ['There are a few recent issues of "Spelunker Today" magazine here.'],
-    inventory: '"Spelunker Today"',
+    inventoryName: '"Spelunker Today"',
     locations: ['locAnteroom'],
     texts: 'I\'m afraid the magazine is written in dwarvish. But pencilled on one cover you see, "Please leave the magazines at the construction site."',
     words: ['magaz', 'issue', 'spelu', 'spel', 'magazine'],
@@ -401,7 +409,7 @@ const objects = [
     id: 'message',
     descriptions: ['There is a message scrawled in the dust in a flowery script, reading: "This is not the maze where the pirate leaves his treasure chest."'],
     immovable: true,
-    inventory: '*message in second maze',
+    inventoryName: '*message in second maze',
     locations: ['locNowhere'],
     texts: '"This is not the maze where the pirate leaves his treasure chest."',
     words: ['messa', 'message'],
@@ -409,7 +417,7 @@ const objects = [
   {
     id: 'nugget',
     descriptions: ['There is a large sparkling nugget of gold here!'],
-    inventory: 'Large gold nugget',
+    inventoryName: 'Large gold nugget',
     locations: ['locNugget'],
     treasure: true,
     words: ['gold', 'nugge', 'nugget'],
@@ -417,7 +425,7 @@ const objects = [
   {
     id: 'lamp',
     currentState: 'lampDark',
-    inventory: 'Brass lantern',
+    inventoryName: 'Brass lantern',
     states: [
       {
         id: 'lampDark',
@@ -437,7 +445,7 @@ const objects = [
     id: 'obj13',
     descriptions: ['A massive stone tablet embedded in the wall reads: "Congratulations on bringing light into the dark-room!"'],
     immovable: true,
-    inventory: '*stone tablet',
+    inventoryName: '*stone tablet',
     locations: ['locDarkroom'],
     texts: '"Congratulations on bringing light into the dark-room!"',
     words: ['table'],
@@ -446,7 +454,7 @@ const objects = [
     id: 'obj26',
     descriptions: null,
     immovable: true,
-    inventory: '*stalactite',
+    inventoryName: '*stalactite',
     locations: ['locTopstalactite'],
     words: ['stala'],
   },
@@ -454,7 +462,7 @@ const objects = [
     id: 'mirror',
     currentState: 'mirrorUnbroken',
     immovable: true,
-    inventory: '*mirror',
+    inventoryName: '*mirror',
     locations: ['locMirrorcanyon'],
     states: [
       {
@@ -474,7 +482,7 @@ const objects = [
     id: 'obj27',
     descriptions: ['The shadowy figure seems to be trying to attract your attention.'],
     immovable: true,
-    inventory: '*shadowy figure and/or window',
+    inventoryName: '*shadowy figure and/or window',
     locations: ['locWindow1', 'locWindow2'],
     words: ['shado', 'figur', 'windo'],
   },
@@ -482,7 +490,7 @@ const objects = [
     id: 'obj29',
     descriptions: null,
     immovable: true,
-    inventory: '*cave drawings',
+    inventoryName: '*cave drawings',
     locations: ['locOriental'],
     words: ['drawi'],
   },
@@ -490,7 +498,7 @@ const objects = [
     id: 'obj30',
     descriptions: null, // never present
     immovable: true,
-    inventory: '*pirate/genie',
+    inventoryName: '*pirate/genie',
     locations: ['locNowhere'],
     words: ['pirat', 'genie', 'djinn'],
   },
@@ -498,14 +506,14 @@ const objects = [
     id: 'obj40',
     descriptions: null,
     immovable: true,
-    inventory: '*carpet and/or moss and/or curtains',
+    inventoryName: '*carpet and/or moss and/or curtains',
     locations: ['locSoftroom'],
     words: ['carpe', 'moss'],
   },
   {
     id: 'appendage',
     descriptions: ['Your keen eye spots a severed leporine appendage lying on the ground.'],
-    inventory: 'Leporine appendage',
+    inventoryName: 'Leporine appendage',
     locations: ['locForest22'],
     words: ['appen', 'lepor', 'appendage'],
   },
@@ -513,7 +521,7 @@ const objects = [
     id: 'obj47',
     descriptions: null,
     immovable: true,
-    inventory: '*mud',
+    inventoryName: '*mud',
     locations: ['locDebris'],
     texts: '"MAGIC WORD XYZZY"',
     words: ['mud'],
@@ -522,7 +530,7 @@ const objects = [
     id: 'note',
     descriptions: null,
     immovable: true,
-    inventory: '*note',
+    inventoryName: '*note',
     locations: ['locNugget'],
     texts: '"You won\'t get it up the steps"',
     words: ['note'],
@@ -530,7 +538,7 @@ const objects = [
   {
     id: 'diamonds',
     descriptions: ['There are diamonds here!'],
-    inventory: 'Several diamonds',
+    inventoryName: 'Several diamonds',
     locations: ['locWestbank'],
     treasure: true,
     words: ['diamo', 'diamonds'],
@@ -538,7 +546,7 @@ const objects = [
   {
     id: 'obj52',
     descriptions: ['There are bars of silver here!'],
-    inventory: 'Bars of silver',
+    inventoryName: 'Bars of silver',
     locations: ['locFloorhole'],
     treasure: true,
     words: ['silve', 'bars', 'silver'],
@@ -546,7 +554,7 @@ const objects = [
   {
     id: 'obj53',
     descriptions: ['There is precious jewelry here!'],
-    inventory: 'Precious jewelry',
+    inventoryName: 'Precious jewelry',
     locations: ['locSouthside'],
     treasure: true,
     words: ['jewel', 'jewelry'],
@@ -554,7 +562,7 @@ const objects = [
   {
     id: 'obj63',
     descriptions: ['There are rare spices here!'],
-    inventory: 'Rare spices',
+    inventoryName: 'Rare spices',
     locations: ['locBoulders2'],
     treasure: true,
     words: ['spice'],
@@ -562,7 +570,7 @@ const objects = [
   {
     id: 'obj69',
     descriptions: ['There is a richly-carved ebony statuette here!'],
-    inventory: 'Ebony statuette',
+    inventoryName: 'Ebony statuette',
     locations: ['locReachdead'],
     treasure: true,
     words: ['ebony', 'statu'],
@@ -571,7 +579,7 @@ const objects = [
     id: 'ogre',
     descriptions: ['A formidable ogre bars the northern exit.'],
     immovable: true,
-    inventory: '*ogre',
+    inventoryName: '*ogre',
     locations: ['locLarge'],
     sounds: ['The ogre is apparently the strong, silent type.'],
     words: ['ogre'],
@@ -579,14 +587,14 @@ const objects = [
   {
     id: 'oil',
     descriptions: null,
-    inventory: 'Oil in the bottle',
+    inventoryName: 'Oil in the bottle',
     locations: ['locNowhere'],
     words: ['oil'],
   },
   {
     id: 'oyster',
     descriptions: ['There is an enormous oyster here with its shell tightly closed.', 'Interesting.  There seems to be something written on the underside of\nthe oyster.'],
-    inventory: 'Giant oyster  >GROAN!<',
+    inventoryName: 'Giant oyster  >GROAN!<',
     locations: ['locNowhere'],
     sounds: ['Even though it\'s an oyster, the critter\'s as tight-mouthed as a clam.', 'It says the same thing it did before.  Hm, maybe it\'s a pun?'],
     words: ['oyste', 'oyster'],
@@ -594,7 +602,7 @@ const objects = [
   {
     id: 'pearl',
     descriptions: ['Off to one side lies a glistening pearl!'],
-    inventory: 'Glistening pearl',
+    inventoryName: 'Glistening pearl',
     locations: ['locNowhere'],
     treasure: true,
     words: ['pearl'],
@@ -602,7 +610,7 @@ const objects = [
   {
     id: 'pillow',
     descriptions: ['A small velvet pillow lies on the floor.'],
-    inventory: 'Velvet pillow',
+    inventoryName: 'Velvet pillow',
     locations: ['locSoftroom'],
     words: ['pillo', 'velve', 'pillow'],
   },
@@ -613,14 +621,14 @@ const objects = [
       'There is a huge beanstalk growing out of the west pit up to the hole.',
     ],
     immovable: true,
-    inventory: '*phony plant', // seen in Twopit Room only when tall enough
+    inventoryName: '*phony plant', // seen in Twopit Room only when tall enough
     locations: ['locWestend', 'locEastend'],
     words: ['plant'],
   },
   {
     id: 'pyramid',
     descriptions: ['There is a platinum pyramid here, 8 inches on a side!'],
-    inventory: 'Platinum pyramid',
+    inventoryName: 'Platinum pyramid',
     locations: ['locDarkroom'],
     treasure: true,
     words: ['plati', 'pyram', 'pyramid'],
@@ -628,7 +636,7 @@ const objects = [
   {
     id: 'rod',
     descriptions: ['A three foot black rod with a rusty star on an end lies nearby.'],
-    inventory: 'Black rod',
+    inventoryName: 'Black rod',
     locations: ['locDebris'],
     words: ['rod'],
   },
@@ -636,7 +644,7 @@ const objects = [
     id: 'plant',
     currentState: 'plantThirsty',
     immovable: true,
-    inventory: '*plant',
+    inventoryName: '*plant',
     locations: ['locWestpit'],
     states: [
       {
@@ -663,14 +671,14 @@ const objects = [
   {
     id: 'rod2',
     descriptions: ['A three foot black rod with a rusty mark on an end lies nearby.'],
-    inventory: 'Black rod',
+    inventoryName: 'Black rod',
     locations: ['locNowhere'],
     words: ['rod'],
   },
   {
     id: 'ruby',
     descriptions: ['There is an enormous ruby here!', 'There is a ruby resting in a small cavity in the rock!'],
-    inventory: 'Giant ruby',
+    inventoryName: 'Giant ruby',
     locations: ['locStoreroom'],
     treasure: true,
     words: ['ruby'],
@@ -679,7 +687,7 @@ const objects = [
     id: 'reser',
     currentState: 'watersUnparted',
     immovable: true,
-    inventory: '*reservoir',
+    inventoryName: '*reservoir',
     locations: ['locReservoir', 'locResnorth'],
     states: [
       {
@@ -699,7 +707,7 @@ const objects = [
     id: 'rug',
     currentState: 'rugFloor',
     immovable: true,
-    inventory: 'Persian rug',
+    inventoryName: 'Persian rug',
     locations: ['locSecret4', 'locSecret6'],
     states: [
       {
@@ -721,7 +729,7 @@ const objects = [
   {
     id: 'sapph',
     descriptions: ['A brilliant blue star sapphire is here!', 'There is a star sapphire resting in a small cavity in the rock!'],
-    inventory: 'Star sapphire',
+    inventoryName: 'Star sapphire',
     locations: ['locLedge'],
     treasure: true,
     words: ['sapph'],
@@ -729,7 +737,7 @@ const objects = [
   {
     id: 'sign',
     currentState: 'ingameSign',
-    inventory: '*sign',
+    inventoryName: '*sign',
     immovable: true,
     locations: ['locAnteroom'],
     states: [
@@ -750,7 +758,7 @@ const objects = [
     id: 'snake',
     currentState: 'snakeBlocks',
     immovable: true,
-    inventory: '*snake',
+    inventoryName: '*snake',
     locations: ['locKinghall'],
     states: [
       {
@@ -770,7 +778,7 @@ const objects = [
     id: 'steps',
     currentState: 'stepsDown',
     immovable: true,
-    inventory: '*steps',
+    inventoryName: '*steps',
     locations: ['locPittop', 'locMisthall'],
     states: [
       {
@@ -787,7 +795,7 @@ const objects = [
   {
     id: 'trident',
     descriptions: ['There is a jewel-encrusted trident here!'],
-    inventory: 'Jeweled trident',
+    inventoryName: 'Jeweled trident',
     locations: ['locWaterfall'],
     treasure: true,
     words: ['tride', 'trident'],
@@ -796,14 +804,14 @@ const objects = [
     id: 'troll2',
     descriptions: ['The troll is nowhere to be seen.'],
     immovable: true,
-    inventory: '*phony troll',
+    inventoryName: '*phony troll',
     locations: ['locNowhere'],
     words: ['troll'],
   },
   {
     id: 'urn',
     currentState: 'urnEmpty',
-    inventory: '*urn',
+    inventoryName: '*urn',
     immovable: true,
     locations: ['locCliff'],
     states: [
@@ -828,7 +836,7 @@ const objects = [
   {
     id: 'vase',
     currentState: 'vaseWhole',
-    inventory: 'Ming vase',
+    inventoryName: 'Ming vase',
     locations: ['locOriental'],
     treasure: true,
     states: [
@@ -854,7 +862,7 @@ const objects = [
     id: 'troll',
     currentState: 'trollUnpaid',
     immovable: true,
-    inventory: '*troll',
+    inventoryName: '*troll',
     locations: ['locSwchasm', 'locNechasm'],
     states: [
       {
@@ -881,7 +889,7 @@ const objects = [
   {
     id: 'vend',
     currentState: 'vendBlocks',
-    inventory: '*vending machine',
+    inventoryName: '*vending machine',
     immovable: true,
     locations: ['locDeadend13'],
     states: [
@@ -904,14 +912,14 @@ const objects = [
     id: 'volcano',
     descriptions: null,
     immovable: true,
-    inventory: '*volcano and/or geyser',
+    inventoryName: '*volcano and/or geyser',
     locations: ['locBreathtaking'],
     words: ['volca', 'geyse', 'volcano'],
   },
   {
     id: 'water',
     descriptions: null,
-    inventory: 'Water in the bottle',
+    inventoryName: 'Water in the bottle',
     locations: ['locNowhere'],
     words: ['water', 'h2o'],
   },

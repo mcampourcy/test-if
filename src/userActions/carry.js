@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages, settings } = require('../data')
 const { fill, inventory } = require('./inventory')
 const { cageTheBird, getTheBird } = require('../bird')

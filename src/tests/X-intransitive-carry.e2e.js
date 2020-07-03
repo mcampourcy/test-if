@@ -1,7 +1,9 @@
+'use strict'
+
 const path = require('path')
 const childProcess = require('child_process')
-const  { executeInput } = require('./executeInput.js')
-const { text, answers } = require('./scenarios/2-intransitive-carry.json')
+const { executeInput } = require('./executeInput.js')
+const { text, answers } = require('./scenarios/X-intransitive-carry.json')
 
 describe('Scenario for instructions at the beginning', () => {
   let welcomeScreen
@@ -11,7 +13,7 @@ describe('Scenario for instructions at the beginning', () => {
   })
 
   it('should display instructions on yes', async () => {
-    const response = await executeInput(path.join(__dirname + '/../../bin', 'adventure.js'), answers)
+    const response = await executeInput(path.join(__dirname, '/../../bin', 'adventure.js'), answers)
     const scenario = `${welcomeScreen}\n${text.join('\n')}\n\n`
 
     expect(response.toString()).toEqual(scenario)

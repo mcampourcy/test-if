@@ -1,3 +1,5 @@
+'use strict'
+
 const { actions, messages } = require('../data')
 const { isObjectInInventory } = require('../inventory')
 const { getCurrentLocation } = require('../locations')
@@ -13,9 +15,10 @@ const { updateObjectsList } = require('../objects')
 const { isPreciousGem } = require('../treasure')
 
 /**
- * Discard object. "Throw" also comes here for most objects. Special cases for bird (might attack snake or dragon) and cage (might contain bird) and vase.
+ * Discard object. "Throw" also comes here for most objects.
+ * Special cases for bird (might attack snake or dragon) and cage (might contain bird) and vase.
  * Drop coins at vending machine for extra batteries.
-**/
+* */
 
 function discard(param, actionId, verb) {
   const cavity = getObjectFromCurrentLocation('cavity')

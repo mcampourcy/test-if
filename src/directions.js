@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages } = require('./data')
 
 function getErrorMessage(answer) {

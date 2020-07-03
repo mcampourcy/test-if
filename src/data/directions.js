@@ -1,4 +1,10 @@
-// motions: Motion words, grouped into synonyms.  The 'oldstyle' attribute, if false, means that single-letter synonyms should be accepted in oldstyle mode; it defaults to true.
+'use strict'
+
+/**
+ * motions: Motion words, grouped into synonyms.
+ * The 'oldstyle' attribute, if false, means that single-letter synonyms
+ * should be accepted in oldstyle mode; it defaults to true.
+ */
 
 const directions = [
   {
@@ -296,5 +302,3 @@ const directions = [
 ]
 
 module.exports = { directions }
-
-

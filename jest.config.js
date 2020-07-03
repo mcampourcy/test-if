@@ -1,1 +1,1 @@
-module.exports = { testMatch: ['**/?(*.)+(e2e).js?(x)'] }
+module.exports = { testMatch: ['**/tests/**/?(*.)+(e2e).js?(x)'] }

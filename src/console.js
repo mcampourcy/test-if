@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+'use strict'
+
 const readline = require('readline')
 const chalk = require('chalk')
 const figlet = require('figlet')
@@ -35,4 +36,6 @@ function displayTitle() {
   })))
 }
 
-module.exports = { consoleInput, display, displayLine, displayTitle, format }
+module.exports = {
+  consoleInput, display, displayLine, displayTitle, format,
+}

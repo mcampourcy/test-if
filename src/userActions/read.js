@@ -1,9 +1,11 @@
+'use strict'
+
 const { format } = require('../console')
 const { actions, messages } = require('../data')
 
 // READ.  MAGAZINES IN DWARVISH, MESSAGE WE'VE SEEN, AND . . . OYSTER?
 const { getObjectsList } = require('../objects')
-const { isLocationLight } = require('../light')
+const { getLocationLight } = require('../light')
 const { getObjectByWord } = require('../object')
 
 const read = (param) => {
@@ -21,9 +23,9 @@ const read = (param) => {
 
   const object = getObjectByWord(param)
 
-  if (!isLocationLight()) return messages.noSee(param)
+  if (!getLocationLight()) return messages.noSee(param)
 
-  if (!object.texts) return actions['read'].message
+  if (!object.texts) return actions.read.message
 
   return format(object.texts)
 

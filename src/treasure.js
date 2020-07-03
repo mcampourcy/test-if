@@ -1,3 +1,5 @@
+'use strict'
+
 const { getObjectById } = require('./object')
 
 const isTreasureFound = treasure => getObjectById(treasure).locations[0] !== 'locNowhere'

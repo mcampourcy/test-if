@@ -1,3 +1,5 @@
+'use strict'
+
 const { getTravel } = require('./locations')
 const { manageLocationsHistory } = require('./settings')
 const { messages, settings } = require('./data')

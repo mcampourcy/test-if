@@ -1,7 +1,10 @@
-#!/usr/bin/env node
+'use strict'
+
 const { messages, settings } = require('./data')
 const { manageActions } = require('./actions')
-const { consoleInput, display, displayLine, format } = require('./console')
+const {
+  consoleInput, display, displayLine, format,
+} = require('./console')
 const { getLocationDescription, getRoutesFromLocation } = require('./locations')
 const { manageTravel } = require('./travels')
 
@@ -34,7 +37,8 @@ function getInstructions() {
  * Display current location description
  * Get the current location's possible actions
  * Depending the answer :
- * if the answer does not includes any possible actions : display error message depending on the answer
+ * if the answer does not includes any possible actions:
+ * display error message depending on the answer
  * if the answer includes possible actions :
  *  if the action is a goTo : manage history to replace the current location by the next one
  *  if the actions is a speak : display the action's description

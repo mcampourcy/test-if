@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages, sounds } = require('../data')
 const { getCurrentLocation } = require('../locations')
 const { getObjectsSound } = require('../objects')

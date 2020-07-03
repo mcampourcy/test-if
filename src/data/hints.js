@@ -1,3 +1,5 @@
+'use strict'
+
 const hints = {
   grate: {
     id: 'CAVE',

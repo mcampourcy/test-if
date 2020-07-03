@@ -1,3 +1,5 @@
+'use strict'
+
 const messages = {
   allSilent: 'All is silent.',
   alreadyCarrying: 'You are already carrying it!',

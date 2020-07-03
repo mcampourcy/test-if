@@ -1,3 +1,5 @@
+'use strict'
+
 const { actions, messages } = require('../data')
 const { isObjectInInventory } = require('../inventory')
 const {
@@ -10,7 +12,7 @@ const {
 function lock(param, actionId) {
   const action = actions.find(a => a.id === actionId)
   const keys = isObjectInInventory('keys') || getObjectFromCurrentLocation('keys')
-  const lock = actionId === 'lock'
+  const lockAction = actionId === 'lock'
   let obj
 
   // Lock, unlock, no object given
@@ -42,9 +44,9 @@ function lock(param, actionId) {
         return messages.noKeys
       case 'grate':
         if (!keys) return messages.noKeys
-        return updateObjectState(obj.id, (lock) ? 'grateClosed' : 'grateOpen').change || ''
+        return updateObjectState(obj.id, (lockAction) ? 'grateClosed' : 'grateOpen').change || ''
       case 'clam':
-        if (lock) return messages.huhMan
+        if (lockAction) return messages.huhMan
         if (!isObjectInInventory('trident')) return messages.clamOpener
 
         destroyObject(obj.id)
@@ -52,7 +54,7 @@ function lock(param, actionId) {
         dropObject('pearl', 'locCuldesac')
         return messages.pearlFalls
       case 'oyster':
-        if (lock) return messages.huhMan
+        if (lockAction) return messages.huhMan
         if (isObjectInInventory('oyster')) return messages.dropOyster
         if (!isObjectInInventory('trident')) return messages.oysterOpener
 

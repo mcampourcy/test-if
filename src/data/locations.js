@@ -1,22 +1,24 @@
+'use strict'
+
 // locations: They have attributes as follows...
 //      long:         Long description, always shown on first encounter.
 //      short:        Short description. If none, use long description.
 //      conditions:   A dictionary of attributes
-//        lit		Light
-//        oily		If fluid flag is on: true for oil, false for water
-//        fluid		Liquid asset
-//        noarrr		Pirate doesn't go here unless following player
-//        noback		Cannot use "back" to move away
-//        hcave		Trying to get into cave
-//        hbird		Trying to catch bird
-//        hsnake		Trying to deal with snake
-//        hmaze		Lost in maze
-//        hdark		Pondering dark room
-//        hwitt		At Witt's End
-//        hcliff		Cliff with urn
-//        hwoods		Lost in forest
-//        hogre		Trying to deal with ogre
-//        hjade		Found all treasures except jade
+//        - lit       Light
+//        - oily      If fluid flag is on: true for oil, false for water
+//        - fluid     Liquid asset
+//        - noarrr    Pirate doesn't go here unless following player
+//        - noback    Cannot use "back" to move away
+//        - hcave     Trying to get into cave
+//        - hbird     Trying to catch bird
+//        - hsnake    Trying to deal with snake
+//        - hmaze     Lost in maze
+//        - hdark     Pondering dark room
+//        - hwitt     At Witt's End
+//        - hcliff    Cliff with urn
+//        - hwoods    Lost in forest
+//        - hogre     Trying to deal with ogre
+//        - hjade     Found all treasures except jade
 //      hints:        A list of yaml references to hints that may be available at
 //                    this location. (This is why locations has to follow hints.)
 //      sound:        Label for a location sound.
@@ -324,7 +326,7 @@ const locations = [
       long: 'There is no way to go that direction.',
       short: null,
     },
-    travels: [ { verbs: ['pit'], action: { id: 'goTo', description: 'locDeadend13' } } ],
+    travels: [{ verbs: ['pit'], action: { id: 'goTo', description: 'locDeadend13' } }],
   },
   {
     id: 'locBarrenfront',
@@ -375,10 +377,12 @@ const locations = [
         },
       },
       { verbs: ['slab'], action: { id: 'goTo', description: 'locSlab' } },
-      // { verbs: ['upwar], cond: [pct, 60], action: { id: 'speak', description: ''futileCrawl'' } },
+      // { verbs: ['upwar], cond: [pct, 60],
+      // action: { id: 'speak', description: ''futileCrawl'' } },
       // { verbs: ['upwar], cond: [pct, 70], action: { id: 'goTo', description: 'locSecret2' } },
       { verbs: ['upwar'], action: { id: 'goTo', description: 'locDusty' } },
-      // { verbs: ['north], cond: [pct, 50], action: { id: 'speak', description: ''futileCrawl'' } },
+      // { verbs: ['north], cond: [pct, 50],
+      // action: { id: 'speak', description: ''futileCrawl'' } },
       // { verbs: ['north], cond: [pct, 75], action: { id: 'goTo', description: 'locLowroom' } },
       { verbs: ['north'], action: { id: 'goTo', description: 'locThreejunction' } },
       {
@@ -626,7 +630,7 @@ const locations = [
       long: 'Just as you reach the top, your foot slips on a loose rock and you make one last desperate grab. Your luck holds, as does your grip. With an enormous heave, you lift yourself to the ledge above.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locCliffledge' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locCliffledge' } }],
   },
   {
     id: 'locClimbstalk',
@@ -635,7 +639,7 @@ const locations = [
       long: 'You clamber up the plant and scurry through the hole at the top.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locNarrow' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locNarrow' } }],
   },
   {
     id: 'locCobble',
@@ -692,7 +696,7 @@ const locations = [
       long: 'The crack is far too small for you to follow. At its widest it is barely wide enough to admit your foot.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locPittop' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locPittop' } }],
   },
   {
     id: 'locCrossover',
@@ -716,10 +720,10 @@ const locations = [
       short: 'You\'re in dark-room.',
     },
     hints: ['dark'],
-    travels: [ {
+    travels: [{
       verbs: ['south', 'plove', 'out'],
       action: { id: 'goTo', description: 'locPlover' },
-    } ],
+    }],
   },
   {
     id: 'locCuldesac',
@@ -1169,7 +1173,7 @@ const locations = [
       long: 'The dome is unclimbable.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locMisthall' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locMisthall' } }],
   },
   {
     id: 'locDusty',
@@ -1266,7 +1270,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locDebris' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locDebris' } }],
   },
   {
     id: 'locFoof2',
@@ -1275,7 +1279,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locBuilding' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locBuilding' } }],
   },
   {
     id: 'locFoof3',
@@ -1284,7 +1288,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locY2' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locY2' } }],
   },
   {
     id: 'locFoof4',
@@ -1293,7 +1297,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locBuilding' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locBuilding' } }],
   },
   {
     id: 'locFoof5',
@@ -1302,7 +1306,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locPlover' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locPlover' } }],
   },
   {
     id: 'locFoof6',
@@ -1311,7 +1315,7 @@ const locations = [
       long: '>>Foof!<<',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locY2' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locY2' } }],
   },
   {
     id: 'locFootslip',
@@ -1716,7 +1720,7 @@ const locations = [
       long: 'There is now one more gruesome aspect to the spectacular vista.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locNowhere' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locNowhere' } }],
   },
   {
     id: 'locHill',
@@ -2054,7 +2058,7 @@ const locations = [
       long: 'You are at the bottom of the pit with a broken neck.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locNowhere' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locNowhere' } }],
   },
   {
     id: 'locNechasm',
@@ -2087,7 +2091,7 @@ const locations = [
       long: 'There is nothing here to climb. Use "up" or "out" to leave the pit.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locWestpit' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locWestpit' } }],
   },
   {
     id: 'locNomake',
@@ -2096,7 +2100,7 @@ const locations = [
       long: 'You didn\'t make it.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locNowhere' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locNowhere' } }],
   },
   {
     id: 'locNugget',
@@ -2105,10 +2109,10 @@ const locations = [
       long: 'This is a low room with a crude note on the wall. The note says, "You won\'t get it up the steps".',
       short: 'You\'re in nugget-of-gold room.',
     },
-    travels: [ {
+    travels: [{
       verbs: ['hall', 'out', 'north'],
       action: { id: 'goTo', description: 'locMisthall' },
-    } ],
+    }],
   },
   {
     id: 'locOriental',
@@ -2206,7 +2210,7 @@ const locations = [
       long: 'You have climbed up the plant and out of the pit.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locWestend' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locWestend' } }],
   },
   {
     id: 'locPlover',
@@ -2459,7 +2463,8 @@ const locations = [
         },
         action: { id: 'speak', description: 'clamBlocker' },
       },
-      // { verbs: ['south'], condition: [carry, oyster], action: { id: 'speak', description: 'oysterBlocker' } },
+      // { verbs: ['south'], condition: [carry, oyster],
+      // action: { id: 'speak', description: 'oysterBlocker' } },
       { verbs: ['south'], action: { id: 'goTo', description: 'locComplex' } },
     ],
   },
@@ -2549,7 +2554,7 @@ const locations = [
       long: 'You can\'t get by the snake.',
       short: null,
     },
-    travels: [ { verbs: [], action: { id: 'goTo', description: 'locKinghall' } } ],
+    travels: [{ verbs: [], action: { id: 'goTo', description: 'locKinghall' } }],
   },
   {
     id: 'locSoftroom',
@@ -2569,10 +2574,10 @@ const locations = [
       long: 'You are in the south side chamber.',
       short: null,
     },
-    travels: [ {
+    travels: [{
       verbs: ['hall', 'out', 'north'],
       action: { id: 'goTo', description: 'locKinghall' },
-    } ],
+    }],
   },
   {
     id: 'locStart',
@@ -2644,7 +2649,8 @@ const locations = [
     },
     travels: [
       { verbs: ['sw'], action: { id: 'goTo', description: 'locWinding' } },
-      // { verbs: ['over, 'acros', 'cross, 'ne'], condition: [with, troll], action: { id: 'speak', description: 'trollBlocks' } },
+      // { verbs: ['over, 'acros', 'cross, 'ne'],
+      // condition: [with, troll], action: { id: 'speak', description: 'trollBlocks' } },
       {
         verbs: ['over'],
         condition: {
@@ -2747,8 +2753,10 @@ const locations = [
     },
     travels: [
       { verbs: ['north'], action: { id: 'goTo', description: 'locSecret2' } },
-      // { verbs: ['down', 'jump', 'climb'], condition: [pct, 40], action: { id: 'goTo', description: 'locAlike6' } },
-      // { verbs: ['down'], condition: [pct, 50], action: { id: 'goTo', description: 'locAlike9' } },
+      // { verbs: ['down', 'jump', 'climb'],
+      // condition: [pct, 40], action: { id: 'goTo', description: 'locAlike6' } },
+      // { verbs: ['down'], condition: [pct, 50],
+      // action: { id: 'goTo', description: 'locAlike9' } },
       { verbs: ['down'], action: { id: 'goTo', description: 'locAlike4' } },
     ],
   },

@@ -1,3 +1,5 @@
+'use strict'
+
 const { spawn } = require('child_process')
 const { existsSync } = require('fs')
 
@@ -14,19 +16,19 @@ function executeInput(processPath, inputs = []) {
 
   const childProcess = spawn('node', [processPath])
   let result = ''
-  let logs = ''
+  // let logs = ''
 
-  function iterate(inputs) {
-    if (!inputs.length) {
+  function iterate(args) {
+    if (!args.length) {
       childProcess.stdin.end()
       return
     }
 
     setTimeout(() => {
       const ENTER = '\x0D'
-      childProcess.stdin.write(`${inputs[0]}${ENTER}`)
-      logs += `${inputs[0]}\n`
-      iterate(inputs.slice(1))
+      childProcess.stdin.write(`${args[0]}${ENTER}`)
+      // logs += `${args[0]}\n`
+      iterate(args.slice(1))
     }, timeout)
   }
 
@@ -37,7 +39,7 @@ function executeInput(processPath, inputs = []) {
     // Get output from CLI
     childProcess.stdout.on('data', (processData) => {
       result += processData.toString()
-      logs += processData.toString()
+      // logs += processData.toString()
 
       setTimeout(() => {
         resolve(result)

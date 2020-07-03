@@ -1,18 +1,20 @@
+'use strict'
+
 const { messages, settings } = require('../data')
 const { getObjectById, getObjectByWord } = require('../object')
 
 function inventory() {
-  const { inventory: i } = settings
-  let description = i.length ? messages.nowHolding : messages.noCarry
+  const { inventory: currentInventory } = settings
+  let description = currentInventory.length ? messages.nowHolding : messages.noCarry
 
-  if (i.length) {
-    const hasBird = i.find(id => id === 'bird')
-    const hasCage = i.find(id => id === 'cage')
-    const invent = (hasBird && hasCage) ? i.filter(id => id !== 'cage') : i
+  if (currentInventory.length) {
+    const hasBird = currentInventory.find(id => id === 'bird')
+    const hasCage = currentInventory.find(id => id === 'cage')
+    const invent = (hasBird && hasCage) ? currentInventory.filter(id => id !== 'cage') : currentInventory
 
     invent.map((objId) => {
-      const { id, currentState, inventory } = getObjectByWord(objId)
-      description += `\n${inventory}`
+      const { id, currentState, inventoryName } = getObjectByWord(objId)
+      description += `\n${inventoryName}`
 
       if (id === 'bottle' && currentState !== 'emptyBottle') {
         const type = currentState.substring(0, currentState.indexOf('Bottle'))

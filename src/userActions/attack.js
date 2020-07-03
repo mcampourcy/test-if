@@ -1,6 +1,14 @@
+'use strict'
+
 const { format } = require('../console')
 const { actions, messages } = require('../data')
-const { destroyObject, getObjectByWord, getObjectFromCurrentLocation, getObjectFromLocationOrInventory, updateObjectState } = require('../object')
+const {
+  destroyObject,
+  getObjectByWord,
+  getObjectFromCurrentLocation,
+  getObjectFromLocationOrInventory,
+  updateObjectState,
+} = require('../object')
 
 // ATTACK. ASSUME TARGET IF UNAMBIGUOUS. "THROW" ALSO LINKS HERE. ATTACKABLE
 // OBJECTS FALL INTO TWO CATEGORIES: ENEMIES (SNAKE, DWARF, ETC.) AND OTHERS (BIRD, CLAM).
@@ -19,41 +27,41 @@ function attack(param, actionId) {
   if (!param) {
     if (snake) {
       obj = snake
-      changes++
+      changes += 1
     }
 
     // Can't attack bird or machine by throwing axe
     if (bird && actionId !== 'throw') {
       obj = bird
-      changes++
+      changes += 1
     }
 
     if (vendingMachine && actionId !== 'throw') {
       obj = vendingMachine
-      changes++
+      changes += 1
     }
 
     // Clam and oyster both treated as clam for intransitive case, no harm done
     if (clam || oyster) {
       obj = clam
-      changes++
+      changes += 1
     }
 
     // if (atdwrf(game.loc) > 0) {
     //   obj = DWARF;
-    //   ++changes;
+    //    += 1changes;
     // }
     // if (AT(DRAGON) && game.prop[DRAGON] == DRAGON_BARS) {
     //   obj = DRAGON;
-    //   ++changes;
+    //    += 1changes;
     // }
     // if (AT(TROLL)) {
     //   obj = TROLL;
-    //   ++changes;
+    //    += 1changes;
     // }
     if (ogre) {
       obj = ogre
-      changes++
+      changes += 1
     }
     // if (HERE(BEAR) && game.prop[BEAR] == UNTAMED_BEAR) {
     //   obj = BEAR;
@@ -70,7 +78,10 @@ function attack(param, actionId) {
   }
 
   if (obj === vendingMachine) {
-    const state = updateObjectState('vend', vendingMachine.currentState === 'vendBlocks' ? 'vendUnblocks' : 'vendBlocks')
+    const state = updateObjectState(
+      'vend',
+      vendingMachine.currentState === 'vendBlocks' ? 'vendUnblocks' : 'vendBlocks',
+    )
     return state.change
   }
 
@@ -151,7 +162,7 @@ function attack(param, actionId) {
     case 'dwarf':
       // if (game.closed) return GO_DWARFWAKE
       // rspeak(BARE_HANDS_QUERY)
-      // break
+      break
     case 'dragon':
       return messages.alreadyDead
     case 'troll':
@@ -159,6 +170,8 @@ function attack(param, actionId) {
     default:
       return actions[actionId].message
   }
+
+  return null
 }
 
 module.exports = { attack }

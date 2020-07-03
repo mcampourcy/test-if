@@ -1,3 +1,5 @@
+'use strict'
+
 const { settings } = require('./data')
 
 function addObjectToInventory(object) {
@@ -23,4 +25,6 @@ function updateInventory(object) {
   return null
 }
 
-module.exports = { addObjectToInventory, isObjectInInventory, removeObjectFromInventory, updateInventory }
+module.exports = {
+  addObjectToInventory, isObjectInInventory, removeObjectFromInventory, updateInventory,
+}

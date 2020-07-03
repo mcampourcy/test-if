@@ -1,9 +1,16 @@
-const { directions, locations, messages, settings } = require('./data')
+'use strict'
+
+const {
+  directions,
+  locations,
+  messages,
+  settings,
+} = require('./data')
 const { format } = require('./console')
 const { getObjectsDescription } = require('./objects')
 const { manageLocationsHistory } = require('./settings')
 const { pct } = require('./global')
-const { isLocationLight } = require('./light')
+const { getLocationLight } = require('./light')
 
 function getCurrentLocation() {
   return locations.find(({ id }) => id === settings.currentLocation)
@@ -16,7 +23,7 @@ function isSpecial(location) {
 function getLocationDescription(forceLong = false) {
   const { previousPreviousLocation, repeat } = settings
   const currentLocation = getCurrentLocation()
-  const locationLight = isLocationLight(currentLocation)
+  const isLocationLight = getLocationLight(currentLocation)
   let description = ''
 
   if (isSpecial(currentLocation.id)) {
@@ -30,8 +37,8 @@ function getLocationDescription(forceLong = false) {
   // e.g. : locStart => locBuilding => locStart
   const turnAround = current === previousPreviousLocation
 
-  if (locationLight) {
-    const objectsDescription = getObjectsDescription(currentLocation, locationLight)
+  if (isLocationLight) {
+    const objectsDescription = getObjectsDescription(currentLocation, isLocationLight)
     const routesFromLocation = getRoutesFromLocation()
     const hasShortDescription = short && !forceLong
 

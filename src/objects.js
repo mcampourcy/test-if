@@ -1,3 +1,5 @@
+'use strict'
+
 const { messages, objects, settings } = require('./data')
 const { isObjectInInventory } = require('./inventory')
 
@@ -48,8 +50,10 @@ function updateObjectsList(object) {
   return objects.splice(
     objects.indexOf(objects.find(({ id }) => id === object.id)),
     1,
-    object
+    object,
   )
 }
 
-module.exports = { getObjectsDescription, getObjectsList, getObjectsSound, updateObjectsList }
+module.exports = {
+  getObjectsDescription, getObjectsList, getObjectsSound, updateObjectsList,
+}

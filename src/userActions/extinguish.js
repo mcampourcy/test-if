@@ -1,3 +1,5 @@
+'use strict'
+
 /*  Light.  Applicable only to lamp and urn. */
 const { isObjectInInventory } = require('../inventory')
 const { getCurrentLocation } = require('../locations')

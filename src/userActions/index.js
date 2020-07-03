@@ -1,3 +1,5 @@
+'use strict'
+
 const { carry } = require('./carry')
 const { discard } = require('./discard')
 const { extinguish } = require('./extinguish')
