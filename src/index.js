@@ -1,10 +1,16 @@
 'use strict'
 
-const { displayTitle } = require('./console')
+const chalk = require('chalk')
+const figlet = require('figlet')
 const { getInstructions } = require('./global')
 
 function run() {
-  displayTitle()
+  console.log(chalk.green(figlet.textSync('Colossal Cave \n Adventure', {
+    font: 'Doom',
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+  })))
+
   getInstructions()
 }
 

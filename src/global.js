@@ -3,7 +3,7 @@
 const { messages, settings } = require('./data')
 const { manageActions } = require('./actions')
 const {
-  consoleInput, display, displayLine, format,
+  consoleInput, displayText, displayLine, format,
 } = require('./console')
 const { getLocationDescription, getRoutesFromLocation } = require('./locations')
 const { manageTravel } = require('./travels')
@@ -26,7 +26,7 @@ function getInstructions() {
       return getInstructions()
     }
 
-    if (yes) display(caveNearby)
+    if (yes) displayText(caveNearby)
     if (no) settings.novice = false
 
     return doSomething()
@@ -54,7 +54,7 @@ function doSomething(description = true) {
 
     if (settings.repeat) settings.repeat = false
     if (!routes.includes(answer)) {
-      display(manageActions(answer))
+      displayText(manageActions(answer))
       settings.repeat = true
       return doSomething(false)
     }

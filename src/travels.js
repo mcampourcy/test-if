@@ -3,7 +3,7 @@
 const { getTravel } = require('./locations')
 const { manageLocationsHistory } = require('./settings')
 const { messages, settings } = require('./data')
-const { display } = require('./console')
+const { displayText } = require('./console')
 const { isObjectInInventory } = require('./inventory')
 const { getObjectById } = require('./object')
 
@@ -17,7 +17,7 @@ function manageTravel(answer) {
     }
   } else if (travel.id === 'speak') {
     settings.repeat = true
-    display(messages[travel.description])
+    displayText(messages[travel.description])
   }
 }
 
@@ -43,7 +43,7 @@ function travelConditionFailed(conditionFailed) {
   }
   if (conditionFailed.id === 'speak') {
     settings.repeat = true
-    display(messages[conditionFailed.description])
+    displayText(messages[conditionFailed.description])
   }
 }
 
