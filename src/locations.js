@@ -48,7 +48,7 @@ function getLocationDescription(forceLong = false) {
 
     if (current === 'y2' && pct(25)) description += `\n ${messages.saysPlugh}`
 
-    return format(objectsDescription.length ? `${description}\n${objectsDescription}` : description)
+    return objectsDescription.length ? `${description}\n${objectsDescription}` : description
   }
 
   return format(description.length ? `${description}\n${messages.pitchDark}` : messages.pitchDark)

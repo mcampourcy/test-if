@@ -5,7 +5,7 @@ const figlet = require('figlet')
 const { getInstructions } = require('./global')
 
 function run() {
-  console.log(chalk.green(figlet.textSync('Colossal Cave \n Adventure', {
+  console.log(chalk.greenBright(figlet.textSync('Colossal Cave Adventure', {
     font: 'Doom',
     horizontalLayout: 'default',
     verticalLayout: 'default',

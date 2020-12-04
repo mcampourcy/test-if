@@ -12,7 +12,7 @@ const actions = [
     id: 'actVersion',
     message: 'There is a puff of orange smoke; within it, fiery runes spell out: "Open Adventure %V http://www.catb.org/esr/open-adventure/"',
     noaction: true,
-    verbs: ['versi'],
+    verbs: ['versi', 'version'],
   },
   {
     id: 'attack',
@@ -308,6 +308,11 @@ const actions = [
     message: 'Guess again.',
     noaction: true,
     verbs: ['yes'],
+  },
+  {
+    id: 'arbo',
+    message: 'Sure.',
+    verbs: ['arbo'],
   },
 ]
 

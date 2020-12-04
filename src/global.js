@@ -19,8 +19,25 @@ function getInstructions() {
   consoleInput(welcomeQuestion, (input) => {
     const yes = yesAnswer.includes(input.trim())
     const no = noAnswer.includes(input.trim())
+    const tree = input.trim() === 'arbo'
 
-    if (!yes && !no) {
+    if (tree) {
+      displayText(`
+      |-- yes
+          |-- instructions
+          |-- locStart
+          |-- novice
+      |-- no
+          |-- locStart
+          |-- !novice
+      |-- else
+          |-- error
+          |-- repeat
+    `)
+      return getInstructions()
+    }
+
+    if (!yes && !no && !tree) {
       settings.repeat = true
       displayLine(pleaseAnswer)
       return getInstructions()
@@ -46,7 +63,7 @@ function getInstructions() {
  */
 function doSomething(description = true) {
   const locationDescription = getLocationDescription()
-  const question = description ? locationDescription : ''
+  const question = description ? format(locationDescription) : ''
 
   consoleInput(question, (input) => {
     const routes = getRoutesFromLocation()
