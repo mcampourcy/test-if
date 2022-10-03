@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "type": "module",
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "lint": "eslint --ext js src",
@@ -23,7 +24,7 @@
     "shelljs": "^0.8.4"
   },
   "bin": {
-    "adventure": "bin/adventure.js"
+    "adventure": "./bin/adventure.js"
   },
   "devDependencies": {
     "eslint": "^7.1.0",

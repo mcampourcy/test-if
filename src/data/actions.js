@@ -309,11 +309,6 @@ const actions = [
     noaction: true,
     verbs: ['yes'],
   },
-  {
-    id: 'arbo',
-    message: 'Sure.',
-    verbs: ['arbo'],
-  },
 ]
 
 module.exports = { actions }

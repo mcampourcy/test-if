@@ -4,8 +4,7 @@ const chalk = require('chalk')
 const figlet = require('figlet')
 const { consoleInput, format } = require('../src/console')
 
-/* eslint-disable global-require */
-
+// eslint-disable-next-line no-global-assign
 require = require('esm')(module /* , options */)
 slides()
 
