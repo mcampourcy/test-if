@@ -5,13 +5,11 @@ const { getErrorMessage } = require('./directions')
 const { getLocationDescription, getCurrentLocation } = require('./locations')
 const { getObjectByWord } = require('./object')
 const {
-  arbo,
   carry,
   discard,
   drink,
   extinguish,
   fill,
-  fly,
   inventory,
   light,
   listen,
@@ -71,8 +69,6 @@ function manageActions(answer) {
       return extinguish(param)
     case 'fill':
       return locationTooDark ? messages.cantApply : fill(param, action.id, verb)
-    case 'fly':
-      return fly(action.id)
     case 'inventory':
       return inventory()
     case 'light':
@@ -88,8 +84,6 @@ function manageActions(answer) {
       return read(param)
     case 'wave':
       return wave(param, verb)
-    case 'arbo': // special case for talk
-      return arbo()
     default:
       return messages.cantApply
   }
