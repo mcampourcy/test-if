@@ -1,12 +1,10 @@
-'use strict'
-
-const { messages, settings } = require('./data')
-const { manageActions } = require('./actions')
-const {
+import { messages, settings } from './data'
+import { manageActions } from './actions'
+import {
   consoleInput, displayText, displayLine, format,
-} = require('./console')
-const { getLocationDescription, getRoutesFromLocation } = require('./locations')
-const { manageTravel } = require('./travels')
+} from './console'
+import { getLocationDescription, getRoutesFromLocation } from './locations'
+import { manageTravel } from './travels'
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']
