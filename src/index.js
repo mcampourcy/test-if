@@ -1,10 +1,8 @@
-#! /usr/bin/env node
+import chalk from 'chalk'
+import figlet from 'figlet'
+import { getInstructions } from './global'
 
-const chalk = require('chalk')
-const figlet = require('figlet')
-const { getInstructions } = require('./global')
-
-function run() {
+export function run() {
   console.log(chalk.greenBright(figlet.textSync('Colossal Cave Adventure', {
     font: 'Doom',
     horizontalLayout: 'default',
@@ -13,5 +11,3 @@ function run() {
 
   getInstructions()
 }
-
-module.exports = { run }
