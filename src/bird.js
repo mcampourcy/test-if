@@ -1,10 +1,8 @@
-'use strict'
+import { messages } from './data'
+import { addObjectToInventory, isObjectInInventory } from './inventory'
+import { destroyObject, getObjectFromCurrentLocation, updateObjectState } from './object'
 
-const { messages } = require('./data')
-const { addObjectToInventory, isObjectInInventory } = require('./inventory')
-const { destroyObject, getObjectFromCurrentLocation, updateObjectState } = require('./object')
-
-function getTheBird(bird) {
+export function getTheBird(bird) {
   if (bird.currentState === 'birdForestUncaged') {
     destroyObject(bird)
     return messages.birdCrap
@@ -19,7 +17,7 @@ function getTheBird(bird) {
   return messages.okMan
 }
 
-function cageTheBird(cage, instruction) {
+export function cageTheBird(cage, instruction) {
   const bird = getObjectFromCurrentLocation('bird')
   if (!bird) return messages.doWhat(instruction)
 
@@ -29,5 +27,3 @@ function cageTheBird(cage, instruction) {
   addObjectToInventory('cage')
   return messages.okMan
 }
-
-module.exports = { getTheBird, cageTheBird }

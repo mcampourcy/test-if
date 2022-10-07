@@ -1,13 +1,11 @@
-'use strict'
+import { getTravel } from './locations'
+import { manageLocationsHistory } from './settings'
+import { messages, settings } from './data'
+import { displayText } from './console'
+import { isObjectInInventory } from './inventory'
+import { getObjectById } from './object'
 
-const { getTravel } = require('./locations')
-const { manageLocationsHistory } = require('./settings')
-const { messages, settings } = require('./data')
-const { displayText } = require('./console')
-const { isObjectInInventory } = require('./inventory')
-const { getObjectById } = require('./object')
-
-function manageTravel(answer) {
+export function manageTravel(answer) {
   const travel = getTravel(answer)
   if (travel.id === 'goTo') {
     if (travel.condition) {
@@ -46,5 +44,3 @@ function travelConditionFailed(conditionFailed) {
     displayText(messages[conditionFailed.description])
   }
 }
-
-module.exports = { manageTravel }

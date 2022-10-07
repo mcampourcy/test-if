@@ -1,5 +1,3 @@
-'use strict'
-
 // locations: They have attributes as follows...
 //      long:         Long description, always shown on first encounter.
 //      short:        Short description. If none, use long description.
@@ -38,7 +36,7 @@
 //                                     N may be numeric or a state label.
 //                      [nodwarves]    Dwarves must skip this rule.
 
-const locations = [
+export const locations = [
   {
     id: 'locNowhere',
     conditions: {},
@@ -3020,5 +3018,3 @@ const locations = [
     ],
   },
 ]
-
-module.exports = { locations }

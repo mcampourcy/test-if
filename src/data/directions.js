@@ -1,12 +1,10 @@
-'use strict'
-
 /**
  * motions: Motion words, grouped into synonyms.
  * The 'oldstyle' attribute, if false, means that single-letter synonyms
  * should be accepted in oldstyle mode; it defaults to true.
  */
 
-const directions = [
+export const directions = [
   {
     id: 'acros',
     verbs: ['acros'],
@@ -300,5 +298,3 @@ const directions = [
     verbs: ['y2'],
   },
 ]
-
-module.exports = { directions }

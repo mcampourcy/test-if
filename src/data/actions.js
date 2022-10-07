@@ -1,8 +1,6 @@
-'use strict'
+import { messages } from './messages'
 
-const { messages } = require('./messages')
-
-const actions = [
+export const actions = [
   {
     id: 'act_unknown',
     message: messages.huhMan,
@@ -310,5 +308,3 @@ const actions = [
     verbs: ['yes'],
   },
 ]
-
-module.exports = { actions }

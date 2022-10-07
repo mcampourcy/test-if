@@ -1,15 +1,13 @@
-'use strict'
-
-const { actions, messages } = require('../data')
-const { getFluidConditions } = require('../locations')
-const { addObjectToInventory, isObjectInInventory } = require('../inventory')
-const {
+import { actions, messages } from '../data'
+import { getFluidConditions } from '../locations'
+import { addObjectToInventory, isObjectInInventory } from '../inventory'
+import {
   getObjectFromCurrentLocation, getObjectByWord, getObjectState, updateObjectState,
-} = require('../object')
+} from '../object'
 
 /*  Drink.  If no object, assume water and look for it here.  If water is in
  *  the bottle, drink that, else must be at a water loc, so drink stream. */
-function drink(param, actionId) {
+export function drink(param, actionId) {
   const fluid = getFluidConditions()
   const isBottleHere = getObjectFromCurrentLocation('bottle')
   const isBottleInInventory = isObjectInInventory('bottle')
@@ -55,5 +53,3 @@ function drink(param, actionId) {
 
   return actions.find(({ id }) => id === actionId).message
 }
-
-module.exports = { drink }

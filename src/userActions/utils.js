@@ -1,9 +1,5 @@
-'use strict'
+import { actions } from '../data'
 
-const { actions } = require('../data')
-
-function getAction(actionId) {
+export function getAction(actionId) {
   return actions.find(({ id }) => id === actionId)
 }
-
-module.exports = { getAction }

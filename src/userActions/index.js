@@ -1,27 +1,12 @@
-'use strict'
-
-const { carry } = require('./carry')
-const { discard } = require('./discard')
-const { drink } = require('./drink')
-const { extinguish } = require('./extinguish')
-const { fill } = require('./fill')
-const { inventory } = require('./inventory')
-const { light } = require('./light')
-const { listen } = require('./listen')
-const { lock } = require('./lock')
-const { read } = require('./read')
-const { wave } = require('./wave')
-
-module.exports = {
-  carry,
-  discard,
-  drink,
-  extinguish,
-  fill,
-  inventory,
-  light,
-  listen,
-  lock,
-  read,
-  wave,
-}
+export { attack } from './attack'
+export { carry } from './carry'
+export { discard } from './discard'
+export { drink } from './drink'
+export { extinguish } from './extinguish'
+export { fill } from './fill'
+export { inventory } from './inventory'
+export { light } from './light'
+export { listen } from './listen'
+export { lock } from './lock'
+export { read } from './read'
+export { wave } from './wave'

@@ -1,9 +1,7 @@
-'use strict'
+import { spawn } from 'child_process'
+import { existsSync } from 'fs'
 
-const { spawn } = require('child_process')
-const { existsSync } = require('fs')
-
-function executeInput(processPath, inputs = []) {
+export function executeInput(processPath, inputs = []) {
   if (!processPath || !existsSync(processPath)) {
     throw new Error('Process not found')
   }
@@ -63,5 +61,3 @@ function executeInput(processPath, inputs = []) {
 
   return promise
 }
-
-module.exports = { executeInput }

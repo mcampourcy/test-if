@@ -1,11 +1,9 @@
-'use strict'
-
 /*  Light.  Applicable only to lamp and urn. */
-const { isObjectInInventory } = require('../inventory')
-const { getLocationDescription } = require('../locations')
-const { getObjectByWord, updateObjectState, getObjectFromCurrentLocation } = require('../object')
+import { isObjectInInventory } from '../inventory'
+import { getLocationDescription } from '../locations'
+import { getObjectByWord, updateObjectState, getObjectFromCurrentLocation } from '../object'
 
-function light(action, param) {
+export function light(action, param) {
   const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
   const urn = isObjectInInventory('urn') || getObjectFromCurrentLocation('urn')
   let obj = param
@@ -28,5 +26,3 @@ function light(action, param) {
 
   return action.message
 }
-
-module.exports = { light }

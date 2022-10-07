@@ -1,6 +1,4 @@
-'use strict'
-
-const objects = [
+export const objects = [
   {
     id: 'axe',
     currentState: 'axeHere',
@@ -924,5 +922,3 @@ const objects = [
     words: ['water', 'h2o'],
   },
 ]
-
-module.exports = { objects }

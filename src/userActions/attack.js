@@ -1,20 +1,18 @@
-'use strict'
-
-const { format } = require('../console')
-const { actions, messages } = require('../data')
-const {
+import { format } from '../console'
+import { actions, messages } from '../data'
+import {
   destroyObject,
   getObjectByWord,
   getObjectFromCurrentLocation,
   getObjectFromLocationOrInventory,
   updateObjectState,
-} = require('../object')
+} from '../object'
 
 // ATTACK. ASSUME TARGET IF UNAMBIGUOUS. "THROW" ALSO LINKS HERE. ATTACKABLE
 // OBJECTS FALL INTO TWO CATEGORIES: ENEMIES (SNAKE, DWARF, ETC.) AND OTHERS (BIRD, CLAM).
 // AMBIGUOUS IF TWO ENEMIES, OR IF NO ENEMIES BUT TWO OTHERS.
 
-function attack(param, actionId) {
+export function attack(param, actionId) {
   const bird = getObjectFromLocationOrInventory('bird')
   const clam = getObjectFromCurrentLocation('clam')
   const oyster = getObjectFromCurrentLocation('oyster')
@@ -173,5 +171,3 @@ function attack(param, actionId) {
 
   return null
 }
-
-module.exports = { attack }

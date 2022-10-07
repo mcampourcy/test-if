@@ -1,8 +1,4 @@
-'use strict'
-
-const WORDS = {
+export const WORDS = {
   NO: ['n', 'no'],
   YES: ['y', 'yes'],
 }
-
-module.exports = { WORDS }

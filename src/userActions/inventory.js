@@ -1,9 +1,7 @@
-'use strict'
+import { messages, settings } from '../data'
+import { getObjectById, getObjectByWord } from '../object'
 
-const { messages, settings } = require('../data')
-const { getObjectById, getObjectByWord } = require('../object')
-
-function inventory() {
+export function inventory() {
   const { inventory: currentInventory } = settings
   let description = currentInventory.length ? messages.nowHolding : messages.noCarry
 
@@ -27,5 +25,3 @@ function inventory() {
 
   return description
 }
-
-module.exports = { inventory }

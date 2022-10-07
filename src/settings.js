@@ -1,12 +1,8 @@
-'use strict'
+import { settings } from './data'
 
-const { settings } = require('./data')
-
-function manageLocationsHistory(newLocation) {
+export function manageLocationsHistory(newLocation) {
   const { currentLocation, previousLocation } = settings
   settings.previousPreviousLocation = previousLocation
   settings.previousLocation = currentLocation
   settings.currentLocation = newLocation
 }
-
-module.exports = { manageLocationsHistory }

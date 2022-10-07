@@ -1,9 +1,9 @@
-'use strict'
+import { getObjectById } from './object'
 
-const { getObjectById } = require('./object')
+export function isTreasureFound(treasure) {
+  return getObjectById(treasure).locations[0] !== 'locNowhere'
+}
 
-const isTreasureFound = treasure => getObjectById(treasure).locations[0] !== 'locNowhere'
-
-const isPreciousGem = id => ['emerald', 'ruby', 'amber', 'sapph'].includes(id)
-
-module.exports = { isTreasureFound, isPreciousGem }
+export function isPreciousGem(id) {
+  return ['emerald', 'ruby', 'amber', 'sapph'].includes(id)
+}

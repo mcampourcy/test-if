@@ -1,10 +1,8 @@
-'use strict'
+import { messages, sounds } from '../data'
+import { getCurrentLocation } from '../locations'
+import { getObjectsSound } from '../objects'
 
-const { messages, sounds } = require('../data')
-const { getCurrentLocation } = require('../locations')
-const { getObjectsSound } = require('../objects')
-
-const listen = () => {
+export const listen = () => {
   const { loud, sound } = getCurrentLocation()
   const objectsSounds = getObjectsSound()
 
@@ -14,5 +12,3 @@ const listen = () => {
 
   return messages.allSilent
 }
-
-module.exports = { listen }

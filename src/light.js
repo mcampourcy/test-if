@@ -1,12 +1,8 @@
-'use strict'
+import { getObjectFromLocationOrInventory } from './object'
 
-const { getObjectFromLocationOrInventory } = require('./object')
-
-function getLocationLight(currentLocation) {
+export function getLocationLight(currentLocation) {
   const { conditions } = currentLocation
   const lamp = getObjectFromLocationOrInventory('lamp')
 
   return (conditions && conditions.lit) || (lamp && lamp.currentState === 'lampBright')
 }
-
-module.exports = { getLocationLight }

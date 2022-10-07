@@ -1,10 +1,8 @@
-'use strict'
-
-const { actions, directions, messages } = require('./data')
-const { getErrorMessage } = require('./directions')
-const { getLocationDescription, getCurrentLocation } = require('./locations')
-const { getObjectByWord } = require('./object')
-const {
+import { actions, directions, messages } from './data'
+import { getErrorMessage } from './directions'
+import { getLocationDescription, getCurrentLocation } from './locations'
+import { getObjectByWord } from './object'
+import {
   carry,
   discard,
   drink,
@@ -16,11 +14,13 @@ const {
   lock,
   read,
   wave,
-} = require('./userActions')
-const { getLocationLight } = require('./light')
-const { attack } = require('./userActions/attack')
+} from './userActions'
+import { getLocationLight } from './light'
+import { attack } from './userActions'
 
-const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.includes(instruction))
+function getAction(instruction) {
+  return actions.find(({ verbs }) => verbs && verbs.includes(instruction))
+}
 
 /**
  * Manage user actions
@@ -34,7 +34,7 @@ const getAction = instruction => actions.find(({ verbs }) => verbs && verbs.incl
  * Difference between 'action.id' and 'verb' :
  * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
  * */
-function manageActions(answer) {
+export function manageActions(answer) {
   const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
   if (answerIsDirection) return getErrorMessage(answer)
   const currentLocation = getCurrentLocation()
@@ -88,5 +88,3 @@ function manageActions(answer) {
       return messages.cantApply
   }
 }
-
-module.exports = { manageActions }

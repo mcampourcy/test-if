@@ -1,15 +1,13 @@
-'use strict'
+import { messages, settings } from '../data'
+import { fill, inventory } from './inventory'
+import { cageTheBird, getTheBird } from '../bird'
+import { addObjectToInventory, isObjectInInventory } from '../inventory'
+import { getCurrentLocation } from '../locations'
+import { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } from '../object'
+import { getObjectsList } from '../objects'
+import { getAction } from './utils'
 
-const { messages, settings } = require('../data')
-const { fill, inventory } = require('./inventory')
-const { cageTheBird, getTheBird } = require('../bird')
-const { addObjectToInventory, isObjectInInventory } = require('../inventory')
-const { getCurrentLocation } = require('../locations')
-const { getObjectFromCurrentLocation, isObjectALiquid, updateObjectState } = require('../object')
-const { getObjectsList } = require('../objects')
-const { getAction } = require('./utils')
-
-function carry(param, actionId, verb) {
+export function carry(param, actionId, verb) {
   const { inventoryLimit } = settings
   const { conditions } = getCurrentLocation()
   const objectsList = getObjectsList()
@@ -66,5 +64,3 @@ function carry(param, actionId, verb) {
   addObjectToInventory(obj.id)
   return messages.okMan
 }
-
-module.exports = { carry }

@@ -1,18 +1,16 @@
-'use strict'
-
-const { actions, messages } = require('../data')
-const { isObjectInInventory } = require('../inventory')
-const { getCurrentLocation } = require('../locations')
-const {
+import { actions, messages } from '../data'
+import { isObjectInInventory } from '../inventory'
+import { getCurrentLocation } from '../locations'
+import {
   destroyObject,
   dropObject,
   getObjectByWord,
   getObjectFromCurrentLocation,
   isObjectALiquid,
   updateObjectState,
-} = require('../object')
-const { updateObjectsList } = require('../objects')
-const { isPreciousGem } = require('../treasure')
+} from '../object'
+import { updateObjectsList } from '../objects'
+import { isPreciousGem } from '../treasure'
 
 /**
  * Discard object. "Throw" also comes here for most objects.
@@ -20,7 +18,7 @@ const { isPreciousGem } = require('../treasure')
  * Drop coins at vending machine for extra batteries.
 * */
 
-function discard(param, actionId, verb) {
+export function discard(param, actionId, verb) {
   const cavity = getObjectFromCurrentLocation('cavity')
   const dragon = getObjectFromCurrentLocation('dragon')
   const rug = getObjectFromCurrentLocation('rug')
@@ -94,5 +92,3 @@ function discard(param, actionId, verb) {
   dropObject(obj.id, currentLocation.id)
   return messages.okMan
 }
-
-module.exports = { discard }

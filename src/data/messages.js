@@ -1,6 +1,4 @@
-'use strict'
-
-const messages = {
+export const messages = {
   allSilent: 'All is silent.',
   alreadyCarrying: 'You are already carrying it!',
   alreadyDead: 'For crying out loud, the poor thing is already dead!',
@@ -210,5 +208,3 @@ const messages = {
   youHaveit: 'I believe what you want is right here with you.',
   youJoking: 'You can\'t be serious!',
 }
-
-module.exports = { messages }

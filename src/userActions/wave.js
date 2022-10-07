@@ -1,12 +1,10 @@
-'use strict'
-
-const { actions, messages, settings } = require('../data')
-const { isObjectInInventory } = require('../inventory')
-const { getObjectByWord, getObjectFromCurrentLocation, updateObjectState } = require('../object')
-const { isTreasureFound } = require('../treasure')
+import { actions, messages, settings } from '../data'
+import { isObjectInInventory } from '../inventory'
+import { getObjectByWord, getObjectFromCurrentLocation, updateObjectState } from '../object'
+import { isTreasureFound } from '../treasure'
 
 // Wave - No effect unless waving rod at fissure or at bird
-const wave = (param, actionId) => {
+export function wave(param, actionId) {
   const isInInventory = isObjectInInventory(param)
   const bird = getObjectFromCurrentLocation('bird') || isObjectInInventory('bird')
   const fissure = getObjectFromCurrentLocation('fissure')
@@ -39,5 +37,3 @@ const wave = (param, actionId) => {
 
   return null
 }
-
-module.exports = { wave }

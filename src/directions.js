@@ -1,8 +1,6 @@
-'use strict'
+import { messages } from './data'
 
-const { messages } = require('./data')
-
-function getErrorMessage(answer) {
+export function getErrorMessage(answer) {
   switch (answer) {
     case 'east':
     case 'west':
@@ -31,5 +29,3 @@ function getErrorMessage(answer) {
       return messages.cantApply
   }
 }
-
-module.exports = { getErrorMessage }

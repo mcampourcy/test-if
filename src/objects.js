@@ -1,9 +1,7 @@
-'use strict'
+import { messages, objects, settings } from './data'
+import { isObjectInInventory } from './inventory'
 
-const { messages, objects, settings } = require('./data')
-const { isObjectInInventory } = require('./inventory')
-
-function getObjectsDescription(location, isLocationLight) {
+export function getObjectsDescription(location, isLocationLight) {
   const { id: currentLocation } = location
 
   if (isLocationLight) {
@@ -29,11 +27,11 @@ function getObjectsDescription(location, isLocationLight) {
   return messages.pitchDark
 }
 
-function getObjectsList() {
+export function getObjectsList() {
   return objects.filter(({ locations }) => locations.includes(settings.currentLocation))
 }
 
-function getObjectsSound() {
+export function getObjectsSound() {
   const { currentLocation, inventory } = settings
   const description = []
   objects.map(({ locations, id, states }) => {
@@ -46,14 +44,10 @@ function getObjectsSound() {
   return description.join('\n')
 }
 
-function updateObjectsList(object) {
+export function updateObjectsList(object) {
   return objects.splice(
     objects.indexOf(objects.find(({ id }) => id === object.id)),
     1,
     object,
   )
-}
-
-module.exports = {
-  getObjectsDescription, getObjectsList, getObjectsSound, updateObjectsList,
 }
