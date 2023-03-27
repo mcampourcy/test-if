@@ -9,8 +9,8 @@ export function run() {
                 font: 'Doom',
                 horizontalLayout: 'default',
                 verticalLayout: 'default',
-            })
-        )
+            }),
+        ),
     )
 
     getInstructions()

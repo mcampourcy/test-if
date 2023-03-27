@@ -13,7 +13,7 @@ export function consoleInput(question, cb) {
 }
 
 export function displayText(string) {
-    console.log(`\n\n${string}\n\n`)
+    console.log(`\n${string}\n\n`)
 }
 
 export function displayLine(string) {

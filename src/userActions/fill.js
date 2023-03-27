@@ -3,8 +3,8 @@ import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
 import { getFluidConditions } from '../locations'
 import { getObjectFromCurrentLocation, updateObjectState } from '../object'
 
-export function fill(param, actionId, verb) {
-    const obj = getObjectFromCurrentLocation(param)
+export function fill({ objectToFill, actionId, verb }) {
+    const obj = getObjectFromCurrentLocation(objectToFill)
     const isInInvent = isObjectInInventory(obj.id)
     const fluid = getFluidConditions()
     const bottle = getObjectFromCurrentLocation('bottle')
@@ -22,13 +22,17 @@ export function fill(param, actionId, verb) {
     if (!fluid) return messages.noLiquid
 
     // Fill what ?
-    if (obj.id !== 'bottle')
+    if (obj.id !== 'bottle') {
         return actions.find(({ id }) => id === actionId).message
+    }
 
     // No bottle here
     if (!bottle) return messages.doWhat(verb)
 
     // Bottle full
-    if (bottle.currentState !== 'emptyBottle') return messages.bottleFull
+    if (bottle.currentState !== 'emptyBottle') {
+        return messages.bottleFull
+    }
+
     return updateObjectState(obj.id, `${fluid}Bottle`)
 }

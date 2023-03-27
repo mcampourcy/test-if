@@ -1,6 +1,8 @@
 import { messages, settings } from './data'
 import { manageActions } from './actions'
-import { consoleInput, displayText, displayLine, format } from './console'
+import {
+    consoleInput, displayText, displayLine, format,
+} from './console'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTravel } from './travels'
 
@@ -42,7 +44,7 @@ export function getInstructions() {
  */
 function doSomething(description = true) {
     const locationDescription = getLocationDescription()
-    const question = description ? locationDescription : ''
+    const question = description ? format(locationDescription) : ''
 
     consoleInput(question, (input) => {
         const routes = getRoutesFromLocation()
@@ -50,7 +52,7 @@ function doSomething(description = true) {
 
         if (settings.repeat) settings.repeat = false
         if (!routes.includes(answer)) {
-            displayText(manageActions(answer))
+            displayLine(manageActions(answer))
             settings.repeat = true
             return doSomething(false)
         }
@@ -63,7 +65,7 @@ function doSomething(description = true) {
 
 // true N% of the time (N integer from 0 to 100)
 export function pct(number = 0) {
-    returnMath.random() < number / 100
+    return Math.random() < number / 100
 }
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)

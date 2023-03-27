@@ -41,9 +41,9 @@ export function drink(param, actionId) {
         }
 
         if (isParamWater && (isBottleHere || isBottleInInventory)) {
-            if (!isBottleInInventory) {
-                return addObjectToInventory(param)
-            }
+            // if (!isBottleInInventory) {
+            //     return addObjectToInventory(param)
+            // }
 
             const hasBottleWater = getObjectState(param).id === 'waterBottle'
             if (hasBottleWater) {

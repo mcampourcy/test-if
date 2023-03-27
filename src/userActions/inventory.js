@@ -23,7 +23,7 @@ export function inventory() {
                     0,
                     currentState.indexOf('Bottle'),
                 )
-                const liquid = getObjectById(type).inventory
+                const liquid = getObjectById(type).inventoryName
 
                 description += `\n${liquid}`
             }

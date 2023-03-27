@@ -25,7 +25,7 @@ export function carry(param, actionId, verb) {
     // if user didn't mention any param ("take") and there is only one object here, take the object
     // Otherwise, return error message
     if (!param) {
-        ;[obj] = objectsList
+        obj = objectsList[0]
         if (!onlyOneObjectHere) return messages.doWhat(verb)
     }
 
@@ -40,15 +40,14 @@ export function carry(param, actionId, verb) {
 
     // "take water / oil"
     if (isObjectALiquid(obj.id)) {
-        const bottle =
-            getObjectFromCurrentLocation('bottle') ||
-            isObjectInInventory('bottle')
+        const bottle = getObjectFromCurrentLocation('bottle')
+            || isObjectInInventory('bottle')
 
         if (!bottle) return messages.noContainer
         if (getObjectFromCurrentLocation('bottle')) addObjectToInventory(obj.id)
         if (bottle.currentState === 'fullBottle') return messages.bottleFull
 
-        return fill(actionId)
+        return fill({ objectToFill: obj, actionId })
     }
 
     if (obj.id === 'bird') return getTheBird(obj)
@@ -59,7 +58,7 @@ export function carry(param, actionId, verb) {
         if (obj.currentState === 'emptyBottle') {
             const bottleState = updateObjectState(
                 obj.id,
-                conditions.oily ? 'oilBottle' : 'waterBottle'
+                conditions.oily ? 'oilBottle' : 'waterBottle',
             )
             return `${bottleState.change}\n${messages.okMan}`
         }
@@ -68,8 +67,8 @@ export function carry(param, actionId, verb) {
     }
 
     if (
-        (obj.id === 'cage' && getObjectFromCurrentLocation('bird')) ||
-        (obj.id === 'bird' && verb === 'cage')
+        (obj.id === 'cage' && getObjectFromCurrentLocation('bird'))
+        || (obj.id === 'bird' && verb === 'cage')
     ) {
         return cageTheBird(obj, verb)
     }
