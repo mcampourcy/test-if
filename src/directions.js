@@ -1,7 +1,7 @@
 import { messages } from './data'
 
 export function getErrorMessage(answer) {
-  switch (answer) {
+    switch (answer) {
     case 'east':
     case 'west':
     case 'south':
@@ -12,20 +12,20 @@ export function getErrorMessage(answer) {
     case 'se':
     case 'up':
     case 'down':
-      return messages.badDirection
+        return messages.badDirection
     case 'forward':
     case 'left':
     case 'right':
-      return messages.unsureFacing
+        return messages.unsureFacing
     case 'outside':
     case 'inside':
-      return messages.noInoutHere
+        return messages.noInoutHere
     case 'xyzzy':
     case 'plugh':
-      return messages.nothingHappens
+        return messages.nothingHappens
     case 'crawl':
-      return messages.whichWay
+        return messages.whichWay
     default:
-      return messages.cantApply
-  }
+        return messages.cantApply
+    }
 }

@@ -6,11 +6,11 @@
  */
 
 export const settings = {
-  currentLocation: 'locStart',
-  inventory: [],
-  inventoryLimit: 7,
-  novice: true,
-  previousLocation: 'locNowhere',
-  previousPreviousLocation: 'locNowhere',
-  repeat: false,
+    currentLocation: 'locStart',
+    inventory: [],
+    inventoryLimit: 7,
+    novice: true,
+    previousLocation: 'locNowhere',
+    previousPreviousLocation: 'locNowhere',
+    repeat: false,
 }

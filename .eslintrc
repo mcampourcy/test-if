@@ -10,18 +10,19 @@
     "sourceType": "module"
   },
   "rules": {
-    "semi": ["error", "never"],
-    "no-use-before-define": ["error", { "functions": false }],
-    "comma-dangle": ["error", "always-multiline"],
-    "no-console": 0,
-    "strict": ["error", "global"],
     "array-callback-return": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "indent": ["error", 4],
     "max-len": ["error",
       {
         "code": 160,
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
       }
-    ]
+    ],
+    "no-console": 0,
+    "no-use-before-define": ["error", { "functions": false }],
+    "semi": ["error", "never"],
+    "strict": ["error", "global"],
   }
 }

@@ -1,8 +1,6 @@
 import { messages, settings } from './data'
 import { manageActions } from './actions'
-import {
-  consoleInput, displayText, displayLine, format,
-} from './console'
+import { consoleInput, displayText, displayLine, format } from './console'
 import { getLocationDescription, getRoutesFromLocation } from './locations'
 import { manageTravel } from './travels'
 
@@ -10,25 +8,25 @@ const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']
 
 export function getInstructions() {
-  const { caveNearby, pleaseAnswer, welcomeYou } = messages
-  const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
-  settings.repeat = false
+    const { caveNearby, pleaseAnswer, welcomeYou } = messages
+    const welcomeQuestion = settings.repeat ? '' : format(welcomeYou)
+    settings.repeat = false
 
-  consoleInput(welcomeQuestion, (input) => {
-    const yes = yesAnswer.includes(input.trim())
-    const no = noAnswer.includes(input.trim())
+    consoleInput(welcomeQuestion, (input) => {
+        const yes = yesAnswer.includes(input.trim())
+        const no = noAnswer.includes(input.trim())
 
-    if (!yes && !no) {
-      settings.repeat = true
-      displayLine(pleaseAnswer)
-      return getInstructions()
-    }
+        if (!yes && !no) {
+            settings.repeat = true
+            displayLine(pleaseAnswer)
+            return getInstructions()
+        }
 
-    if (yes) displayText(caveNearby)
-    if (no) settings.novice = false
+        if (yes) displayText(caveNearby)
+        if (no) settings.novice = false
 
-    return doSomething()
-  })
+        return doSomething()
+    })
 }
 
 /**
@@ -43,31 +41,30 @@ export function getInstructions() {
  * Anyway : repeat all
  */
 function doSomething(description = true) {
-  const locationDescription = getLocationDescription()
-  const question = description ? locationDescription : ''
+    const locationDescription = getLocationDescription()
+    const question = description ? locationDescription : ''
 
-  consoleInput(question, (input) => {
-    const routes = getRoutesFromLocation()
-    const answer = input.trim()
+    consoleInput(question, (input) => {
+        const routes = getRoutesFromLocation()
+        const answer = input.trim()
 
-    if (settings.repeat) settings.repeat = false
-    if (!routes.includes(answer)) {
-      displayText(manageActions(answer))
-      settings.repeat = true
-      return doSomething(false)
-    }
+        if (settings.repeat) settings.repeat = false
+        if (!routes.includes(answer)) {
+            displayText(manageActions(answer))
+            settings.repeat = true
+            return doSomething(false)
+        }
 
-    const travels = Array.isArray(routes) ? answer : routes
-    manageTravel(travels)
-    return doSomething()
-  })
+        const travels = Array.isArray(routes) ? answer : routes
+        manageTravel(travels)
+        return doSomething()
+    })
 }
 
 // true N% of the time (N integer from 0 to 100)
 export function pct(number = 0) {
-  returnMath.random() < (number / 100)
+    returnMath.random() < number / 100
 }
-
 
 // void pspeak(vocab_t msg, enum speaktype mode, bool blank, int skip, ...)
 // /* Find the skip+1st message from msg and print it.  Modes are:

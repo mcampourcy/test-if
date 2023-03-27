@@ -3,23 +3,23 @@ import { getErrorMessage } from './directions'
 import { getLocationDescription, getCurrentLocation } from './locations'
 import { getObjectByWord } from './object'
 import {
-  carry,
-  discard,
-  drink,
-  extinguish,
-  fill,
-  inventory,
-  light,
-  listen,
-  lock,
-  read,
-  wave,
+    carry,
+    discard,
+    drink,
+    extinguish,
+    fill,
+    inventory,
+    light,
+    listen,
+    lock,
+    read,
+    wave,
 } from './userActions'
 import { getLocationLight } from './light'
 import { attack } from './userActions'
 
 function getAction(instruction) {
-  return actions.find(({ verbs }) => verbs && verbs.includes(instruction))
+    return actions.find(({ verbs }) => verbs && verbs.includes(instruction))
 }
 
 /**
@@ -35,56 +35,60 @@ function getAction(instruction) {
  * 'verb' is the instruction given by the user, action.id is the generic id of 'verb'
  * */
 export function manageActions(answer) {
-  const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
-  if (answerIsDirection) return getErrorMessage(answer)
-  const currentLocation = getCurrentLocation()
-  const locationTooDark = !getLocationLight(currentLocation)
+    const answerIsDirection = directions.find(({ verbs }) => verbs.includes(answer))
+    if (answerIsDirection) return getErrorMessage(answer)
+    const currentLocation = getCurrentLocation()
+    const locationTooDark = !getLocationLight(currentLocation)
 
-  let [verb, param] = answer.split(/\s/)
+    let [verb, param] = answer.split(/\s/)
 
-  // <object> <verb> form
-  if (getAction(param) && getObjectByWord(verb)) {
-    const oldVerb = verb
-    verb = param
-    param = oldVerb
-  }
+    // <object> <verb> form
+    if (getAction(param) && getObjectByWord(verb)) {
+        const oldVerb = verb
+        verb = param
+        param = oldVerb
+    }
 
-  const action = getAction(verb)
+    const action = getAction(verb)
 
-  if (!action) return messages.cantApply
+    if (!action) return messages.cantApply
 
-  if (action.noaction) return action.message
+    if (action.noaction) return action.message
 
-  switch (action.id) {
+    switch (action.id) {
     case 'attack':
     case 'throw':
-      return attack(param, action.id)
+        return attack(param, action.id)
     case 'carry':
-      return locationTooDark ? messages.cantApply : carry(param, action.id, verb)
+        return locationTooDark
+            ? messages.cantApply
+            : carry(param, action.id, verb)
     case 'discard':
-      return discard(param, action.id, verb)
+        return discard(param, action.id, verb)
     case 'drink':
-      return drink(param, action.id)
+        return drink(param, action.id)
     case 'extinguish':
-      return extinguish(param)
+        return extinguish(param)
     case 'fill':
-      return locationTooDark ? messages.cantApply : fill(param, action.id, verb)
+        return locationTooDark
+            ? messages.cantApply
+            : fill(param, action.id, verb)
     case 'inventory':
-      return inventory()
+        return inventory()
     case 'light':
-      return light(action, param)
+        return light(action, param)
     case 'listen':
-      return listen()
+        return listen()
     case 'look':
-      return `${messages.noMoreDetail}\n${getLocationDescription(true)}`
+        return `${messages.noMoreDetail}\n${getLocationDescription(true)}`
     case 'lock':
     case 'unlock':
-      return lock(param, action.id)
+        return lock(param, action.id)
     case 'read':
-      return read(param)
+        return read(param)
     case 'wave':
-      return wave(param, verb)
+        return wave(param, verb)
     default:
-      return messages.cantApply
-  }
+        return messages.cantApply
+    }
 }

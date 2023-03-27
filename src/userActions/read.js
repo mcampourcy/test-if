@@ -6,26 +6,26 @@ import { getLocationLight } from '../light'
 import { getObjectByWord } from '../object'
 
 export function read(param) {
-  if (!param) {
-    const objects = getObjectsList()
-    let text = ''
-    objects.map(({ texts }) => {
-      if (texts) text += `\n${texts}`
-    })
+    if (!param) {
+        const objects = getObjectsList()
+        let text = ''
+        objects.map(({ texts }) => {
+            if (texts) text += `\n${texts}`
+        })
 
-    if (!text.length) return messages.huhMan
+        if (!text.length) return messages.huhMan
 
-    return text
-  }
+        return text
+    }
 
-  const object = getObjectByWord(param)
+    const object = getObjectByWord(param)
 
-  if (!getLocationLight()) return messages.noSee(param)
+    if (!getLocationLight()) return messages.noSee(param)
 
-  if (!object.texts) return actions.read.message
+    if (!object.texts) return actions.read.message
 
-  return format(object.texts)
+    return format(object.texts)
 
-  // } else if (command.obj == OYSTER && !game.clshnt && game.closed) {
-  //   game.clshnt = yes(arbitrary_messages[CLUE_QUERY], arbitrary_messages[WAYOUT_CLUE], arbitrary_messages[OK_MAN]);
+    // } else if (command.obj == OYSTER && !game.clshnt && game.closed) {
+    //   game.clshnt = yes(arbitrary_messages[CLUE_QUERY], arbitrary_messages[WAYOUT_CLUE], arbitrary_messages[OK_MAN]);
 }
