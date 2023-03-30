@@ -1,4 +1,4 @@
-import { messages } from './data'
+import { messages } from './data/index.js'
 
 export function getErrorMessage(answer) {
     switch (answer) {

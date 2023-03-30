@@ -1,6 +1,6 @@
-import { actions, messages } from '../data'
-import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
+import { actions, messages } from '../data/index.js'
+import { isObjectInInventory } from '../inventory.js'
+import { getCurrentLocation } from '../locations.js'
 import {
     destroyObject,
     dropObject,
@@ -8,9 +8,9 @@ import {
     getObjectFromCurrentLocation,
     isObjectALiquid,
     updateObjectState,
-} from '../object'
-import { updateObjectsList } from '../objects'
-import { isPreciousGem } from '../treasure'
+} from '../object.js'
+import { updateObjectsList } from '../objects.js'
+import { isPreciousGem } from '../treasure.js'
 
 /**
  * Discard object. "Throw" also comes here for most objects.

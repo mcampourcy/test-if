@@ -1,16 +1,16 @@
-import { messages, settings } from '../data'
-import { inventory } from './inventory'
-import { cageTheBird, getTheBird } from '../bird'
-import { addObjectToInventory, isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
+import { messages, settings } from '../data/index.js'
+import { inventory } from './inventory.js'
+import { cageTheBird, getTheBird } from '../bird.js'
+import { addObjectToInventory, isObjectInInventory } from '../inventory.js'
+import { getCurrentLocation } from '../locations.js'
 import {
     getObjectFromCurrentLocation,
     isObjectALiquid,
     updateObjectState,
-} from '../object'
-import { getObjectsList } from '../objects'
-import { getAction } from './utils'
-import { fill } from './fill'
+} from '../object.js'
+import { getObjectsList } from '../objects.js'
+import { getAction } from './utils.js'
+import { fill } from './fill.js'
 
 export function carry(param, actionId, verb) {
     const { inventoryLimit } = settings

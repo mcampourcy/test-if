@@ -1,5 +1,5 @@
-import { messages, objects, settings } from './data'
-import { isObjectInInventory } from './inventory'
+import { messages, objects, settings } from './data/index.js'
+import { isObjectInInventory } from './inventory.js'
 
 export function getObjectsDescription(location, isLocationLight) {
     const { id: currentLocation } = location

@@ -1,20 +1,22 @@
-const path = require('path')
-const childProcess = require('child_process')
-const { executeInput } = require('../executeInput.js')
-const { text, error } = require('./scenarios/1-locStart.json')
+import path from 'path'
+import childProcess from 'child_process'
+import { executeInput } from '../executeInput.js'
+import locStart from './scenarios/1-locStart.json'
+
+const { text, error } = locStart
 
 describe('Routes from locStart', () => {
     let welcomeScreen
 
     beforeAll(() => {
         welcomeScreen = childProcess.execFileSync('node', [
-            path.resolve(__dirname, '../welcomeScreen.js'),
+            path.resolve('./src/tests/welcomeScreen.js'),
         ])
     })
 
     it('should display instructions on yes', async () => {
         const result = await executeInput(
-            path.resolve(__dirname, '../../../bin', 'adventure.js'),
+            path.resolve('./bin', 'adventure.js'),
             ['yes'],
         )
         const scenario = `${welcomeScreen}\n${text.intro}\n\n${text.yes}\n\n${text.end}\n\n`
@@ -23,7 +25,7 @@ describe('Routes from locStart', () => {
 
     it('should not display instructions on no', async () => {
         const result = await executeInput(
-            path.resolve(__dirname, '../../../bin', 'adventure.js'),
+            path.resolve('./bin', 'adventure.js'),
             ['no'],
         )
         const scenario = `${welcomeScreen}\n${text.intro}\n\n${text.end}\n\n`
@@ -33,7 +35,7 @@ describe('Routes from locStart', () => {
 
     it('should ask again if neither yes or no', async () => {
         const result = await executeInput(
-            path.resolve(__dirname, '../../../bin', 'adventure.js'),
+            path.resolve('./bin', 'adventure.js'),
             ['maybe, but not sure...'],
         )
         const scenario = `${welcomeScreen}\n${error.join('\n\n')}\n\n`

@@ -1,7 +1,7 @@
-import { actions, messages, settings } from '../data'
-import { isObjectInInventory, removeObjectFromInventory } from '../inventory'
-import { getFluidConditions } from '../locations'
-import { getObjectFromCurrentLocation, updateObjectState } from '../object'
+import { actions, messages, settings } from '../data/index.js'
+import { isObjectInInventory, removeObjectFromInventory } from '../inventory.js'
+import { getFluidConditions } from '../locations.js'
+import { getObjectFromCurrentLocation, updateObjectState } from '../object.js'
 
 export function fill({ objectToFill, actionId, verb }) {
     const obj = getObjectFromCurrentLocation(objectToFill)

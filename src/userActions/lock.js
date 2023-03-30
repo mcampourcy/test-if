@@ -1,11 +1,11 @@
-import { actions, messages } from '../data'
-import { isObjectInInventory } from '../inventory'
+import { actions, messages } from '../data/index.js'
+import { isObjectInInventory } from '../inventory.js'
 import {
     destroyObject,
     dropObject,
     getObjectFromCurrentLocation,
     updateObjectState,
-} from '../object'
+} from '../object.js'
 
 export function lock(param, actionId) {
     const action = actions.find((a) => a.id === actionId)

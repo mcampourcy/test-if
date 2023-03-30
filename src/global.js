@@ -1,10 +1,10 @@
-import { messages, settings } from './data'
-import { manageActions } from './actions'
+import { messages, settings } from './data/index.js'
+import { manageActions } from './actions.js'
 import {
     consoleInput, displayText, displayLine, format,
-} from './console'
-import { getLocationDescription, getRoutesFromLocation } from './locations'
-import { manageTravel } from './travels'
+} from './console.js'
+import { getLocationDescription, getRoutesFromLocation } from './locations.js'
+import { manageTravel } from './travels.js'
 
 const yesAnswer = ['y', 'yes']
 const noAnswer = ['n', 'no']

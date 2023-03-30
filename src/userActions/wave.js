@@ -1,11 +1,11 @@
-import { actions, messages, settings } from '../data'
-import { isObjectInInventory } from '../inventory'
+import { actions, messages, settings } from '../data/index.js'
+import { isObjectInInventory } from '../inventory.js'
 import {
     getObjectByWord,
     getObjectFromCurrentLocation,
     updateObjectState,
-} from '../object'
-import { isTreasureFound } from '../treasure'
+} from '../object.js'
+import { isTreasureFound } from '../treasure.js'
 
 // Wave - No effect unless waving rod at fissure or at bird
 export function wave(param, actionId) {

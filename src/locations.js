@@ -1,11 +1,11 @@
 import {
     directions, locations, messages, settings,
-} from './data'
-import { format } from './console'
-import { getObjectsDescription } from './objects'
-import { manageLocationsHistory } from './settings'
-import { pct } from './global'
-import { getLocationLight } from './light'
+} from './data/index.js'
+import { format } from './console.js'
+import { getObjectsDescription } from './objects.js'
+import { manageLocationsHistory } from './settings.js'
+import { pct } from './global.js'
+import { getLocationLight } from './light.js'
 
 export function getCurrentLocation() {
     return locations.find(({ id }) => id === settings.currentLocation)

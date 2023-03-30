@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "bin/adventure.js",
-  "type": "commonjs",
+  "type": "module",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
     "lint": "eslint --ext js src",
-    "test": "jest --config ./jest.config.js"
+    "test": "NODE_OPTIONS=–experimental-vm-modules npx jest"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,10 @@
     "adventure": "./bin/adventure.js"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.5.0",
+    "babel-plugin-transform-import-meta": "^2.2.0",
     "eslint": "^8.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5"
@@ -36,5 +40,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "testMatch": [
+      "**/tests/**/?(*.)+(e2e).js?(x)"
+    ],
+    "transform": {
+      "\\.js$": [
+        "babel-jest",
+        {
+          "configFile": "./babel.config.cjs"
+        }
+      ]
+    }
+  }
 }

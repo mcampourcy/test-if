@@ -1,10 +1,10 @@
-import { objects, settings } from './data'
+import { objects, settings } from './data/index.js'
 import {
     isObjectInInventory,
     removeObjectFromInventory,
     updateInventory,
-} from './inventory'
-import { updateObjectsList } from './objects'
+} from './inventory.js'
+import { updateObjectsList } from './objects.js'
 
 export function destroyObject(object) {
     removeObjectFromInventory(object.id)

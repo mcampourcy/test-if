@@ -1,23 +1,25 @@
-const path = require('path')
-const childProcess = require('child_process')
-const { executeInput } = require('./executeInput.js')
-const { text, answers } = require('./scenarios/X-intransitive-carry.json')
+import path from 'path'
+import childProcess from 'child_process'
+import { executeInput } from './executeInput.js'
+import intransitive from './scenarios/X-intransitive-carry.json'
+
+const { text, answers } = intransitive
 
 describe('Scenario for instructions at the beginning', () => {
     let welcomeScreen
 
     beforeAll(() => {
         welcomeScreen = childProcess.execFileSync('node', [
-            path.join(__dirname, 'welcomeScreen.js'),
+            path.resolve('./src/tests/welcomeScreen.js'),
         ])
     })
 
     it('should display instructions on yes', async () => {
         const response = await executeInput(
-            path.join(__dirname, '/../../bin', 'adventure.js'),
+            path.resolve('./bin', 'adventure.js'),
             answers,
         )
-        const scenario = `${welcomeScreen}\n${text.join('\n')}\n\n`
+        const scenario = `${welcomeScreen}\n${text.join('\n')}\n`
 
         expect(response.toString()).toEqual(scenario)
     })

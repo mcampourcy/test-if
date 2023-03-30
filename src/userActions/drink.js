@@ -1,12 +1,12 @@
-import { actions, messages } from '../data'
-import { getFluidConditions } from '../locations'
-import { addObjectToInventory, isObjectInInventory } from '../inventory'
+import { actions, messages } from '../data/index.js'
+import { getFluidConditions } from '../locations.js'
+import { addObjectToInventory, isObjectInInventory } from '../inventory.js'
 import {
     getObjectFromCurrentLocation,
     getObjectByWord,
     getObjectState,
     updateObjectState,
-} from '../object'
+} from '../object.js'
 
 /*  Drink.  If no object, assume water and look for it here.  If water is in
  *  the bottle, drink that, else must be at a water loc, so drink stream. */
