@@ -1,4 +1,4 @@
-import { getObjectById } from './object'
+import { getObjectById } from './object.js'
 
 export function isTreasureFound(treasure) {
     return getObjectById(treasure).locations[0] !== 'locNowhere'

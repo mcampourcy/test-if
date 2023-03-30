@@ -1,10 +1,10 @@
-import { messages } from './data'
-import { addObjectToInventory, isObjectInInventory } from './inventory'
+import { messages } from './data/index.js'
+import { addObjectToInventory, isObjectInInventory } from './inventory.js'
 import {
     destroyObject,
     getObjectFromCurrentLocation,
     updateObjectState,
-} from './object'
+} from './object.js'
 
 export function getTheBird(bird) {
     if (bird.currentState === 'birdForestUncaged') {

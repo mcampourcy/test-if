@@ -1,9 +1,9 @@
 // READ.  MAGAZINES IN DWARVISH, MESSAGE WE'VE SEEN, AND . . . OYSTER?
-import { format } from '../console'
-import { actions, messages } from '../data'
-import { getObjectsList } from '../objects'
-import { getLocationLight } from '../light'
-import { getObjectByWord } from '../object'
+import { format } from '../console.js'
+import { actions, messages } from '../data/index.js'
+import { getObjectsList } from '../objects.js'
+import { getLocationLight } from '../light.js'
+import { getObjectByWord } from '../object.js'
 
 export function read(param) {
     if (!param) {

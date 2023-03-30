@@ -1,9 +1,9 @@
-const chalk = require('chalk')
-const figlet = require('figlet')
+import chalk from 'chalk'
+import figlet from 'figlet'
 
 console.log(
-    chalk.green(
-        figlet.textSync('Colossal Cave \n Adventure', {
+    chalk.greenBright(
+        figlet.textSync('Colossal Cave Adventure', {
             font: 'Doom',
             horizontalLayout: 'default',
             verticalLayout: 'default',

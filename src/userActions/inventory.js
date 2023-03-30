@@ -1,5 +1,5 @@
-import { messages, settings } from '../data'
-import { getObjectById, getObjectByWord } from '../object'
+import { messages, settings } from '../data/index.js'
+import { getObjectById, getObjectByWord } from '../object.js'
 
 export function inventory() {
     const { inventory: currentInventory } = settings

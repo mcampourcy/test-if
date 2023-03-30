@@ -1,14 +1,16 @@
-const path = require('path')
-const childProcess = require('child_process')
-const { executeInput } = require('./executeInput.js')
-const { text, error } = require('./scenarios/1-instructions.json')
+import path from 'path'
+import childProcess from 'child_process'
+import { executeInput } from './executeInput.js'
+import instructions from './scenarios/1-instructions.json'
+
+const { text, error } = instructions
 
 describe('Would you like instructions?', () => {
     let welcomeScreen
 
     beforeAll(() => {
         welcomeScreen = childProcess.execFileSync('node', [
-            path.join(__dirname, 'welcomeScreen.js'),
+            path.resolve('./src/tests/welcomeScreen.js'),
         ])
     })
 
@@ -36,7 +38,7 @@ describe('Would you like instructions?', () => {
 
 function executeScript(args) {
     return executeInput(
-        path.join(__dirname, '/../../bin', 'adventure.js'),
+        path.resolve('./bin', 'adventure.js'),
         args,
     )
 }

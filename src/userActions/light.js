@@ -1,11 +1,11 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { isObjectInInventory } from '../inventory'
-import { getLocationDescription } from '../locations'
+import { isObjectInInventory } from '../inventory.js'
+import { getLocationDescription } from '../locations.js'
 import {
     getObjectByWord,
     updateObjectState,
     getObjectFromCurrentLocation,
-} from '../object'
+} from '../object.js'
 
 export function light(action, param) {
     const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')

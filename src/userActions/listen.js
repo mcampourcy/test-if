@@ -1,6 +1,6 @@
-import { messages, sounds } from '../data'
-import { getCurrentLocation } from '../locations'
-import { getObjectsSound } from '../objects'
+import { messages, sounds } from '../data/index.js'
+import { getCurrentLocation } from '../locations.js'
+import { getObjectsSound } from '../objects.js'
 
 export const listen = () => {
     const { loud, sound } = getCurrentLocation()

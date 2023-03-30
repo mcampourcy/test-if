@@ -1,12 +1,12 @@
-import { format } from '../console'
-import { actions, messages } from '../data'
+import { format } from '../console.js'
+import { actions, messages } from '../data/index.js'
 import {
     destroyObject,
     getObjectByWord,
     getObjectFromCurrentLocation,
     getObjectFromLocationOrInventory,
     updateObjectState,
-} from '../object'
+} from '../object.js'
 
 // ATTACK. ASSUME TARGET IF UNAMBIGUOUS. "THROW" ALSO LINKS HERE. ATTACKABLE
 // OBJECTS FALL INTO TWO CATEGORIES: ENEMIES (SNAKE, DWARF, ETC.) AND OTHERS (BIRD, CLAM).

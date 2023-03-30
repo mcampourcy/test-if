@@ -1,4 +1,4 @@
-import { getObjectFromLocationOrInventory } from './object'
+import { getObjectFromLocationOrInventory } from './object.js'
 
 export function getLocationLight(currentLocation) {
     const { conditions } = currentLocation

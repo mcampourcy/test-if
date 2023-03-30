@@ -1,8 +1,9 @@
-import { actions, directions, messages } from './data'
-import { getErrorMessage } from './directions'
-import { getLocationDescription, getCurrentLocation } from './locations'
-import { getObjectByWord } from './object'
+import { actions, directions, messages } from './data/index.js'
+import { getErrorMessage } from './directions.js'
+import { getLocationDescription, getCurrentLocation } from './locations.js'
+import { getObjectByWord } from './object.js'
 import {
+    attack,
     carry,
     discard,
     drink,
@@ -14,9 +15,8 @@ import {
     lock,
     read,
     wave,
-} from './userActions'
-import { getLocationLight } from './light'
-import { attack } from './userActions'
+} from './userActions/index.js'
+import { getLocationLight } from './light.js'
 
 function getAction(instruction) {
     return actions.find(({ verbs }) => verbs && verbs.includes(instruction))

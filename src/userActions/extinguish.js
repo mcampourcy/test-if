@@ -1,13 +1,13 @@
 /*  Light.  Applicable only to lamp and urn. */
-import { isObjectInInventory } from '../inventory'
-import { getCurrentLocation } from '../locations'
+import { isObjectInInventory } from '../inventory.js'
+import { getCurrentLocation } from '../locations.js'
 import {
     getObjectByWord,
     updateObjectState,
     getObjectFromCurrentLocation,
     getObjectState,
-} from '../object'
-import { messages } from '../data'
+} from '../object.js'
+import { messages } from '../data/index.js'
 
 export function extinguish(action, object) {
     const lamp = isObjectInInventory('lamp') || getObjectFromCurrentLocation('lamp')
