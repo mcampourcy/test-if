@@ -974,6 +974,6 @@ export const objects = [
         descriptions: null,
         inventoryName: 'Water in the bottle',
         locations: ['locNowhere'],
-        words: ['water', 'h2o'],
+        words: ['water'],
     },
 ]

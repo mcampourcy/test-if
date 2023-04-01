@@ -18,7 +18,6 @@ export function getTheBird(bird) {
         addObjectToInventory('bird')
         return messages.okMan
     }
-
     return messages.okMan
 }
 

@@ -62,7 +62,8 @@ export function manageActions(answer) {
     case 'carry':
         return locationTooDark
             ? messages.cantApply
-            : carry(param, action.id, verb)
+            // : carry({ name: param, action.id, verb })
+            : carry({ name: param, verb })
     case 'discard':
         return discard(param, action.id, verb)
     case 'drink':

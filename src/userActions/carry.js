@@ -1,78 +1,80 @@
+import { objectList, bottleStateList } from './constants/utils.js'
 import { messages, settings } from '../data/index.js'
-import { inventory } from './inventory.js'
-import { cageTheBird, getTheBird } from '../bird.js'
-import { addObjectToInventory, isObjectInInventory } from '../inventory.js'
+import { cageTheBird, getTheBird } from './bird.js'
 import { getCurrentLocation } from '../locations.js'
-import {
-    getObjectFromCurrentLocation,
-    isObjectALiquid,
-    updateObjectState,
-} from '../object.js'
+import { addObjectToInventory } from '../inventory.js'
+import { getObjectById, getObjectFromCurrentLocation, updateObjectState } from '../object.js'
 import { getObjectsList } from '../objects.js'
-import { getAction } from './utils.js'
-import { fill } from './fill.js'
 
-export function carry(param, actionId, verb) {
-    const { inventoryLimit } = settings
+export function carry({ name = null, verb = 'carry' }) {
+    const { BIRD, BOTTLE, CAGE, OIL, WATER } = objectList
+    const { EMPTY, FULL_OIL, FULL_WATER } = bottleStateList
+    const { inventory, inventoryLimit } = settings
     const { conditions } = getCurrentLocation()
-    const objectsList = getObjectsList()
-    const onlyOneObjectHere = objectsList.length === 1
-    let obj
+    let objectFromCurrentLocation = getObjectFromCurrentLocation(name)
 
-    // Inventory full
-    if (inventory.length === inventoryLimit) return messages.carryLimit
-
-    // if user didn't mention any param ("take") and there is only one object here, take the object
-    // Otherwise, return error message
-    if (!param) {
-        obj = objectsList[0]
-        if (!onlyOneObjectHere) return messages.doWhat(verb)
+    // If no name given (e.g. "take") and only one object here
+    if (!name) {
+        const objectsList = getObjectsList()
+        if (objectsList.length === 1) {
+            objectFromCurrentLocation = objectsList[0]
+        }
     }
-
-    if (param) obj = getObjectFromCurrentLocation(param)
-    if (!obj) return messages.doWhat(verb)
-
-    // Already carrying
-    if (isObjectInInventory(obj.id)) return getAction(actionId).message
-
-    // Not moveable
-    if (obj.immovable) return messages.youJoking
 
     // "take water / oil"
-    if (isObjectALiquid(obj.id)) {
-        const bottle = getObjectFromCurrentLocation('bottle')
-            || isObjectInInventory('bottle')
+    if (name === WATER || name === OIL) {
+        const bottleInInventory = inventory.find(o => o === BOTTLE) ? getObjectById(BOTTLE) : null
+        const bottleInCurrentLocation = !bottleInInventory && getObjectFromCurrentLocation(BOTTLE)
 
-        if (!bottle) return messages.noContainer
-        if (getObjectFromCurrentLocation('bottle')) addObjectToInventory(obj.id)
-        if (bottle.currentState === 'fullBottle') return messages.bottleFull
+        if (!bottleInInventory && !bottleInCurrentLocation) return messages.noContainer
 
-        return fill({ objectToFill: obj, actionId })
-    }
+        if (!conditions.fluid) return messages.noLiquid
 
-    if (obj.id === 'bird') return getTheBird(obj)
-
-    if (obj.id === 'bottle' && conditions.fluid) {
-        addObjectToInventory(obj.id)
-
-        if (obj.currentState === 'emptyBottle') {
-            const bottleState = updateObjectState(
-                obj.id,
-                conditions.oily ? 'oilBottle' : 'waterBottle',
-            )
-            return `${bottleState.change}\n${messages.okMan}`
+        if (bottleInCurrentLocation && bottleInCurrentLocation.currentState !== EMPTY) {
+            return messages.fullBottle
         }
 
+        const bottle = bottleInInventory || bottleInCurrentLocation
+        if (bottle.currentState === EMPTY) {
+            addObjectToInventory(BOTTLE)
+            const bottleState = updateObjectState(name, conditions.oily ? FULL_OIL : FULL_WATER)
+            return `${bottleState.change}\n${messages.okMan}`
+        }
+    }
+
+    // If there is something to carry
+    if (objectFromCurrentLocation) {
+        const { id, immovable } = objectFromCurrentLocation
+
+        // Object already carried
+        if (inventory.find(o => o === id)) return messages.alreadyCarrying
+
+        // Inventory full
+        if (inventory.length >= inventoryLimit) return messages.carryLimit
+
+        // The object can't be moved
+        if (immovable) return messages.youJoking
+
+        // Carry bird || carry cage || cage bird
+        if (name === BIRD || name === CAGE) {
+            const carryCage = name === CAGE && getObjectFromCurrentLocation(BIRD)
+            const cageBird = name === BIRD && verb === CAGE
+            const carryBird = name === BIRD && verb !== CAGE
+
+            if (carryCage || cageBird) {
+                return cageTheBird(objectFromCurrentLocation, verb)
+            }
+
+            if (carryBird) {
+                return getTheBird(objectFromCurrentLocation)
+            }
+        }
+
+        addObjectToInventory(id)
         return messages.okMan
     }
 
-    if (
-        (obj.id === 'cage' && getObjectFromCurrentLocation('bird'))
-        || (obj.id === 'bird' && verb === 'cage')
-    ) {
-        return cageTheBird(obj, verb)
-    }
-
-    addObjectToInventory(obj.id)
-    return messages.okMan
+    // Nothing to carry
+    // No param given with too many objects in here OR object is not here
+    return messages.doWhat(verb)
 }
