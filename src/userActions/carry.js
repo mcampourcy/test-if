@@ -11,13 +11,13 @@ export function carry({ name = null, verb = 'carry' }) {
     const { EMPTY, FULL_OIL, FULL_WATER } = bottleStateList
     const { inventory, inventoryLimit } = settings
     const { conditions } = getCurrentLocation()
-    let objectFromCurrentLocation = getObjectFromCurrentLocation(name)
+    let objectToCarry = getObjectFromCurrentLocation(name)
 
     // If no name given (e.g. "take") and only one object here
     if (!name) {
         const objectsList = getObjectsList()
         if (objectsList.length === 1) {
-            objectFromCurrentLocation = objectsList[0]
+            objectToCarry = objectsList[0]
         }
     }
 
@@ -43,8 +43,8 @@ export function carry({ name = null, verb = 'carry' }) {
     }
 
     // If there is something to carry
-    if (objectFromCurrentLocation) {
-        const { id, immovable } = objectFromCurrentLocation
+    if (objectToCarry) {
+        const { id, immovable } = objectToCarry
 
         // Object already carried
         if (inventory.find(o => o === id)) return messages.alreadyCarrying
@@ -62,11 +62,11 @@ export function carry({ name = null, verb = 'carry' }) {
             const carryBird = name === BIRD && verb !== CAGE
 
             if (carryCage || cageBird) {
-                return cageTheBird(objectFromCurrentLocation, verb)
+                return cageTheBird(verb)
             }
 
             if (carryBird) {
-                return getTheBird(objectFromCurrentLocation)
+                return getTheBird(objectToCarry)
             }
         }
 
