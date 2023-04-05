@@ -62,7 +62,6 @@ export function manageActions(answer) {
     case 'carry':
         return locationTooDark
             ? messages.cantApply
-            // : carry({ name: param, action.id, verb })
             : carry({ name: param, verb })
     case 'discard':
         return discard(param, action.id, verb)
@@ -73,7 +72,7 @@ export function manageActions(answer) {
     case 'fill':
         return locationTooDark
             ? messages.cantApply
-            : fill(param, action.id, verb)
+            : fill({ name: param, verb })
     case 'inventory':
         return inventory()
     case 'light':

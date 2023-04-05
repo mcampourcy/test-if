@@ -3,22 +3,20 @@ import { isObjectInInventory, removeObjectFromInventory } from '../inventory.js'
 import { getFluidConditions } from '../locations.js'
 import { getObjectFromCurrentLocation, updateObjectState } from '../object.js'
 
-export function fill({ object }) {
-    const obj = getObjectFromCurrentLocation(object)
-    const isInInvent = isObjectInInventory(obj.id)
+export function fill({ name, verb = 'fill' }) {
+    const objectInCurrentLocation = getObjectFromCurrentLocation(name)
+    const isInInventory = isObjectInInventory(name)
     const fluid = getFluidConditions()
 
-    if (obj.id === 'vase') {
+    if (name === 'vase' && (objectInCurrentLocation || isInInventory)) {
+        if (!isInInventory) return messages.arentCarrying
         if (!fluid) return messages.fillInvalid
-        if (!isInInvent) return messages.arentCarrying
 
-        const state = updateObjectState(obj.id, 'vaseBroken')
-        obj.locations = [settings.currentLocation]
-        removeObjectFromInventory(obj.id)
-        return `${state.change}\n${messages.shatterVase}`
+        updateObjectState(name, 'vaseBroken')
+        objectInCurrentLocation.locations = [settings.currentLocation]
+        removeObjectFromInventory(name)
+        return messages.shatterVase
     }
 
-    if (!fluid) return messages.noLiquid
-
-    return updateObjectState(obj.id, `${fluid}Bottle`)
+    return messages.doWhat(verb)
 }
