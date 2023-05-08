@@ -15,14 +15,15 @@
     "indent": ["error", 4],
     "max-len": ["error",
       {
-        "code": 160,
+        "code":240,
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
       }
     ],
+    "object-curly-newline": "off",
     "no-console": 0,
     "no-use-before-define": ["error", { "functions": false }],
     "semi": ["error", "never"],
-    "strict": ["error", "global"],
+    "strict": ["error", "global"]
   }
 }

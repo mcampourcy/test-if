@@ -26,7 +26,6 @@ export const messages = {
         'The bird seemed unafraid at first, but as you approach it becomes disturbed and you cannot catch it.',
     birdPining:
         "It's not hungry (it's merely pinin' for the fjords). Besides, you have no bird seed.",
-    bottleFull: 'Your bottle is already full.',
     bridgeGone: 'There is no longer any way across the chasm.',
     briefConfirm:
         'Okay, from now on I\'ll only describe a place in full the first time you come to it. To get the full description, say "look".',
@@ -90,6 +89,7 @@ export const messages = {
     forgotPath:
         'Sorry, but I no longer seem to remember how it was you got here.',
     freeFly: 'The bird flies about agitatedly for a moment.',
+    fullBottle: 'Your bottle is already full.',
     fullUrn: 'The urn is already full of oil.',
     futileCrawl:
         'You have crawled around in some little holes and wound up back in the main passage.',

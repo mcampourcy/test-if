@@ -16,7 +16,6 @@
   "dependencies": {
     "chalk": "4.1.2",
     "concat-stream": "^2.0.0",
-    "esm": "^3.2.25",
     "figlet": "^1.5.2",
     "fs-extra": "^11.1.1",
     "jest": "^29.5.0",
@@ -42,8 +41,15 @@
     "not op_mini all"
   ],
   "jest": {
+    "setupFiles": [
+      "<rootDir>/test-setup.js"
+    ],
     "testMatch": [
-      "**/tests/**/?(*.)+(e2e).js?(x)"
+      "/**/**.test.js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
     ],
     "transform": {
       "\\.js$": [
