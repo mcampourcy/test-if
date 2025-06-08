@@ -14,7 +14,7 @@ export function inventory() {
             ? currentInventory.filter((id) => id !== 'cage')
             : currentInventory
 
-        invent.map((objId) => {
+        invent.forEach((objId) => {
             const { id, currentState, inventoryName } = getObjectByWord(objId)
             description += `\n${inventoryName}`
 
