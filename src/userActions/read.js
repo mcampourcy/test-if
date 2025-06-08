@@ -9,7 +9,7 @@ export function read(param) {
     if (!param) {
         const objects = getObjectsList()
         let text = ''
-        objects.map(({ texts }) => {
+        objects.forEach(({ texts }) => {
             if (texts) text += `\n${texts}`
         })
 

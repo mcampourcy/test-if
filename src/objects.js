@@ -7,7 +7,7 @@ export function getObjectsDescription(location, isLocationLight) {
     if (isLocationLight) {
         const description = []
 
-        objects.map((object) => {
+        objects.forEach((object) => {
             if (
                 object.locations.includes(currentLocation)
                 && !isObjectInInventory(object.id)
@@ -45,7 +45,7 @@ export function getObjectsList() {
 export function getObjectsSound() {
     const { currentLocation, inventory } = settings
     const description = []
-    objects.map(({ locations, id, states }) => {
+    objects.forEach(({ locations, id, states }) => {
         const alreadyInInventory = inventory.find((obj) => obj.id === id)
         if (
             locations.includes(currentLocation)
@@ -54,7 +54,6 @@ export function getObjectsSound() {
         ) {
             description.push(states[0].sound)
         }
-        return id
     })
     return description.join('\n')
 }

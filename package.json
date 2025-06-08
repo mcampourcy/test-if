@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint --ext js src",
-    "test": "NODE_OPTIONS=–experimental-vm-modules npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "author": "",
   "license": "ISC",
